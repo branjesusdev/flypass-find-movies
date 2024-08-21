@@ -16,7 +16,7 @@ export class OnbordingMasterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.__init__();
+    // this.__init__();
   }
 
   __init__() {
