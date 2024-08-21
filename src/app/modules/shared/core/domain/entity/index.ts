@@ -1,0 +1,5 @@
+export * from './movie-details'
+export * from './serie-detail'
+export * from './featured-movie'
+export * from './featured-serie'
+export * from './search-multi'

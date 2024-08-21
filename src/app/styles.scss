@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'atoms/_colors';
+@import 'atoms/_typography';
+@import 'atoms/_inputs';
+@import 'atoms/_scrollbar';
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: fontRegularBody, system-ui;
+  @include scrollbar;
+}
+
+
