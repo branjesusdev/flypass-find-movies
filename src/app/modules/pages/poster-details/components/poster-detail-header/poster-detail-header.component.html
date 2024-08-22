@@ -1,0 +1,29 @@
+<header
+  class="w-full transform bg-[rgba(110,110,110,0.5)] bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,10.85%,3.68%,95%)_0,rgba(12,12,12,.6)_100%)] relative"
+>
+  <div class="flex items-center justify-between px-10 md:px-40 py-9">
+    <div class="flex flex-col gap-3">
+      <h3 class="text-primary-ui font-bodyTwo">{{ posterHeader.media_type | uppercase }}</h3>
+      <h1 class="text-white font-bold text-4xl">{{ posterHeader.name | uppercase }}</h1>
+      <div class="flex flex-row gap-3">
+        <span class="text-white text-sm">{{ posterHeader.release_date | date: 'yyyy' }}</span>
+
+        @if (posterHeader.runtime) {
+          <span class="text-white text-sm">{{ posterHeader.runtime | runtimeFormat }}</span>
+        }
+
+        @if (posterHeader.number_of_seasons) {
+          <span class="text-white text-sm">{{ posterHeader.number_of_seasons }} Seasons</span>
+        }
+      </div>
+    </div>
+
+    <div class="flex gap-3 items-center">
+      <h2 class="text-3xl">⭐ {{ posterHeader.vote_average | number: '1.0-1' }}</h2>
+      <div class="flex flex-col items-center gap-1">
+        <span class="text-[0.7rem] text-white/60"> {{ posterHeader.popularity }} </span>
+        <span class="text-[0.7rem] text-white/60">ratings</span>
+      </div>
+    </div>
+  </div>
+</header>

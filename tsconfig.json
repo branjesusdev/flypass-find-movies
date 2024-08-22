@@ -27,11 +27,11 @@
 
       // APP
 
-      "@app/*" : ["src/app/modules/app/*"],
+      "@app/*": ["src/app/modules/app/*"],
 
       // Layouts
 
-      "@fxLayouts/*" : ["src/app/modules/app/flex-layouts/*"],
+      "@fxLayouts/*": ["src/app/modules/app/flex-layouts/*"],
 
       // PAGES
 
@@ -39,11 +39,11 @@
 
       // Shared
 
-      "@shared/*" : ["src/app/modules/shared/*"],
+      "@shared/*": ["src/app/modules/shared/*"],
 
       // Libs
 
-      "@libs/*" : ["libs/transversal-library/src/*"]
+      "@lib-transversal": ["libs/transversal-library/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

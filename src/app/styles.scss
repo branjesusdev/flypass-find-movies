@@ -6,7 +6,9 @@
 @import 'atoms/_typography';
 @import 'atoms/_inputs';
 @import 'atoms/_scrollbar';
+@import 'atoms/_badge';
 
+@import 'molecules/_tabs';
 
 * {
   box-sizing: border-box;
@@ -16,7 +18,8 @@
 
 body {
   font-family: fontRegularBody, system-ui;
-  @include scrollbar;
 }
 
-
+.container-wrapper {
+  @apply pl-10 md:pl-40 w-full relative;
+}

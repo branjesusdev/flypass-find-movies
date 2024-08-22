@@ -1,3 +1,14 @@
-<div>
-  <h1 class="text-primary-ui font-bold text-4xl mt-12 ml-40">Featured Today</h1>
+<div class="container-wrapper">
+  <h1 class="text-primary-ui font-bold text-4xl mt-12">Featured Today</h1>
+
+  <article class="my-4">
+    <p-tabView>
+      <p-tabPanel header="Movies">
+        <app-featured-movies [featuredMovies]="stateMovies()" />
+      </p-tabPanel>
+      <p-tabPanel header="Series">
+        <app-featured-series [featuredSeries]="stateSeries()" />
+      </p-tabPanel>
+    </p-tabView>
+  </article>
 </div>

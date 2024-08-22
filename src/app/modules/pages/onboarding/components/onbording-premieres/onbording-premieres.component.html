@@ -1,3 +1,11 @@
-<div>
-  <h1 class="text-primary-ui font-bold text-4xl mt-12 ml-40">Premieres and announcements</h1>
+<div class="container-wrapper">
+  <h1 class="text-primary-ui font-bold text-4xl mt-12">Premieres and announcements</h1>
+
+  <article class="pt-3 pb-20 block">
+    <ui-carousel
+      [items]="posters()"
+      key="onbording-premieres"
+      (outPoster)="onPoster($event)"
+    ></ui-carousel>
+  </article>
 </div>

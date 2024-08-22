@@ -1,3 +1,1 @@
-
-export * from './SessionStorage.class'
-export * from './CryptoJsStrategy.class'
+export * from './SessionStorage.class';

@@ -5,11 +5,11 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    loadChildren: () => import('@pages/onboarding/onboarding.module').then(m => m.OnboardingModule)
+    loadChildren: () => import('@pages/pages.routes'),
   },
   {
     path: '**',
     redirectTo: '',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];

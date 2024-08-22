@@ -1,12 +1,12 @@
 export const PATHS = {
   movies: {
     featured: '/movie/now_playing',
-    details: (movieId: number) => `/movie/${movieId}`
+    details: (movieId: number) => `/movie/${movieId}`,
   },
   series: {
     featured: '/tv/airing_today',
-    details: (seriesId: number) => `/tv/${seriesId}`
+    details: (seriesId: number) => `/tv/${seriesId}`,
   },
-  search: `/search/multi`
-
-}
+  search: `/search/multi`,
+  trending: `/trending/all/day`,
+};

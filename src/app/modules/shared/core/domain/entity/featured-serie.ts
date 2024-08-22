@@ -1,6 +1,8 @@
 export type FeaturedSerie = {
   id_serie: number;
   title: string;
-  poster_path : string;
-  vote_average : number;
-}
+  poster_path: string;
+  vote_average: number;
+  overview: string;
+  media_type: string;
+};

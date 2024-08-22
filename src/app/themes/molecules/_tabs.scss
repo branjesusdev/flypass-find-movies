@@ -1,0 +1,37 @@
+.tabs {
+  input {
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+    border-left-color: transparent !important;
+  }
+}
+
+.p-tabview {
+  .p-tabview-nav {
+    background-color: transparent !important;
+    border-bottom: 2px solid var(--white-opacity-12);
+
+    .p-tabview-nav-link {
+      background-color: transparent !important;
+      padding: 0.8rem 1rem;
+      border-color: transparent;
+      color: var(--gray-100-opacity-60);
+      font-size: 17px;
+    }
+
+    li.p-highlight .p-tabview-nav-link {
+      border-bottom: 2px solid white;
+      color: white;
+    }
+
+    .p-tabview-ink-bar {
+      background-color: white;
+    }
+  }
+
+  .p-tabview-panels {
+    background-color: transparent !important;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}

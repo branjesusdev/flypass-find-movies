@@ -1,11 +1,32 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit, signal } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectionStrategy,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  effect,
+  ElementRef,
+  EventEmitter,
+  inject,
+  Inject,
+  Injector,
+  Input,
+  Output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { RippleModule } from 'primeng/ripple';
 import { register, SwiperContainer } from 'swiper/element/bundle';
-import { SwiperOptions } from 'swiper/types';
+import { Swiper, SwiperOptions } from 'swiper/types';
 
 import { CardPosterComponent } from '../card-poster/card-poster.component';
 import { ItemsCarousel } from '../../entitys/items-carousel';
+
+register();
+interface SwiperNativeEl {
+  swiper: Swiper;
+  initialize: () => void;
+}
 
 @Component({
   selector: 'ui-carousel',
@@ -14,56 +35,67 @@ import { ItemsCarousel } from '../../entitys/items-carousel';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CarouselComponent implements OnInit {
-
+export class CarouselComponent {
   swiperElement = signal<SwiperContainer | null>(null);
   @Input({ required: true }) items: ItemsCarousel[] = [];
   @Input({ required: true }) key: string = '';
+  @Output() outPoster = new EventEmitter<ItemsCarousel>();
+  visbleCarousel = false;
 
-  ngOnInit(): void {
+  private readonly swiperContainer =
+    viewChild.required<ElementRef<SwiperNativeEl>>('swiperContainer');
+  private readonly injector = inject(Injector);
 
-    const swiperEl = document.querySelector(`#${this.key}`) as SwiperContainer;
+  constructor() {
+    afterNextRender(() => {
+      effect(
+        () => {
+          const swiperEl = this.swiperContainer().nativeElement;
 
-    const swiperOptions: SwiperOptions = {
-      slidesPerView: 8,
-      spaceBetween: 5,
-      navigation: {
-        nextEl: `.swiper-button-next-${this.key}`,
-        prevEl: `.swiper-button-prev-${this.key}`,
-        enabled: true
-      },
-      breakpoints: {
+          const swiperOptions: SwiperOptions = {
+            slidesPerView: 8,
+            spaceBetween: 5,
+            navigation: {
+              nextEl: `.swiper-button-next-${this.key}`,
+              prevEl: `.swiper-button-prev-${this.key}`,
+              enabled: true,
+            },
+            breakpoints: {
+              0: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
 
-        0: {
-          slidesPerView: 2,
-          spaceBetween: 10,
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+              },
+              1024: {
+                slidesPerView: 5,
+                spaceBetween: 50,
+              },
+              1440: {
+                slidesPerView: 7,
+                spaceBetween: 60,
+              },
+            },
+          };
+
+          Object.assign(swiperEl, swiperOptions);
+          swiperEl.initialize();
         },
+        { injector: this.injector },
+      );
+    });
+  }
 
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 4,
-          spaceBetween: 40,
-        },
-        1024: {
-          slidesPerView: 5,
-          spaceBetween: 50,
-        },
-        1440: {
-          slidesPerView: 7,
-          spaceBetween: 60,
-        }
-
-      },
-    }
-
-    Object.assign(swiperEl!, swiperOptions);
-
-    this.swiperElement.set(swiperEl as SwiperContainer);
-    this.swiperElement()?.initialize();
+  selectPoster(poster: ItemsCarousel): void {
+    this.outPoster.emit(poster);
   }
 }

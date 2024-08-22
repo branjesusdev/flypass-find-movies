@@ -1,30 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
-import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
+import { Component } from '@angular/core';
+import { OnbordingFeaturedComponent } from '@pages/onboarding/components/onbording-featured/onbording-featured.component';
+import { OnbordingPremieresComponent } from '@pages/onboarding/components/onbording-premieres/onbording-premieres.component';
 
 @Component({
   selector: 'app-onbording-master',
+  standalone: true,
+  imports: [OnbordingFeaturedComponent, OnbordingPremieresComponent],
   templateUrl: './onbording-master.component.html',
-  styleUrl: './onbording-master.component.scss'
+  styleUrl: './onbording-master.component.scss',
 })
-export class OnbordingMasterComponent implements OnInit {
-
-  constructor(
-    private serviceTmdb : TheMovieDBPort
-  ) {
-
-  }
-
-  ngOnInit() {
-    // this.__init__();
-  }
-
-  __init__() {
-    this.serviceTmdb.getFeaturedMovies().subscribe(
-      (movies) => {
-        console.log('movies', movies);
-      }
-    )
-  }
-
-}
+export default class OnbordingMasterComponent {}

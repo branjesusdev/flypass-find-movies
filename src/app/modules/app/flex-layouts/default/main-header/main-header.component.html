@@ -1,24 +1,79 @@
-<header class="relative z-10 flex gap-[5rem] items-center justify-between px-40 py-9">
-  <img
-    ngSrc="imgs/logo.svg"
-    alt="Logo Flypass - Find movies"
-    width="180"
-    height="38"
-  />
+<header
+  class="relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9"
+>
+  <a
+    aria-label="Go to home"
+    class="bg-transparent outline-none focus:outline-none cursor-pointer"
+    routerLink="/"
+  >
+    <img ngSrc="imgs/logo.svg" alt="Logo Flypass - Find movies" width="180" height="38" />
+  </a>
 
-  <label class="input input-bordered flex items-center gap-2 has-[:focus-within]:text-black transition-colors w-full">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 16 16"
-      fill="currentColor"
-      class="h-6 w-6"
+  <!-- SECCIÓN DE BÚSQUEDA -->
+
+  <div class="relative w-full">
+    <form (ngSubmit)="onEnter()" autocomplete="off"></form>
+    <label
+      class="input input-bordered flex items-center gap-2 has-[:focus-within]:text-black transition-colors"
     >
-      <path
-        fill-rule="evenodd"
-        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-        clip-rule="evenodd"
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        class="h-6 w-6"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      <input
+        type="text"
+        class="grow"
+        placeholder="Search FindMovies"
+        (input)="onSearch()"
+        [(ngModel)]="inputText"
       />
-    </svg>
-    <input type="text" class="grow" placeholder="Search FindMovies" />
-  </label>
+    </label>
+
+    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->
+
+    <div
+      class="absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden"
+    >
+      @defer {
+        <ng-container *ngTemplateOutlet="resultSearch"></ng-container>
+      } @placeholder {
+        <div class="p-4 flex flex-col gap-2">
+          <p class="animate-pulse bg-white/15 h-6 w-1/2"></p>
+          <p class="animate-pulse bg-white/15 h-4 w-3/4"></p>
+          <p class="animate-pulse bg-white/15 h-5 w-1/2"></p>
+        </div>
+      }
+    </div>
+  </div>
 </header>
+
+<ng-template #resultSearch>
+  <ul>
+    @for (list of listResults(); track list.id) {
+      <li
+        class="flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer"
+        (click)="onPoster(list)"
+        aria-hidden="true"
+      >
+        <img class="rounded" ngSrc="{{ list.poster_path }}" alt="Brazil" width="55" height="83" />
+        <div class="flex flex-col gap-2">
+          <h3 class="text-white">{{ list.title }}</h3>
+          <span class="text-secondary-ui/60 text-sm">{{ list.release_date | date: 'yyyy' }}</span>
+          <p class="font-body text-white">{{ list.distribution }}</p>
+        </div>
+      </li>
+    }
+  </ul>
+
+  @if (notFound()) {
+    <p class="p-4">No results found for "{{ inputText }}" phrase.</p>
+  }
+</ng-template>
