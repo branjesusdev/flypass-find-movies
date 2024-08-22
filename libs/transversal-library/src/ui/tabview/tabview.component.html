@@ -1,0 +1,8 @@
+<p-tabView>
+  @for (item of items; track $index) {
+    <p-tabPanel header="{{ item.title }}">
+      {{ item.content }}
+      <ng-content select=".example"></ng-content>
+    </p-tabPanel>
+  }
+</p-tabView>
