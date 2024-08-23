@@ -1,0 +1,132 @@
+{
+  "adult": false,
+  "backdrop_path": "/uWGJmuPYGncqGNFrF0mslL9urrF.jpg",
+  "created_by": [
+    {
+      "id": 81823,
+      "credit_id": "564d96189251414dc400988f",
+      "name": "Louis Morissette",
+      "original_name": "Louis Morissette",
+      "gender": 2,
+      "profile_path": "/lnVC54r3jvvsmzK8PAOYxGbevXQ.jpg"
+    }
+  ],
+  "episode_run_time": [44],
+  "first_air_date": "2006-09-18",
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    },
+    {
+      "id": 35,
+      "name": "Comedy"
+    }
+  ],
+  "homepage": "http://www.radio-canada.ca/ca",
+  "id": 37164,
+  "in_production": false,
+  "languages": ["fr"],
+  "last_air_date": "2010-03-29",
+  "last_episode_to_air": {
+    "id": 1137676,
+    "name": "Episode 13",
+    "overview": "",
+    "vote_average": 0.0,
+    "vote_count": 0,
+    "air_date": "2010-03-29",
+    "episode_number": 13,
+    "episode_type": "finale",
+    "production_code": "",
+    "runtime": 44,
+    "season_number": 4,
+    "show_id": 37164,
+    "still_path": null
+  },
+  "name": "The Board",
+  "next_episode_to_air": null,
+  "networks": [
+    {
+      "id": 141,
+      "logo_path": "/32OnRA75a9xn30N2fC44IcCzHkC.png",
+      "name": "ICI Radio-Canada Télé",
+      "origin_country": "CA"
+    }
+  ],
+  "number_of_episodes": 52,
+  "number_of_seasons": 4,
+  "origin_country": ["CA"],
+  "original_language": "fr",
+  "original_name": "C.A.",
+  "overview": "Ten years after hanging their diploma on the wall, four friends who graduated together from a business management school reach a conclusion: while they believed that their academic training would be the corner stone of their lives, that is not the case.",
+  "popularity": 8.972,
+  "poster_path": "/azFTgEVQmRRTGdhMkwjDXNP80yd.jpg",
+  "production_companies": [
+    {
+      "id": 25562,
+      "logo_path": null,
+      "name": "Novem",
+      "origin_country": "CA"
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "CA",
+      "name": "Canada"
+    }
+  ],
+  "seasons": [
+    {
+      "air_date": "2006-09-18",
+      "episode_count": 13,
+      "id": 48361,
+      "name": "Season 1",
+      "overview": "",
+      "poster_path": "/x0GGjcYNVM8HcT9ny3JbOXv2HoV.jpg",
+      "season_number": 1,
+      "vote_average": 0.0
+    },
+    {
+      "air_date": "2007-09-10",
+      "episode_count": 13,
+      "id": 48362,
+      "name": "Season 2",
+      "overview": "",
+      "poster_path": "/x0GGjcYNVM8HcT9ny3JbOXv2HoV.jpg",
+      "season_number": 2,
+      "vote_average": 0.0
+    },
+    {
+      "air_date": "2008-09-25",
+      "episode_count": 13,
+      "id": 48363,
+      "name": "Season 3",
+      "overview": "",
+      "poster_path": "/x0GGjcYNVM8HcT9ny3JbOXv2HoV.jpg",
+      "season_number": 3,
+      "vote_average": 0.0
+    },
+    {
+      "air_date": "2010-01-04",
+      "episode_count": 13,
+      "id": 48364,
+      "name": "Season 4",
+      "overview": "",
+      "poster_path": "/x0GGjcYNVM8HcT9ny3JbOXv2HoV.jpg",
+      "season_number": 4,
+      "vote_average": 0.0
+    }
+  ],
+  "spoken_languages": [
+    {
+      "english_name": "French",
+      "iso_639_1": "fr",
+      "name": "Français"
+    }
+  ],
+  "status": "Ended",
+  "tagline": "",
+  "type": "Scripted",
+  "vote_average": 6.3,
+  "vote_count": 6
+}

@@ -3707,7 +3707,7 @@
         ]
       },
       "extends": [],
-      "templateData": "<section class=\"flex flex-col gap-4 items-center justify-center w-full h-[80vh]\">\n  <img\n    ngSrc=\"imgs/union-icon.svg\"\n    alt=\"Union Icon\"\n    class=\"aspect-square mx-auto w-[30rem]\"\n    width=\"280\"\n    height=\"120\"\n  />\n\n  <h1 class=\"font-bold text-white text-4xl\">Oops....</h1>\n  <p class=\"text-white text-xl\">Something went wrong.</p>\n\n  <button\n    (click)=\"refreshPage()\"\n    aria-label=\"Refresh Page\"\n    class=\"btn btn-active btn-primary bg-primary-ui hover:bg-primary-ui outline-none shadow-none border-none\"\n  >\n    Refresh\n  </button>\n</section>\n"
+      "templateData": "<section class=\"flex flex-col gap-4 items-center justify-center w-full h-[80vh]\">\n  <img\n    ngSrc=\"imgs/union-icon.svg\"\n    alt=\"Union Icon\"\n    class=\"aspect-square mx-auto w-[30rem]\"\n    width=\"280\"\n    height=\"120\"\n  />\n\n  <h1 class=\"font-bold text-white text-4xl\">Oops....</h1>\n  <p class=\"text-white text-xl\">Something went wrong.</p>\n\n    <button\n      (click)=\"refreshPage()\"\n      aria-label=\"Refresh Page\"\n      class=\"btn btn-active btn-primary bg-primary-ui hover:bg-primary-ui outline-none shadow-none border-none\"\n    >\n      Refresh\n    </button>\n</section>\n"
     },
     {
       "name": "FeaturedMoviesComponent",
@@ -4095,7 +4095,7 @@
     },
     {
       "name": "MainHeaderComponent",
-      "id": "component-MainHeaderComponent-68c212262ddd783ad1bd38b2ef52032055d9ab815c67892d306aeb30e8291df522d9b2545486ee18864cf16c964fd6dc4151da8d11105a2365462836c6e53110",
+      "id": "component-MainHeaderComponent-98e638b508f69f56570d95d53d6d8d1010ee9a7bf9dd169f83197c4ff2697dca440ed0c4cbab9dfeddf3179af9ae2acc4ccaa7c7568dbd71a6e860cda40df08e",
       "file": "src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -4119,7 +4119,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 25,
+          "line": 26,
           "modifierKind": [123]
         },
         {
@@ -4130,7 +4130,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 20
+          "line": 21
         },
         {
           "name": "listResults",
@@ -4140,7 +4140,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 21
+          "line": 22
         },
         {
           "name": "notFound",
@@ -4150,7 +4150,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 22
+          "line": 23
         },
         {
           "name": "router",
@@ -4160,7 +4160,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 27,
+          "line": 28,
           "modifierKind": [123]
         },
         {
@@ -4171,7 +4171,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 24,
+          "line": 25,
           "modifierKind": [123]
         },
         {
@@ -4182,7 +4182,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 26,
+          "line": 27,
           "modifierKind": [123]
         }
       ],
@@ -4193,7 +4193,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 29,
+          "line": 30,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -4203,7 +4203,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 49,
+          "line": 51,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -4220,7 +4220,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 43,
+          "line": 45,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -4237,13 +4237,31 @@
         },
         {
           "name": "onSearch",
-          "args": [],
+          "args": [
+            {
+              "name": "event",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 39,
+          "line": 40,
           "deprecated": false,
-          "deprecationMessage": ""
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
         },
         {
           "name": "searchResults",
@@ -4257,7 +4275,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 53,
+          "line": 55,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -4292,18 +4310,22 @@
         {
           "name": "FormsModule",
           "type": "module"
+        },
+        {
+          "name": "InputComponent",
+          "type": "component"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';\nimport { debounceTime, Subject, tap } from 'rxjs';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\nimport { FormsModule } from '@angular/forms';\n\n// RESOURCES\n\nimport { SearchMulti } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Router, RouterLink } from '@angular/router';\n\n@Component({\n  selector: 'app-main-header',\n  standalone: true,\n  imports: [NgOptimizedImage, CommonModule, RouterLink, FormsModule],\n  templateUrl: './main-header.component.html',\n})\nexport class MainHeaderComponent implements OnInit {\n  inputText = '';\n  listResults = signal<SearchMulti[]>([]);\n  notFound = signal(false);\n\n  private searchSubject = new Subject<string>();\n  private destroyRef = inject(DestroyRef);\n  private serviceTmdb = inject(TheMovieDBPort);\n  private router = inject(Router);\n\n  ngOnInit() {\n    this.searchSubject\n      .pipe(\n        debounceTime(500),\n        tap(() => this.listResults.set([])),\n      )\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((searchValue) => this.searchResults({ searchValue }));\n  }\n\n  onSearch(): void {\n    this.searchSubject.next(this.inputText);\n  }\n\n  onPoster(poster: SearchMulti): void {\n    this.listResults.set([]);\n    this.inputText = '';\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onEnter(): void {\n    this.searchResults({ searchValue: this.inputText });\n  }\n\n  private searchResults({ searchValue }: { searchValue: string }): void {\n    if (!searchValue) {\n      this.listResults.set([]);\n      this.notFound.set(false);\n      return;\n    }\n\n    this.serviceTmdb\n      .searchMovies(searchValue)\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        console.log('movies', movies);\n\n        this.listResults.set(movies.slice(0, 5));\n        this.notFound.set(movies.length === 0);\n      });\n  }\n}\n",
+      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';\nimport { debounceTime, Subject, tap } from 'rxjs';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\nimport { FormsModule } from '@angular/forms';\n\n// RESOURCES\n\nimport { SearchMulti } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Router, RouterLink } from '@angular/router';\nimport { InputComponent } from '@lib-transversal';\n\n@Component({\n  selector: 'app-main-header',\n  standalone: true,\n  imports: [NgOptimizedImage, CommonModule, RouterLink, FormsModule, InputComponent],\n  templateUrl: './main-header.component.html',\n})\nexport class MainHeaderComponent implements OnInit {\n  inputText = '';\n  listResults = signal<SearchMulti[]>([]);\n  notFound = signal(false);\n\n  private searchSubject = new Subject<string>();\n  private destroyRef = inject(DestroyRef);\n  private serviceTmdb = inject(TheMovieDBPort);\n  private router = inject(Router);\n\n  ngOnInit() {\n    this.searchSubject\n      .pipe(\n        debounceTime(500),\n        tap(() => this.listResults.set([])),\n      )\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((searchValue) => this.searchResults({ searchValue }));\n  }\n\n  onSearch(event : string): void {\n    this.inputText = event;\n    this.searchSubject.next(event);\n  }\n\n  onPoster(poster: SearchMulti): void {\n    this.listResults.set([]);\n    this.inputText = '';\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onEnter(): void {\n    this.searchResults({ searchValue: this.inputText });\n  }\n\n  private searchResults({ searchValue }: { searchValue: string }): void {\n    if (!searchValue) {\n      this.listResults.set([]);\n      this.notFound.set(false);\n      return;\n    }\n\n    this.serviceTmdb\n      .searchMovies(searchValue)\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        console.log('movies', movies);\n\n        this.listResults.set(movies.slice(0, 5));\n        this.notFound.set(movies.length === 0);\n      });\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
       "implements": ["OnInit"],
-      "templateData": "<header\n  class=\"relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9\"\n>\n  <a\n    aria-label=\"Go to home\"\n    class=\"bg-transparent outline-none focus:outline-none cursor-pointer\"\n    routerLink=\"/\"\n  >\n    <img\n      ngSrc=\"imgs/logo.svg\"\n      alt=\"Logo Flypass - Find movies\"\n      width=\"180\"\n      height=\"38\"\n      class=\"animate-fade\"\n    />\n  </a>\n\n  <!-- SECCIÓN DE BÚSQUEDA -->\n\n  <div class=\"relative w-full\">\n    <form (ngSubmit)=\"onEnter()\" autocomplete=\"off\"></form>\n    <label\n      class=\"input input-bordered flex items-center gap-2 has-[:focus-within]:text-black transition-colors\"\n    >\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        viewBox=\"0 0 16 16\"\n        fill=\"currentColor\"\n        class=\"h-6 w-6\"\n      >\n        <path\n          fill-rule=\"evenodd\"\n          d=\"M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z\"\n          clip-rule=\"evenodd\"\n        />\n      </svg>\n      <input\n        type=\"text\"\n        class=\"grow\"\n        placeholder=\"Search FindMovies\"\n        (input)=\"onSearch()\"\n        [(ngModel)]=\"inputText\"\n      />\n    </label>\n\n    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->\n\n    <div\n      class=\"absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden\"\n    >\n      @defer {\n        <ng-container *ngTemplateOutlet=\"resultSearch\"></ng-container>\n      } @loading {\n        <div class=\"p-4 flex flex-col gap-2\">\n          <p class=\"animate-pulse bg-white/15 h-6 w-1/2\"></p>\n          <p class=\"animate-pulse bg-white/15 h-4 w-3/4\"></p>\n          <p class=\"animate-pulse bg-white/15 h-5 w-1/2\"></p>\n        </div>\n      }\n    </div>\n  </div>\n</header>\n\n<ng-template #resultSearch>\n  <ul>\n    @for (list of listResults(); track list.id) {\n      <li\n        class=\"flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer\"\n        (click)=\"onPoster(list)\"\n        aria-hidden=\"true\"\n      >\n        <img class=\"rounded\" ngSrc=\"{{ list.poster_path }}\" alt=\"Brazil\" width=\"55\" height=\"83\" />\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"text-white\">{{ list.title }}</h3>\n          <span class=\"text-secondary-ui/60 text-sm\">{{ list.release_date | date: 'yyyy' }}</span>\n          <p class=\"font-body text-white\">{{ list.distribution }}</p>\n        </div>\n      </li>\n    }\n  </ul>\n\n  @if (notFound()) {\n    <p class=\"p-4\">No results found for \"{{ inputText }}\" phrase.</p>\n  }\n</ng-template>\n"
+      "templateData": "<header\n  class=\"relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9\"\n>\n  <a\n    aria-label=\"Go to home\"\n    class=\"bg-transparent outline-none focus:outline-none cursor-pointer\"\n    routerLink=\"/\"\n  >\n    <img\n      ngSrc=\"imgs/logo.svg\"\n      alt=\"Logo Flypass - Find movies\"\n      width=\"180\"\n      height=\"38\"\n      class=\"animate-fade\"\n    />\n  </a>\n\n  <!-- SECCIÓN DE BÚSQUEDA -->\n\n  <div class=\"relative w-full\">\n    <form (ngSubmit)=\"onEnter()\" autocomplete=\"off\">\n      <ui-input placeholder=\"Search FindMovies\" name=\"search\" (searchEvent)=\"onSearch($event)\"></ui-input>\n    </form>\n\n    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->\n\n    <div\n      class=\"absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden\"\n    >\n      @defer {\n        <ng-container *ngTemplateOutlet=\"resultSearch\"></ng-container>\n      } @loading {\n        <div class=\"p-4 flex flex-col gap-2\">\n          <p class=\"animate-pulse bg-white/15 h-6 w-1/2\"></p>\n          <p class=\"animate-pulse bg-white/15 h-4 w-3/4\"></p>\n          <p class=\"animate-pulse bg-white/15 h-5 w-1/2\"></p>\n        </div>\n      }\n    </div>\n  </div>\n</header>\n\n<ng-template #resultSearch>\n  <ul>\n    @for (list of listResults(); track list.id) {\n      <li\n        class=\"flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer\"\n        (click)=\"onPoster(list)\"\n        aria-hidden=\"true\"\n      >\n        <img class=\"rounded\" ngSrc=\"{{ list.poster_path }}\" alt=\"Brazil\" width=\"55\" height=\"83\" />\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"text-white\">{{ list.title }}</h3>\n          <span class=\"text-secondary-ui/60 text-sm\">{{ list.release_date | date: 'yyyy' }}</span>\n          <p class=\"font-body text-white\">{{ list.distribution }}</p>\n        </div>\n      </li>\n    }\n  </ul>\n\n  @if (notFound()) {\n    <p class=\"p-4\">No results found for \"{{ inputText }}\" phrase.</p>\n  }\n</ng-template>\n"
     },
     {
       "name": "MainLayoutComponent",
@@ -5062,7 +5084,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
-        "defaultValue": "{\n  production: false,\n  API_BASE_URL: 'https://api.themoviedb.org/3/',\n  PREFIX_URL_PREVIEW_IMG: `https://www.themoviedb.org/t/p/w440_and_h660_face/`,\n  API_KEY_TOKEN:\n    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGNmNWY3YTQ1NDZmYjdhYzUxY2FhMGE0NzljMDJlOCIsIm5iZiI6MTcyNDIwNDM5My40MTQ5Niwic3ViIjoiNjUxNzQxNWJkNDY1MzcwOWRjN2JlMzY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vMMOUodTMiWOLA6WrXqsNv4d6xKGmdQwdOHL7cwA1-w',\n}"
+        "defaultValue": "{\n  production: true,\n  API_BASE_URL: 'https://api.themoviedb.org/3',\n  PREFIX_URL_PREVIEW_IMG: `https://www.themoviedb.org/t/p/w440_and_h660_face/`,\n  API_KEY_TOKEN:\n    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGNmNWY3YTQ1NDZmYjdhYzUxY2FhMGE0NzljMDJlOCIsIm5iZiI6MTcyNDIwNDM5My40MTQ5Niwic3ViIjoiNjUxNzQxNWJkNDY1MzcwOWRjN2JlMzY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vMMOUodTMiWOLA6WrXqsNv4d6xKGmdQwdOHL7cwA1-w',\n}"
       },
       {
         "name": "httpInterceptorProvidersHeaders",
@@ -5431,7 +5453,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "object",
-          "defaultValue": "{\n  production: false,\n  API_BASE_URL: 'https://api.themoviedb.org/3/',\n  PREFIX_URL_PREVIEW_IMG: `https://www.themoviedb.org/t/p/w440_and_h660_face/`,\n  API_KEY_TOKEN:\n    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGNmNWY3YTQ1NDZmYjdhYzUxY2FhMGE0NzljMDJlOCIsIm5iZiI6MTcyNDIwNDM5My40MTQ5Niwic3ViIjoiNjUxNzQxNWJkNDY1MzcwOWRjN2JlMzY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vMMOUodTMiWOLA6WrXqsNv4d6xKGmdQwdOHL7cwA1-w',\n}"
+          "defaultValue": "{\n  production: true,\n  API_BASE_URL: 'https://api.themoviedb.org/3',\n  PREFIX_URL_PREVIEW_IMG: `https://www.themoviedb.org/t/p/w440_and_h660_face/`,\n  API_KEY_TOKEN:\n    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGNmNWY3YTQ1NDZmYjdhYzUxY2FhMGE0NzljMDJlOCIsIm5iZiI6MTcyNDIwNDM5My40MTQ5Niwic3ViIjoiNjUxNzQxNWJkNDY1MzcwOWRjN2JlMzY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vMMOUodTMiWOLA6WrXqsNv4d6xKGmdQwdOHL7cwA1-w',\n}"
         }
       ],
       "src/app/modules/shared/interceptors/headers-interceptor.service.ts": [

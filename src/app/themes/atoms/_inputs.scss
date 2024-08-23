@@ -1,12 +1,10 @@
 label.input {
-
   background-color: var(--gray-100);
   height: 2.8rem;
   border-radius: 4px;
   outline-color: var(--yellow-600) !important;
   outline-offset: 0 !important;
   color: var(--black-opacity-60);
-
 
   input {
     border-color: transparent;
@@ -17,6 +15,8 @@ label.input {
       color: var(--black);
     }
 
+    &:not(:focus) {
+      color: var(--black-opacity-60);
+    }
   }
 }
-

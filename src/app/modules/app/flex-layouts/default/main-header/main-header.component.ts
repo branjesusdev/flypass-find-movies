@@ -9,11 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { SearchMulti } from '@shared/core/domain/entity';
 import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
 import { Router, RouterLink } from '@angular/router';
+import { InputComponent } from '@lib-transversal';
 
 @Component({
   selector: 'app-main-header',
   standalone: true,
-  imports: [NgOptimizedImage, CommonModule, RouterLink, FormsModule],
+  imports: [NgOptimizedImage, CommonModule, RouterLink, FormsModule, InputComponent],
   templateUrl: './main-header.component.html',
 })
 export class MainHeaderComponent implements OnInit {
@@ -36,8 +37,9 @@ export class MainHeaderComponent implements OnInit {
       .subscribe((searchValue) => this.searchResults({ searchValue }));
   }
 
-  onSearch(): void {
-    this.searchSubject.next(this.inputText);
+  onSearch(event: string): void {
+    this.inputText = event;
+    this.searchSubject.next(event);
   }
 
   onPoster(poster: SearchMulti): void {
