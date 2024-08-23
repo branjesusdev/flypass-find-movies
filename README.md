@@ -55,6 +55,10 @@ ultra start
 
 Open up [http://localhost:4200](http://localhost:4200) to view the website 🚀.
 
+<br><br>
+<hr>
+<br><br>
+
 > [!NOTE]
 > Aqui tienes la estrucutra y recursos del proyecto [**✨Ver**](https://drive.google.com/file/d/1E_C7re00xOcC7pymKn4-fsNTPtnTKZ9H/view?usp=sharing)
 
