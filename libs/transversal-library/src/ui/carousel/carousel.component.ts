@@ -42,7 +42,7 @@ export class CarouselComponent {
   @Input({ required: true }) items: ItemsCarousel[] = [];
   @Input({ required: true }) key: string = '';
   @Output() outPoster = new EventEmitter<ItemsCarousel>();
-  visbleCarousel = false;
+  isVisibleNavigation = false;
 
   private readonly swiperContainer =
     viewChild.required<ElementRef<SwiperNativeEl>>('swiperContainer');
