@@ -68,7 +68,13 @@ Open up [http://localhost:4200](http://localhost:4200) to view the website 🚀.
 
 
 > [!NOTE]
+> Aqui tienes el Storybook  [**🎨Ver**](https://spectacular-salamander-37a704.netlify.app)
+
+
+> [!NOTE]
 > Ver sitio web desplegado [**📽️Ver**](https://flypass-find-movies.vercel.app/)
+
+
 
 ## ✨ Proyecto en React
 
