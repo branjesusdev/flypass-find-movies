@@ -1,5 +1,7 @@
 ### Flypass Find Movies
 
+![979shots_so](https://github.com/user-attachments/assets/7a8cbe68-5ffb-45c1-ad96-2ef5c2e34e7e)
+
 ## Angular 18
 
 ## ⚙️ Stack
