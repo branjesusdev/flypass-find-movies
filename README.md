@@ -56,19 +56,15 @@ ultra start
 Open up [http://localhost:4200](http://localhost:4200) to view the website 🚀.
 
 > [!NOTE]
-> Aqui tienes la estrucutra y recursos del proyecctto
+> Aqui tienes la estrucutra y recursos del proyecto [**✨Ver**](https://drive.google.com/file/d/1E_C7re00xOcC7pymKn4-fsNTPtnTKZ9H/view?usp=sharing)
 
-[**✨Ver estructura**](https://drive.google.com/file/d/1E_C7re00xOcC7pymKn4-fsNTPtnTKZ9H/view?usp=sharing)
-
-> [!NOTE]
-> Aqui tienes la documentación del proyecto
-
-[**📝Ver Documentación**](https://cool-smakager-2b89d1.netlify.app/)
 
 > [!NOTE]
-> Ver sitio web desplegado
+> Aqui tienes la documentación del proyecto [**📝Ver**](https://cool-smakager-2b89d1.netlify.app/)
 
-[**📽️FIND MOVIE**](https://flypass-find-movies.vercel.app/)
+
+> [!NOTE]
+> Ver sitio web desplegado [**📽️Ver**](https://flypass-find-movies.vercel.app/)
 
 ## ✨ Proyecto en React
 
