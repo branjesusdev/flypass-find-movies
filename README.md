@@ -55,7 +55,9 @@ ultra start
 
 Open up [http://localhost:4200](http://localhost:4200) to view the website 🚀.
 
-> Estructura del proyecto: 
+> Estructura del proyecto:
+
+[** ✨ FindMovie structure**](https://66c7d8f04600d7ddcdd95004--cool-smakager-2b89d1.netlify.app/)
 
 > Proyecto Desplegado:
 
