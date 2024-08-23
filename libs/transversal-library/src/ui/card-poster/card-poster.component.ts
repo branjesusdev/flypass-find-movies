@@ -1,10 +1,10 @@
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgOptimizedImage } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-card-poster',
   standalone: true,
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, NgOptimizedImage],
   templateUrl: './card-poster.component.html',
   styleUrl: './card-poster.component.scss',
 })
