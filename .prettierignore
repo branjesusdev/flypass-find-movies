@@ -3,3 +3,8 @@ package-lock.json
 yarn.lock
 node_modules
 dist
+documentation
+coverage
+src/assets
+src/stories
+.storybook

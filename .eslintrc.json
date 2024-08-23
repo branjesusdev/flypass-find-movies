@@ -11,9 +11,10 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "parserOptions": {
-        "project": "./tsconfig.json",
+        "project": ["tsconfig.eslint.json"],
         "sourceType": "module",
-        "parser": "babel-eslint"
+        "parser": "babel-eslint",
+        "createDefaultProgram": false
       },
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -44,5 +45,6 @@
       ],
       "rules": {}
     }
-  ]
+  ],
+  "extends": ["plugin:storybook/recommended"]
 }
