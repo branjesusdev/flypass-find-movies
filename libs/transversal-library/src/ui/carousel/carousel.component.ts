@@ -72,17 +72,26 @@ export class CarouselComponent {
                 slidesPerView: 2,
                 spaceBetween: 20,
               },
-              768: {
-                slidesPerView: 4,
+
+              700: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+              800: {
+                slidesPerView: 3,
                 spaceBetween: 40,
               },
-              1024: {
+              1170: {
                 slidesPerView: 5,
                 spaceBetween: 50,
               },
               1440: {
-                slidesPerView: 7,
+                slidesPerView: 6,
                 spaceBetween: 60,
+              },
+              1600: {
+                slidesPerView: 7,
+                spaceBetween: 70,
               },
             },
           };
