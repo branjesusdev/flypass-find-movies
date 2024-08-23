@@ -76,8 +76,4 @@ Open up [http://localhost:4200](http://localhost:4200) to view the website 🚀.
 
 
 
-## ✨ Proyecto en React
 
-| #   | Proyecto         | Descripción                      | Código                                                                                                                                                  | Website                                                                                                                                  |
-| --- | ---------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | **film-quality** | Proyecto para obtener peliculas. | [![GitHub Badge](https://img.shields.io/badge/Código-181717?logo=github&logoColor=fff&style=flat-square)](https://github.com/branjesusdev/film-quality) | [![React Badge](https://img.shields.io/badge/Website-000?logo=vercel&logoColor=fff&style=flat-square)](https://film-quality.vercel.app/) |
