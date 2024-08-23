@@ -45,7 +45,7 @@ describe('MainHeaderComponent', () => {
     spyOn(component, 'onSearch').and.callThrough();
 
     component.inputText = 'test';
-    component.onSearch();
+    component.onSearch('test');
 
     expect(component.onSearch).toHaveBeenCalled();
     expect(component.inputText).toBe('test');
@@ -61,7 +61,7 @@ describe('MainHeaderComponent', () => {
       title: 'test',
       poster_path: 'test',
       release_date: '2021-01-01',
-      distribution: 'test',
+      overview: 'test',
     };
 
     component.onPoster(poster);

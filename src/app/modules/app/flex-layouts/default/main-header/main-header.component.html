@@ -56,7 +56,11 @@
         <div class="flex flex-col gap-2">
           <h3 class="text-white">{{ list.title }}</h3>
           <span class="text-secondary-ui/60 text-sm">{{ list.release_date | date: 'yyyy' }}</span>
-          <p class="font-body text-white">{{ list.distribution }}</p>
+          <p
+            class="font-body text-white max-w-[28rem] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden"
+          >
+            {{ list.overview }}
+          </p>
         </div>
       </li>
     }

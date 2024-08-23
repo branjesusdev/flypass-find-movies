@@ -154,6 +154,7 @@
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                             <code>NgOptimizedImage</code>
+                            <code>ButtonComponent</code>
                 </td>
             </tr>
 
@@ -219,7 +220,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/modules/pages/handlers/failed-service/failed-service.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/modules/pages/handlers/failed-service/failed-service.component.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -286,8 +287,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/app/modules/pages/handlers/failed-service/failed-service.component.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app/modules/pages/handlers/failed-service/failed-service.component.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -312,11 +313,12 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgOptimizedImage } from &#x27;@angular/common&#x27;;
 import { Component } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { ButtonComponent } from &#x27;@lib-transversal&#x27;;
 
 @Component({
   selector: &#x27;app-failed-service&#x27;,
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, ButtonComponent],
   templateUrl: &#x27;./failed-service.component.html&#x27;,
   styleUrl: &#x27;./failed-service.component.scss&#x27;,
 })
@@ -343,13 +345,7 @@ export default class FailedServiceComponent {
   &lt;h1 class&#x3D;&quot;font-bold text-white text-4xl&quot;&gt;Oops....&lt;/h1&gt;
   &lt;p class&#x3D;&quot;text-white text-xl&quot;&gt;Something went wrong.&lt;/p&gt;
 
-  &lt;button
-    (click)&#x3D;&quot;refreshPage()&quot;
-    aria-label&#x3D;&quot;Refresh Page&quot;
-    class&#x3D;&quot;btn btn-active btn-primary bg-primary-ui hover:bg-primary-ui outline-none shadow-none border-none&quot;
-  &gt;
-    Refresh
-  &lt;/button&gt;
+  &lt;ui-button text&#x3D;&quot;Refresh&quot; (handleClick)&#x3D;&quot;refreshPage()&quot; /&gt;
 &lt;/section&gt;
 </code></pre>
     </div>
@@ -380,8 +376,8 @@ export default class FailedServiceComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><section class="flex flex-col gap-4 items-center justify-center w-full h-[80vh]">  <img    ngSrc="imgs/union-icon.svg"    alt="Union Icon"    class="aspect-square mx-auto w-[30rem]"    width="280"    height="120"  />  <h1 class="font-bold text-white text-4xl">Oops....</h1>  <p class="text-white text-xl">Something went wrong.</p>  <button    (click)="refreshPage()"    aria-label="Refresh Page"    class="btn btn-active btn-primary bg-primary-ui hover:bg-primary-ui outline-none shadow-none border-none"  >    Refresh  </button></section></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
+        var COMPONENT_TEMPLATE = '<div><section class="flex flex-col gap-4 items-center justify-center w-full h-[80vh]">  <img    ngSrc="imgs/union-icon.svg"    alt="Union Icon"    class="aspect-square mx-auto w-[30rem]"    width="280"    height="120"  />  <h1 class="font-bold text-white text-4xl">Oops....</h1>  <p class="text-white text-xl">Something went wrong.</p>  <ui-button text="Refresh" (handleClick)="refreshPage()" /></section></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FailedServiceComponent'};
 </script>

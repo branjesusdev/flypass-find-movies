@@ -3,3 +3,4 @@ export * from './ui/card-poster/card-poster.component';
 export * from './ui/carousel/carousel.component';
 export * from './entitys/items-carousel';
 export * from './ui/input/input.component';
+export * from './ui/button/button.component';

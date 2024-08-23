@@ -8,3 +8,4 @@ coverage
 src/assets
 src/stories
 .storybook
+__mocks__

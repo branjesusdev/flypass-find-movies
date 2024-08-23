@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { InputComponent } from './input.component';
-import { fn } from '@storybook/test';
-import { signal } from '@angular/core';
 
 const meta: Meta<InputComponent> = {
   title: 'Components/Input',

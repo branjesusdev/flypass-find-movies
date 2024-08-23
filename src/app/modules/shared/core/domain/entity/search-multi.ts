@@ -3,6 +3,6 @@ export type SearchMulti = {
   title: string;
   poster_path: string;
   release_date: string;
-  media_type : string;
-  distribution: string;
-}
+  media_type: string;
+  overview: string;
+};

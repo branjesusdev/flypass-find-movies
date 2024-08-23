@@ -6,12 +6,8 @@ const meta: Meta<ButtonComponent> = {
   title: 'Components/Button',
   component: ButtonComponent,
   tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: {
-      control: 'color',
-    },
-  },
-  args: { onClick: fn() },
+  argTypes: {},
+  args: { handleClick: fn() },
 };
 
 export default meta;
@@ -20,20 +16,20 @@ type Story = StoryObj<ButtonComponent>;
 export const Primary: Story = {
   args: {
     primary: true,
-    label: 'Button',
+    text: 'Button',
   },
 };
 
 export const Large: Story = {
   args: {
     size: 'large',
-    label: 'Button',
+    text: 'Button',
   },
 };
 
 export const Small: Story = {
   args: {
     size: 'small',
-    label: 'Button',
+    text: 'Button',
   },
 };

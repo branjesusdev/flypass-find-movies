@@ -55,16 +55,23 @@ ultra start
 
 Open up [http://localhost:4200](http://localhost:4200) to view the website 🚀.
 
-> Estructura del proyecto:
+> [!NOTE]
+> Aqui tienes la estrucutra y recursos del proyecctto
 
-[**✨FindMovie structure**](https://66c7d8f04600d7ddcdd95004--cool-smakager-2b89d1.netlify.app/)
+[**✨Ver estructura**](https://drive.google.com/file/d/1E_C7re00xOcC7pymKn4-fsNTPtnTKZ9H/view?usp=sharing)
 
-> Proyecto Desplegado:
+> [!NOTE]
+> Aqui tienes la documentación del proyecto
+
+[**📝Ver Documentación**](https://cool-smakager-2b89d1.netlify.app/)
+
+> [!NOTE]
+> Ver sitio web desplegado
 
 [**📽️FIND MOVIE**](https://flypass-find-movies.vercel.app/)
 
-> Proyecto construido con REACT:
+## ✨ Proyecto en React
 
-https://film-quality.vercel.app/
-
-https://github.com/branjesusdev/film-quality
+| #   | Proyecto         | Descripción                      | Código                                                                                                                                                  | Website                                                                                                                                  |
+| --- | ---------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **film-quality** | Proyecto para obtener peliculas. | [![GitHub Badge](https://img.shields.io/badge/Código-181717?logo=github&logoColor=fff&style=flat-square)](https://github.com/branjesusdev/film-quality) | [![React Badge](https://img.shields.io/badge/Website-000?logo=vercel&logoColor=fff&style=flat-square)](https://film-quality.vercel.app/) |

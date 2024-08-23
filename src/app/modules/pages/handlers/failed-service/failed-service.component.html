@@ -10,11 +10,5 @@
   <h1 class="font-bold text-white text-4xl">Oops....</h1>
   <p class="text-white text-xl">Something went wrong.</p>
 
-  <button
-    (click)="refreshPage()"
-    aria-label="Refresh Page"
-    class="btn btn-active btn-primary bg-primary-ui hover:bg-primary-ui outline-none shadow-none border-none"
-  >
-    Refresh
-  </button>
+  <ui-button text="Refresh" (handleClick)="refreshPage()" />
 </section>

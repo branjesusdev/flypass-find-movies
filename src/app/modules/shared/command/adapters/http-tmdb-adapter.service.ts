@@ -108,11 +108,14 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
           (outSearchMulti) =>
             ({
               id: outSearchMulti.id,
-              title: outSearchMulti.title,
+              title:
+                MediaType.Movie === outSearchMulti.media_type
+                  ? outSearchMulti.title
+                  : outSearchMulti.name,
               poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSearchMulti.poster_path}`,
-              release_date: outSearchMulti?.release_date || '',
+              release_date: outSearchMulti?.first_air_date || '',
               media_type: outSearchMulti.media_type,
-              distribution: outSearchMulti?.name,
+              overview: outSearchMulti?.overview,
             }) as SearchMulti,
         ),
       ),
