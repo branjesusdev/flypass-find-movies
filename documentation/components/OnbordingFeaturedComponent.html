@@ -1,0 +1,767 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>flypass-find-movies documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">flypass-find-movies documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  OnbordingFeaturedComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-onbording-featured</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>TabViewModule</code>
+                                <code><a href="../components/FeaturedSeriesComponent.html" target="_self" >FeaturedSeriesComponent</a></code>
+                                <code><a href="../components/FeaturedMoviesComponent.html" target="_self" >FeaturedMoviesComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./onbording-featured.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./onbording-featured.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#stateMovies" >stateMovies</a>
+                            </li>
+                            <li>
+                                <a href="#stateSeries" >stateSeries</a>
+                            </li>
+                            <li>
+                                <a href="#tabs" >tabs</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#__getFeaturedMovies" >__getFeaturedMovies</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#__getFeaturedSeries" >__getFeaturedSeries</a>
+                            </li>
+                            <li>
+                                <a href="#__init" >__init</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(serviceTmdb: <a href="../classes/TheMovieDBPort.html" target="_self">TheMovieDBPort</a>, destroyRef: DestroyRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>serviceTmdb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/TheMovieDBPort.html" target="_self" >TheMovieDBPort</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>destroyRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>DestroyRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="__getFeaturedMovies"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>__getFeaturedMovies</b></span>
+                        <a href="#__getFeaturedMovies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>__getFeaturedMovies()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="__getFeaturedSeries"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>__getFeaturedSeries</b></span>
+                        <a href="#__getFeaturedSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>__getFeaturedSeries()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="__init"></a>
+                    <span class="name">
+                        <span ><b>__init</b></span>
+                        <a href="#__init"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>__init()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stateMovies"></a>
+                    <span class="name">
+                        <span ><b>stateMovies</b></span>
+                        <a href="#stateMovies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;FeaturedMovie[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stateSeries"></a>
+                    <span class="name">
+                        <span ><b>stateSeries</b></span>
+                        <a href="#stateSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;FeaturedSerie[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tabs"></a>
+                    <span class="name">
+                        <span ><b>tabs</b></span>
+                        <a href="#tabs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MenuItemTab[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { title: &#x27;Movies&#x27;, content: &#x27;movies&#x27; },
+    { title: &#x27;Series&#x27;, content: &#x27;series&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, DestroyRef, OnInit, signal } from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { TabViewModule } from &#x27;primeng/tabview&#x27;;
+
+import { MenuItemTab } from &#x27;@lib-transversal&#x27;;
+import { TheMovieDBPort } from &#x27;@shared/core/domain/ports/themoviedb-port.class&#x27;;
+import { FeaturedMovie, FeaturedSerie } from &#x27;@shared/core/domain/entity&#x27;;
+
+import { FeaturedSeriesComponent } from &#x27;@pages/onboarding/components/featured-series/featured-series.component&#x27;;
+import { FeaturedMoviesComponent } from &#x27;@pages/onboarding/components/featured-movies/featured-movies.component&#x27;;
+@Component({
+  selector: &#x27;app-onbording-featured&#x27;,
+  standalone: true,
+  imports: [TabViewModule, FeaturedSeriesComponent, FeaturedMoviesComponent],
+  templateUrl: &#x27;./onbording-featured.component.html&#x27;,
+  styleUrl: &#x27;./onbording-featured.component.scss&#x27;,
+})
+export class OnbordingFeaturedComponent implements OnInit {
+  tabs: MenuItemTab[] &#x3D; [
+    { title: &#x27;Movies&#x27;, content: &#x27;movies&#x27; },
+    { title: &#x27;Series&#x27;, content: &#x27;series&#x27; },
+  ];
+
+  stateMovies &#x3D; signal&lt;FeaturedMovie[]&gt;([]);
+  stateSeries &#x3D; signal&lt;FeaturedSerie[]&gt;([]);
+
+  constructor(
+    private serviceTmdb: TheMovieDBPort,
+    private destroyRef: DestroyRef,
+  ) {}
+
+  ngOnInit() {
+    this.__init();
+  }
+
+  __init(): void {
+    this.__getFeaturedMovies();
+    this.__getFeaturedSeries();
+  }
+
+  private __getFeaturedMovies(): void {
+    this.serviceTmdb
+      .getFeaturedMovies()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((movies) &#x3D;&gt; {
+        this.stateMovies.set(movies);
+      });
+  }
+
+  private __getFeaturedSeries(): void {
+    this.serviceTmdb
+      .getFeaturedSeries()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((series) &#x3D;&gt; {
+        this.stateSeries.set(series);
+      });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-wrapper&quot;&gt;
+  &lt;h1 class&#x3D;&quot;text-primary-ui font-bold text-4xl mt-12&quot;&gt;Featured Today&lt;/h1&gt;
+
+  &lt;article class&#x3D;&quot;my-4&quot;&gt;
+    &lt;p-tabView&gt;
+      &lt;p-tabPanel header&#x3D;&quot;Movies&quot;&gt;
+        &lt;app-featured-movies [featuredMovies]&#x3D;&quot;stateMovies()&quot; /&gt;
+      &lt;/p-tabPanel&gt;
+      &lt;p-tabPanel header&#x3D;&quot;Series&quot;&gt;
+        &lt;app-featured-series [featuredSeries]&#x3D;&quot;stateSeries()&quot; /&gt;
+      &lt;/p-tabPanel&gt;
+    &lt;/p-tabView&gt;
+  &lt;/article&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container-wrapper">  <h1 class="text-primary-ui font-bold text-4xl mt-12">Featured Today</h1>  <article class="my-4">    <p-tabView>      <p-tabPanel header="Movies">        <app-featured-movies [featuredMovies]="stateMovies()" />      </p-tabPanel>      <p-tabPanel header="Series">        <app-featured-series [featuredSeries]="stateSeries()" />      </p-tabPanel>    </p-tabView>  </article></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ButtonComponent', 'selector': 'storybook-button'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'HeaderComponent', 'selector': 'storybook-header'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PageComponent', 'selector': 'storybook-page'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'OnbordingFeaturedComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'OnbordingFeaturedComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

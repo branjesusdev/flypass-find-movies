@@ -1,0 +1,959 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>flypass-find-movies documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">flypass-find-movies documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#API_BASE_URL" title="src/app/modules/shared/config/tokens.ts" ><b>API_BASE_URL</b>&nbsp;&nbsp;&nbsp;(src/.../tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#API_KEY_TOKEN" title="src/app/modules/shared/config/tokens.ts" ><b>API_KEY_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../tokens.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#appConfig" title="src/app/modules/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#bootstrap" title="src/main.server.ts" ><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(src/.../main.server.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#config" title="src/app/modules/app/app.config.server.ts" ><b>config</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.server.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.development.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.development.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#httpInterceptorProvidersHeaders" title="src/app/modules/shared/interceptors/headers-interceptor.service.ts" ><b>httpInterceptorProvidersHeaders</b>&nbsp;&nbsp;&nbsp;(src/.../headers-interceptor.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#httpInterceptorRefactorUrlProvider" title="src/app/modules/shared/interceptors/refactor-url-interceptor.service.ts" ><b>httpInterceptorRefactorUrlProvider</b>&nbsp;&nbsp;&nbsp;(src/.../refactor-url-interceptor.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Large" title="src/stories/button.stories.ts" ><b>Large</b>&nbsp;&nbsp;&nbsp;(src/.../button.stories.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LoggedIn" title="src/stories/header.stories.ts" ><b>LoggedIn</b>&nbsp;&nbsp;&nbsp;(src/.../header.stories.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LoggedOut" title="src/stories/header.stories.ts" ><b>LoggedOut</b>&nbsp;&nbsp;&nbsp;(src/.../header.stories.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MESSAGES" title="src/app/modules/shared/config/messages.ts" ><b>MESSAGES</b>&nbsp;&nbsp;&nbsp;(src/.../messages.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#meta" title="src/stories/button.stories.ts" ><b>meta</b>&nbsp;&nbsp;&nbsp;(src/.../button.stories.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#meta" title="src/stories/header.stories.ts" ><b>meta</b>&nbsp;&nbsp;&nbsp;(src/.../header.stories.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#meta" title="src/stories/page.stories.ts" ><b>meta</b>&nbsp;&nbsp;&nbsp;(src/.../page.stories.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PATHS" title="src/app/modules/shared/config/paths.ts" ><b>PATHS</b>&nbsp;&nbsp;&nbsp;(src/.../paths.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#posterDetailResolver" title="src/app/modules/pages/poster-details/resolvers/poster-detail.resolver.ts" ><b>posterDetailResolver</b>&nbsp;&nbsp;&nbsp;(src/.../poster-detail.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Primary" title="src/stories/button.stories.ts" ><b>Primary</b>&nbsp;&nbsp;&nbsp;(src/.../button.stories.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#serverConfig" title="src/app/modules/app/app.config.server.ts" ><b>serverConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.server.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Small" title="src/stories/button.stories.ts" ><b>Small</b>&nbsp;&nbsp;&nbsp;(src/.../button.stories.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/modules/shared/config/tokens.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="API_BASE_URL"></a>
+                    <span class="name">
+                        <span ><b>API_BASE_URL</b></span>
+                        <a href="#API_BASE_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;API_BASE_URL&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="API_KEY_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>API_KEY_TOKEN</b></span>
+                        <a href="#API_KEY_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;API_KEY_TOKEN&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/modules/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }), // Agrupar eventos de detección de cambios
+    provideProtractorTestingSupport(),
+    provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
+    provideClientHydration(),
+    provideHttpClient(withInterceptorsFromDi()),
+
+    // RESOURCES
+
+    {
+      provide: API_BASE_URL,
+      useFactory: () &#x3D;&gt; environment.API_BASE_URL,
+    },
+    {
+      provide: API_KEY_TOKEN,
+      useFactory: () &#x3D;&gt; environment.API_KEY_TOKEN,
+    },
+
+    // SERVICES
+
+    {
+      provide: TheMovieDBPort,
+      useClass: HttpTmdbAdapterService,
+    },
+
+    // INTERCEPTORS
+
+    ...httpInterceptorRefactorUrlProvider,
+    ...httpInterceptorProvidersHeaders,
+  ],
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/main.server.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bootstrap"></a>
+                    <span class="name">
+                        <span ><b>bootstrap</b></span>
+                        <a href="#bootstrap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; bootstrapApplication(AppComponent, config)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/modules/app/app.config.server.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="config"></a>
+                    <span class="name">
+                        <span ><b>config</b></span>
+                        <a href="#config"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>mergeApplicationConfig(appConfig, serverConfig)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="serverConfig"></a>
+                    <span class="name">
+                        <span ><b>serverConfig</b></span>
+                        <a href="#serverConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [provideServerRendering()],
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.development.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: false,
+  API_BASE_URL: &#x27;https://api.themoviedb.org/3&#x27;,
+  PREFIX_URL_PREVIEW_IMG: &#x60;https://www.themoviedb.org/t/p/w440_and_h660_face/&#x60;,
+  API_KEY_TOKEN:
+    &#x27;eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGNmNWY3YTQ1NDZmYjdhYzUxY2FhMGE0NzljMDJlOCIsIm5iZiI6MTcyNDIwNDM5My40MTQ5Niwic3ViIjoiNjUxNzQxNWJkNDY1MzcwOWRjN2JlMzY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vMMOUodTMiWOLA6WrXqsNv4d6xKGmdQwdOHL7cwA1-w&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: false,
+  API_BASE_URL: &#x27;https://api.themoviedb.org/3/&#x27;,
+  PREFIX_URL_PREVIEW_IMG: &#x60;https://www.themoviedb.org/t/p/w440_and_h660_face/&#x60;,
+  API_KEY_TOKEN:
+    &#x27;eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGNmNWY3YTQ1NDZmYjdhYzUxY2FhMGE0NzljMDJlOCIsIm5iZiI6MTcyNDIwNDM5My40MTQ5Niwic3ViIjoiNjUxNzQxNWJkNDY1MzcwOWRjN2JlMzY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vMMOUodTMiWOLA6WrXqsNv4d6xKGmdQwdOHL7cwA1-w&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/modules/shared/interceptors/headers-interceptor.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="httpInterceptorProvidersHeaders"></a>
+                    <span class="name">
+                        <span ><b>httpInterceptorProvidersHeaders</b></span>
+                        <a href="#httpInterceptorProvidersHeaders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpHeadersInterceptor,
+    multi: true
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/modules/shared/interceptors/refactor-url-interceptor.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="httpInterceptorRefactorUrlProvider"></a>
+                    <span class="name">
+                        <span ><b>httpInterceptorRefactorUrlProvider</b></span>
+                        <a href="#httpInterceptorRefactorUrlProvider"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: RefactorUrlInterceptor,
+    multi: true,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/stories/button.stories.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Large"></a>
+                    <span class="name">
+                        <span ><b>Large</b></span>
+                        <a href="#Large"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Story" target="_self" >Story</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  args: {
+    size: &#x27;large&#x27;,
+    label: &#x27;Button&#x27;,
+  },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="meta"></a>
+                    <span class="name">
+                        <span ><b>meta</b></span>
+                        <a href="#meta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/ButtonComponent.html" target="_self" >Meta&lt;ButtonComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  title: &#x27;Example/Button&#x27;,
+  component: ButtonComponent,
+  tags: [&#x27;autodocs&#x27;],
+  argTypes: {
+    backgroundColor: {
+      control: &#x27;color&#x27;,
+    },
+  },
+  // Use &#x60;fn&#x60; to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
+  args: { onClick: fn() },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Primary"></a>
+                    <span class="name">
+                        <span ><b>Primary</b></span>
+                        <a href="#Primary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Story" target="_self" >Story</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  args: {
+    primary: true,
+    label: &#x27;Button&#x27;,
+  },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Small"></a>
+                    <span class="name">
+                        <span ><b>Small</b></span>
+                        <a href="#Small"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Story" target="_self" >Story</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  args: {
+    size: &#x27;small&#x27;,
+    label: &#x27;Button&#x27;,
+  },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/stories/header.stories.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LoggedIn"></a>
+                    <span class="name">
+                        <span ><b>LoggedIn</b></span>
+                        <a href="#LoggedIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Story" target="_self" >Story</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  args: {
+    user: {
+      name: &#x27;Jane Doe&#x27;,
+    },
+  },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LoggedOut"></a>
+                    <span class="name">
+                        <span ><b>LoggedOut</b></span>
+                        <a href="#LoggedOut"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Story" target="_self" >Story</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="meta"></a>
+                    <span class="name">
+                        <span ><b>meta</b></span>
+                        <a href="#meta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/HeaderComponent.html" target="_self" >Meta&lt;HeaderComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  title: &#x27;Example/Header&#x27;,
+  component: HeaderComponent,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
+  tags: [&#x27;autodocs&#x27;],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
+    layout: &#x27;fullscreen&#x27;,
+  },
+  args: {
+    onLogin: fn(),
+    onLogout: fn(),
+    onCreateAccount: fn(),
+  },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/modules/shared/config/messages.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MESSAGES"></a>
+                    <span class="name">
+                        <span ><b>MESSAGES</b></span>
+                        <a href="#MESSAGES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  UNEXPECTED_FAILD: &#x27;Lo sentimos, ha ocurrido un error&#x27;,
+  HAS_NOT_RECORDS: &#x27;No se encontraron registros&#x27;,
+  HANDLE_ERROR_GENERIC : &#x27;Lo sentimos, ha ocurrido un error al procesar la transacción&#x27;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/stories/page.stories.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="meta"></a>
+                    <span class="name">
+                        <span ><b>meta</b></span>
+                        <a href="#meta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/PageComponent.html" target="_self" >Meta&lt;PageComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  title: &#x27;Example/Page&#x27;,
+  component: PageComponent,
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
+    layout: &#x27;fullscreen&#x27;,
+  },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/modules/shared/config/paths.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PATHS"></a>
+                    <span class="name">
+                        <span ><b>PATHS</b></span>
+                        <a href="#PATHS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  movies: {
+    featured: &#x27;/movie/now_playing&#x27;,
+    details: (movieId: number) &#x3D;&gt; &#x60;/movie/${movieId}&#x60;,
+  },
+  series: {
+    featured: &#x27;/tv/airing_today&#x27;,
+    details: (seriesId: number) &#x3D;&gt; &#x60;/tv/${seriesId}&#x60;,
+  },
+  search: &#x60;/search/multi&#x60;,
+  trending: &#x60;/trending/all/day&#x60;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/modules/pages/poster-details/resolvers/poster-detail.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="posterDetailResolver"></a>
+                    <span class="name">
+                        <span ><b>posterDetailResolver</b></span>
+                        <a href="#posterDetailResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DetailPoster" target="_self" >ResolveFn&lt;DetailPoster | null&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(route) &#x3D;&gt; {
+  const { mediaType, id } &#x3D; route.params;
+  const theMovieDBPort &#x3D; inject(TheMovieDBPort);
+
+  switch (mediaType) {
+    case &#x27;movie&#x27;:
+      return theMovieDBPort.getMovieDetails(id);
+    case &#x27;tv&#x27;:
+      return theMovieDBPort.getSeriesDetails(id);
+    default:
+      return null;
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
