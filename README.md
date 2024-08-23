@@ -54,3 +54,9 @@ ultra start
 ```
 
 Open up [http://localhost:4200](http://localhost:4200) to view the website 🚀.
+
+> Estructura del prroyecto: 
+
+> Proyecto Desplegado: 
+
+
