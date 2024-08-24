@@ -1,0 +1,16 @@
+<div>
+  <div class="flex tabview-panel">
+    @for (panel of panels(); track $index) {
+      <button
+        [ngClass]="panel.active ? 'tab-line tab-line--active' : 'tab-line'"
+        (click)="onTabClick(panel)"
+      >
+        {{ panel.tabTitle }}
+      </button>
+    }
+  </div>
+
+  <div>
+    <ng-content></ng-content>
+  </div>
+</div>

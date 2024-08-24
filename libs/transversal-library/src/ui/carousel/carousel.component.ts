@@ -8,14 +8,12 @@ import {
   ElementRef,
   EventEmitter,
   inject,
-  Inject,
   Injector,
   Input,
   Output,
   signal,
   viewChild,
 } from '@angular/core';
-import { RippleModule } from 'primeng/ripple';
 import { register, SwiperContainer } from 'swiper/element/bundle';
 import { Swiper, SwiperOptions } from 'swiper/types';
 
@@ -31,7 +29,7 @@ interface SwiperNativeEl {
 @Component({
   selector: 'ui-carousel',
   standalone: true,
-  imports: [CommonModule, CardPosterComponent, RippleModule],
+  imports: [CommonModule, CardPosterComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss',
@@ -44,60 +42,66 @@ export class CarouselComponent {
   @Output() outPoster = new EventEmitter<ItemsCarousel>();
   isVisibleNavigation = false;
 
-  private readonly swiperContainer =
-    viewChild.required<ElementRef<SwiperNativeEl>>('swiperContainer');
+  private readonly swiperContainer = viewChild<ElementRef<SwiperNativeEl>>('swiperContainer');
+
   private readonly injector = inject(Injector);
 
   constructor() {
     afterNextRender(() => {
       effect(
         () => {
-          const swiperEl = this.swiperContainer().nativeElement;
+          console.log('🎨🎨🎨🎨🎨');
 
-          const swiperOptions: SwiperOptions = {
-            slidesPerView: 8,
-            spaceBetween: 5,
-            navigation: {
-              nextEl: `.swiper-button-next-${this.key}`,
-              prevEl: `.swiper-button-prev-${this.key}`,
-              enabled: true,
-            },
-            breakpoints: {
-              0: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
+          if (this.swiperContainer()) {
+            const swiperEl = this.swiperContainer()?.nativeElement;
 
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
+            if (!swiperEl) return;
 
-              700: {
-                slidesPerView: 3,
-                spaceBetween: 30,
+            const swiperOptions: SwiperOptions = {
+              slidesPerView: 8,
+              spaceBetween: 5,
+              navigation: {
+                nextEl: `.swiper-button-next-${this.key}`,
+                prevEl: `.swiper-button-prev-${this.key}`,
+                enabled: true,
               },
-              800: {
-                slidesPerView: 3,
-                spaceBetween: 40,
-              },
-              1170: {
-                slidesPerView: 5,
-                spaceBetween: 50,
-              },
-              1440: {
-                slidesPerView: 6,
-                spaceBetween: 60,
-              },
-              1600: {
-                slidesPerView: 7,
-                spaceBetween: 70,
-              },
-            },
-          };
+              breakpoints: {
+                0: {
+                  slidesPerView: 2,
+                  spaceBetween: 10,
+                },
 
-          Object.assign(swiperEl, swiperOptions);
-          swiperEl.initialize();
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+
+                700: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+                800: {
+                  slidesPerView: 3,
+                  spaceBetween: 40,
+                },
+                1170: {
+                  slidesPerView: 5,
+                  spaceBetween: 50,
+                },
+                1440: {
+                  slidesPerView: 6,
+                  spaceBetween: 60,
+                },
+                1600: {
+                  slidesPerView: 7,
+                  spaceBetween: 70,
+                },
+              },
+            };
+
+            Object.assign(swiperEl, swiperOptions);
+            swiperEl.initialize();
+          }
         },
         { injector: this.injector },
       );

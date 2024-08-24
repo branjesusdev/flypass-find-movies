@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError, defaultIfEmpty, filter, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, defaultIfEmpty, filter, map, Observable, of, tap, throwError } from 'rxjs';
 
 // RERSOURCES
 
@@ -26,13 +26,24 @@ import {
   Trending,
   MediaType,
 } from '@shared/core/domain/entity';
+import { AplicationStore } from '@shared/store/aplication.store';
 
 @Injectable()
 export class HttpTmdbAdapterService implements TheMovieDBPort {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private store: AplicationStore<any>,
+  ) {}
+
+  private obserberResponse<T>(object: T[]): Observable<T[]> {
+    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;
+  }
 
   getTrending(): Observable<Trending[]> {
     const url = PATHS.trending;
+    const store = this.store.getStateValue('trending') as Trending[];
+
+    if (store) return this.obserberResponse(store) as Observable<Trending[]>;
 
     return this.http.get<OutTrending>(url).pipe(
       map((outMovieDetails) =>
@@ -48,11 +59,17 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
             }) as Trending,
         ),
       ),
+      tap((trending) => {
+        this.store.saveState$({ key: 'trending', info: trending as Trending[] });
+      }),
     );
   }
 
   getFeaturedMovies(): Observable<FeaturedMovie[]> {
     const url = PATHS.movies.featured;
+    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];
+
+    if (store) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;
 
     return this.http.get<OutFeaturedMovie>(url).pipe(
       map((outMovieDetails) =>
@@ -67,11 +84,17 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
             }) as FeaturedMovie,
         ),
       ),
+      tap((movies) => {
+        this.store.saveState$({ key: 'featuredMovies', info: movies as FeaturedMovie[] });
+      }),
     );
   }
 
   getFeaturedSeries(): Observable<FeaturedSerie[]> {
     const url = PATHS.series.featured;
+    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];
+
+    if (store) return this.obserberResponse(store);
 
     return this.http.get<OutFeaturedSerie>(url).pipe(
       map((outFeaturedSerie) =>
@@ -87,12 +110,14 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
             }) as FeaturedSerie,
         ),
       ),
+      tap((series) => {
+        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });
+      }),
     );
   }
 
   searchMovies(query: string): Observable<SearchMulti[]> {
     const params = new HttpParams().set('query', query).set('include_adult', 'false');
-
     const url = PATHS.search;
 
     return this.http.get<OutSearchMulti>(url, { params }).pipe(

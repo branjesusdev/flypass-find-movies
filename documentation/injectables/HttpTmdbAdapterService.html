@@ -313,8 +313,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="156"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:156</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:159</a></div>
                         </td>
                     </tr>
 
@@ -380,8 +380,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="126"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:126</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -647,7 +647,10 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
           (outSearchMulti) &#x3D;&gt;
             ({
               id: outSearchMulti.id,
-              title: MediaType.Movie &#x3D;&#x3D;&#x3D; outSearchMulti.media_type ? outSearchMulti.title : outSearchMulti.name,
+              title:
+                MediaType.Movie &#x3D;&#x3D;&#x3D; outSearchMulti.media_type
+                  ? outSearchMulti.title
+                  : outSearchMulti.name,
               poster_path: &#x60;${environment.PREFIX_URL_PREVIEW_IMG}${outSearchMulti.poster_path}&#x60;,
               release_date: outSearchMulti?.first_air_date || &#x27;&#x27;,
               media_type: outSearchMulti.media_type,

@@ -2489,148 +2489,8 @@
   ],
   "injectables": [
     {
-      "name": "EncryptionService",
-      "id": "injectable-EncryptionService-e778693a67b0964f4905ce8f3688b0f8b4ece1021b6955056e4d84c3dd64ee6e72b0cb02def9beabaa5d420d1b464d7ecce6f2e43407530d5744ef53e62ec9d5",
-      "file": "src/app/modules/shared/command/protected/Encryption.service.ts",
-      "properties": [
-        {
-          "name": "encryptionStrategy",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "EncryptionStrategy",
-          "optional": false,
-          "description": "",
-          "line": 10,
-          "modifierKind": [123]
-        }
-      ],
-      "methods": [
-        {
-          "name": "decodeData",
-          "args": [
-            {
-              "name": "dataEncriptData",
-              "type": "string",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "Promise<T>",
-          "typeParameters": ["T"],
-          "line": 39,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "modifierKind": [134],
-          "jsdoctags": [
-            {
-              "name": "dataEncriptData",
-              "type": "string",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "encodeData",
-          "args": [
-            {
-              "name": "data",
-              "type": "any",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "Promise<string>",
-          "typeParameters": [],
-          "line": 34,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "modifierKind": [134],
-          "jsdoctags": [
-            {
-              "name": "data",
-              "type": "any",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "initializeEncryptionStrategy",
-          "args": [],
-          "optional": false,
-          "returnType": "any",
-          "typeParameters": [],
-          "line": 12,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "modifierKind": [123, 134]
-        },
-        {
-          "name": "setEncriptionStrategy",
-          "args": [
-            {
-              "name": "strategy",
-              "type": "EncryptionStrategy",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 30,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "rawdescription": "\n\nPuede crearse una Statragy diferente a CryptoJs\nDebe tambien implementar su metodos de EncryptionStrategy\nEjemplo: Otro mecanismo diferente a CryptoJs\n",
-          "description": "<p>Puede crearse una Statragy diferente a CryptoJs\nDebe tambien implementar su metodos de EncryptionStrategy\nEjemplo: Otro mecanismo diferente a CryptoJs</p>\n",
-          "jsdoctags": [
-            {
-              "name": {
-                "pos": 838,
-                "end": 846,
-                "flags": 16842752,
-                "modifierFlagsCache": 0,
-                "transformFlags": 0,
-                "kind": 80,
-                "escapedText": "strategy"
-              },
-              "type": "EncryptionStrategy",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "pos": 832,
-                "end": 837,
-                "flags": 16842752,
-                "modifierFlagsCache": 0,
-                "transformFlags": 0,
-                "kind": 80,
-                "escapedText": "param"
-              },
-              "comment": ""
-            }
-          ]
-        }
-      ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "description": "",
-      "rawdescription": "\n",
-      "sourceCode": "import { Injectable } from '@angular/core'\r\n\r\nimport { EncryptionStrategy } from '@shared/core/patterns/strategy'\r\nimport { CryptoJsStrategy } from '@shared/core/entry-point/CryptoJsStrategy.class'\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class EncryptionService {\r\n  private encryptionStrategy !: EncryptionStrategy\r\n\r\n  private async initializeEncryptionStrategy () {\r\n    try {\r\n\r\n      const crypto_iv = '1234567890123456'\r\n      const crypto_key = '123456789'\r\n\r\n      this.encryptionStrategy = new CryptoJsStrategy({ crypto_iv, crypto_key })\r\n    } catch (_) {\r\n      throw new Error('Faild connection to get api key')\r\n    }\r\n  }\r\n\r\n  /**\r\n   * Puede crearse una Statragy diferente a CryptoJs\r\n   * Debe tambien implementar su metodos de EncryptionStrategy\r\n   * Ejemplo: Otro mecanismo diferente a CryptoJs\r\n   * @param strategy\r\n   */\r\n  setEncriptionStrategy (strategy: EncryptionStrategy) {\r\n    this.encryptionStrategy = strategy\r\n  }\r\n\r\n  async encodeData (data: any): Promise<string> {\r\n    await this.initializeEncryptionStrategy()\r\n    return await this.encryptionStrategy.encrypt(data)\r\n  }\r\n\r\n  async decodeData<T>(dataEncriptData: string): Promise<T> {\r\n    await this.initializeEncryptionStrategy()\r\n    return await this.encryptionStrategy.decrypt(dataEncriptData) as T\r\n  }\r\n}\r\n",
-      "extends": [],
-      "type": "injectable"
-    },
-    {
       "name": "HttpTmdbAdapterService",
-      "id": "injectable-HttpTmdbAdapterService-655ef2aac4695fdc474df742bb317be648fff50dae57608976f091853005cd910f552eeb77a8b5761e6fd00be69c054355ba664c2686923fb97f02f847a07b2e",
+      "id": "injectable-HttpTmdbAdapterService-4a18268a5ec0c5f196ce23d15dc859e824bb2cbb81f855151e8e26bee5d764ff72dec5353a683696b2555f30da4c7b267fe03def6e00e808c2802ed786931c68",
       "file": "src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts",
       "properties": [],
       "methods": [
@@ -2667,7 +2527,7 @@
           "optional": false,
           "returnType": "Observable<DetailPoster>",
           "typeParameters": [],
-          "line": 156,
+          "line": 159,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2695,7 +2555,7 @@
           "optional": false,
           "returnType": "Observable<DetailPoster>",
           "typeParameters": [],
-          "line": 126,
+          "line": 129,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2753,7 +2613,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport { catchError, defaultIfEmpty, filter, map, Observable, tap, throwError } from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  DetailPoster,\n  SearchMulti,\n  Trending,\n  MediaType,\n} from '@shared/core/domain/entity';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  constructor(private http: HttpClient) {}\n\n  getTrending(): Observable<Trending[]> {\n    const url = PATHS.trending;\n\n    return this.http.get<OutTrending>(url).pipe(\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n            }) as Trending,\n        ),\n      ),\n    );\n  }\n\n  getFeaturedMovies(): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n\n    return this.http.get<OutFeaturedMovie>(url).pipe(\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n            }) as FeaturedMovie,\n        ),\n      ),\n    );\n  }\n\n  getFeaturedSeries(): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n\n    return this.http.get<OutFeaturedSerie>(url).pipe(\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n            }) as FeaturedSerie,\n        ),\n      ),\n    );\n  }\n\n  searchMovies(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams().set('query', query).set('include_adult', 'false');\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      filter(\n        (outSearchMulti) =>\n          outSearchMulti.results.length > 0 &&\n          outSearchMulti.results.some(\n            (result) => result.media_type === MediaType.Movie || result.media_type === MediaType.Tv,\n          ),\n      ),\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title: MediaType.Movie === outSearchMulti.media_type ? outSearchMulti.title : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPoster> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPoster,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPoster> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetails.poster_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPoster,\n      ),\n    );\n  }\n}\n",
+      "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport { catchError, defaultIfEmpty, filter, map, Observable, tap, throwError } from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  DetailPoster,\n  SearchMulti,\n  Trending,\n  MediaType,\n} from '@shared/core/domain/entity';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  constructor(private http: HttpClient) {}\n\n  getTrending(): Observable<Trending[]> {\n    const url = PATHS.trending;\n\n    return this.http.get<OutTrending>(url).pipe(\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n            }) as Trending,\n        ),\n      ),\n    );\n  }\n\n  getFeaturedMovies(): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n\n    return this.http.get<OutFeaturedMovie>(url).pipe(\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n            }) as FeaturedMovie,\n        ),\n      ),\n    );\n  }\n\n  getFeaturedSeries(): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n\n    return this.http.get<OutFeaturedSerie>(url).pipe(\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n            }) as FeaturedSerie,\n        ),\n      ),\n    );\n  }\n\n  searchMovies(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams().set('query', query).set('include_adult', 'false');\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      filter(\n        (outSearchMulti) =>\n          outSearchMulti.results.length > 0 &&\n          outSearchMulti.results.some(\n            (result) => result.media_type === MediaType.Movie || result.media_type === MediaType.Tv,\n          ),\n      ),\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPoster> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPoster,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPoster> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetails.poster_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPoster,\n      ),\n    );\n  }\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -4090,7 +3950,7 @@
       "stylesData": "",
       "extends": [],
       "implements": ["OnInit"],
-      "templateData": "<header\n  class=\"relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9\"\n>\n  <a\n    aria-label=\"Go to home\"\n    class=\"bg-transparent outline-none focus:outline-none cursor-pointer\"\n    routerLink=\"/\"\n  >\n    <img\n      ngSrc=\"imgs/logo.svg\"\n      alt=\"Logo Flypass - Find movies\"\n      width=\"180\"\n      height=\"38\"\n      class=\"animate-fade\"\n    />\n  </a>\n\n  <!-- SECCIÓN DE BÚSQUEDA -->\n\n  <div class=\"relative w-full\">\n    <form (ngSubmit)=\"onEnter()\" autocomplete=\"off\">\n      <ui-input\n        placeholder=\"Search FindMovies\"\n        name=\"search\"\n        (searchEvent)=\"onSearch($event)\"\n      ></ui-input>\n    </form>\n\n    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->\n\n    <div\n      class=\"absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden\"\n    >\n      @defer {\n        <ng-container *ngTemplateOutlet=\"resultSearch\"></ng-container>\n      } @loading {\n        <div class=\"p-4 flex flex-col gap-2\">\n          <p class=\"animate-pulse bg-white/15 h-6 w-1/2\"></p>\n          <p class=\"animate-pulse bg-white/15 h-4 w-3/4\"></p>\n          <p class=\"animate-pulse bg-white/15 h-5 w-1/2\"></p>\n        </div>\n      }\n    </div>\n  </div>\n</header>\n\n<ng-template #resultSearch>\n  <ul>\n    @for (list of listResults(); track list.id) {\n      <li\n        class=\"flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer\"\n        (click)=\"onPoster(list)\"\n        aria-hidden=\"true\"\n      >\n        <img class=\"rounded\" ngSrc=\"{{ list.poster_path }}\" alt=\"Brazil\" width=\"55\" height=\"83\" />\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"text-white\">{{ list.title }}</h3>\n          <span class=\"text-secondary-ui/60 text-sm\">{{ list.release_date | date: 'yyyy' }}</span>\n          <p class=\"font-body text-white max-w-[28rem] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden\">{{ list.overview }}</p>\n        </div>\n      </li>\n    }\n  </ul>\n\n  @if (notFound()) {\n    <p class=\"p-4\">No results found for \"{{ inputText }}\" phrase.</p>\n  }\n</ng-template>\n"
+      "templateData": "<header\n  class=\"relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9\"\n>\n  <a\n    aria-label=\"Go to home\"\n    class=\"bg-transparent outline-none focus:outline-none cursor-pointer\"\n    routerLink=\"/\"\n  >\n    <img\n      ngSrc=\"imgs/logo.svg\"\n      alt=\"Logo Flypass - Find movies\"\n      width=\"180\"\n      height=\"38\"\n      class=\"animate-fade\"\n    />\n  </a>\n\n  <!-- SECCIÓN DE BÚSQUEDA -->\n\n  <div class=\"relative w-full\">\n    <form (ngSubmit)=\"onEnter()\" autocomplete=\"off\">\n      <ui-input\n        placeholder=\"Search FindMovies\"\n        name=\"search\"\n        (searchEvent)=\"onSearch($event)\"\n      ></ui-input>\n    </form>\n\n    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->\n\n    <div\n      class=\"absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden\"\n    >\n      @defer {\n        <ng-container *ngTemplateOutlet=\"resultSearch\"></ng-container>\n      } @loading {\n        <div class=\"p-4 flex flex-col gap-2\">\n          <p class=\"animate-pulse bg-white/15 h-6 w-1/2\"></p>\n          <p class=\"animate-pulse bg-white/15 h-4 w-3/4\"></p>\n          <p class=\"animate-pulse bg-white/15 h-5 w-1/2\"></p>\n        </div>\n      }\n    </div>\n  </div>\n</header>\n\n<ng-template #resultSearch>\n  <ul>\n    @for (list of listResults(); track list.id) {\n      <li\n        class=\"flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer\"\n        (click)=\"onPoster(list)\"\n        aria-hidden=\"true\"\n      >\n        <img class=\"rounded\" ngSrc=\"{{ list.poster_path }}\" alt=\"Brazil\" width=\"55\" height=\"83\" />\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"text-white\">{{ list.title }}</h3>\n          <span class=\"text-secondary-ui/60 text-sm\">{{ list.release_date | date: 'yyyy' }}</span>\n          <p\n            class=\"font-body text-white max-w-[28rem] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden\"\n          >\n            {{ list.overview }}\n          </p>\n        </div>\n      </li>\n    }\n  </ul>\n\n  @if (notFound()) {\n    <p class=\"p-4\">No results found for \"{{ inputText }}\" phrase.</p>\n  }\n</ng-template>\n"
     },
     {
       "name": "MainLayoutComponent",
@@ -4558,7 +4418,7 @@
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<article class=\"px-10 md:px-40 py-9 flex flex-col md:flex-row gap-8 animate-fade-up\">\n  <div class=\"rounded overflow-hidden w-[18rem] h-[26rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem]\">\n    <img\n      class=\"object-cover object-center aspect-[2/3] w-[22rem] h-[26rem] \"\n      ngSrc=\"{{ posterContent.poster_path }}\"\n      decoding=\"async\"\n      alt=\"title\"\n      width=\"780\"\n      height=\"1170\"\n    />\n  </div>\n\n  <div class=\"flex flex-col gap-4 text-white text-base\">\n    <div\n      class=\"w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden\"\n    >\n      <div class=\"bg-primary-ui p-3 relative\">\n        <p class=\"text-black text-base font-semiBold z-10 relative\">Awards & nominations</p>\n        <div class=\"bg-primary-ui w-10 h-20 absolute z-0 -right-3 -top-6 rotate-[20deg]\"></div>\n      </div>\n      <p class=\"text-white font-semiBold text-base px-4 ml-4\">\n        Won 2 Oscars 130 wins & 136 nominations total\n      </p>\n    </div>\n\n    <div class=\"flex gap-3\">\n      @for (genre of posterContent.genres; track $index) {\n        <span class=\"badge\">{{ genre }}</span>\n      }\n    </div>\n\n    <p class=\"text-balance font-body leading-7\">\n      {{ posterContent.overview }}\n    </p>\n\n    @if (posterContent.production_countries.length > 0) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Production countries:</span>\n        @for (item of posterContent.production_countries; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.production_companies.length > 0) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Production companies:</span>\n        @for (item of posterContent.production_companies; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.spoken_languages.length > 0) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Spoken languages:</span>\n        @for (item of posterContent.spoken_languages; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.tagline) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Tagline:</span> {{ posterContent.tagline }}\n      </p>\n    }\n\n    @if (posterContent.release_date) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Release date:</span>\n        {{ posterContent.release_date | date: 'mm dd, yyyy' }}\n      </p>\n    }\n  </div>\n</article>\n"
+      "templateData": "<article class=\"px-10 md:px-40 py-9 flex flex-col md:flex-row gap-8 animate-fade-up\">\n  <div\n    class=\"rounded overflow-hidden w-[18rem] h-[26rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem]\"\n  >\n    <img\n      class=\"object-cover object-center aspect-[2/3] w-[22rem] h-[26rem]\"\n      ngSrc=\"{{ posterContent.poster_path }}\"\n      decoding=\"async\"\n      alt=\"title\"\n      width=\"780\"\n      height=\"1170\"\n    />\n  </div>\n\n  <div class=\"flex flex-col gap-4 text-white text-base\">\n    <div\n      class=\"w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden\"\n    >\n      <div class=\"bg-primary-ui p-3 relative\">\n        <p class=\"text-black text-base font-semiBold z-10 relative\">Awards & nominations</p>\n        <div class=\"bg-primary-ui w-10 h-20 absolute z-0 -right-3 -top-6 rotate-[20deg]\"></div>\n      </div>\n      <p class=\"text-white font-semiBold text-base px-4 ml-4\">\n        Won 2 Oscars 130 wins & 136 nominations total\n      </p>\n    </div>\n\n    <div class=\"flex gap-3\">\n      @for (genre of posterContent.genres; track $index) {\n        <span class=\"badge\">{{ genre }}</span>\n      }\n    </div>\n\n    <p class=\"text-balance font-body leading-7\">\n      {{ posterContent.overview }}\n    </p>\n\n    @if (posterContent.production_countries.length > 0) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Production countries:</span>\n        @for (item of posterContent.production_countries; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.production_companies.length > 0) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Production companies:</span>\n        @for (item of posterContent.production_companies; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.spoken_languages.length > 0) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Spoken languages:</span>\n        @for (item of posterContent.spoken_languages; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.tagline) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Tagline:</span> {{ posterContent.tagline }}\n      </p>\n    }\n\n    @if (posterContent.release_date) {\n      <p>\n        <span class=\"text-[var(--gray-100-opacity-60)]\">Release date:</span>\n        {{ posterContent.release_date | date: 'mm dd, yyyy' }}\n      </p>\n    }\n  </div>\n</article>\n"
     },
     {
       "name": "PosterDetailHeaderComponent",
@@ -5793,15 +5653,6 @@
         "name": "LogStrategyService",
         "coveragePercent": 0,
         "coverageCount": "0/5",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/modules/shared/command/protected/Encryption.service.ts",
-        "type": "injectable",
-        "linktype": "injectable",
-        "name": "EncryptionService",
-        "coveragePercent": 16,
-        "coverageCount": "1/6",
         "status": "low"
       },
       {

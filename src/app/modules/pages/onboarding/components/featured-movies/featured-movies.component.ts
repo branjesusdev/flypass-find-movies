@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input, OnDestroy, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarouselComponent, ItemsCarousel } from '@lib-transversal';
 import { FeaturedMovie } from '@shared/core/domain/entity';

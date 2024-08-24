@@ -7,3 +7,4 @@ src/assets
 src/stories
 src/temp
 .storybook
+storybook-static

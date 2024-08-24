@@ -2,13 +2,20 @@
   <h1 class="text-primary-ui font-bold text-4xl mt-12">Featured Today</h1>
 
   <article class="my-4">
-    <p-tabView>
-      <p-tabPanel header="Movies">
-        <app-featured-movies [featuredMovies]="stateMovies()" />
-      </p-tabPanel>
-      <p-tabPanel header="Series">
-        <app-featured-series [featuredSeries]="stateSeries()" />
-      </p-tabPanel>
-    </p-tabView>
+    <ui-tab-view (tabSelected)="handleTabSelected($event)">
+      <ui-tab-panel tabTitle="Movies" keyTab="movies">
+        <app-featured-movies
+          [featuredMovies]="stateMovies()"
+          *ngIf="isMovies()"
+        ></app-featured-movies>
+      </ui-tab-panel>
+
+      <ui-tab-panel tabTitle="Series" keyTab="series">
+        <app-featured-series
+          [featuredSeries]="stateSeries()"
+          *ngIf="isSeries()"
+        ></app-featured-series>
+      </ui-tab-panel>
+    </ui-tab-view>
   </article>
 </div>

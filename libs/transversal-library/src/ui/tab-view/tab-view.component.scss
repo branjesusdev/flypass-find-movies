@@ -1,0 +1,69 @@
+.tabview-panel {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1rem;
+  &:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: var(--white-opacity-12);
+    position: absolute;
+    bottom: -4px;
+    border-radius: 10rem;
+  }
+}
+
+.tab-line {
+  @apply font-body text-lg;
+
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  color: var(--gray-100-opacity-60);
+  padding: 4px 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+  position: relative;
+
+  &.tab-line--active {
+    color: white;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      transition: background-color 0.3s;
+      border-radius: 10rem;
+      animation: widthGrow 0.3s;
+    }
+  }
+
+  &:active {
+    animation: fadeIn 0.3s;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes widthGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%;
+  }
+}
