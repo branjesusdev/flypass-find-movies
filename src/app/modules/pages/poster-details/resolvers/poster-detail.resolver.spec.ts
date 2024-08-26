@@ -5,6 +5,7 @@ import { posterDetailResolver } from './poster-detail.resolver';
 import { DetailPoster } from '@shared/core/domain/entity';
 import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
 import { of } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('posterDetailResolver', () => {
   let theMovieDBPortSpy: jasmine.SpyObj<TheMovieDBPort>;
@@ -17,6 +18,7 @@ describe('posterDetailResolver', () => {
     const spy = jasmine.createSpyObj('TheMovieDBPort', ['getMovieDetails', 'getSeriesDetails']);
     TestBed.configureTestingModule({
       providers: [{ provide: TheMovieDBPort, useValue: spy }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     });
 
     theMovieDBPortSpy = TestBed.inject(TheMovieDBPort) as jasmine.SpyObj<TheMovieDBPort>;
@@ -35,6 +37,9 @@ describe('posterDetailResolver', () => {
       production_companies: ['Company 1', 'Company 2'],
       production_countries: ['Country 1', 'Country 2'],
       spoken_languages: ['Language 1', 'Language 2'],
+      first_air_date: new Date('2021-01-01'),
+      number_of_episodes: 10,
+      number_of_seasons: 1,
     };
   });
 

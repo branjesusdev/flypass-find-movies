@@ -28,4 +28,12 @@ describe('LogStrategyService', () => {
 
     expect(spy).toHaveBeenCalledWith('test', 'test message');
   });
+
+  it('should use case setLogger', () => {
+    service.setLogger(mockLoggerStrategy);
+
+    service.write({ indetity: 'test', message: 'test message' });
+
+    expect(mockLoggerStrategy.write).toHaveBeenCalledWith('test', 'test message');
+  });
 });

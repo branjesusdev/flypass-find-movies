@@ -27,16 +27,30 @@ export class OnbordingPremieresComponent implements OnInit {
   }
 
   __init__() {
+    this.__getTrending();
+  }
+
+  private __getTrending({ page }: { page: number } = { page: 1 }): void {
     this.serviceTmdb
-      .getTrending()
+      .getTrending({ page })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((movies) => {
-        console.log('tranding movies', movies);
         this.posters.set(movies);
       });
   }
 
   onPoster(poster: ItemsCarousel): void {
     this.router.navigate(['poster-detail', poster.media_type, poster.id]);
+  }
+
+  onMorePremieres(morePremieres: boolean): void {
+    console.log('onMorePremieres', morePremieres);
+
+    if (!morePremieres) return;
+
+    const lastPage = this.posters().reduce((max, premier) =>
+      max.page > premier.page ? max : premier,
+    );
+    this.__getTrending({ page: lastPage.page + 1 });
   }
 }

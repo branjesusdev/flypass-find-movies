@@ -1,7 +1,22 @@
 .slide-custom {
-  @apply h-[22rem] flex items-end justify-items-start
+  @apply h-[22rem] flex items-end justify-items-start;
 }
 
 .swiper-container {
   position: relative;
+}
+
+::ng-deep {
+  .carousel-container--ui {
+    --opacity-card: 0.8;
+
+    &:hover .card-poster--ui:not(:hover) {
+      opacity: var(--opacity-card);
+    }
+  }
+
+  .swiper-button-next:hover ~ .carousel-container--ui .card-poster--ui {
+    --opacity-card: 1;
+    opacity: 1;
+  }
 }

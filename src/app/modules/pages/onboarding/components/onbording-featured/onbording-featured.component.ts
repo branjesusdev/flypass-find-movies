@@ -53,22 +53,20 @@ export class OnbordingFeaturedComponent implements OnInit {
     this.__getFeaturedSeries();
   }
 
-  private __getFeaturedMovies(): void {
+  private __getFeaturedMovies({ page = 1 }: { page: number } = { page: 1 }): void {
     this.serviceTmdb
-      .getFeaturedMovies()
+      .getFeaturedMovies({ page })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((movies) => {
         this.stateMovies.set(movies);
       });
   }
 
-  private __getFeaturedSeries(): void {
+  private __getFeaturedSeries({ page = 1 }: { page: number } = { page: 1 }): void {
     this.serviceTmdb
-      .getFeaturedSeries()
+      .getFeaturedSeries({ page })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((series) => {
-        console.log('series', series);
-
         this.stateSeries.set(series);
       });
   }
@@ -76,5 +74,25 @@ export class OnbordingFeaturedComponent implements OnInit {
   handleTabSelected(tab: string) {
     this.isMovies.set(tab === 'movies');
     this.isSeries.set(tab === 'series');
+  }
+
+  onMoreMovies(moreMovies: boolean): void {
+    if (!moreMovies) return;
+
+    const pageLast = this.stateMovies().reduce(
+      (max, movie) => (movie.page > max ? movie.page : max),
+      0,
+    );
+    this.__getFeaturedMovies({ page: pageLast + 1 });
+  }
+
+  onMoreSeries(moreSeries: boolean): void {
+    if (!moreSeries) return;
+
+    const pageLast = this.stateSeries().reduce(
+      (max, serie) => (serie.page > max ? serie.page : max),
+      0,
+    );
+    this.__getFeaturedSeries({ page: pageLast + 1 });
   }
 }

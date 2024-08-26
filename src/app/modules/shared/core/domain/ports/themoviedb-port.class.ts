@@ -1,13 +1,19 @@
 import { Observable } from 'rxjs';
 
-import { FeaturedMovie, FeaturedSerie, DetailPoster, Trending } from '@shared/core/domain/entity';
+import {
+  FeaturedMovie,
+  FeaturedSerie,
+  DetailPosterMovie,
+  DetailPosterSeries,
+  Trending,
+} from '@shared/core/domain/entity';
 import { SearchMulti } from '../entity/search-multi';
 
 export abstract class TheMovieDBPort {
-  abstract getFeaturedMovies(): Observable<FeaturedMovie[]>;
-  abstract getFeaturedSeries(): Observable<FeaturedSerie[]>;
-  abstract getTrending(): Observable<Trending[]>;
-  abstract getMovieDetails(movieId: number): Observable<DetailPoster>;
-  abstract getSeriesDetails(seriesId: number): Observable<DetailPoster>;
+  abstract getFeaturedMovies({ page }: { page?: number }): Observable<FeaturedMovie[]>;
+  abstract getFeaturedSeries({ page }: { page?: number }): Observable<FeaturedSerie[]>;
+  abstract getTrending({ page }: { page: number }): Observable<Trending[]>;
+  abstract getMovieDetails(movieId: number): Observable<DetailPosterMovie>;
+  abstract getSeriesDetails(seriesId: number): Observable<DetailPosterSeries>;
   abstract searchMovies(query: string): Observable<SearchMulti[]>;
 }

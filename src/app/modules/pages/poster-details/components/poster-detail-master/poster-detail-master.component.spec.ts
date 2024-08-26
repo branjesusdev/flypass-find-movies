@@ -31,6 +31,9 @@ describe('PosterDetailMasterComponent', () => {
       production_countries: ['Country'],
       number_of_seasons: 1,
       tagline: 'Tagline',
+      number_of_episodes: 1,
+      runtime: 1,
+      first_air_date: new Date(),
     };
 
     await TestBed.configureTestingModule({

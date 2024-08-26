@@ -1,3 +1,5 @@
+import { RecordType } from './record.type';
+
 export type FeaturedSerie = {
   id_serie: number;
   title: string;
@@ -5,4 +7,4 @@ export type FeaturedSerie = {
   vote_average: number;
   overview: string;
   media_type: string;
-};
+} & RecordType;

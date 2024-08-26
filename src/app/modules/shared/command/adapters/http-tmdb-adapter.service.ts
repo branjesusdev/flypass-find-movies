@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError, defaultIfEmpty, filter, map, Observable, of, tap, throwError } from 'rxjs';
+import {
+  catchError,
+  defaultIfEmpty,
+  filter,
+  map,
+  Observable,
+  of,
+  switchMap,
+  tap,
+  throwError,
+} from 'rxjs';
 
 // RERSOURCES
 
@@ -25,6 +35,8 @@ import {
   SearchMulti,
   Trending,
   MediaType,
+  DetailPosterMovie,
+  DetailPosterSeries,
 } from '@shared/core/domain/entity';
 import { AplicationStore } from '@shared/store/aplication.store';
 
@@ -39,15 +51,17 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
     return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;
   }
 
-  getTrending(): Observable<Trending[]> {
-    const url = PATHS.trending;
+  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {
+    const url = `${PATHS.trending}`;
     const store = this.store.getStateValue('trending') as Trending[];
 
-    if (store) return this.obserberResponse(store) as Observable<Trending[]>;
+    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;
 
-    return this.http.get<OutTrending>(url).pipe(
-      map((outMovieDetails) =>
-        outMovieDetails.results.map(
+    const params = new HttpParams().set('page', page.toString());
+
+    return this.http.get<OutTrending>(url, { params }).pipe(
+      map((outTrending) =>
+        outTrending.results.map(
           (outMovieDetail) =>
             ({
               id: outMovieDetail.id,
@@ -56,22 +70,29 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
               vote_average: outMovieDetail.vote_average,
               overview: outMovieDetail.overview,
               media_type: outMovieDetail.media_type,
+              page: outTrending.page,
             }) as Trending,
         ),
       ),
       tap((trending) => {
         this.store.saveState$({ key: 'trending', info: trending as Trending[] });
       }),
+      switchMap((trending) => {
+        if (store) return of([...store, ...trending]);
+        return of(trending);
+      }),
     );
   }
 
-  getFeaturedMovies(): Observable<FeaturedMovie[]> {
+  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {
     const url = PATHS.movies.featured;
     const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];
 
-    if (store) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;
+    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;
 
-    return this.http.get<OutFeaturedMovie>(url).pipe(
+    const params = new HttpParams().set('page', page.toString());
+
+    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(
       map((outMovieDetails) =>
         outMovieDetails.results.map(
           (outMovieDetail) =>
@@ -81,22 +102,31 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
               poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetail.poster_path}`,
               vote_average: outMovieDetail.vote_average,
               media_type: MediaType.Movie,
+              overview: outMovieDetail.overview,
+              page: outMovieDetails.page,
             }) as FeaturedMovie,
         ),
       ),
       tap((movies) => {
-        this.store.saveState$({ key: 'featuredMovies', info: movies as FeaturedMovie[] });
+        const moviesStore = page == 1 ? movies : [...store, ...movies];
+        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });
+      }),
+      switchMap((movies) => {
+        if (store) return of([...store, ...movies]);
+        return of(movies);
       }),
     );
   }
 
-  getFeaturedSeries(): Observable<FeaturedSerie[]> {
+  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {
     const url = PATHS.series.featured;
     const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];
 
-    if (store) return this.obserberResponse(store);
+    if (store && page == 1) return this.obserberResponse(store);
 
-    return this.http.get<OutFeaturedSerie>(url).pipe(
+    const params = new HttpParams().set('page', page.toString());
+
+    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(
       map((outFeaturedSerie) =>
         outFeaturedSerie.results.map(
           (outSerieDetail) =>
@@ -107,11 +137,16 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
               vote_average: outSerieDetail.vote_average,
               overview: outSerieDetail.overview,
               media_type: MediaType.Tv,
+              page: outFeaturedSerie.page,
             }) as FeaturedSerie,
         ),
       ),
       tap((series) => {
         this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });
+      }),
+      switchMap((series) => {
+        if (store) return of([...store, ...series]);
+        return of(series);
       }),
     );
   }
@@ -151,7 +186,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
     );
   }
 
-  getSeriesDetails(seriesId: number): Observable<DetailPoster> {
+  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {
     const url = PATHS.series.details(seriesId);
 
     return this.http.get<OutSerieDetail>(url).pipe(
@@ -176,12 +211,12 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
               outSerieDetail?.production_countries?.map((country) => country.name) ?? [],
             spoken_languages:
               outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],
-          }) as DetailPoster,
+          }) as DetailPosterSeries,
       ),
     );
   }
 
-  getMovieDetails(movieId: number): Observable<DetailPoster> {
+  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {
     const url = PATHS.movies.details(movieId);
 
     return this.http.get<OutMovieDetail>(url).pipe(
@@ -205,7 +240,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
               outMovieDetails?.production_countries?.map((country) => country.name) ?? [],
             spoken_languages:
               outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],
-          }) as DetailPoster,
+          }) as DetailPosterMovie,
       ),
     );
   }

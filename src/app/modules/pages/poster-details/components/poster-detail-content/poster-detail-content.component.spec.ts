@@ -32,6 +32,8 @@ describe('PosterDetailContentComponent', () => {
       production_countries: ['Country'],
       number_of_seasons: 1,
       tagline: 'Tagline',
+      first_air_date: new Date(),
+      runtime: 1,
     };
 
     await TestBed.configureTestingModule({

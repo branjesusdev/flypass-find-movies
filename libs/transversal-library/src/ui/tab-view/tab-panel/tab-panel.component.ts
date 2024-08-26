@@ -7,7 +7,9 @@ import { Component, Input, signal } from '@angular/core';
   imports: [CommonModule],
   template: `
     @if (active) {
-      <ng-content></ng-content>
+      <div class="animate-fade-left">
+        <ng-content></ng-content>
+      </div>
     }
   `,
 })

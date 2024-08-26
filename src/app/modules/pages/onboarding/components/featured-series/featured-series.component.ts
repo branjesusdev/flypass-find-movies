@@ -1,4 +1,4 @@
-import { Component, effect, Input, signal } from '@angular/core';
+import { Component, effect, EventEmitter, Input, Output, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarouselComponent, ItemsCarousel } from '@lib-transversal';
 import { FeaturedSerie } from '@shared/core/domain/entity';
@@ -29,9 +29,17 @@ export class FeaturedSeriesComponent {
 
   posters = signal<ItemsCarousel[]>([]);
 
+  @Output() moreSeries = new EventEmitter<boolean>();
+
   constructor(private router: Router) {}
 
   onPoster(poster: ItemsCarousel): void {
     this.router.navigate(['poster-detail', poster.media_type, poster.id]);
+  }
+
+  onReachEnd(reachEnd: boolean): void {
+    if (!reachEnd) return;
+
+    this.moreSeries.emit(true);
   }
 }

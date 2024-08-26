@@ -29,7 +29,7 @@
     <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->
 
     <div
-      class="absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden"
+      class="absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all"
     >
       @defer {
         <ng-container *ngTemplateOutlet="resultSearch"></ng-container>
@@ -48,7 +48,7 @@
   <ul>
     @for (list of listResults(); track list.id) {
       <li
-        class="flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer"
+        class="flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer animate-fade-up"
         (click)="onPoster(list)"
         aria-hidden="true"
       >

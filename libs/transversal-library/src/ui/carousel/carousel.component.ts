@@ -40,7 +40,10 @@ export class CarouselComponent {
   @Input({ required: true }) items: ItemsCarousel[] = [];
   @Input({ required: true }) key: string = '';
   @Output() outPoster = new EventEmitter<ItemsCarousel>();
+  @Output() outReachEnd = new EventEmitter<boolean>();
+
   isVisibleNavigation = false;
+  isReachEnd = signal<boolean>(false);
 
   private readonly swiperContainer = viewChild<ElementRef<SwiperNativeEl>>('swiperContainer');
 
@@ -50,12 +53,12 @@ export class CarouselComponent {
     afterNextRender(() => {
       effect(
         () => {
-          console.log('🎨🎨🎨🎨🎨');
-
           if (this.swiperContainer()) {
             const swiperEl = this.swiperContainer()?.nativeElement;
 
             if (!swiperEl) return;
+
+            let move = false;
 
             const swiperOptions: SwiperOptions = {
               slidesPerView: 8,
@@ -97,13 +100,31 @@ export class CarouselComponent {
                   spaceBetween: 70,
                 },
               },
+              eventsPrefix: 'swiper-',
+              on: {
+                sliderMove: () => {
+                  move = true;
+                },
+                navigationNext: () => {
+                  move = true;
+                },
+                reachEnd: () => {
+                  if (move) {
+                    console.log('reachEnd');
+                    this.isReachEnd.set(true);
+                    this.outReachEnd.emit(true);
+                  }
+                },
+              },
             };
+
+            swiperEl;
 
             Object.assign(swiperEl, swiperOptions);
             swiperEl.initialize();
           }
         },
-        { injector: this.injector },
+        { injector: this.injector, allowSignalWrites: true },
       );
     });
   }

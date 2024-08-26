@@ -1,4 +1,4 @@
-<div class="relative">
+<div class="relative min-w-44 carousel-container--ui">
   @defer {
     <swiper-container #swiperContainer init="false" [id]="key">
       @for (item of items; track item.id) {
@@ -10,6 +10,21 @@
               [description]="item.overview"
               [vote]="item.vote_average"
             ></ui-card-poster>
+          </div>
+        </swiper-slide>
+      }
+
+      @if (isReachEnd()) {
+        <swiper-slide>
+          <div class="flex relative z-10 gap-4 w-full items-center justify-between">
+            <div class="shadow-md max-w-44 min-w-52 min-h-40 my-4 flex flex-col gap-3">
+              <div
+                class="animate-pulse bg-[var(--gray-100-opacity-36)] h-[17rem] w-full rounded-xl"
+              ></div>
+              <div
+                class="animate-pulse bg-[var(--gray-100-opacity-36)] h-8 w-full rounded-xl"
+              ></div>
+            </div>
           </div>
         </swiper-slide>
       }
@@ -30,7 +45,7 @@
   @if (items.length > 0) {
     <button
       [class]="
-        'swiper-button-next-' +
+        'swiper-button-next swiper-button-next-' +
         key +
         ' absolute top-1/2 translate-y-[-50%] right-4 z-10 bg-transparent border-none outline-none group cursor-pointer opacity-60'
       "

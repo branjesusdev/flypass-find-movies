@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarouselComponent, ItemsCarousel } from '@lib-transversal';
 import { FeaturedMovie } from '@shared/core/domain/entity';
@@ -29,9 +29,17 @@ export class FeaturedMoviesComponent {
 
   posters = signal<ItemsCarousel[]>([]);
 
+  @Output() moreMovies = new EventEmitter<boolean>();
+
   constructor(private router: Router) {}
 
   onPoster(poster: ItemsCarousel): void {
     this.router.navigate(['poster-detail', poster.media_type, poster.id]);
+  }
+
+  onReachEnd(reachEnd: boolean): void {
+    if (!reachEnd) return;
+
+    this.moreMovies.emit(true);
   }
 }

@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
 import { HttpTmdbAdapterService } from './http-tmdb-adapter.service';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { environment } from '@environment';
 import { PATHS } from '@conf/paths';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('HttpTmdbAdapterService', () => {
   let service: HttpTmdbAdapterService;
@@ -15,6 +16,7 @@ describe('HttpTmdbAdapterService', () => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [HttpTmdbAdapterService, provideHttpClient(), provideHttpClientTesting()],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     });
 
     service = TestBed.inject(HttpTmdbAdapterService);
@@ -29,12 +31,38 @@ describe('HttpTmdbAdapterService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should call obserberResponse', () => {
+    const object = {
+      1: {
+        id: 1,
+        title: 'Movie 1',
+      },
+      2: {
+        id: 2,
+        title: 'Movie 2',
+      },
+    } as any;
+
+    service['obserberResponse'](object).subscribe((res) => {
+      expect(res).toEqual([
+        {
+          id: 1,
+          title: 'Movie 1',
+        },
+        {
+          id: 2,
+          title: 'Movie 2',
+        },
+      ]);
+    });
+  });
+
   it('should get trending', () => {
-    service.getTrending().subscribe((res) => {
+    service.getTrending({ page: 1 }).subscribe((res) => {
       expect(res).toBeTruthy();
     });
 
-    const path = PATHS.trending;
+    const path = `${PATHS.trending}?page=1`;
 
     const req = httpTestingController.expectOne(`${path}`);
     expect(req.request.method).toEqual('GET');
@@ -49,15 +77,22 @@ describe('HttpTmdbAdapterService', () => {
           title: 'Movie 2',
         },
       ],
+    });
+  });
+
+  it('should get trending to return store', () => {
+    service['store'].saveState$({ key: 'trending', info: [] });
+    service.getTrending({ page: 1 }).subscribe((res) => {
+      expect(res).toBeTruthy();
     });
   });
 
   it('should get featured movies', () => {
-    service.getFeaturedMovies().subscribe((res) => {
+    service.getFeaturedMovies({ page: 1 }).subscribe((res) => {
       expect(res).toBeTruthy();
     });
 
-    const path = PATHS.movies.featured;
+    const path = `${PATHS.movies.featured}?page=1`;
 
     const req = httpTestingController.expectOne(`${path}`);
     expect(req.request.method).toEqual('GET');
@@ -75,12 +110,19 @@ describe('HttpTmdbAdapterService', () => {
     });
   });
 
+  it('should get featured movies to return store', () => {
+    service['store'].saveState$({ key: 'featuredMovies', info: [] });
+    service.getFeaturedMovies({ page: 1 }).subscribe((res) => {
+      expect(res).toBeTruthy();
+    });
+  });
+
   it('should get featured series', () => {
-    service.getFeaturedSeries().subscribe((res) => {
+    service.getFeaturedSeries({ page: 1 }).subscribe((res) => {
       expect(res).toBeTruthy();
     });
 
-    const path = PATHS.series.featured;
+    const path = `${PATHS.series.featured}?page=1`;
 
     const req = httpTestingController.expectOne(`${path}`);
     expect(req.request.method).toEqual('GET');
@@ -95,6 +137,13 @@ describe('HttpTmdbAdapterService', () => {
           name: 'Serie 2',
         },
       ],
+    });
+  });
+
+  it('should get featured series to return store', () => {
+    service['store'].saveState$({ key: 'featuredSeries', info: [] });
+    service.getFeaturedSeries({ page: 1 }).subscribe((res) => {
+      expect(res).toBeTruthy();
     });
   });
 

@@ -7,6 +7,7 @@
         <app-featured-movies
           [featuredMovies]="stateMovies()"
           *ngIf="isMovies()"
+          (moreMovies)="onMoreMovies($event)"
         ></app-featured-movies>
       </ui-tab-panel>
 
@@ -14,6 +15,7 @@
         <app-featured-series
           [featuredSeries]="stateSeries()"
           *ngIf="isSeries()"
+          (moreSeries)="onMoreSeries($event)"
         ></app-featured-series>
       </ui-tab-panel>
     </ui-tab-view>
