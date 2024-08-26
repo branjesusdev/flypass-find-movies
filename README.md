@@ -13,7 +13,6 @@
 - [**husky**](https://typicode.github.io/husky/)
 - [**pretty-quick**](https://www.npmjs.com/package/pretty-quick)
 - [**eslint**](https://eslint.org/)
-- [**Primeng**](https://primeng.org/)
 
 ## Patters
 
