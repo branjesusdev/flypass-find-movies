@@ -6,6 +6,7 @@
       <ui-tab-panel tabTitle="Movies" keyTab="movies">
         <app-featured-movies
           [featuredMovies]="stateMovies()"
+          [slideToX]="isSlideToXMovies()"
           *ngIf="isMovies()"
           (moreMovies)="onMoreMovies($event)"
         ></app-featured-movies>

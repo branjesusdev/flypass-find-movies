@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { debounceTime, Subject, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 
@@ -31,6 +31,7 @@ export class MainHeaderComponent implements OnInit {
     this.searchSubject
       .pipe(
         debounceTime(500),
+        distinctUntilChanged(),
         tap(() => this.listResults.set([])),
       )
       .pipe(takeUntilDestroyed(this.destroyRef))

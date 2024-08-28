@@ -3,10 +3,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import {
   catchError,
   defaultIfEmpty,
+  distinctUntilChanged,
   filter,
   map,
   Observable,
   of,
+  shareReplay,
   switchMap,
   tap,
   throwError,
@@ -60,6 +62,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
     const params = new HttpParams().set('page', page.toString());
 
     return this.http.get<OutTrending>(url, { params }).pipe(
+      distinctUntilChanged(),
       map((outTrending) =>
         outTrending.results.map(
           (outMovieDetail) =>
@@ -93,6 +96,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
     const params = new HttpParams().set('page', page.toString());
 
     return this.http.get<OutFeaturedMovie>(url, { params }).pipe(
+      distinctUntilChanged(),
       map((outMovieDetails) =>
         outMovieDetails.results.map(
           (outMovieDetail) =>
@@ -127,6 +131,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
     const params = new HttpParams().set('page', page.toString());
 
     return this.http.get<OutFeaturedSerie>(url, { params }).pipe(
+      distinctUntilChanged(),
       map((outFeaturedSerie) =>
         outFeaturedSerie.results.map(
           (outSerieDetail) =>
@@ -156,6 +161,8 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
     const url = PATHS.search;
 
     return this.http.get<OutSearchMulti>(url, { params }).pipe(
+      distinctUntilChanged(),
+      shareReplay(1),
       filter(
         (outSearchMulti) =>
           outSearchMulti.results.length > 0 &&

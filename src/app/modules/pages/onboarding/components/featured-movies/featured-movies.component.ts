@@ -30,6 +30,7 @@ export class FeaturedMoviesComponent {
   posters = signal<ItemsCarousel[]>([]);
 
   @Output() moreMovies = new EventEmitter<boolean>();
+  @Input() slideToX = 0;
 
   constructor(private router: Router) {}
 
