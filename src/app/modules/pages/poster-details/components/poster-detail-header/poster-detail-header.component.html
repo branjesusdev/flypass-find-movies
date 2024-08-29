@@ -1,10 +1,14 @@
 <header
   class="w-full transform bg-[rgba(110,110,110,0.5)] bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,10.85%,3.68%,95%)_0,rgba(12,12,12,.6)_100%)] relative animate-fade-down"
 >
-  <div class="flex items-center justify-between px-10 md:px-40 py-9">
+  <div class="flex items-center justify-between px-10 md:px-40 py-7">
     <div class="flex flex-col gap-3">
       <h3 class="text-primary-ui font-bodyTwo">{{ posterHeader.media_type | uppercase }}</h3>
-      <h1 class="text-white font-bold text-4xl">{{ posterHeader.name | uppercase }}</h1>
+      <h1
+        class="font-bold text-4xl inline-flex animate-background-shine bg-[linear-gradient(110deg,white,45%,var(--black-light),55%,white)] bg-[length:250%_100%] bg-clip-text text-transparent"
+      >
+        {{ posterHeader.name | uppercase }}
+      </h1>
       <div class="flex flex-row gap-3">
         <span class="text-white text-sm">{{ posterHeader.release_date | date: 'yyyy' }}</span>
 

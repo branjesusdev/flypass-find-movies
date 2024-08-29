@@ -1,5 +1,10 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withViewTransitions,
+} from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, provideProtractorTestingSupport } from '@angular/platform-browser';
@@ -18,7 +23,15 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), // Agrupar eventos de detección de cambios
     provideProtractorTestingSupport(),
-    provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
+    provideRouter(
+      routes,
+      withViewTransitions(),
+      withComponentInputBinding(),
+      withInMemoryScrolling({
+        anchorScrolling: 'enabled',
+        scrollPositionRestoration: 'enabled',
+      }),
+    ),
     provideClientHydration(),
     provideHttpClient(withInterceptorsFromDi()),
 

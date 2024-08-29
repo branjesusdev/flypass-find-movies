@@ -1,0 +1,12 @@
+.badge {
+  @apply py-4 bg-secondary-ui text-accent-ui;
+  border: 1px solid var(--black-light);
+
+  &.small {
+    @apply py-4;
+  }
+
+  &.large {
+    @apply py-5 px-4;
+  }
+}

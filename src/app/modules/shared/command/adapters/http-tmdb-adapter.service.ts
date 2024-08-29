@@ -33,7 +33,6 @@ import {
 import {
   FeaturedMovie,
   FeaturedSerie,
-  DetailPoster,
   SearchMulti,
   Trending,
   MediaType,
@@ -69,7 +68,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
             ({
               id: outMovieDetail.id,
               title: outMovieDetail.title,
-              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetail.poster_path}`,
+              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,
               vote_average: outMovieDetail.vote_average,
               overview: outMovieDetail.overview,
               media_type: outMovieDetail.media_type,
@@ -103,7 +102,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
             ({
               id_movie: outMovieDetail.id,
               title: outMovieDetail.title,
-              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetail.poster_path}`,
+              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,
               vote_average: outMovieDetail.vote_average,
               media_type: MediaType.Movie,
               overview: outMovieDetail.overview,
@@ -138,7 +137,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
             ({
               id_serie: outSerieDetail.id,
               title: outSerieDetail.name,
-              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSerieDetail.poster_path}`,
+              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,
               vote_average: outSerieDetail.vote_average,
               overview: outSerieDetail.overview,
               media_type: MediaType.Tv,
@@ -179,7 +178,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
                 MediaType.Movie === outSearchMulti.media_type
                   ? outSearchMulti.title
                   : outSearchMulti.name,
-              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSearchMulti.poster_path}`,
+              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,
               release_date: outSearchMulti?.first_air_date || '',
               media_type: outSearchMulti.media_type,
               overview: outSearchMulti?.overview,
@@ -203,7 +202,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
             id: outSerieDetail.id,
             name: outSerieDetail.name,
             overview: outSerieDetail.overview,
-            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outSerieDetail.poster_path}`,
+            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,
             vote_average: outSerieDetail.vote_average,
             first_air_date: outSerieDetail.first_air_date,
             genres: outSerieDetail.genres?.map((genre) => genre.name),
@@ -233,7 +232,7 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
             id: outMovieDetails.id,
             name: outMovieDetails.title,
             overview: outMovieDetails.overview,
-            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG}${outMovieDetails.poster_path}`,
+            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,
             vote_average: outMovieDetails.vote_average,
             release_date: outMovieDetails.release_date,
             genres: outMovieDetails.genres?.map((genre) => genre.name),

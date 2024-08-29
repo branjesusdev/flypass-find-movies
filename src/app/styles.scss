@@ -19,6 +19,8 @@
 
 body {
   font-family: fontRegularBody, system-ui;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .container-wrapper {

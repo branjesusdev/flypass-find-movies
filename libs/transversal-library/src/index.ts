@@ -6,3 +6,4 @@ export * from './ui/input/input.component';
 export * from './ui/button/button.component';
 export * from './ui/tab-view/tab-view.component';
 export * from './ui/tab-view/tab-panel/tab-panel.component';
+export * from './ui/badge/badge.component';

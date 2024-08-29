@@ -61,8 +61,6 @@ export class CarouselComponent implements OnChanges {
 
             if (!swiperEl) return;
 
-            const move = false;
-
             const swiperOptions: SwiperOptions = {
               slidesPerView: 8,
               spaceBetween: 5,
@@ -104,8 +102,10 @@ export class CarouselComponent implements OnChanges {
   ngOnChanges(changes: any): void {
     if (changes.items && !changes.items.firstChange) {
       setTimeout(() => {
+        console.log('this.currentActive()', this.currentActive());
+
         this.swiperContainer()?.nativeElement.swiper.slideTo(this.currentActive(), 0, false);
-      }, 1000);
+      }, 300);
     }
   }
 
