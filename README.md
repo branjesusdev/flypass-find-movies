@@ -1,6 +1,7 @@
 <h1>Flypass Find Movies</h1>
 
-![979shots_so](https://github.com/user-attachments/assets/7a8cbe68-5ffb-45c1-ad96-2ef5c2e34e7e)
+![809_1x_shots_so](https://github.com/user-attachments/assets/da0d9333-9364-4a27-981c-68825ec696cb)
+
 
 ## Angular 18
 
