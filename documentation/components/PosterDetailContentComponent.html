@@ -155,6 +155,7 @@
                 <td class="col-md-9">
                             <code>NgOptimizedImage</code>
                             <code>CommonModule</code>
+                            <code>BadgeComponent</code>
                 </td>
             </tr>
 
@@ -233,7 +234,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/modules/pages/poster-details/components/poster-detail-content/poster-detail-content.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/modules/pages/poster-details/components/poster-detail-content/poster-detail-content.component.ts:14</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -250,12 +251,13 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule, NgOptimizedImage } from &#x27;@angular/common&#x27;;
 import { Component, Input } from &#x27;@angular/core&#x27;;
+import { BadgeComponent } from &#x27;@lib-transversal&#x27;;
 import { DetailPoster } from &#x27;@shared/core/domain/entity&#x27;;
 
 @Component({
   selector: &#x27;app-poster-detail-content&#x27;,
   standalone: true,
-  imports: [NgOptimizedImage, CommonModule],
+  imports: [NgOptimizedImage, CommonModule, BadgeComponent],
   templateUrl: &#x27;./poster-detail-content.component.html&#x27;,
   styleUrl: &#x27;./poster-detail-content.component.scss&#x27;,
 })
@@ -266,36 +268,27 @@ export class PosterDetailContentComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;article class&#x3D;&quot;px-10 md:px-40 py-9 flex flex-col md:flex-row gap-8 animate-fade-up&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;article
+  class&#x3D;&quot;relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden&quot;
+&gt;
   &lt;div
-    class&#x3D;&quot;rounded overflow-hidden w-[18rem] h-[26rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem]&quot;
+    class&#x3D;&quot;wrap-poster-info relative z-20 flex flex-col gap-4 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px]&quot;
   &gt;
-    &lt;img
-      class&#x3D;&quot;object-cover object-center aspect-[2/3] w-[22rem] h-[26rem]&quot;
-      ngSrc&#x3D;&quot;{{ posterContent.poster_path }}&quot;
-      decoding&#x3D;&quot;async&quot;
-      alt&#x3D;&quot;title&quot;
-      width&#x3D;&quot;780&quot;
-      height&#x3D;&quot;1170&quot;
-    /&gt;
-  &lt;/div&gt;
-
-  &lt;div class&#x3D;&quot;flex flex-col gap-4 text-white text-base&quot;&gt;
     &lt;div
-      class&#x3D;&quot;w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden&quot;
+      class&#x3D;&quot;relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem&quot;
     &gt;
       &lt;div class&#x3D;&quot;bg-primary-ui p-3 relative&quot;&gt;
         &lt;p class&#x3D;&quot;text-black text-base font-semiBold z-10 relative&quot;&gt;Awards &amp; nominations&lt;/p&gt;
-        &lt;div class&#x3D;&quot;bg-primary-ui w-10 h-20 absolute z-0 -right-3 -top-6 rotate-[20deg]&quot;&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;element&quot;&gt;&lt;/div&gt;
       &lt;/div&gt;
-      &lt;p class&#x3D;&quot;text-white font-semiBold text-base px-4 ml-4&quot;&gt;
+      &lt;p class&#x3D;&quot;text-white font-semiBold text-base px-4 ml-8&quot;&gt;
         Won 2 Oscars 130 wins &amp; 136 nominations total
       &lt;/p&gt;
     &lt;/div&gt;
 
-    &lt;div class&#x3D;&quot;flex gap-3&quot;&gt;
+    &lt;div class&#x3D;&quot;flex gap-3 mt-5&quot;&gt;
       @for (genre of posterContent.genres; track $index) {
-        &lt;span class&#x3D;&quot;badge&quot;&gt;{{ genre }}&lt;/span&gt;
+        &lt;ui-badge [text]&#x3D;&quot;genre&quot; /&gt;
       }
     &lt;/div&gt;
 
@@ -305,7 +298,7 @@ export class PosterDetailContentComponent {
 
     @if (posterContent.production_countries.length &gt; 0) {
       &lt;p&gt;
-        &lt;span class&#x3D;&quot;text-[var(--gray-100-opacity-60)]&quot;&gt;Production countries:&lt;/span&gt;
+        &lt;span class&#x3D;&quot;subtitle&quot;&gt;Production countries:&lt;/span&gt;
         @for (item of posterContent.production_countries; track $index) {
           {{ item }},
         }
@@ -314,7 +307,7 @@ export class PosterDetailContentComponent {
 
     @if (posterContent.production_companies.length &gt; 0) {
       &lt;p&gt;
-        &lt;span class&#x3D;&quot;text-[var(--gray-100-opacity-60)]&quot;&gt;Production companies:&lt;/span&gt;
+        &lt;span class&#x3D;&quot;subtitle&quot;&gt;Production companies:&lt;/span&gt;
         @for (item of posterContent.production_companies; track $index) {
           {{ item }},
         }
@@ -323,7 +316,7 @@ export class PosterDetailContentComponent {
 
     @if (posterContent.spoken_languages.length &gt; 0) {
       &lt;p&gt;
-        &lt;span class&#x3D;&quot;text-[var(--gray-100-opacity-60)]&quot;&gt;Spoken languages:&lt;/span&gt;
+        &lt;span class&#x3D;&quot;subtitle&quot;&gt;Spoken languages:&lt;/span&gt;
         @for (item of posterContent.spoken_languages; track $index) {
           {{ item }},
         }
@@ -331,17 +324,35 @@ export class PosterDetailContentComponent {
     }
 
     @if (posterContent.tagline) {
-      &lt;p&gt;
-        &lt;span class&#x3D;&quot;text-[var(--gray-100-opacity-60)]&quot;&gt;Tagline:&lt;/span&gt; {{ posterContent.tagline }}
-      &lt;/p&gt;
+      &lt;p&gt;&lt;span class&#x3D;&quot;subtitle&quot;&gt;Tagline:&lt;/span&gt; {{ posterContent.tagline }}&lt;/p&gt;
     }
 
     @if (posterContent.release_date) {
       &lt;p&gt;
-        &lt;span class&#x3D;&quot;text-[var(--gray-100-opacity-60)]&quot;&gt;Release date:&lt;/span&gt;
+        &lt;span class&#x3D;&quot;subtitle&quot;&gt;Release date:&lt;/span&gt;
         {{ posterContent.release_date | date: &#x27;mm dd, yyyy&#x27; }}
       &lt;/p&gt;
     }
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;hidden md:flex flex-1 h-0 pb-[40rem] z-10 none&quot;&gt;
+    &lt;div
+      [style.backgroundImage]&#x3D;&quot;&#x27;url(&#x27; + posterContent.poster_path + &#x27;)&#x27;&quot;
+      class&#x3D;&quot;block bg-no-repeat bg-center lg:bg-left 2xl:bg-[12rem] w-full h-[40rem] absolute inset-0 pointer-events-none drop-mask-image&quot;
+    &gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div
+    class&#x3D;&quot;md:hidden rounded overflow-hidden w-full h-[32rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem] animate-fade-right&quot;
+  &gt;
+    &lt;img
+      class&#x3D;&quot;object-cover object-center aspect-[2/3] w-full h-[32rem]&quot;
+      ngSrc&#x3D;&quot;{{ posterContent.poster_path }}&quot;
+      decoding&#x3D;&quot;async&quot;
+      alt&#x3D;&quot;title&quot;
+      width&#x3D;&quot;780&quot;
+      height&#x3D;&quot;1170&quot;
+    /&gt;
   &lt;/div&gt;
 &lt;/article&gt;
 </code></pre>
@@ -373,7 +384,7 @@ export class PosterDetailContentComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><article class="px-10 md:px-40 py-9 flex flex-col md:flex-row gap-8 animate-fade-up">  <div    class="rounded overflow-hidden w-[18rem] h-[26rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem]"  >    <img      class="object-cover object-center aspect-[2/3] w-[22rem] h-[26rem]"      ngSrc="{{ posterContent.poster_path }}"      decoding="async"      alt="title"      width="780"      height="1170"    />  </div>  <div class="flex flex-col gap-4 text-white text-base">    <div      class="w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden"    >      <div class="bg-primary-ui p-3 relative">        <p class="text-black text-base font-semiBold z-10 relative">Awards & nominations</p>        <div class="bg-primary-ui w-10 h-20 absolute z-0 -right-3 -top-6 rotate-[20deg]"></div>      </div>      <p class="text-white font-semiBold text-base px-4 ml-4">        Won 2 Oscars 130 wins & 136 nominations total      </p>    </div>    <div class="flex gap-3">      @for (genre of posterContent.genres; track $index) {        <span class="badge">{{ genre }}</span>      }    </div>    <p class="text-balance font-body leading-7">      {{ posterContent.overview }}    </p>    @if (posterContent.production_countries.length > 0) {      <p>        <span class="text-[var(--gray-100-opacity-60)]">Production countries:</span>        @for (item of posterContent.production_countries; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.production_companies.length > 0) {      <p>        <span class="text-[var(--gray-100-opacity-60)]">Production companies:</span>        @for (item of posterContent.production_companies; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.spoken_languages.length > 0) {      <p>        <span class="text-[var(--gray-100-opacity-60)]">Spoken languages:</span>        @for (item of posterContent.spoken_languages; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.tagline) {      <p>        <span class="text-[var(--gray-100-opacity-60)]">Tagline:</span> {{ posterContent.tagline }}      </p>    }    @if (posterContent.release_date) {      <p>        <span class="text-[var(--gray-100-opacity-60)]">Release date:</span>        {{ posterContent.release_date | date: \'mm dd, yyyy\' }}      </p>    }  </div></article></div>'
+        var COMPONENT_TEMPLATE = '<div><article  class="relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden">  <div    class="wrap-poster-info relative z-20 flex flex-col gap-4 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px]"  >    <div      class="relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem"    >      <div class="bg-primary-ui p-3 relative">        <p class="text-black text-base font-semiBold z-10 relative">Awards & nominations</p>        <div class="element"></div>      </div>      <p class="text-white font-semiBold text-base px-4 ml-8">        Won 2 Oscars 130 wins & 136 nominations total      </p>    </div>    <div class="flex gap-3 mt-5">      @for (genre of posterContent.genres; track $index) {        <ui-badge [text]="genre" />      }    </div>    <p class="text-balance font-body leading-7">      {{ posterContent.overview }}    </p>    @if (posterContent.production_countries.length > 0) {      <p>        <span class="subtitle">Production countries:</span>        @for (item of posterContent.production_countries; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.production_companies.length > 0) {      <p>        <span class="subtitle">Production companies:</span>        @for (item of posterContent.production_companies; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.spoken_languages.length > 0) {      <p>        <span class="subtitle">Spoken languages:</span>        @for (item of posterContent.spoken_languages; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.tagline) {      <p><span class="subtitle">Tagline:</span> {{ posterContent.tagline }}</p>    }    @if (posterContent.release_date) {      <p>        <span class="subtitle">Release date:</span>        {{ posterContent.release_date | date: \'mm dd, yyyy\' }}      </p>    }  </div>  <div class="hidden md:flex flex-1 h-0 pb-[40rem] z-10 none">    <div      [style.backgroundImage]="\'url(\' + posterContent.poster_path + \')\'"      class="block bg-no-repeat bg-center lg:bg-left 2xl:bg-[12rem] w-full h-[40rem] absolute inset-0 pointer-events-none drop-mask-image"    ></div>  </div>  <div    class="md:hidden rounded overflow-hidden w-full h-[32rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem] animate-fade-right"  >    <img      class="object-cover object-center aspect-[2/3] w-full h-[32rem]"      ngSrc="{{ posterContent.poster_path }}"      decoding="async"      alt="title"      width="780"      height="1170"    />  </div></article></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'PosterDetailContentComponent'};

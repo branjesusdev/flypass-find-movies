@@ -159,9 +159,12 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                            <code>TabViewModule</code>
                                 <code><a href="../components/FeaturedSeriesComponent.html" target="_self" >FeaturedSeriesComponent</a></code>
                                 <code><a href="../components/FeaturedMoviesComponent.html" target="_self" >FeaturedMoviesComponent</a></code>
+                            <code>TabViewComponent</code>
+                            <code>CommonModule</code>
+                            <code>TabPanelComponent</code>
+                            <code>CarouselComponent</code>
                 </td>
             </tr>
 
@@ -201,6 +204,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#isMovies" >isMovies</a>
+                            </li>
+                            <li>
+                                <a href="#isSeries" >isSeries</a>
+                            </li>
+                            <li>
+                                <a href="#isSlideToXMovies" >isSlideToXMovies</a>
+                            </li>
+                            <li>
+                                <a href="#isSlideToXSeries" >isSlideToXSeries</a>
+                            </li>
+                            <li>
                                 <a href="#stateMovies" >stateMovies</a>
                             </li>
                             <li>
@@ -233,7 +248,16 @@
                                 <a href="#__init" >__init</a>
                             </li>
                             <li>
+                                <a href="#handleTabSelected" >handleTabSelected</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onMoreMovies" >onMoreMovies</a>
+                            </li>
+                            <li>
+                                <a href="#onMoreSeries" >onMoreSeries</a>
                             </li>
                         </ul>
                     </td>
@@ -258,7 +282,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -332,15 +356,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>__getFeaturedMovies()</code>
+                    <code>__getFeaturedMovies(undefined: literal type)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -348,10 +372,43 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{ page: 1 }</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -371,15 +428,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>__getFeaturedSeries()</code>
+                    <code>__getFeaturedSeries(undefined: literal type)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -387,10 +444,43 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{ page: 1 }</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -415,8 +505,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -428,6 +518,73 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleTabSelected"></a>
+                    <span class="name">
+                        <span ><b>handleTabSelected</b></span>
+                        <a href="#handleTabSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleTabSelected(tab: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tab</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -452,8 +609,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -469,12 +626,246 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMoreMovies"></a>
+                    <span class="name">
+                        <span ><b>onMoreMovies</b></span>
+                        <a href="#onMoreMovies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMoreMovies(moreMovies: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>moreMovies</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMoreSeries"></a>
+                    <span class="name">
+                        <span ><b>onMoreSeries</b></span>
+                        <a href="#onMoreSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMoreSeries(moreSeries: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>moreSeries</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isMovies"></a>
+                    <span class="name">
+                        <span ><b>isMovies</b></span>
+                        <a href="#isMovies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSeries"></a>
+                    <span class="name">
+                        <span ><b>isSeries</b></span>
+                        <a href="#isSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSlideToXMovies"></a>
+                    <span class="name">
+                        <span ><b>isSlideToXMovies</b></span>
+                        <a href="#isSlideToXMovies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;number&gt;(0)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSlideToXSeries"></a>
+                    <span class="name">
+                        <span ><b>isSlideToXSeries</b></span>
+                        <a href="#isSlideToXSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;number&gt;(0)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -493,7 +884,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -518,7 +909,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -552,7 +943,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -567,18 +958,31 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, DestroyRef, OnInit, signal } from &#x27;@angular/core&#x27;;
 import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
-import { TabViewModule } from &#x27;primeng/tabview&#x27;;
 
-import { MenuItemTab } from &#x27;@lib-transversal&#x27;;
+import {
+  CarouselComponent,
+  MenuItemTab,
+  TabPanelComponent,
+  TabViewComponent,
+} from &#x27;@lib-transversal&#x27;;
 import { TheMovieDBPort } from &#x27;@shared/core/domain/ports/themoviedb-port.class&#x27;;
 import { FeaturedMovie, FeaturedSerie } from &#x27;@shared/core/domain/entity&#x27;;
 
 import { FeaturedSeriesComponent } from &#x27;@pages/onboarding/components/featured-series/featured-series.component&#x27;;
 import { FeaturedMoviesComponent } from &#x27;@pages/onboarding/components/featured-movies/featured-movies.component&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { distinctUntilChanged } from &#x27;rxjs&#x27;;
 @Component({
   selector: &#x27;app-onbording-featured&#x27;,
   standalone: true,
-  imports: [TabViewModule, FeaturedSeriesComponent, FeaturedMoviesComponent],
+  imports: [
+    FeaturedSeriesComponent,
+    FeaturedMoviesComponent,
+    TabViewComponent,
+    CommonModule,
+    TabPanelComponent,
+    CarouselComponent,
+  ],
   templateUrl: &#x27;./onbording-featured.component.html&#x27;,
   styleUrl: &#x27;./onbording-featured.component.scss&#x27;,
 })
@@ -590,6 +994,12 @@ export class OnbordingFeaturedComponent implements OnInit {
 
   stateMovies &#x3D; signal&lt;FeaturedMovie[]&gt;([]);
   stateSeries &#x3D; signal&lt;FeaturedSerie[]&gt;([]);
+
+  isMovies &#x3D; signal&lt;boolean&gt;(true);
+  isSeries &#x3D; signal&lt;boolean&gt;(false);
+
+  isSlideToXMovies &#x3D; signal&lt;number&gt;(0);
+  isSlideToXSeries &#x3D; signal&lt;number&gt;(0);
 
   constructor(
     private serviceTmdb: TheMovieDBPort,
@@ -605,22 +1015,52 @@ export class OnbordingFeaturedComponent implements OnInit {
     this.__getFeaturedSeries();
   }
 
-  private __getFeaturedMovies(): void {
+  private __getFeaturedMovies({ page &#x3D; 1 }: { page: number } &#x3D; { page: 1 }): void {
+    this.isSlideToXMovies.set(0);
+
     this.serviceTmdb
-      .getFeaturedMovies()
+      .getFeaturedMovies({ page })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((movies) &#x3D;&gt; {
         this.stateMovies.set(movies);
+        this.isSlideToXMovies.set(5);
       });
   }
 
-  private __getFeaturedSeries(): void {
+  private __getFeaturedSeries({ page &#x3D; 1 }: { page: number } &#x3D; { page: 1 }): void {
+    this.isSlideToXSeries.set(0);
     this.serviceTmdb
-      .getFeaturedSeries()
+      .getFeaturedSeries({ page })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((series) &#x3D;&gt; {
         this.stateSeries.set(series);
+        this.isSlideToXSeries.set(5);
       });
+  }
+
+  handleTabSelected(tab: string) {
+    this.isMovies.set(tab &#x3D;&#x3D;&#x3D; &#x27;movies&#x27;);
+    this.isSeries.set(tab &#x3D;&#x3D;&#x3D; &#x27;series&#x27;);
+  }
+
+  onMoreMovies(moreMovies: boolean): void {
+    if (!moreMovies) return;
+
+    const pageLast &#x3D; this.stateMovies().reduce(
+      (max, movie) &#x3D;&gt; (movie.page &gt; max ? movie.page : max),
+      0,
+    );
+    this.__getFeaturedMovies({ page: pageLast + 1 });
+  }
+
+  onMoreSeries(moreSeries: boolean): void {
+    if (!moreSeries) return;
+
+    const pageLast &#x3D; this.stateSeries().reduce(
+      (max, serie) &#x3D;&gt; (serie.page &gt; max ? serie.page : max),
+      0,
+    );
+    this.__getFeaturedSeries({ page: pageLast + 1 });
   }
 }
 </code></pre>
@@ -631,14 +1071,24 @@ export class OnbordingFeaturedComponent implements OnInit {
   &lt;h1 class&#x3D;&quot;text-primary-ui font-bold text-4xl mt-12&quot;&gt;Featured Today&lt;/h1&gt;
 
   &lt;article class&#x3D;&quot;my-4&quot;&gt;
-    &lt;p-tabView&gt;
-      &lt;p-tabPanel header&#x3D;&quot;Movies&quot;&gt;
-        &lt;app-featured-movies [featuredMovies]&#x3D;&quot;stateMovies()&quot; /&gt;
-      &lt;/p-tabPanel&gt;
-      &lt;p-tabPanel header&#x3D;&quot;Series&quot;&gt;
-        &lt;app-featured-series [featuredSeries]&#x3D;&quot;stateSeries()&quot; /&gt;
-      &lt;/p-tabPanel&gt;
-    &lt;/p-tabView&gt;
+    &lt;ui-tab-view (tabSelected)&#x3D;&quot;handleTabSelected($event)&quot;&gt;
+      &lt;ui-tab-panel tabTitle&#x3D;&quot;Movies&quot; keyTab&#x3D;&quot;movies&quot;&gt;
+        &lt;app-featured-movies
+          [featuredMovies]&#x3D;&quot;stateMovies()&quot;
+          [slideToX]&#x3D;&quot;isSlideToXMovies()&quot;
+          *ngIf&#x3D;&quot;isMovies()&quot;
+          (moreMovies)&#x3D;&quot;onMoreMovies($event)&quot;
+        &gt;&lt;/app-featured-movies&gt;
+      &lt;/ui-tab-panel&gt;
+
+      &lt;ui-tab-panel tabTitle&#x3D;&quot;Series&quot; keyTab&#x3D;&quot;series&quot;&gt;
+        &lt;app-featured-series
+          [featuredSeries]&#x3D;&quot;stateSeries()&quot;
+          *ngIf&#x3D;&quot;isSeries()&quot;
+          (moreSeries)&#x3D;&quot;onMoreSeries($event)&quot;
+        &gt;&lt;/app-featured-series&gt;
+      &lt;/ui-tab-panel&gt;
+    &lt;/ui-tab-view&gt;
   &lt;/article&gt;
 &lt;/div&gt;
 </code></pre>
@@ -670,7 +1120,7 @@ export class OnbordingFeaturedComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-wrapper">  <h1 class="text-primary-ui font-bold text-4xl mt-12">Featured Today</h1>  <article class="my-4">    <p-tabView>      <p-tabPanel header="Movies">        <app-featured-movies [featuredMovies]="stateMovies()" />      </p-tabPanel>      <p-tabPanel header="Series">        <app-featured-series [featuredSeries]="stateSeries()" />      </p-tabPanel>    </p-tabView>  </article></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container-wrapper">  <h1 class="text-primary-ui font-bold text-4xl mt-12">Featured Today</h1>  <article class="my-4">    <ui-tab-view (tabSelected)="handleTabSelected($event)">      <ui-tab-panel tabTitle="Movies" keyTab="movies">        <app-featured-movies          [featuredMovies]="stateMovies()"          [slideToX]="isSlideToXMovies()"          *ngIf="isMovies()"          (moreMovies)="onMoreMovies($event)"        ></app-featured-movies>      </ui-tab-panel>      <ui-tab-panel tabTitle="Series" keyTab="series">        <app-featured-series          [featuredSeries]="stateSeries()"          *ngIf="isSeries()"          (moreSeries)="onMoreSeries($event)"        ></app-featured-series>      </ui-tab-panel>    </ui-tab-view>  </article></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OnbordingFeaturedComponent'};

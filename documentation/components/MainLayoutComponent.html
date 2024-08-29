@@ -163,21 +163,19 @@
             <tr>
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;main class&#x3D;&quot;min-h-screen relative h-full w-full bg-black&quot;&gt;
-  &lt;!-- &lt;div class&#x3D;&quot;absolute inset-0 pointer-events-none z-0
-  bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]
-  [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]&quot;&gt;&lt;/div&gt; --&gt;
-
   &lt;div
     class&#x3D;&quot;absolute z-0 inset-0 pointer-events-none bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]&quot;
   &gt;&lt;/div&gt;
   &lt;div
-    class&#x3D;&quot;absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]&quot;
+    class&#x3D;&quot;absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block md:w-[700px] md:h-[700px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]&quot;
   &gt;&lt;/div&gt;
 
   &lt;app-main-header&gt;&lt;/app-main-header&gt;
   &lt;div class&#x3D;&quot;relative&quot;&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
   &lt;/div&gt;
+
+  &lt;footer class&#x3D;&quot;py-20 text-center w-full text-sm&quot;&gt;With 💖 for branjesusdev 🚀&lt;/footer&gt;
 &lt;/main&gt;
 </code></pre></td>
             </tr>
@@ -219,21 +217,19 @@ import { MainHeaderComponent } from &#x27;@fxLayouts/default/main-header/main-he
   imports: [MainHeaderComponent, RouterModule],
   template: &#x60;
     &lt;main class&#x3D;&quot;min-h-screen relative h-full w-full bg-black&quot;&gt;
-      &lt;!-- &lt;div class&#x3D;&quot;absolute inset-0 pointer-events-none z-0
-      bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]
-      [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]&quot;&gt;&lt;/div&gt; --&gt;
-
       &lt;div
         class&#x3D;&quot;absolute z-0 inset-0 pointer-events-none bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]&quot;
       &gt;&lt;/div&gt;
       &lt;div
-        class&#x3D;&quot;absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]&quot;
+        class&#x3D;&quot;absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block md:w-[700px] md:h-[700px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]&quot;
       &gt;&lt;/div&gt;
 
       &lt;app-main-header&gt;&lt;/app-main-header&gt;
       &lt;div class&#x3D;&quot;relative&quot;&gt;
         &lt;router-outlet&gt;&lt;/router-outlet&gt;
       &lt;/div&gt;
+
+      &lt;footer class&#x3D;&quot;py-20 text-center w-full text-sm&quot;&gt;With 💖 for branjesusdev 🚀&lt;/footer&gt;
     &lt;/main&gt;
   &#x60;,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -269,7 +265,7 @@ export class MainLayoutComponent {}
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><main class="min-h-screen relative h-full w-full bg-black">  <!-- <div class="absolute inset-0 pointer-events-none z-0  bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]  [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div> -->  <div    class="absolute z-0 inset-0 pointer-events-none bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"  ></div>  <div    class="absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]"  ></div>  <app-main-header></app-main-header>  <div class="relative">    <router-outlet></router-outlet>  </div></main></div>'
+        var COMPONENT_TEMPLATE = '<div><main class="min-h-screen relative h-full w-full bg-black">  <div    class="absolute z-0 inset-0 pointer-events-none bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"  ></div>  <div    class="absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block md:w-[700px] md:h-[700px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]"  ></div>  <app-main-header></app-main-header>  <div class="relative">    <router-outlet></router-outlet>  </div>  <footer class="py-20 text-center w-full text-sm">With 💖 for branjesusdev 🚀</footer></main></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MainLayoutComponent'};

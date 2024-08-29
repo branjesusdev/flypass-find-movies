@@ -330,8 +330,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -367,8 +367,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -434,8 +434,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -503,8 +503,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts:55</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -748,7 +748,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule, NgOptimizedImage } from &#x27;@angular/common&#x27;;
 import { Component, DestroyRef, inject, OnInit, signal } from &#x27;@angular/core&#x27;;
-import { debounceTime, Subject, tap } from &#x27;rxjs&#x27;;
+import { debounceTime, distinctUntilChanged, Subject, tap } from &#x27;rxjs&#x27;;
 import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { FormsModule } from &#x27;@angular/forms&#x27;;
 
@@ -779,6 +779,7 @@ export class MainHeaderComponent implements OnInit {
     this.searchSubject
       .pipe(
         debounceTime(500),
+        distinctUntilChanged(),
         tap(() &#x3D;&gt; this.listResults.set([])),
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -853,7 +854,7 @@ export class MainHeaderComponent implements OnInit {
     &lt;!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA --&gt;
 
     &lt;div
-      class&#x3D;&quot;absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden&quot;
+      class&#x3D;&quot;absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all&quot;
     &gt;
       @defer {
         &lt;ng-container *ngTemplateOutlet&#x3D;&quot;resultSearch&quot;&gt;&lt;/ng-container&gt;
@@ -872,7 +873,7 @@ export class MainHeaderComponent implements OnInit {
   &lt;ul&gt;
     @for (list of listResults(); track list.id) {
       &lt;li
-        class&#x3D;&quot;flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer&quot;
+        class&#x3D;&quot;flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer animate-fade-up&quot;
         (click)&#x3D;&quot;onPoster(list)&quot;
         aria-hidden&#x3D;&quot;true&quot;
       &gt;
@@ -923,7 +924,7 @@ export class MainHeaderComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><header  class="relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9">  <a    aria-label="Go to home"    class="bg-transparent outline-none focus:outline-none cursor-pointer"    routerLink="/"  >    <img      ngSrc="imgs/logo.svg"      alt="Logo Flypass - Find movies"      width="180"      height="38"      class="animate-fade"    />  </a>  <!-- SECCIÓN DE BÚSQUEDA -->  <div class="relative w-full">    <form (ngSubmit)="onEnter()" autocomplete="off">      <ui-input        placeholder="Search FindMovies"        name="search"        (searchEvent)="onSearch($event)"      ></ui-input>    </form>    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->    <div      class="absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden"    >      @defer {        <ng-container *ngTemplateOutlet="resultSearch"></ng-container>      } @loading {        <div class="p-4 flex flex-col gap-2">          <p class="animate-pulse bg-white/15 h-6 w-1/2"></p>          <p class="animate-pulse bg-white/15 h-4 w-3/4"></p>          <p class="animate-pulse bg-white/15 h-5 w-1/2"></p>        </div>      }    </div>  </div></header><ng-template #resultSearch>  <ul>    @for (list of listResults(); track list.id) {      <li        class="flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer"        (click)="onPoster(list)"        aria-hidden="true"      >        <img class="rounded" ngSrc="{{ list.poster_path }}" alt="Brazil" width="55" height="83" />        <div class="flex flex-col gap-2">          <h3 class="text-white">{{ list.title }}</h3>          <span class="text-secondary-ui/60 text-sm">{{ list.release_date | date: \'yyyy\' }}</span>          <p            class="font-body text-white max-w-[28rem] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden"          >            {{ list.overview }}          </p>        </div>      </li>    }  </ul>  @if (notFound()) {    <p class="p-4">No results found for "{{ inputText }}" phrase.</p>  }</ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><header  class="relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9">  <a    aria-label="Go to home"    class="bg-transparent outline-none focus:outline-none cursor-pointer"    routerLink="/"  >    <img      ngSrc="imgs/logo.svg"      alt="Logo Flypass - Find movies"      width="180"      height="38"      class="animate-fade"    />  </a>  <!-- SECCIÓN DE BÚSQUEDA -->  <div class="relative w-full">    <form (ngSubmit)="onEnter()" autocomplete="off">      <ui-input        placeholder="Search FindMovies"        name="search"        (searchEvent)="onSearch($event)"      ></ui-input>    </form>    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->    <div      class="absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all"    >      @defer {        <ng-container *ngTemplateOutlet="resultSearch"></ng-container>      } @loading {        <div class="p-4 flex flex-col gap-2">          <p class="animate-pulse bg-white/15 h-6 w-1/2"></p>          <p class="animate-pulse bg-white/15 h-4 w-3/4"></p>          <p class="animate-pulse bg-white/15 h-5 w-1/2"></p>        </div>      }    </div>  </div></header><ng-template #resultSearch>  <ul>    @for (list of listResults(); track list.id) {      <li        class="flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer animate-fade-up"        (click)="onPoster(list)"        aria-hidden="true"      >        <img class="rounded" ngSrc="{{ list.poster_path }}" alt="Brazil" width="55" height="83" />        <div class="flex flex-col gap-2">          <h3 class="text-white">{{ list.title }}</h3>          <span class="text-secondary-ui/60 text-sm">{{ list.release_date | date: \'yyyy\' }}</span>          <p            class="font-body text-white max-w-[28rem] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden"          >            {{ list.overview }}          </p>        </div>      </li>    }  </ul>  @if (notFound()) {    <p class="p-4">No results found for "{{ inputText }}" phrase.</p>  }</ng-template></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MainHeaderComponent'};

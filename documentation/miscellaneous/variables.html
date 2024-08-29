@@ -142,10 +142,19 @@
                             <a href="#MESSAGES" title="src/app/modules/shared/config/messages.ts" ><b>MESSAGES</b>&nbsp;&nbsp;&nbsp;(src/.../messages.ts)</a>
                         </li>
                         <li>
+                            <a href="#meta" title="src/stories/poster-detail-header.component.stories.ts" ><b>meta</b>&nbsp;&nbsp;&nbsp;(src/.../poster-detail-header.component.stories.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mockData" title="src/stories/poster-detail-header.component.stories.ts" ><b>mockData</b>&nbsp;&nbsp;&nbsp;(src/.../poster-detail-header.component.stories.ts)</a>
+                        </li>
+                        <li>
                             <a href="#PATHS" title="src/app/modules/shared/config/paths.ts" ><b>PATHS</b>&nbsp;&nbsp;&nbsp;(src/.../paths.ts)</a>
                         </li>
                         <li>
                             <a href="#posterDetailResolver" title="src/app/modules/pages/poster-details/resolvers/poster-detail.resolver.ts" ><b>posterDetailResolver</b>&nbsp;&nbsp;&nbsp;(src/.../poster-detail.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Primary" title="src/stories/poster-detail-header.component.stories.ts" ><b>Primary</b>&nbsp;&nbsp;&nbsp;(src/.../poster-detail-header.component.stories.ts)</a>
                         </li>
                         <li>
                             <a href="#serverConfig" title="src/app/modules/app/app.config.server.ts" ><b>serverConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.server.ts)</a>
@@ -225,7 +234,15 @@
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), // Agrupar eventos de detección de cambios
     provideProtractorTestingSupport(),
-    provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
+    provideRouter(
+      routes,
+      withViewTransitions(),
+      withComponentInputBinding(),
+      withInMemoryScrolling({
+        anchorScrolling: &#x27;enabled&#x27;,
+        scrollPositionRestoration: &#x27;enabled&#x27;,
+      }),
+    ),
     provideClientHydration(),
     provideHttpClient(withInterceptorsFromDi()),
 
@@ -358,7 +375,11 @@
                         <i>Default value : </i><code>{
   production: false,
   API_BASE_URL: &#x27;https://api.themoviedb.org/3&#x27;,
-  PREFIX_URL_PREVIEW_IMG: &#x60;https://www.themoviedb.org/t/p/w440_and_h660_face/&#x60;,
+
+  PREFIX_URL_PREVIEW_IMG_LARGE: &#x60;https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/&#x60;,
+  PREFIX_URL_PREVIEW_IMG_MEDIUM: &#x60;https://www.themoviedb.org/t/p/w440_and_h660_face/&#x60;,
+  PREFIX_URL_PREVIEW_IMG_SMALL: &#x60;https://www.themoviedb.org/t/p/w220_and_h330_face/&#x60;,
+
   API_KEY_TOKEN:
     &#x27;eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGNmNWY3YTQ1NDZmYjdhYzUxY2FhMGE0NzljMDJlOCIsIm5iZiI6MTcyNDIwNDM5My40MTQ5Niwic3ViIjoiNjUxNzQxNWJkNDY1MzcwOWRjN2JlMzY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vMMOUodTMiWOLA6WrXqsNv4d6xKGmdQwdOHL7cwA1-w&#x27;,
 }</code>
@@ -393,7 +414,11 @@
                         <i>Default value : </i><code>{
   production: true,
   API_BASE_URL: &#x27;https://api.themoviedb.org/3&#x27;,
-  PREFIX_URL_PREVIEW_IMG: &#x60;https://www.themoviedb.org/t/p/w440_and_h660_face/&#x60;,
+
+  PREFIX_URL_PREVIEW_IMG_LARGE: &#x60;https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/&#x60;,
+  PREFIX_URL_PREVIEW_IMG_MEDIUM: &#x60;https://www.themoviedb.org/t/p/w440_and_h660_face/&#x60;,
+  PREFIX_URL_PREVIEW_IMG_SMALL: &#x60;https://www.themoviedb.org/t/p/w220_and_h330_face/&#x60;,
+
   API_KEY_TOKEN:
     &#x27;eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NGNmNWY3YTQ1NDZmYjdhYzUxY2FhMGE0NzljMDJlOCIsIm5iZiI6MTcyNDIwNDM5My40MTQ5Niwic3ViIjoiNjUxNzQxNWJkNDY1MzcwOWRjN2JlMzY2Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.vMMOUodTMiWOLA6WrXqsNv4d6xKGmdQwdOHL7cwA1-w&#x27;,
 }</code>
@@ -507,6 +532,118 @@
         </tbody>
     </table>
 </section>
+    <h3>src/stories/poster-detail-header.component.stories.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="meta"></a>
+                    <span class="name">
+                        <span ><b>meta</b></span>
+                        <a href="#meta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/PosterDetailHeaderComponent.html" target="_self" >Meta&lt;PosterDetailHeaderComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  title: &#x27;App/PosterDetailHeader&#x27;,
+  component: PosterDetailHeaderComponent,
+  tags: [&#x27;autodocs&#x27;],
+  argTypes: {},
+  args: {
+    posterHeader: mockData
+  },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mockData"></a>
+                    <span class="name">
+                        <span ><b>mockData</b></span>
+                        <a href="#mockData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DetailPoster" target="_self" >DetailPoster</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  id: 1,
+  name: &#x27;The Avengers&#x27;,
+  overview: &#x27;Overview&#x27;,
+  poster_path: &#x27;https://www.google.com&#x27;,
+  vote_average: 5,
+  genres: [&#x27;Action&#x27;, &#x27;Adventure&#x27;],
+  tagline: &#x27;Tagline&#x27;,
+  media_type: &#x27;Movie&#x27;,
+  release_date: new Date(),
+  runtime: 120,
+  number_of_episodes: 0,
+  first_air_date: new Date(),
+  number_of_seasons: 0,
+  popularity: 0,
+  production_companies: [&#x27;Marvel&#x27;],
+  production_countries: [&#x27;USA&#x27;],
+  spoken_languages: [&#x27;English&#x27;],
+
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Primary"></a>
+                    <span class="name">
+                        <span ><b>Primary</b></span>
+                        <a href="#Primary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#Story" target="_self" >Story</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  args: {
+    posterHeader: mockData
+  },
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/modules/shared/config/paths.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -574,9 +711,9 @@
 
   switch (mediaType) {
     case &#x27;movie&#x27;:
-      return theMovieDBPort.getMovieDetails(id);
+      return theMovieDBPort.getMovieDetails(id).pipe(map((movie) &#x3D;&gt; movie as DetailPoster));
     case &#x27;tv&#x27;:
-      return theMovieDBPort.getSeriesDetails(id);
+      return theMovieDBPort.getSeriesDetails(id).pipe(map((series) &#x3D;&gt; series as DetailPoster));
     default:
       return null;
   }
