@@ -35,8 +35,9 @@
 
 .wrap-poster-info {
   background: linear-gradient(110deg, rgba(0, 0, 0, 0.24) 71%, rgba(0, 0, 0, 0.24) 71%);
+  max-inline-size: 80ch;
 
   .subtitle {
-    color: var(--gray-100-opacity-60);
+    color: rgba(231, 231, 190, 0.6);
   }
 }
