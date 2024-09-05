@@ -155,20 +155,14 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
     );
   }
 
-  searchMovies(query: string): Observable<SearchMulti[]> {
+  searchByFilter(query: string): Observable<SearchMulti[]> {
     const params = new HttpParams().set('query', query).set('include_adult', 'false');
+
     const url = PATHS.search;
 
     return this.http.get<OutSearchMulti>(url, { params }).pipe(
       distinctUntilChanged(),
-      shareReplay(1),
-      filter(
-        (outSearchMulti) =>
-          outSearchMulti.results.length > 0 &&
-          outSearchMulti.results.some(
-            (result) => result.media_type === MediaType.Movie || result.media_type === MediaType.Tv,
-          ),
-      ),
+      shareReplay(1), // shared multiple subscriptions to the same observable in cache
       map((outSearchMulti) =>
         outSearchMulti.results.map(
           (outSearchMulti) =>

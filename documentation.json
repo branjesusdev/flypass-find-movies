@@ -2610,7 +2610,7 @@
     },
     {
       "name": "HttpTmdbAdapterService",
-      "id": "injectable-HttpTmdbAdapterService-08b07ea32b25fce9d25bae3719fed26827e0f78ecb6754fdb2ec723f794a9f5c4d6b5d18c2df7b0f58c62139b0d5d224fecb34bdb04084999ed713528616242a",
+      "id": "injectable-HttpTmdbAdapterService-8e9d33edcca62619d70a790ff1fba9ebefb3acbf3165ceebafa4a7211124e6ed77ccf745c2ccde2ad1e8d7b9a3c23eee3fdbc17f5165143d71759231499ff84e",
       "file": "src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts",
       "properties": [],
       "methods": [
@@ -2679,7 +2679,7 @@
           "optional": false,
           "returnType": "Observable<DetailPosterMovie>",
           "typeParameters": [],
-          "line": 225,
+          "line": 221,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2707,7 +2707,7 @@
           "optional": false,
           "returnType": "Observable<DetailPosterSeries>",
           "typeParameters": [],
-          "line": 195,
+          "line": 191,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2778,7 +2778,7 @@
           ]
         },
         {
-          "name": "searchMovies",
+          "name": "searchByFilter",
           "args": [
             {
               "name": "query",
@@ -2810,7 +2810,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport {\n  catchError,\n  defaultIfEmpty,\n  distinctUntilChanged,\n  filter,\n  map,\n  Observable,\n  of,\n  shareReplay,\n  switchMap,\n  tap,\n  throwError,\n} from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  SearchMulti,\n  Trending,\n  MediaType,\n  DetailPosterMovie,\n  DetailPosterSeries,\n} from '@shared/core/domain/entity';\nimport { AplicationStore } from '@shared/store/aplication.store';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  constructor(\n    private http: HttpClient,\n    private store: AplicationStore<any>,\n  ) {}\n\n  private obserberResponse<T>(object: T[]): Observable<T[]> {\n    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;\n  }\n\n  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {\n    const url = `${PATHS.trending}`;\n    const store = this.store.getStateValue('trending') as Trending[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutTrending>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outTrending) =>\n        outTrending.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n              page: outTrending.page,\n            }) as Trending,\n        ),\n      ),\n      tap((trending) => {\n        this.store.saveState$({ key: 'trending', info: trending as Trending[] });\n      }),\n      switchMap((trending) => {\n        if (store) return of([...store, ...trending]);\n        return of(trending);\n      }),\n    );\n  }\n\n  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n              overview: outMovieDetail.overview,\n              page: outMovieDetails.page,\n            }) as FeaturedMovie,\n        ),\n      ),\n      tap((movies) => {\n        const moviesStore = page == 1 ? movies : [...store, ...movies];\n        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });\n      }),\n      switchMap((movies) => {\n        if (store) return of([...store, ...movies]);\n        return of(movies);\n      }),\n    );\n  }\n\n  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];\n\n    if (store && page == 1) return this.obserberResponse(store);\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n              page: outFeaturedSerie.page,\n            }) as FeaturedSerie,\n        ),\n      ),\n      tap((series) => {\n        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });\n      }),\n      switchMap((series) => {\n        if (store) return of([...store, ...series]);\n        return of(series);\n      }),\n    );\n  }\n\n  searchMovies(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams().set('query', query).set('include_adult', 'false');\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      distinctUntilChanged(),\n      shareReplay(1),\n      filter(\n        (outSearchMulti) =>\n          outSearchMulti.results.length > 0 &&\n          outSearchMulti.results.some(\n            (result) => result.media_type === MediaType.Movie || result.media_type === MediaType.Tv,\n          ),\n      ),\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterSeries,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterMovie,\n      ),\n    );\n  }\n}\n",
+      "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport {\n  catchError,\n  defaultIfEmpty,\n  distinctUntilChanged,\n  filter,\n  map,\n  Observable,\n  of,\n  shareReplay,\n  switchMap,\n  tap,\n  throwError,\n} from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  SearchMulti,\n  Trending,\n  MediaType,\n  DetailPosterMovie,\n  DetailPosterSeries,\n} from '@shared/core/domain/entity';\nimport { AplicationStore } from '@shared/store/aplication.store';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  constructor(\n    private http: HttpClient,\n    private store: AplicationStore<any>,\n  ) {}\n\n  private obserberResponse<T>(object: T[]): Observable<T[]> {\n    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;\n  }\n\n  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {\n    const url = `${PATHS.trending}`;\n    const store = this.store.getStateValue('trending') as Trending[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutTrending>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outTrending) =>\n        outTrending.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n              page: outTrending.page,\n            }) as Trending,\n        ),\n      ),\n      tap((trending) => {\n        this.store.saveState$({ key: 'trending', info: trending as Trending[] });\n      }),\n      switchMap((trending) => {\n        if (store) return of([...store, ...trending]);\n        return of(trending);\n      }),\n    );\n  }\n\n  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n              overview: outMovieDetail.overview,\n              page: outMovieDetails.page,\n            }) as FeaturedMovie,\n        ),\n      ),\n      tap((movies) => {\n        const moviesStore = page == 1 ? movies : [...store, ...movies];\n        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });\n      }),\n      switchMap((movies) => {\n        if (store) return of([...store, ...movies]);\n        return of(movies);\n      }),\n    );\n  }\n\n  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];\n\n    if (store && page == 1) return this.obserberResponse(store);\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n              page: outFeaturedSerie.page,\n            }) as FeaturedSerie,\n        ),\n      ),\n      tap((series) => {\n        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });\n      }),\n      switchMap((series) => {\n        if (store) return of([...store, ...series]);\n        return of(series);\n      }),\n    );\n  }\n\n  searchByFilter(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams()\n      .set('query', query)\n      .set('include_adult', 'false')\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      distinctUntilChanged(),\n      shareReplay(1), // shared multiple subscriptions to the same observable in cache\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterSeries,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterMovie,\n      ),\n    );\n  }\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -3371,12 +3371,12 @@
     },
     {
       "name": "TheMovieDBPort",
-      "id": "class-TheMovieDBPort-eafadf873623cb5512d13acd5f73fe71e10739930f74627c54684d44f0e7486c052335a6ae62c84f43c9055fed7e11edf425c552f250b7858fa7d67303d52196",
+      "id": "class-TheMovieDBPort-384242244ce87e5a4da8d94d4cf476e2a6060fca26282b24d002e5f18c0d4e4f421f4db175d29fe7c2e4d751bcd76cd4699514fe675205ff8db986ea9f77faae",
       "file": "src/app/modules/shared/core/domain/ports/themoviedb-port.class.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "class",
-      "sourceCode": "import { Observable } from 'rxjs';\n\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  DetailPosterMovie,\n  DetailPosterSeries,\n  Trending,\n} from '@shared/core/domain/entity';\nimport { SearchMulti } from '../entity/search-multi';\n\nexport abstract class TheMovieDBPort {\n  abstract getFeaturedMovies({ page }: { page?: number }): Observable<FeaturedMovie[]>;\n  abstract getFeaturedSeries({ page }: { page?: number }): Observable<FeaturedSerie[]>;\n  abstract getTrending({ page }: { page: number }): Observable<Trending[]>;\n  abstract getMovieDetails(movieId: number): Observable<DetailPosterMovie>;\n  abstract getSeriesDetails(seriesId: number): Observable<DetailPosterSeries>;\n  abstract searchMovies(query: string): Observable<SearchMulti[]>;\n}\n",
+      "sourceCode": "import { Observable } from 'rxjs';\n\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  DetailPosterMovie,\n  DetailPosterSeries,\n  Trending,\n} from '@shared/core/domain/entity';\nimport { SearchMulti } from '../entity/search-multi';\n\nexport abstract class TheMovieDBPort {\n  abstract getFeaturedMovies({ page }: { page?: number }): Observable<FeaturedMovie[]>;\n  abstract getFeaturedSeries({ page }: { page?: number }): Observable<FeaturedSerie[]>;\n  abstract getTrending({ page }: { page: number }): Observable<Trending[]>;\n  abstract getMovieDetails(movieId: number): Observable<DetailPosterMovie>;\n  abstract getSeriesDetails(seriesId: number): Observable<DetailPosterSeries>;\n  abstract searchByFilter(query: string): Observable<SearchMulti[]>;\n}\n",
       "inputsClass": [],
       "outputsClass": [],
       "properties": [],
@@ -3521,7 +3521,7 @@
           ]
         },
         {
-          "name": "searchMovies",
+          "name": "searchByFilter",
           "args": [
             {
               "name": "query",
@@ -3556,7 +3556,204 @@
       "hostListeners": []
     }
   ],
-  "directives": [],
+  "directives": [
+    {
+      "name": "FormFocusDirective",
+      "id": "directive-FormFocusDirective-2e7a4d1521b0b5c431e6816a4d3e4ff0fa2e1eeb995f24ac20d5521cf0d7ea9aaae8bab1b024cfcc02c69804ed70c2d97359573739923fd9ce3529b2b9c0d755",
+      "file": "src/app/modules/shared/directives/form-focus.directive.ts",
+      "type": "directive",
+      "description": "",
+      "rawdescription": "\n",
+      "sourceCode": "import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';\r\n\r\n\r\n\r\n@Directive({\r\n  selector: '[appFormFocus]',\r\n  standalone: true\r\n})\r\nexport class FormFocusDirective implements OnInit {\r\n\r\n  private originalWidth: string;\r\n  @Input('appFormFocus') toggleElement !: `.${string}`;\r\n\r\n  constructor(\r\n    private el: ElementRef, private renderer: Renderer2\r\n  ) {\r\n    this.originalWidth = this.el.nativeElement.style.width;\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    const elementToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\r\n    if (elementToggled) {\r\n      elementToggled?.forEach((element: HTMLElement) => {\r\n        element.classList.add('hidden');\r\n      });\r\n    }\r\n  }\r\n\r\n\r\n  @HostListener('focusin', ['$event'])\r\n  onFocusIn(event: FocusEvent): void {\r\n\r\n    // console.log('focusin');\r\n\r\n\r\n    const { tagName } = (event.target as HTMLInputElement);\r\n\r\n    if (tagName === 'INPUT') {\r\n      this.renderer.setStyle(this.el.nativeElement, 'width', '100%');\r\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\r\n      if (elementsToggled) {\r\n        elementsToggled?.forEach((element: HTMLElement) => {\r\n          element.classList.remove('hidden');\r\n        });\r\n      }\r\n\r\n    }\r\n  }\r\n\r\n  @HostListener('focusout', ['$event'])\r\n  onFocusOut(event: FocusEvent): void {\r\n\r\n    const { tagName } = (event.target as HTMLInputElement);\r\n\r\n    if (tagName === 'INPUT') {\r\n\r\n      const relatedTarget = event.relatedTarget as HTMLElement;\r\n      if (relatedTarget && this.el.nativeElement.contains(relatedTarget)) {\r\n        return;\r\n      }\r\n\r\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\r\n      if (elementsToggled) {\r\n        setTimeout(() => {\r\n          this.renderer.setStyle(this.el.nativeElement, 'width', this.originalWidth);\r\n          elementsToggled?.forEach((element: HTMLElement) => {\r\n            element.classList.add('hidden');\r\n          });\r\n        }, 200);\r\n      }\r\n    }\r\n  }\r\n\r\n}\r\n",
+      "selector": "[appFormFocus]",
+      "providers": [],
+      "hostDirectives": [],
+      "standalone": true,
+      "inputsClass": [
+        {
+          "name": "appFormFocus",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 12,
+          "type": "template literal type",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [
+        {
+          "name": "focusin",
+          "args": [
+            {
+              "name": "event",
+              "type": "FocusEvent",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "argsDecorator": ["$event"],
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 31
+        },
+        {
+          "name": "focusout",
+          "args": [
+            {
+              "name": "event",
+              "type": "FocusEvent",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "argsDecorator": ["$event"],
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 51
+        }
+      ],
+      "propertiesClass": [
+        {
+          "name": "originalWidth",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 11,
+          "modifierKind": [123]
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 20,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "onFocusIn",
+          "args": [
+            {
+              "name": "event",
+              "type": "FocusEvent",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 31,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "decorators": [
+            {
+              "name": "HostListener",
+              "stringifiedArguments": "'focusin', ['$event']"
+            }
+          ],
+          "modifierKind": [170],
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "FocusEvent",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "onFocusOut",
+          "args": [
+            {
+              "name": "event",
+              "type": "FocusEvent",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 51,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "decorators": [
+            {
+              "name": "HostListener",
+              "stringifiedArguments": "'focusout', ['$event']"
+            }
+          ],
+          "modifierKind": [170],
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "FocusEvent",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
+      ],
+      "extends": [],
+      "implements": ["OnInit"],
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "args": [
+          {
+            "name": "el",
+            "type": "ElementRef",
+            "deprecated": false,
+            "deprecationMessage": ""
+          },
+          {
+            "name": "renderer",
+            "type": "Renderer2",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "line": 12,
+        "jsdoctags": [
+          {
+            "name": "el",
+            "type": "ElementRef",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          },
+          {
+            "name": "renderer",
+            "type": "Renderer2",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      }
+    }
+  ],
   "components": [
     {
       "name": "AppComponent",
@@ -3676,7 +3873,7 @@
         ]
       },
       "extends": [],
-      "templateData": "<section class=\"flex flex-col gap-4 items-center justify-center w-full h-[80vh]\">\n  <img\n    ngSrc=\"imgs/union-icon.svg\"\n    alt=\"Union Icon\"\n    class=\"aspect-square mx-auto w-[30rem]\"\n    width=\"280\"\n    height=\"120\"\n  />\n\n  <h1 class=\"font-bold text-white text-4xl\">Oops....</h1>\n  <p class=\"text-white text-xl\">Something went wrong.</p>\n\n  <ui-button text=\"Refresh\" (handleClick)=\"refreshPage()\" />\n</section>\n"
+      "templateData": "<section class=\"flex flex-col gap-8 items-center justify-center w-full h-[80vh]\">\n  <img\n    ngSrc=\"imgs/union-icon.svg\"\n    alt=\"Union Icon\"\n    class=\"aspect-square mx-auto w-[30rem]\"\n    width=\"280\"\n    height=\"120\"\n  />\n\n  <h1 class=\"font-bold text-white text-4xl\">Oops....</h1>\n  <p class=\"text-white text-xl\">Something went wrong.</p>\n\n  <ui-button text=\"Refresh\" (handleClick)=\"refreshPage()\" />\n</section>\n"
     },
     {
       "name": "FeaturedMoviesComponent",
@@ -4063,8 +4260,9 @@
     },
     {
       "name": "MainHeaderComponent",
-      "id": "component-MainHeaderComponent-6241bb0e71fbed204b7a2e2240419a5a1f6a10be08d8b695c45e46ca89feeb8a62c540bcf4dcc78877e1baba84961d2d1642ac9c7fba2725c6c234c61c3653b0",
+      "id": "component-MainHeaderComponent-6eae85739a9b629fb4e200f42cd565891b3f08b84b958ff880e4588a084c30b0a61a2c8d42390a98ece0b7d23c326bffabd542e98ea0334df2259d26bbd36b48",
       "file": "src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -4087,18 +4285,48 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 26,
+          "line": 39,
           "modifierKind": [123]
         },
         {
           "name": "inputText",
-          "defaultValue": "''",
+          "defaultValue": "signal('')",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "string",
+          "type": "",
           "optional": false,
           "description": "",
-          "line": 21
+          "line": 31
+        },
+        {
+          "name": "isDefaultFilters",
+          "defaultValue": "signal(false)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 35
+        },
+        {
+          "name": "isLoading",
+          "defaultValue": "signal(false)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 36
+        },
+        {
+          "name": "listDefaultFilters",
+          "defaultValue": "signal<string[]>([])",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 33
         },
         {
           "name": "listResults",
@@ -4108,7 +4336,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 22
+          "line": 32
         },
         {
           "name": "notFound",
@@ -4118,7 +4346,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 23
+          "line": 34
         },
         {
           "name": "router",
@@ -4128,7 +4356,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 28,
+          "line": 41,
           "modifierKind": [123]
         },
         {
@@ -4139,7 +4367,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 25,
+          "line": 38,
           "modifierKind": [123]
         },
         {
@@ -4150,18 +4378,28 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 27,
+          "line": 40,
           "modifierKind": [123]
         }
       ],
       "methodsClass": [
+        {
+          "name": "defaultFilters",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 96,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
         {
           "name": "ngOnInit",
           "args": [],
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 30,
+          "line": 43,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -4171,7 +4409,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 52,
+          "line": 69,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -4188,7 +4426,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 46,
+          "line": 62,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -4216,7 +4454,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 41,
+          "line": 58,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -4243,7 +4481,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 56,
+          "line": 73,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -4282,18 +4520,26 @@
         {
           "name": "InputComponent",
           "type": "component"
+        },
+        {
+          "name": "ButtonComponent",
+          "type": "component"
+        },
+        {
+          "name": "FormFocusDirective",
+          "type": "directive"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';\nimport { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\nimport { FormsModule } from '@angular/forms';\n\n// RESOURCES\n\nimport { SearchMulti } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Router, RouterLink } from '@angular/router';\nimport { InputComponent } from '@lib-transversal';\n\n@Component({\n  selector: 'app-main-header',\n  standalone: true,\n  imports: [NgOptimizedImage, CommonModule, RouterLink, FormsModule, InputComponent],\n  templateUrl: './main-header.component.html',\n})\nexport class MainHeaderComponent implements OnInit {\n  inputText = '';\n  listResults = signal<SearchMulti[]>([]);\n  notFound = signal(false);\n\n  private searchSubject = new Subject<string>();\n  private destroyRef = inject(DestroyRef);\n  private serviceTmdb = inject(TheMovieDBPort);\n  private router = inject(Router);\n\n  ngOnInit() {\n    this.searchSubject\n      .pipe(\n        debounceTime(500),\n        distinctUntilChanged(),\n        tap(() => this.listResults.set([])),\n      )\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((searchValue) => this.searchResults({ searchValue }));\n  }\n\n  onSearch(event: string): void {\n    this.inputText = event;\n    this.searchSubject.next(event);\n  }\n\n  onPoster(poster: SearchMulti): void {\n    this.listResults.set([]);\n    this.inputText = '';\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onEnter(): void {\n    this.searchResults({ searchValue: this.inputText });\n  }\n\n  private searchResults({ searchValue }: { searchValue: string }): void {\n    if (!searchValue) {\n      this.listResults.set([]);\n      this.notFound.set(false);\n      return;\n    }\n\n    this.serviceTmdb\n      .searchMovies(searchValue)\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        console.log('movies', movies);\n\n        this.listResults.set(movies.slice(0, 5));\n        this.notFound.set(movies.length === 0);\n      });\n  }\n}\n",
+      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';\nimport { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\nimport { FormsModule } from '@angular/forms';\n\n// RESOURCES\n\nimport { MediaType, SearchMulti } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Router, RouterLink } from '@angular/router';\nimport { ButtonComponent, InputComponent } from '@lib-transversal';\nimport { FormFocusDirective } from '@shared/directives/form-focus.directive';\n\n@Component({\n  selector: 'app-main-header',\n  standalone: true,\n  imports: [\n    NgOptimizedImage,\n    CommonModule,\n    RouterLink,\n    FormsModule,\n    InputComponent,\n    ButtonComponent,\n    FormFocusDirective\n  ],\n  templateUrl: './main-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush\n})\nexport class MainHeaderComponent implements OnInit {\n  inputText = signal('');\n  listResults = signal<SearchMulti[]>([]);\n  listDefaultFilters = signal<string[]>([]);\n  notFound = signal(false);\n  isDefaultFilters = signal(false);\n  isLoading = signal(false);\n\n  private searchSubject = new Subject<string>();\n  private destroyRef = inject(DestroyRef);\n  private serviceTmdb = inject(TheMovieDBPort);\n  private router = inject(Router);\n\n  ngOnInit() {\n\n    this.defaultFilters();\n    this.searchSubject\n      .pipe(\n        debounceTime(500),\n        distinctUntilChanged(),\n        tap(() => this.listResults.set([])),\n        tap(() => this.notFound.set(false)),\n        tap((value) => this.inputText.set(value))\n      )\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((searchValue) => this.searchResults({ searchValue }));\n  }\n\n  onSearch(event: string): void {\n    this.searchSubject.next(event);\n  }\n\n  onPoster(poster: SearchMulti): void {\n    this.listResults.set([]);\n    this.inputText.set('');\n    this.isDefaultFilters.set(false);\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onEnter(): void {\n    this.searchResults({ searchValue: this.inputText() });\n  }\n\n  private searchResults({ searchValue }: { searchValue: string }): void {\n    if (!searchValue) {\n      this.listResults.set([]);\n      this.isDefaultFilters.set(true);\n      this.notFound.set(false);\n      return;\n    }\n\n    this.isLoading.set(true);\n\n    this.serviceTmdb\n      .searchByFilter(searchValue)\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        movies = movies.filter((movie) => movie.media_type == MediaType.Movie || movie.media_type == MediaType.Tv);\n\n        this.isDefaultFilters.set(false);\n        this.notFound.set(movies.length === 0);\n        this.listResults.set(movies.slice(0, 5));\n        this.isLoading.set(false);\n      });\n  }\n\n  defaultFilters(): void {\n\n    const filters = [\n      'Cars',\n      'Aventura',\n      'Comedia',\n      'Avengers',\n      'Harry Potter',\n      'House of the Dragon',\n      'The Boys',\n      'The Lord of the Rings',\n      'Jurassic Park',\n    ]\n\n    this.listDefaultFilters.set(filters)\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
       "implements": ["OnInit"],
-      "templateData": "<header\n  class=\"relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9\"\n>\n  <a\n    aria-label=\"Go to home\"\n    class=\"bg-transparent outline-none focus:outline-none cursor-pointer\"\n    routerLink=\"/\"\n  >\n    <img\n      ngSrc=\"imgs/logo.svg\"\n      alt=\"Logo Flypass - Find movies\"\n      width=\"180\"\n      height=\"38\"\n      class=\"animate-fade\"\n    />\n  </a>\n\n  <!-- SECCIÓN DE BÚSQUEDA -->\n\n  <div class=\"relative w-full\">\n    <form (ngSubmit)=\"onEnter()\" autocomplete=\"off\">\n      <ui-input\n        placeholder=\"Search FindMovies\"\n        name=\"search\"\n        (searchEvent)=\"onSearch($event)\"\n      ></ui-input>\n    </form>\n\n    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->\n\n    <div\n      class=\"absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all\"\n    >\n      @defer {\n        <ng-container *ngTemplateOutlet=\"resultSearch\"></ng-container>\n      } @loading {\n        <div class=\"p-4 flex flex-col gap-2\">\n          <p class=\"animate-pulse bg-white/15 h-6 w-1/2\"></p>\n          <p class=\"animate-pulse bg-white/15 h-4 w-3/4\"></p>\n          <p class=\"animate-pulse bg-white/15 h-5 w-1/2\"></p>\n        </div>\n      }\n    </div>\n  </div>\n</header>\n\n<ng-template #resultSearch>\n  <ul>\n    @for (list of listResults(); track list.id) {\n      <li\n        class=\"flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer animate-fade-up\"\n        (click)=\"onPoster(list)\"\n        aria-hidden=\"true\"\n      >\n        <img class=\"rounded\" ngSrc=\"{{ list.poster_path }}\" alt=\"Brazil\" width=\"55\" height=\"83\" />\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"text-white\">{{ list.title }}</h3>\n          <span class=\"text-secondary-ui/60 text-sm\">{{ list.release_date | date: 'yyyy' }}</span>\n          <p\n            class=\"font-body text-white max-w-[28rem] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden\"\n          >\n            {{ list.overview }}\n          </p>\n        </div>\n      </li>\n    }\n  </ul>\n\n  @if (notFound()) {\n    <p class=\"p-4\">No results found for \"{{ inputText }}\" phrase.</p>\n  }\n</ng-template>\n"
+      "templateData": "<header\n  class=\"relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9\"\n>\n  <a\n    aria-label=\"Go to home\"\n    class=\"bg-transparent outline-none focus:outline-none cursor-pointer\"\n    routerLink=\"/\"\n  >\n    <img\n      ngSrc=\"imgs/logo.svg\"\n      alt=\"Logo Flypass - Find movies\"\n      width=\"180\"\n      height=\"38\"\n      class=\"animate-fade sm:w-40 md:w-36 lg:w-auto\"\n    />\n  </a>\n\n  <!-- SECCIÓN DE BÚSQUEDA -->\n\n  <div class=\"w-full flex justify-center items-center\">\n    <form\n      class=\"w-full sm:w-4/5 lg:w-2/3 xl:w-2/4 2xl:w-1/3 transition-all duration-300 relative max-w-[700px]\"\n      (ngSubmit)=\"onEnter()\"\n      autocomplete=\"off\"\n      appFormFocus=\".toggle-elements\"\n    >\n      <ui-input\n        (click)=\"isDefaultFilters.set(!isDefaultFilters())\"\n        [inputText]=\"inputText()\"\n        placeholder=\"Search FindMovies\"\n        name=\"search\"\n        (searchEvent)=\"onSearch($event)\"\n      ></ui-input>\n\n      <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->\n\n      <div\n        class=\"toggle-elements absolute z-50 w-full bg-gradient-to-br to-neutral-900 from-stone-800 top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all\"\n      >\n        @if (isLoading()) {\n          <ng-container *ngTemplateOutlet=\"loadingResults\"></ng-container>\n        } @else {\n          @defer {\n            <ng-container *ngTemplateOutlet=\"resultSearch\"></ng-container>\n          } @loading {\n            <ng-container *ngTemplateOutlet=\"loadingResults\"></ng-container>\n          }\n        }\n      </div>\n    </form>\n  </div>\n\n  <div></div>\n</header>\n\n<ng-template #resultSearch>\n  <div\n    [ngClass]=\"{ 'hidden': !isDefaultFilters() }\"\n    class=\"toggle-elements p-4 flex flex-wrap gap-2\"\n  >\n    @for (item of listDefaultFilters(); track $index) {\n      <ui-button\n        [text]=\"item\"\n        [isDefaultIcon]=\"true\"\n        type=\"secondary\"\n        [valueEvent]=\"item\"\n        (handleClick)=\"onSearch($event)\"\n      />\n    }\n  </div>\n\n  <ul>\n    @for (list of listResults(); track list.id) {\n      <li\n        class=\"flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer animate-fade-up\"\n        (click)=\"onPoster(list)\"\n        aria-hidden=\"true\"\n      >\n        <img class=\"rounded\" ngSrc=\"{{ list.poster_path }}\" alt=\"Brazil\" width=\"55\" height=\"83\" />\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"text-white\">{{ list.title }}</h3>\n          <span class=\"text-secondary-ui/60 text-sm\">{{ list.release_date | date: 'yyyy' }}</span>\n          <p\n            class=\"font-body text-white max-w-[28rem] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden\"\n          >\n            {{ list.overview }}\n          </p>\n        </div>\n      </li>\n    }\n  </ul>\n\n  @if (notFound()) {\n    <p class=\"p-4\">No results found for \"{{ inputText() }}\" phrase.</p>\n  }\n</ng-template>\n\n<ng-template #loadingResults>\n  <div class=\"flex gap-2 p-4\">\n    <div class=\"animate-pulse bg-white/15 h-28 w-16 rounded-lg\"></div>\n    <div class=\"p-4 flex flex-col gap-2 w-full\">\n      <p class=\"animate-pulse bg-white/15 h-6 w-1/2 rounded-lg\"></p>\n      <p class=\"animate-pulse bg-white/15 h-4 w-3/4 rounded-lg\"></p>\n      <p class=\"animate-pulse bg-white/15 h-5 w-1/2 rounded-lg\"></p>\n    </div>\n  </div>\n</ng-template>\n"
     },
     {
       "name": "MainLayoutComponent",
@@ -4994,7 +5240,7 @@
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<article\n  class=\"relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden\"\n>\n  <div\n    class=\"wrap-poster-info relative z-20 flex flex-col gap-4 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px]\"\n  >\n    <div\n      class=\"relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem\"\n    >\n      <div class=\"bg-primary-ui p-3 relative\">\n        <p class=\"text-black text-base font-semiBold z-10 relative\">Awards & nominations</p>\n        <div class=\"element\"></div>\n      </div>\n      <p class=\"text-white font-semiBold text-base px-4 ml-8\">\n        Won 2 Oscars 130 wins & 136 nominations total\n      </p>\n    </div>\n\n    <div class=\"flex gap-3 mt-5\">\n      @for (genre of posterContent.genres; track $index) {\n        <ui-badge [text]=\"genre\" />\n      }\n    </div>\n\n    <p class=\"text-balance font-body leading-7\">\n      {{ posterContent.overview }}\n    </p>\n\n    @if (posterContent.production_countries.length > 0) {\n      <p>\n        <span class=\"subtitle\">Production countries:</span>\n        @for (item of posterContent.production_countries; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.production_companies.length > 0) {\n      <p>\n        <span class=\"subtitle\">Production companies:</span>\n        @for (item of posterContent.production_companies; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.spoken_languages.length > 0) {\n      <p>\n        <span class=\"subtitle\">Spoken languages:</span>\n        @for (item of posterContent.spoken_languages; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.tagline) {\n      <p><span class=\"subtitle\">Tagline:</span> {{ posterContent.tagline }}</p>\n    }\n\n    @if (posterContent.release_date) {\n      <p>\n        <span class=\"subtitle\">Release date:</span>\n        {{ posterContent.release_date | date: 'mm dd, yyyy' }}\n      </p>\n    }\n  </div>\n\n  <div class=\"hidden md:flex flex-1 h-0 pb-[40rem] z-10 none\">\n    <div\n      [style.backgroundImage]=\"'url(' + posterContent.poster_path + ')'\"\n      class=\"block bg-no-repeat bg-center lg:bg-left 2xl:bg-[12rem] w-full h-[40rem] absolute inset-0 pointer-events-none drop-mask-image\"\n    ></div>\n  </div>\n\n  <div\n    class=\"md:hidden rounded overflow-hidden w-full h-[32rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem] animate-fade-right\"\n  >\n    <img\n      class=\"object-cover object-center aspect-[2/3] w-full h-[32rem]\"\n      ngSrc=\"{{ posterContent.poster_path }}\"\n      decoding=\"async\"\n      alt=\"title\"\n      width=\"780\"\n      height=\"1170\"\n    />\n  </div>\n</article>\n"
+      "templateData": "<article\n  class=\"relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden\"\n>\n  <div\n    class=\"wrap-poster-info relative flex flex-col gap-5 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px] mb-6 z-40\"\n  >\n    <div\n      class=\"relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem\"\n    >\n      <div class=\"bg-primary-ui p-3 relative\">\n        <p class=\"text-black text-base font-semiBold z-10 relative\">Awards & nominations</p>\n        <div class=\"element\"></div>\n      </div>\n      <p class=\"text-white font-semiBold text-base px-4 ml-8\">\n        Won 2 Oscars 130 wins & 136 nominations total\n      </p>\n    </div>\n\n    <div class=\"flex gap-4 mt-5\">\n      @for (genre of posterContent.genres; track $index) {\n        <ui-badge [text]=\"genre\" />\n      }\n    </div>\n\n    <p class=\"text-balance font-body text-xl\">\n      {{ posterContent.overview }}\n    </p>\n\n    @if (posterContent.production_countries.length > 0) {\n      <p>\n        <span class=\"subtitle\">Production countries:</span>\n        @for (item of posterContent.production_countries; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.production_companies.length > 0) {\n      <p>\n        <span class=\"subtitle\">Production companies:</span>\n        @for (item of posterContent.production_companies; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.spoken_languages.length > 0) {\n      <p>\n        <span class=\"subtitle\">Spoken languages:</span>\n        @for (item of posterContent.spoken_languages; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.tagline) {\n      <p><span class=\"subtitle\">Tagline:</span> {{ posterContent.tagline }}</p>\n    }\n\n    @if (posterContent.release_date) {\n      <p>\n        <span class=\"subtitle\">Release date:</span>\n        {{ posterContent.release_date | date: 'mm dd, yyyy' }}\n      </p>\n    }\n  </div>\n\n  <div class=\"hidden md:flex flex-1 h-0 pb-[40rem] z-10 none\">\n    <div\n      [style.backgroundImage]=\"'url(' + posterContent.poster_path + ')'\"\n      class=\"block bg-no-repeat bg-center lg:bg-left 2xl:bg-[12rem] w-full h-[40rem] absolute inset-0 pointer-events-none drop-mask-image\"\n    ></div>\n  </div>\n\n  <div\n    class=\"md:hidden rounded overflow-hidden w-full h-[32rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem] animate-fade-right\"\n  >\n    <img\n      class=\"object-cover object-center aspect-[2/3] w-full h-[32rem]\"\n      ngSrc=\"{{ posterContent.poster_path }}\"\n      decoding=\"async\"\n      alt=\"title\"\n      width=\"780\"\n      height=\"1170\"\n    />\n  </div>\n</article>\n"
     },
     {
       "name": "PosterDetailHeaderComponent",
@@ -5120,7 +5366,7 @@
         "line": 14
       },
       "extends": [],
-      "templateData": "<section>\n  @if (posterDetail) {\n    <app-poster-detail-header [posterHeader]=\"posterDetail\" />\n    <app-poster-detail-content [posterContent]=\"posterDetail\" />\n  }\n</section>\n"
+      "templateData": "<section class=\"z-0 relative\">\n  @if (posterDetail) {\n    <app-poster-detail-header [posterHeader]=\"posterDetail\" />\n    <app-poster-detail-content [posterContent]=\"posterDetail\" />\n  }\n</section>\n"
     }
   ],
   "modules": [],
@@ -5980,7 +6226,7 @@
         "linktype": "component",
         "name": "MainHeaderComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/13",
+        "coverageCount": "0/17",
         "status": "low"
       },
       {
@@ -6400,6 +6646,15 @@
         "name": "StorageStrategy",
         "coveragePercent": 0,
         "coverageCount": "0/4",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/modules/shared/directives/form-focus.directive.ts",
+        "type": "directive",
+        "linktype": "directive",
+        "name": "FormFocusDirective",
+        "coveragePercent": 0,
+        "coverageCount": "0/9",
         "status": "low"
       },
       {

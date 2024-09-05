@@ -11,40 +11,64 @@
       alt="Logo Flypass - Find movies"
       width="180"
       height="38"
-      class="animate-fade"
+      class="animate-fade sm:w-40 md:w-36 lg:w-auto"
     />
   </a>
 
   <!-- SECCIÓN DE BÚSQUEDA -->
 
-  <div class="relative w-full">
-    <form (ngSubmit)="onEnter()" autocomplete="off">
+  <div class="w-full flex justify-center items-center">
+    <form
+      class="w-full sm:w-4/5 lg:w-2/3 xl:w-2/4 2xl:w-1/3 transition-all duration-300 relative max-w-[700px]"
+      (ngSubmit)="onEnter()"
+      autocomplete="off"
+      appFormFocus=".toggle-elements"
+    >
       <ui-input
+        (click)="isDefaultFilters.set(!isDefaultFilters())"
+        [inputText]="inputText()"
         placeholder="Search FindMovies"
         name="search"
         (searchEvent)="onSearch($event)"
       ></ui-input>
+
+      <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->
+
+      <div
+        class="toggle-elements absolute z-50 w-full bg-gradient-to-br to-neutral-900 from-stone-800 top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all"
+      >
+        @if (isLoading()) {
+          <ng-container *ngTemplateOutlet="loadingResults"></ng-container>
+        } @else {
+          @defer {
+            <ng-container *ngTemplateOutlet="resultSearch"></ng-container>
+          } @loading {
+            <ng-container *ngTemplateOutlet="loadingResults"></ng-container>
+          }
+        }
+      </div>
     </form>
-
-    <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->
-
-    <div
-      class="absolute z-50 w-full bg-secondary-ui top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all"
-    >
-      @defer {
-        <ng-container *ngTemplateOutlet="resultSearch"></ng-container>
-      } @loading {
-        <div class="p-4 flex flex-col gap-2">
-          <p class="animate-pulse bg-white/15 h-6 w-1/2"></p>
-          <p class="animate-pulse bg-white/15 h-4 w-3/4"></p>
-          <p class="animate-pulse bg-white/15 h-5 w-1/2"></p>
-        </div>
-      }
-    </div>
   </div>
+
+  <div></div>
 </header>
 
 <ng-template #resultSearch>
+  <div
+    [ngClass]="{ 'hidden': !isDefaultFilters() }"
+    class="toggle-elements p-4 flex flex-wrap gap-2"
+  >
+    @for (item of listDefaultFilters(); track $index) {
+      <ui-button
+        [text]="item"
+        [isDefaultIcon]="true"
+        type="secondary"
+        [valueEvent]="item"
+        (handleClick)="onSearch($event)"
+      />
+    }
+  </div>
+
   <ul>
     @for (list of listResults(); track list.id) {
       <li
@@ -67,6 +91,17 @@
   </ul>
 
   @if (notFound()) {
-    <p class="p-4">No results found for "{{ inputText }}" phrase.</p>
+    <p class="p-4">No results found for "{{ inputText() }}" phrase.</p>
   }
+</ng-template>
+
+<ng-template #loadingResults>
+  <div class="flex gap-2 p-4">
+    <div class="animate-pulse bg-white/15 h-28 w-16 rounded-lg"></div>
+    <div class="p-4 flex flex-col gap-2 w-full">
+      <p class="animate-pulse bg-white/15 h-6 w-1/2 rounded-lg"></p>
+      <p class="animate-pulse bg-white/15 h-4 w-3/4 rounded-lg"></p>
+      <p class="animate-pulse bg-white/15 h-5 w-1/2 rounded-lg"></p>
+    </div>
+  </div>
 </ng-template>

@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ResolveFn, RouterStateSnapshot } from '@angular/router';
 
 import { posterDetailResolver } from './poster-detail.resolver';
@@ -47,15 +47,17 @@ describe('posterDetailResolver', () => {
     expect(executeResolver).toBeTruthy();
   });
 
-  it('should return movie details when mediaType is "movie"', () => {
+  it('should return movie details when mediaType is "movie"', fakeAsync(() => {
     theMovieDBPortSpy.getMovieDetails.and.returnValue(of(mockDetails));
 
     const route = { params: { mediaType: 'movie', id: 123 } } as any;
     const state = {} as RouterStateSnapshot;
     executeResolver(route, state);
 
+    tick();
+
     expect(theMovieDBPortSpy.getMovieDetails).toHaveBeenCalledWith(123);
-  });
+  }));
 
   it('should return series details when mediaType is "tv"', () => {
     mockDetails.media_type = 'tv';

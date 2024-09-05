@@ -2,10 +2,26 @@
   (click)="handleClickEvent()"
   aria-label="Button"
   role="button"
-  [ngClass]="[
-    sizeBtn,
-    ' btn bg-primary-ui hover:bg-primary-ui outline-none shadow-none border-none',
-  ]"
+  [ngClass]="[sizeBtn, typeBtn.styleButton]"
 >
-  {{ text }}
+  @if (isDefaultIcon) {
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-asterisk mr-2 text-yellow-300 size-4"
+    >
+      <path d="M12 6v12"></path>
+      <path d="M17.196 9 6.804 15"></path>
+      <path d="m6.804 9 10.392 6"></path>
+    </svg>
+  }
+
+  <span [ngClass]="typeBtn.styleText">{{ text }}</span>
 </button>

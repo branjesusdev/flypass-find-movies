@@ -1,7 +1,6 @@
-@tailwind base;
 @tailwind components;
-@tailwind utilities;
 
+@import 'atoms/_base';
 @import 'atoms/_colors';
 @import 'atoms/_typography';
 @import 'atoms/_inputs';
@@ -10,19 +9,4 @@
 @import 'atoms/_button';
 
 @import 'molecules/_tabs';
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  @apply font-body;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-.container-wrapper {
-  @apply pl-10 md:pl-40 w-full relative;
-}
+@import 'molecules/_utilities';

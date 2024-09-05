@@ -1,10 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { MainHeaderComponent } from './main-header.component';
 import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
 import { ActivatedRoute, provideRouter, RouterModule, RouterOutlet } from '@angular/router';
-import { SearchMulti } from '@shared/core/domain/entity';
+import { MediaType, SearchMulti } from '@shared/core/domain/entity';
 import { of } from 'rxjs';
+import { HttpTmdbAdapterService } from '@shared/command/adapters/http-tmdb-adapter.service';
 
 describe('MainHeaderComponent', () => {
   let component: MainHeaderComponent;
@@ -12,7 +13,9 @@ describe('MainHeaderComponent', () => {
   let serviceTmdbStub: jasmine.SpyObj<TheMovieDBPort>;
 
   beforeEach(async () => {
-    const serviceTmdb = jasmine.createSpyObj('TheMovieDBPort', ['searchMovies']);
+    const serviceTmdb = jasmine.createSpyObj<HttpTmdbAdapterService>('TheMovieDBPort', [
+      'searchByFilter',
+    ]);
 
     await TestBed.configureTestingModule({
       imports: [MainHeaderComponent, RouterModule],
@@ -34,21 +37,28 @@ describe('MainHeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call ngOnInit', () => {
-    spyOn(component, 'ngOnInit').and.callThrough();
+  it('should call ngOnInit', fakeAsync(() => {
+    spyOn<any>(component, 'searchResults').and.callThrough();
+    serviceTmdbStub.searchByFilter.and.returnValue(of([]));
 
     component.ngOnInit();
-    expect(component.ngOnInit).toHaveBeenCalled();
-  });
+    component['searchSubject'].next('test');
+
+    tick(500);
+
+    expect(component.listResults()).toEqual([]);
+    expect(component.listDefaultFilters().length).toBeGreaterThan(2);
+    expect(component['searchResults']).toHaveBeenCalled();
+  }));
 
   it('should call onSearch', () => {
     spyOn(component, 'onSearch').and.callThrough();
 
-    component.inputText = 'test';
+    component.inputText.set('test');
     component.onSearch('test');
 
     expect(component.onSearch).toHaveBeenCalled();
-    expect(component.inputText).toBe('test');
+    expect(component.inputText()).toBe('test');
     expect(component['searchSubject']).toBeTruthy();
   });
 
@@ -67,7 +77,7 @@ describe('MainHeaderComponent', () => {
     component.onPoster(poster);
 
     expect(component.onPoster).toHaveBeenCalled();
-    expect(component.inputText).toBe('');
+    expect(component.inputText()).toBe('');
     expect(component['router']).toBeTruthy();
   });
 
@@ -85,14 +95,39 @@ describe('MainHeaderComponent', () => {
     it('should call onEnter', () => {
       spyOn(component, 'onEnter').and.callThrough();
       spyOn<any>(component, 'searchResults').and.callThrough();
-      serviceTmdbStub.searchMovies.and.returnValue(of([]));
+      serviceTmdbStub.searchByFilter.and.returnValue(
+        of([
+          {
+            id: 1,
+            title: 'test',
+            poster_path: 'test',
+            media_type: MediaType.Movie,
+            release_date: '2021-01-01',
+            overview: 'test',
+          },
+          {
+            id: 2,
+            title: 'test',
+            poster_path: 'test',
+            media_type: MediaType.Tv,
+            release_date: '2021-01-01',
+            overview: 'test',
+          },
+        ] as SearchMulti[]),
+      );
 
-      component.inputText = 'test';
+      component.inputText.set('test');
       component.onEnter();
 
       expect(component.onEnter).toHaveBeenCalled();
-      expect(component.inputText).toBe('test');
+      expect(component.inputText()).toBe('test');
       expect(component['searchResults']).toBeTruthy();
     });
+  });
+
+  it('should call defaultFilters', () => {
+    component.defaultFilters();
+    expect(component['defaultFilters']).toBeTruthy();
+    expect(component.listDefaultFilters().length).toBeGreaterThan(2);
   });
 });

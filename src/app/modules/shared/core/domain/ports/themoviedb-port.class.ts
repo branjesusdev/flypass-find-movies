@@ -15,5 +15,5 @@ export abstract class TheMovieDBPort {
   abstract getTrending({ page }: { page: number }): Observable<Trending[]>;
   abstract getMovieDetails(movieId: number): Observable<DetailPosterMovie>;
   abstract getSeriesDetails(seriesId: number): Observable<DetailPosterSeries>;
-  abstract searchMovies(query: string): Observable<SearchMulti[]>;
+  abstract searchByFilter(query: string): Observable<SearchMulti[]>;
 }

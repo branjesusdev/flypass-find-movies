@@ -148,7 +148,7 @@ describe('HttpTmdbAdapterService', () => {
   });
 
   it('should get searchMovies movies', () => {
-    service.searchMovies('query').subscribe((res) => {
+    service.searchByFilter('query').subscribe((res) => {
       expect(res).toBeTruthy();
     });
 
@@ -173,7 +173,7 @@ describe('HttpTmdbAdapterService', () => {
   });
 
   it('should get searchMovies series', () => {
-    service.searchMovies('query').subscribe((res) => {
+    service.searchByFilter('query').subscribe((res) => {
       expect(res).toBeTruthy();
     });
 

@@ -4,6 +4,7 @@ import { OnbordingFeaturedComponent } from './onbording-featured.component';
 import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
 import { of } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MediaType } from '@shared/core/domain/entity';
 
 describe('OnbordingFeaturedComponent', () => {
   let component: OnbordingFeaturedComponent;
@@ -49,15 +50,15 @@ describe('OnbordingFeaturedComponent', () => {
   });
 
   it('should call __getFeaturedMovies', () => {
-    component['__getFeaturedMovies']();
-
+    component['__getFeaturedMovies']({ page: 2 });
     expect(serviceTmdbStub.getFeaturedMovies).toHaveBeenCalled();
+    expect(component.stateMovies()).toEqual([]);
   });
 
   it('should call __getFeaturedSeries', () => {
-    component['__getFeaturedSeries']();
-
+    component['__getFeaturedSeries']({ page: 2 });
     expect(serviceTmdbStub.getFeaturedSeries).toHaveBeenCalled();
+    expect(component.stateSeries()).toEqual([]);
   });
 
   it('should call handleTabSelected', () => {
@@ -71,6 +72,19 @@ describe('OnbordingFeaturedComponent', () => {
   describe('OnbordingFeaturedComponent - More Movies', () => {
     it('should call onMoreMovies', () => {
       spyOn<any>(component, '__getFeaturedMovies').and.callThrough();
+      component.stateMovies.set([
+        {
+          id_movie: 1,
+          page: 3,
+          title: 'title',
+          poster_path: 'poster_path',
+          media_type: MediaType.Movie,
+          overview: 'overview',
+          vote_average: 5,
+          total_pages: 10,
+          total_results: 100,
+        },
+      ]);
       component.onMoreMovies(true);
       expect(component['__getFeaturedMovies']).toHaveBeenCalled();
     });
@@ -85,6 +99,19 @@ describe('OnbordingFeaturedComponent', () => {
   describe('OnbordingFeaturedComponent - More Series', () => {
     it('should call onMoreSeries', () => {
       spyOn<any>(component, '__getFeaturedSeries').and.callThrough();
+      component.stateSeries.set([
+        {
+          id_serie: 1,
+          page: 3,
+          title: 'title',
+          poster_path: 'poster_path',
+          media_type: MediaType.Tv,
+          overview: 'overview',
+          vote_average: 5,
+          total_pages: 10,
+          total_results: 100,
+        },
+      ]);
       component.onMoreSeries(true);
       expect(component['__getFeaturedSeries']).toHaveBeenCalled();
     });

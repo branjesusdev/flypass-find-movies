@@ -17,14 +17,15 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 })
 export class InputComponent implements ControlValueAccessor {
   @Input()
-  placeholder: string = '';
+  placeholder = '';
 
   @Input()
-  name: string = 'input-ui';
+  name = 'input-ui';
 
   @Output()
   searchEvent = new EventEmitter<string>();
 
+  @Input()
   inputText = '';
 
   onChange: any = () => {};

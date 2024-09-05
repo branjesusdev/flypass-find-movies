@@ -1,0 +1,13 @@
+@tailwind utilities;
+
+@layer utilities {
+  .centered-x-abs {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  .container-wrapper {
+    @apply pl-10 md:pl-40 w-full relative;
+  }
+}

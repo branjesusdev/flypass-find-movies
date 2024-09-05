@@ -6,7 +6,18 @@ const meta: Meta<ButtonComponent> = {
   title: 'Components/Button',
   component: ButtonComponent,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    type: {
+      control: { type: 'radio', options: ['primary', 'secondary'] },
+      description: 'Button type',
+    },
+    text: { control: 'text', description: 'Button text' },
+    size: {
+      control: { type: 'radio', options: ['small', 'medium', 'large'] },
+      description: 'Button size',
+    },
+    isDefaultIcon: { control: 'boolean', description: 'Button default icon' },
+  },
   args: { handleClick: fn() },
 };
 
@@ -15,7 +26,7 @@ type Story = StoryObj<ButtonComponent>;
 
 export const Primary: Story = {
   args: {
-    primary: true,
+    type: 'primary',
     text: 'Button Primary',
   },
   play: async ({ canvasElement }) => {
@@ -24,6 +35,20 @@ export const Primary: Story = {
     await userEvent.click(button);
 
     expect(canvas.getByText('Button Primary')).toBeInTheDocument();
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    type: 'secondary',
+    text: 'Button Secondary',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await userEvent.click(button);
+
+    expect(canvas.getByText('Button Secondary')).toBeInTheDocument();
   },
 };
 

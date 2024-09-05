@@ -1,10 +1,15 @@
 label.input {
-  background-color: var(--gray-100);
+  // background-color: var(--gray-100);
   height: 2.8rem;
-  border-radius: 4px;
+  border-radius: 12px;
   outline-color: var(--yellow-600) !important;
   outline-offset: 0 !important;
-  color: var(--black-opacity-60);
+  color: var(--black);
+  background-image: linear-gradient(to bottom right, var(--gray-100), var(--gray-100-opacity-60));
+
+  &:focus-within {
+    background-image: linear-gradient(to bottom right, var(--gray-100), #d4d4d4);
+  }
 
   input {
     border-color: transparent;

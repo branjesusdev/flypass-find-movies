@@ -27,7 +27,7 @@ module.exports = {
       'accent-ui': 'var(--accent)',
     },
     animation: {
-      'background-shine': 'background-shine 2s linear infinite',
+      'background-shine': 'background-shine 5s linear infinite',
     },
     keyframes: {
       'background-shine': {
