@@ -18,6 +18,7 @@ import { HttpTmdbAdapterService } from '@shared/command/adapters/http-tmdb-adapt
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { httpInterceptorProvidersHeaders } from '@shared/interceptors/headers-interceptor.service';
 import { httpInterceptorRefactorUrlProvider } from '@shared/interceptors/refactor-url-interceptor.service';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,6 +35,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideClientHydration(),
     provideHttpClient(withInterceptorsFromDi()),
+    provideAnimations(),
 
     // RESOURCES
 

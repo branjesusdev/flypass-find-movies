@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-badge',
@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   imports: [NgClass],
   templateUrl: './badge.component.html',
   styleUrl: './badge.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BadgeComponent {
   @Input({ required: true }) text!: string;
