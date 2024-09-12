@@ -1,38 +1,55 @@
-import { Component, EventEmitter, Input, OnDestroy, Output, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarouselComponent, ItemsCarousel } from '@lib-transversal';
-import { FeaturedMovie } from '@shared/core/domain/entity';
+import { MoviesStore } from '@pages/onboarding/store/movies.store';
 
 @Component({
   selector: 'app-featured-movies',
   standalone: true,
   imports: [CarouselComponent],
+  providers: [MoviesStore],
   templateUrl: './featured-movies.component.html',
   styleUrl: './featured-movies.component.scss',
 })
-export class FeaturedMoviesComponent {
-  @Input({ required: true }) set featuredMovies(series: FeaturedMovie[]) {
-    const seriesMap = series.map(
-      (serie) =>
-        ({
-          id: serie.id_movie,
-          title: serie.title,
-          poster_path: serie.poster_path,
-          vote_average: serie.vote_average,
-          overview: serie.overview,
-          media_type: serie.media_type,
-        }) as ItemsCarousel,
-    );
+export class FeaturedMoviesComponent implements OnInit {
+  posters = signal<ItemsCarousel[]>([]);
+  isSlideToXMovies = signal<number>(0);
 
-    this.posters.set(seriesMap);
+  private router = inject(Router);
+  private moviesStore = inject(MoviesStore);
+
+  constructor() {
+    effect(
+      () => {
+        this.posters.set(this.moviesCarousel());
+        this.isSlideToXMovies.set(5);
+      },
+      { allowSignalWrites: true },
+    );
   }
 
-  posters = signal<ItemsCarousel[]>([]);
+  ngOnInit() {
+    this.__getFeaturedMovies();
+  }
 
-  @Output() moreMovies = new EventEmitter<boolean>();
-  @Input() slideToX = 0;
+  private __getFeaturedMovies({ page = 1 }: { page: number } = { page: 1 }): void {
+    this.moviesStore.loadPagesMovies(page);
+    this.posters.set(this.moviesCarousel());
+  }
 
-  constructor(private router: Router) {}
+  private moviesCarousel(): ItemsCarousel[] {
+    return this.moviesStore.movies().map(
+      ({ id_movie, title, poster_path, vote_average, overview, media_type }) =>
+        ({
+          id: id_movie,
+          title,
+          poster_path,
+          vote_average,
+          overview,
+          media_type,
+        }) as ItemsCarousel,
+    );
+  }
 
   onPoster(poster: ItemsCarousel): void {
     this.router.navigate(['poster-detail', poster.media_type, poster.id]);
@@ -41,6 +58,9 @@ export class FeaturedMoviesComponent {
   onReachEnd(reachEnd: boolean): void {
     if (!reachEnd) return;
 
-    this.moreMovies.emit(true);
+    const pageLast = this.moviesStore
+      .movies()
+      .reduce((max, movie) => (movie.page > max ? movie.page : max), 0);
+    this.__getFeaturedMovies({ page: pageLast + 1 });
   }
 }

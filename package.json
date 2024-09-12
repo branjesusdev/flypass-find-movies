@@ -35,6 +35,7 @@
     "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.0",
+    "@ngrx/signals": "^18.0.2",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "swiper": "^11.1.10",

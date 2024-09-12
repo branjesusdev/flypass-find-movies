@@ -4,7 +4,10 @@ import { FeaturedSeriesComponent } from './featured-series.component';
 import { provideRouter } from '@angular/router';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ItemsCarousel } from '@lib-transversal';
-import { FeaturedSerie } from '@shared/core/domain/entity';
+import { FeaturedSerie, MediaType } from '@shared/core/domain/entity';
+import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
+import { of } from 'rxjs';
+import { SeriesStore } from '@pages/onboarding/store/series.store';
 
 @Component({
   selector: 'app-dumy-component',
@@ -16,8 +19,13 @@ class DumyComponent {}
 describe('FeaturedSeriesComponent', () => {
   let component: FeaturedSeriesComponent;
   let fixture: ComponentFixture<FeaturedSeriesComponent>;
+  let serviceTmdbStub: jasmine.SpyObj<TheMovieDBPort>;
 
   beforeEach(async () => {
+    const serviceTmdb = {
+      getFeaturedSeries: jasmine.createSpy().and.returnValue(of([])),
+    } as jasmine.SpyObj<TheMovieDBPort>;
+
     await TestBed.configureTestingModule({
       imports: [FeaturedSeriesComponent],
       providers: [
@@ -27,33 +35,50 @@ describe('FeaturedSeriesComponent', () => {
             component: DumyComponent,
           },
         ]),
+        {
+          provide: TheMovieDBPort,
+          useValue: serviceTmdb,
+        },
+        SeriesStore,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FeaturedSeriesComponent);
     component = fixture.componentInstance;
+
+    serviceTmdbStub = TestBed.inject(TheMovieDBPort) as jasmine.SpyObj<TheMovieDBPort>;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call binding featuredSeries', () => {
-    const series: FeaturedSerie[] = [
-      {
-        id_serie: 1,
-        title: 'Title',
-        poster_path: 'path',
-        vote_average: 5,
-        overview: 'overview',
-        media_type: 'Serie',
-        page: 1,
-      },
-    ];
+  it('should call __init', () => {
+    spyOn<any>(component, '__getFeaturedSeries').and.callThrough();
 
-    component.featuredSeries = series;
-    expect(component.posters.set).toBeTruthy();
+    component.ngOnInit();
+    expect(component['__getFeaturedSeries']).toHaveBeenCalled();
+  });
+
+  it('should call __getFeaturedSeries', () => {
+    component['__getFeaturedSeries']({ page: 2 });
+    expect(serviceTmdbStub.getFeaturedSeries).toHaveBeenCalled();
+    expect(component.posters()).toEqual([]);
+  });
+
+  describe('OnbordingFeaturedComponent - More Series', () => {
+    it('should call onMoreSeries', () => {
+      spyOn<any>(component, '__getFeaturedSeries').and.callThrough();
+      component.onReachEnd(true);
+      expect(component['__getFeaturedSeries']).toHaveBeenCalled();
+    });
+
+    it('should call onMoreSeries with false', () => {
+      spyOn<any>(component, '__getFeaturedSeries').and.callThrough();
+      component.onReachEnd(false);
+      expect(component['__getFeaturedSeries']).not.toHaveBeenCalled();
+    });
   });
 
   it('should call onPoster', () => {
@@ -72,19 +97,5 @@ describe('FeaturedSeriesComponent', () => {
 
     expect(component.onPoster).toHaveBeenCalled();
     expect(component['router']).toBeTruthy();
-  });
-
-  it('should call onReachEnd', () => {
-    component.onReachEnd(true);
-
-    expect(component.moreSeries.emit).toBeTruthy();
-  });
-
-  it('should call onReachEnd with false', () => {
-    spyOn(component.moreSeries, 'emit');
-
-    component.onReachEnd(false);
-
-    expect(component.moreSeries.emit).not.toHaveBeenCalled();
   });
 });

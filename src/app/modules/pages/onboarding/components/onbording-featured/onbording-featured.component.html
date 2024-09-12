@@ -4,20 +4,11 @@
   <article class="my-4">
     <ui-tab-view (tabSelected)="handleTabSelected($event)">
       <ui-tab-panel tabTitle="Movies" keyTab="movies">
-        <app-featured-movies
-          [featuredMovies]="stateMovies()"
-          [slideToX]="isSlideToXMovies()"
-          *ngIf="isMovies()"
-          (moreMovies)="onMoreMovies($event)"
-        ></app-featured-movies>
+        <app-featured-movies *ngIf="isMovies()"></app-featured-movies>
       </ui-tab-panel>
 
       <ui-tab-panel tabTitle="Series" keyTab="series">
-        <app-featured-series
-          [featuredSeries]="stateSeries()"
-          *ngIf="isSeries()"
-          (moreSeries)="onMoreSeries($event)"
-        ></app-featured-series>
+        <app-featured-series *ngIf="isSeries()"></app-featured-series>
       </ui-tab-panel>
     </ui-tab-view>
   </article>

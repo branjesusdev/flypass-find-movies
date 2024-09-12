@@ -1,37 +1,53 @@
-import { Component, effect, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarouselComponent, ItemsCarousel } from '@lib-transversal';
-import { FeaturedSerie } from '@shared/core/domain/entity';
+import { SeriesStore } from '@pages/onboarding/store/series.store';
 
 @Component({
   selector: 'app-featured-series',
   templateUrl: './featured-series.component.html',
   standalone: true,
   imports: [CarouselComponent],
+  providers: [SeriesStore],
   styleUrl: './featured-series.component.scss',
 })
-export class FeaturedSeriesComponent {
-  @Input({ required: true }) set featuredSeries(series: FeaturedSerie[]) {
-    const seriesMap = series.map(
-      (serie) =>
-        ({
-          id: serie.id_serie,
-          title: serie.title,
-          poster_path: serie.poster_path,
-          vote_average: serie.vote_average,
-          overview: serie.overview,
-          media_type: serie.media_type,
-        }) as ItemsCarousel,
-    );
-
-    this.posters.set(seriesMap);
-  }
-
+export class FeaturedSeriesComponent implements OnInit {
   posters = signal<ItemsCarousel[]>([]);
 
-  @Output() moreSeries = new EventEmitter<boolean>();
+  private router = inject(Router);
+  private seriesStore = inject(SeriesStore);
 
-  constructor(private router: Router) {}
+  constructor() {
+    effect(
+      () => {
+        this.posters.set(this.seriesCarousel());
+      },
+      { allowSignalWrites: true },
+    );
+  }
+
+  ngOnInit() {
+    this.__getFeaturedSeries();
+  }
+
+  private __getFeaturedSeries({ page = 1 }: { page: number } = { page: 1 }): void {
+    this.seriesStore.loadPagesSeries(page);
+    this.posters.set(this.seriesCarousel());
+  }
+
+  private seriesCarousel(): ItemsCarousel[] {
+    return this.seriesStore.series().map(
+      ({ id_serie, title, poster_path, vote_average, overview, media_type }) =>
+        ({
+          id: id_serie,
+          title,
+          poster_path,
+          vote_average,
+          overview,
+          media_type,
+        }) as ItemsCarousel,
+    );
+  }
 
   onPoster(poster: ItemsCarousel): void {
     this.router.navigate(['poster-detail', poster.media_type, poster.id]);
@@ -40,6 +56,9 @@ export class FeaturedSeriesComponent {
   onReachEnd(reachEnd: boolean): void {
     if (!reachEnd) return;
 
-    this.moreSeries.emit(true);
+    const pageLast = this.seriesStore
+      .series()
+      .reduce((max, movie) => (movie.page > max ? movie.page : max), 0);
+    this.__getFeaturedSeries({ page: pageLast + 1 });
   }
 }

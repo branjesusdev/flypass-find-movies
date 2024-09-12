@@ -13,6 +13,7 @@
 - [**husky**](https://typicode.github.io/husky/)
 - [**pretty-quick**](https://www.npmjs.com/package/pretty-quick)
 - [**eslint**](https://eslint.org/)
+- [**ngrx signal**](https://ngrx.io/guide/signals/signal-store)
 
 ## Patters
 

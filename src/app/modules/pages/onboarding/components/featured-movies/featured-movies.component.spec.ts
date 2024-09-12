@@ -4,7 +4,9 @@ import { FeaturedMoviesComponent } from './featured-movies.component';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { ItemsCarousel } from '@lib-transversal';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FeaturedMovie } from '@shared/core/domain/entity';
+import { SeriesStore } from '@pages/onboarding/store/series.store';
+import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-featured-movies',
@@ -17,7 +19,13 @@ describe('FeaturedMoviesComponent', () => {
   let component: FeaturedMoviesComponent;
   let fixture: ComponentFixture<FeaturedMoviesComponent>;
 
+  let serviceTmdbStub: jasmine.SpyObj<TheMovieDBPort>;
+
   beforeEach(async () => {
+    const serviceTmdb = {
+      getFeaturedMovies: jasmine.createSpy().and.returnValue(of([])),
+    } as jasmine.SpyObj<TheMovieDBPort>;
+
     await TestBed.configureTestingModule({
       imports: [FeaturedMoviesComponent],
       providers: [
@@ -30,33 +38,50 @@ describe('FeaturedMoviesComponent', () => {
           ],
           withComponentInputBinding(),
         ),
+        {
+          provide: TheMovieDBPort,
+          useValue: serviceTmdb,
+        },
+        SeriesStore,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FeaturedMoviesComponent);
     component = fixture.componentInstance;
+
+    serviceTmdbStub = TestBed.inject(TheMovieDBPort) as jasmine.SpyObj<TheMovieDBPort>;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call binding featuredMovies', () => {
-    const series: FeaturedMovie[] = [
-      {
-        id_movie: 1,
-        title: 'Title',
-        poster_path: 'path',
-        vote_average: 5,
-        overview: 'overview',
-        media_type: 'movie',
-        page: 1,
-      },
-    ];
+  it('should call __init', () => {
+    spyOn<any>(component, '__getFeaturedMovies').and.callThrough();
 
-    component.featuredMovies = series;
-    expect(component.posters.set).toBeTruthy();
+    component.ngOnInit();
+    expect(component['__getFeaturedMovies']).toHaveBeenCalled();
+  });
+
+  it('should call __getFeaturedMovies', () => {
+    component['__getFeaturedMovies']({ page: 2 });
+    expect(serviceTmdbStub.getFeaturedMovies).toHaveBeenCalled();
+    expect(component.posters()).toEqual([]);
+  });
+
+  describe('OnbordingFeaturedComponent - More Series', () => {
+    it('should call onMoreMovies', () => {
+      spyOn<any>(component, '__getFeaturedMovies').and.callThrough();
+      component.onReachEnd(true);
+      expect(component['__getFeaturedMovies']).toHaveBeenCalled();
+    });
+
+    it('should call onMoreMovies with false', () => {
+      spyOn<any>(component, '__getFeaturedMovies').and.callThrough();
+      component.onReachEnd(false);
+      expect(component['__getFeaturedMovies']).not.toHaveBeenCalled();
+    });
   });
 
   it('should call onPoster', () => {
@@ -71,16 +96,5 @@ describe('FeaturedMoviesComponent', () => {
 
     component.onPoster(poster);
     expect(component['router'].navigate).toBeTruthy();
-  });
-
-  it('should call onReachEnd', () => {
-    component.onReachEnd(true);
-    expect(component.moreMovies.emit).toBeTruthy();
-  });
-
-  it('should call onReachEnd with false', () => {
-    spyOn(component.moreMovies, 'emit');
-    component.onReachEnd(false);
-    expect(component.moreMovies.emit).not.toHaveBeenCalled();
   });
 });

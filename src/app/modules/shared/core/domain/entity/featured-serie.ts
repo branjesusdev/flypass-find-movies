@@ -1,3 +1,4 @@
+import { MediaType } from './media-type';
 import { RecordType } from './record.type';
 
 export type FeaturedSerie = {
@@ -6,5 +7,5 @@ export type FeaturedSerie = {
   poster_path: string;
   vote_average: number;
   overview: string;
-  media_type: string;
+  media_type: MediaType;
 } & RecordType;
