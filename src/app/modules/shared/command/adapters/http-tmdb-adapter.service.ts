@@ -4,7 +4,6 @@ import {
   catchError,
   defaultIfEmpty,
   distinctUntilChanged,
-  filter,
   map,
   Observable,
   of,

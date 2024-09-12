@@ -1,5 +1,5 @@
-import { CommonModule, NgIf } from '@angular/common';
-import { Component, Input, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-tab-panel',

@@ -82,6 +82,8 @@
       alt="title"
       width="780"
       height="1170"
+      [@blurFade]="loadedPoster() ? 'loaded' : 'loading'"
+      (load)="loadedPoster.set(true)"
     />
   </div>
 </article>

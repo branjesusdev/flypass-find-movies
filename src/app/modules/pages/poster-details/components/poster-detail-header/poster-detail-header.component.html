@@ -3,9 +3,11 @@
 >
   <div class="flex items-center justify-between px-10 md:px-40 py-7">
     <div class="flex flex-col gap-3">
-      <h3 class="text-primary-ui font-bodyTwo">{{ posterHeader.media_type | uppercase }}</h3>
+      <h3 class="text-primary-ui font-bodyTwo text-sm md:text-lg">
+        {{ posterHeader.media_type | uppercase }}
+      </h3>
       <h1
-        class="font-bold text-4xl inline-flex animate-background-shine bg-[linear-gradient(110deg,white,45%,var(--black-light),55%,white)] bg-[length:250%_100%] bg-clip-text text-transparent"
+        class="font-bold text-xl md:text-4xl inline-flex animate-background-shine bg-[linear-gradient(110deg,white,45%,var(--black-light),55%,white)] bg-[length:250%_100%] bg-clip-text text-transparent"
       >
         {{ posterHeader.name | uppercase }}
       </h1>
@@ -23,7 +25,7 @@
     </div>
 
     <div class="flex gap-3 items-center">
-      <h2 class="text-3xl">⭐ {{ posterHeader.vote_average | number: '1.0-1' }}</h2>
+      <h2 class="text-xl md:text-3xl">⭐ {{ posterHeader.vote_average | number: '1.0-1' }}</h2>
       <div class="flex flex-col items-center gap-1">
         <span class="text-[0.7rem] text-white/60"> {{ posterHeader.popularity }} </span>
         <span class="text-[0.7rem] text-white/60">ratings</span>

@@ -2610,7 +2610,7 @@
     },
     {
       "name": "HttpTmdbAdapterService",
-      "id": "injectable-HttpTmdbAdapterService-8e9d33edcca62619d70a790ff1fba9ebefb3acbf3165ceebafa4a7211124e6ed77ccf745c2ccde2ad1e8d7b9a3c23eee3fdbc17f5165143d71759231499ff84e",
+      "id": "injectable-HttpTmdbAdapterService-a574d62c9407f3cd8dbb9061687ca9652daceedbd8d9049f0a05ca871bb29c2b6de810675760e15ec507b4eb36a56ce2bc82a6a4b6ef8aab42e1bb51896e7677",
       "file": "src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts",
       "properties": [],
       "methods": [
@@ -2626,7 +2626,7 @@
           "optional": false,
           "returnType": "Observable<FeaturedMovie[]>",
           "typeParameters": [],
-          "line": 89,
+          "line": 88,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2652,7 +2652,7 @@
           "optional": false,
           "returnType": "Observable<FeaturedSerie[]>",
           "typeParameters": [],
-          "line": 124,
+          "line": 123,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2679,7 +2679,7 @@
           "optional": false,
           "returnType": "Observable<DetailPosterMovie>",
           "typeParameters": [],
-          "line": 221,
+          "line": 218,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2707,7 +2707,7 @@
           "optional": false,
           "returnType": "Observable<DetailPosterSeries>",
           "typeParameters": [],
-          "line": 191,
+          "line": 188,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2734,7 +2734,7 @@
           "optional": false,
           "returnType": "Observable<Trending[]>",
           "typeParameters": [],
-          "line": 55,
+          "line": 54,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2761,7 +2761,7 @@
           "optional": false,
           "returnType": "Observable<T[]>",
           "typeParameters": ["T"],
-          "line": 51,
+          "line": 50,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -2790,7 +2790,7 @@
           "optional": false,
           "returnType": "Observable<SearchMulti[]>",
           "typeParameters": [],
-          "line": 158,
+          "line": 157,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2810,7 +2810,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport {\n  catchError,\n  defaultIfEmpty,\n  distinctUntilChanged,\n  filter,\n  map,\n  Observable,\n  of,\n  shareReplay,\n  switchMap,\n  tap,\n  throwError,\n} from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  SearchMulti,\n  Trending,\n  MediaType,\n  DetailPosterMovie,\n  DetailPosterSeries,\n} from '@shared/core/domain/entity';\nimport { AplicationStore } from '@shared/store/aplication.store';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  constructor(\n    private http: HttpClient,\n    private store: AplicationStore<any>,\n  ) {}\n\n  private obserberResponse<T>(object: T[]): Observable<T[]> {\n    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;\n  }\n\n  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {\n    const url = `${PATHS.trending}`;\n    const store = this.store.getStateValue('trending') as Trending[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutTrending>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outTrending) =>\n        outTrending.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n              page: outTrending.page,\n            }) as Trending,\n        ),\n      ),\n      tap((trending) => {\n        this.store.saveState$({ key: 'trending', info: trending as Trending[] });\n      }),\n      switchMap((trending) => {\n        if (store) return of([...store, ...trending]);\n        return of(trending);\n      }),\n    );\n  }\n\n  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n              overview: outMovieDetail.overview,\n              page: outMovieDetails.page,\n            }) as FeaturedMovie,\n        ),\n      ),\n      tap((movies) => {\n        const moviesStore = page == 1 ? movies : [...store, ...movies];\n        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });\n      }),\n      switchMap((movies) => {\n        if (store) return of([...store, ...movies]);\n        return of(movies);\n      }),\n    );\n  }\n\n  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];\n\n    if (store && page == 1) return this.obserberResponse(store);\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n              page: outFeaturedSerie.page,\n            }) as FeaturedSerie,\n        ),\n      ),\n      tap((series) => {\n        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });\n      }),\n      switchMap((series) => {\n        if (store) return of([...store, ...series]);\n        return of(series);\n      }),\n    );\n  }\n\n  searchByFilter(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams()\n      .set('query', query)\n      .set('include_adult', 'false')\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      distinctUntilChanged(),\n      shareReplay(1), // shared multiple subscriptions to the same observable in cache\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterSeries,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterMovie,\n      ),\n    );\n  }\n}\n",
+      "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport {\n  catchError,\n  defaultIfEmpty,\n  distinctUntilChanged,\n  map,\n  Observable,\n  of,\n  shareReplay,\n  switchMap,\n  tap,\n  throwError,\n} from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  SearchMulti,\n  Trending,\n  MediaType,\n  DetailPosterMovie,\n  DetailPosterSeries,\n} from '@shared/core/domain/entity';\nimport { AplicationStore } from '@shared/store/aplication.store';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  constructor(\n    private http: HttpClient,\n    private store: AplicationStore<any>,\n  ) {}\n\n  private obserberResponse<T>(object: T[]): Observable<T[]> {\n    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;\n  }\n\n  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {\n    const url = `${PATHS.trending}`;\n    const store = this.store.getStateValue('trending') as Trending[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutTrending>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outTrending) =>\n        outTrending.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n              page: outTrending.page,\n            }) as Trending,\n        ),\n      ),\n      tap((trending) => {\n        this.store.saveState$({ key: 'trending', info: trending as Trending[] });\n      }),\n      switchMap((trending) => {\n        if (store) return of([...store, ...trending]);\n        return of(trending);\n      }),\n    );\n  }\n\n  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n              overview: outMovieDetail.overview,\n              page: outMovieDetails.page,\n            }) as FeaturedMovie,\n        ),\n      ),\n      tap((movies) => {\n        const moviesStore = page == 1 ? movies : [...store, ...movies];\n        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });\n      }),\n      switchMap((movies) => {\n        if (store) return of([...store, ...movies]);\n        return of(movies);\n      }),\n    );\n  }\n\n  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];\n\n    if (store && page == 1) return this.obserberResponse(store);\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n              page: outFeaturedSerie.page,\n            }) as FeaturedSerie,\n        ),\n      ),\n      tap((series) => {\n        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });\n      }),\n      switchMap((series) => {\n        if (store) return of([...store, ...series]);\n        return of(series);\n      }),\n    );\n  }\n\n  searchByFilter(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams().set('query', query).set('include_adult', 'false');\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      distinctUntilChanged(),\n      shareReplay(1), // shared multiple subscriptions to the same observable in cache\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterSeries,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterMovie,\n      ),\n    );\n  }\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -2830,7 +2830,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 45,
+        "line": 44,
         "jsdoctags": [
           {
             "name": "http",
@@ -3559,12 +3559,12 @@
   "directives": [
     {
       "name": "FormFocusDirective",
-      "id": "directive-FormFocusDirective-2e7a4d1521b0b5c431e6816a4d3e4ff0fa2e1eeb995f24ac20d5521cf0d7ea9aaae8bab1b024cfcc02c69804ed70c2d97359573739923fd9ce3529b2b9c0d755",
+      "id": "directive-FormFocusDirective-9de1922fd02a818a27ce53568c6a456129e9e8efe638ba0b5a82e30cdaef866594bddf8d4fdcb1bfa2cce1147a3912f178232ca4f7b0656eb821701b12be3bd8",
       "file": "src/app/modules/shared/directives/form-focus.directive.ts",
       "type": "directive",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';\r\n\r\n\r\n\r\n@Directive({\r\n  selector: '[appFormFocus]',\r\n  standalone: true\r\n})\r\nexport class FormFocusDirective implements OnInit {\r\n\r\n  private originalWidth: string;\r\n  @Input('appFormFocus') toggleElement !: `.${string}`;\r\n\r\n  constructor(\r\n    private el: ElementRef, private renderer: Renderer2\r\n  ) {\r\n    this.originalWidth = this.el.nativeElement.style.width;\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    const elementToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\r\n    if (elementToggled) {\r\n      elementToggled?.forEach((element: HTMLElement) => {\r\n        element.classList.add('hidden');\r\n      });\r\n    }\r\n  }\r\n\r\n\r\n  @HostListener('focusin', ['$event'])\r\n  onFocusIn(event: FocusEvent): void {\r\n\r\n    // console.log('focusin');\r\n\r\n\r\n    const { tagName } = (event.target as HTMLInputElement);\r\n\r\n    if (tagName === 'INPUT') {\r\n      this.renderer.setStyle(this.el.nativeElement, 'width', '100%');\r\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\r\n      if (elementsToggled) {\r\n        elementsToggled?.forEach((element: HTMLElement) => {\r\n          element.classList.remove('hidden');\r\n        });\r\n      }\r\n\r\n    }\r\n  }\r\n\r\n  @HostListener('focusout', ['$event'])\r\n  onFocusOut(event: FocusEvent): void {\r\n\r\n    const { tagName } = (event.target as HTMLInputElement);\r\n\r\n    if (tagName === 'INPUT') {\r\n\r\n      const relatedTarget = event.relatedTarget as HTMLElement;\r\n      if (relatedTarget && this.el.nativeElement.contains(relatedTarget)) {\r\n        return;\r\n      }\r\n\r\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\r\n      if (elementsToggled) {\r\n        setTimeout(() => {\r\n          this.renderer.setStyle(this.el.nativeElement, 'width', this.originalWidth);\r\n          elementsToggled?.forEach((element: HTMLElement) => {\r\n            element.classList.add('hidden');\r\n          });\r\n        }, 200);\r\n      }\r\n    }\r\n  }\r\n\r\n}\r\n",
+      "sourceCode": "import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';\n\n@Directive({\n  selector: '[appFormFocus]',\n  standalone: true,\n})\nexport class FormFocusDirective implements OnInit {\n  private originalWidth: string;\n  @Input('appFormFocus') toggleElement!: `.${string}`;\n\n  constructor(\n    private el: ElementRef,\n    private renderer: Renderer2,\n  ) {\n    this.originalWidth = this.el.nativeElement.style.width;\n  }\n\n  ngOnInit(): void {\n    const elementToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n    if (elementToggled) {\n      elementToggled?.forEach((element: HTMLElement) => {\n        element.classList.add('hidden');\n      });\n    }\n  }\n\n  @HostListener('focusin', ['$event'])\n  onFocusIn(event: FocusEvent): void {\n    // console.log('focusin');\n\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      this.renderer.setStyle(this.el.nativeElement, 'width', '100%');\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        elementsToggled?.forEach((element: HTMLElement) => {\n          element.classList.remove('hidden');\n        });\n      }\n    }\n  }\n\n  @HostListener('focusout', ['$event'])\n  onFocusOut(event: FocusEvent): void {\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      const relatedTarget = event.relatedTarget as HTMLElement;\n      if (relatedTarget && this.el.nativeElement.contains(relatedTarget)) {\n        return;\n      }\n\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        setTimeout(() => {\n          this.renderer.setStyle(this.el.nativeElement, 'width', this.originalWidth);\n          elementsToggled?.forEach((element: HTMLElement) => {\n            element.classList.add('hidden');\n          });\n        }, 200);\n      }\n    }\n  }\n}\n",
       "selector": "[appFormFocus]",
       "providers": [],
       "hostDirectives": [],
@@ -3574,7 +3574,7 @@
           "name": "appFormFocus",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 12,
+          "line": 9,
           "type": "template literal type",
           "decorators": []
         }
@@ -3597,7 +3597,7 @@
           "argsDecorator": ["$event"],
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 31
+          "line": 28
         },
         {
           "name": "focusout",
@@ -3612,7 +3612,7 @@
           "argsDecorator": ["$event"],
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 51
+          "line": 45
         }
       ],
       "propertiesClass": [
@@ -3623,7 +3623,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 11,
+          "line": 8,
           "modifierKind": [123]
         }
       ],
@@ -3634,7 +3634,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 20,
+          "line": 18,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -3651,7 +3651,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 31,
+          "line": 28,
           "deprecated": false,
           "deprecationMessage": "",
           "decorators": [
@@ -3686,7 +3686,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 51,
+          "line": 45,
           "deprecated": false,
           "deprecationMessage": "",
           "decorators": [
@@ -3730,7 +3730,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 12,
+        "line": 9,
         "jsdoctags": [
           {
             "name": "el",
@@ -4260,7 +4260,7 @@
     },
     {
       "name": "MainHeaderComponent",
-      "id": "component-MainHeaderComponent-6eae85739a9b629fb4e200f42cd565891b3f08b84b958ff880e4588a084c30b0a61a2c8d42390a98ece0b7d23c326bffabd542e98ea0334df2259d26bbd36b48",
+      "id": "component-MainHeaderComponent-fc54492180a94bcf30042de9f117e835667eb66993b4fee741aef2f8e788c88f4c5a89c202bb6d98c45857943374797e5577a3c16fa931939fa4f28892b8a843",
       "file": "src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -4285,7 +4285,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 39,
+          "line": 46,
           "modifierKind": [123]
         },
         {
@@ -4296,7 +4296,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 31
+          "line": 38
         },
         {
           "name": "isDefaultFilters",
@@ -4306,7 +4306,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 35
+          "line": 42
         },
         {
           "name": "isLoading",
@@ -4316,7 +4316,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 36
+          "line": 43
         },
         {
           "name": "listDefaultFilters",
@@ -4326,7 +4326,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 33
+          "line": 40
         },
         {
           "name": "listResults",
@@ -4336,7 +4336,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 32
+          "line": 39
         },
         {
           "name": "notFound",
@@ -4346,7 +4346,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 34
+          "line": 41
         },
         {
           "name": "router",
@@ -4356,7 +4356,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 41,
+          "line": 48,
           "modifierKind": [123]
         },
         {
@@ -4367,7 +4367,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 38,
+          "line": 45,
           "modifierKind": [123]
         },
         {
@@ -4378,7 +4378,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 40,
+          "line": 47,
           "modifierKind": [123]
         }
       ],
@@ -4389,7 +4389,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 96,
+          "line": 104,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -4399,7 +4399,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 43,
+          "line": 50,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -4409,7 +4409,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 69,
+          "line": 75,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -4426,7 +4426,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 62,
+          "line": 68,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -4454,7 +4454,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 58,
+          "line": 64,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -4481,7 +4481,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 73,
+          "line": 79,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -4533,7 +4533,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';\nimport { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\nimport { FormsModule } from '@angular/forms';\n\n// RESOURCES\n\nimport { MediaType, SearchMulti } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Router, RouterLink } from '@angular/router';\nimport { ButtonComponent, InputComponent } from '@lib-transversal';\nimport { FormFocusDirective } from '@shared/directives/form-focus.directive';\n\n@Component({\n  selector: 'app-main-header',\n  standalone: true,\n  imports: [\n    NgOptimizedImage,\n    CommonModule,\n    RouterLink,\n    FormsModule,\n    InputComponent,\n    ButtonComponent,\n    FormFocusDirective\n  ],\n  templateUrl: './main-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush\n})\nexport class MainHeaderComponent implements OnInit {\n  inputText = signal('');\n  listResults = signal<SearchMulti[]>([]);\n  listDefaultFilters = signal<string[]>([]);\n  notFound = signal(false);\n  isDefaultFilters = signal(false);\n  isLoading = signal(false);\n\n  private searchSubject = new Subject<string>();\n  private destroyRef = inject(DestroyRef);\n  private serviceTmdb = inject(TheMovieDBPort);\n  private router = inject(Router);\n\n  ngOnInit() {\n\n    this.defaultFilters();\n    this.searchSubject\n      .pipe(\n        debounceTime(500),\n        distinctUntilChanged(),\n        tap(() => this.listResults.set([])),\n        tap(() => this.notFound.set(false)),\n        tap((value) => this.inputText.set(value))\n      )\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((searchValue) => this.searchResults({ searchValue }));\n  }\n\n  onSearch(event: string): void {\n    this.searchSubject.next(event);\n  }\n\n  onPoster(poster: SearchMulti): void {\n    this.listResults.set([]);\n    this.inputText.set('');\n    this.isDefaultFilters.set(false);\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onEnter(): void {\n    this.searchResults({ searchValue: this.inputText() });\n  }\n\n  private searchResults({ searchValue }: { searchValue: string }): void {\n    if (!searchValue) {\n      this.listResults.set([]);\n      this.isDefaultFilters.set(true);\n      this.notFound.set(false);\n      return;\n    }\n\n    this.isLoading.set(true);\n\n    this.serviceTmdb\n      .searchByFilter(searchValue)\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        movies = movies.filter((movie) => movie.media_type == MediaType.Movie || movie.media_type == MediaType.Tv);\n\n        this.isDefaultFilters.set(false);\n        this.notFound.set(movies.length === 0);\n        this.listResults.set(movies.slice(0, 5));\n        this.isLoading.set(false);\n      });\n  }\n\n  defaultFilters(): void {\n\n    const filters = [\n      'Cars',\n      'Aventura',\n      'Comedia',\n      'Avengers',\n      'Harry Potter',\n      'House of the Dragon',\n      'The Boys',\n      'The Lord of the Rings',\n      'Jurassic Park',\n    ]\n\n    this.listDefaultFilters.set(filters)\n  }\n}\n",
+      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  DestroyRef,\n  inject,\n  OnInit,\n  signal,\n} from '@angular/core';\nimport { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\nimport { FormsModule } from '@angular/forms';\n\n// RESOURCES\n\nimport { MediaType, SearchMulti } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Router, RouterLink } from '@angular/router';\nimport { ButtonComponent, InputComponent } from '@lib-transversal';\nimport { FormFocusDirective } from '@shared/directives/form-focus.directive';\n\n@Component({\n  selector: 'app-main-header',\n  standalone: true,\n  imports: [\n    NgOptimizedImage,\n    CommonModule,\n    RouterLink,\n    FormsModule,\n    InputComponent,\n    ButtonComponent,\n    FormFocusDirective,\n  ],\n  templateUrl: './main-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MainHeaderComponent implements OnInit {\n  inputText = signal('');\n  listResults = signal<SearchMulti[]>([]);\n  listDefaultFilters = signal<string[]>([]);\n  notFound = signal(false);\n  isDefaultFilters = signal(false);\n  isLoading = signal(false);\n\n  private searchSubject = new Subject<string>();\n  private destroyRef = inject(DestroyRef);\n  private serviceTmdb = inject(TheMovieDBPort);\n  private router = inject(Router);\n\n  ngOnInit() {\n    this.defaultFilters();\n    this.searchSubject\n      .pipe(\n        debounceTime(500),\n        distinctUntilChanged(),\n        tap(() => this.listResults.set([])),\n        tap(() => this.notFound.set(false)),\n        tap((value) => this.inputText.set(value)),\n      )\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((searchValue) => this.searchResults({ searchValue }));\n  }\n\n  onSearch(event: string): void {\n    this.searchSubject.next(event);\n  }\n\n  onPoster(poster: SearchMulti): void {\n    this.listResults.set([]);\n    this.inputText.set('');\n    this.isDefaultFilters.set(false);\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onEnter(): void {\n    this.searchResults({ searchValue: this.inputText() });\n  }\n\n  private searchResults({ searchValue }: { searchValue: string }): void {\n    if (!searchValue) {\n      this.listResults.set([]);\n      this.isDefaultFilters.set(true);\n      this.notFound.set(false);\n      return;\n    }\n\n    this.isLoading.set(true);\n\n    this.serviceTmdb\n      .searchByFilter(searchValue)\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        movies = movies.filter(\n          (movie) => movie.media_type == MediaType.Movie || movie.media_type == MediaType.Tv,\n        );\n\n        this.isDefaultFilters.set(false);\n        this.notFound.set(movies.length === 0);\n        this.listResults.set(movies.slice(0, 5));\n        this.isLoading.set(false);\n      });\n  }\n\n  defaultFilters(): void {\n    const filters = [\n      'Cars',\n      'Aventura',\n      'Comedia',\n      'Avengers',\n      'Harry Potter',\n      'House of the Dragon',\n      'The Boys',\n      'The Lord of the Rings',\n      'Jurassic Park',\n    ];\n\n    this.listDefaultFilters.set(filters);\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -5400,7 +5400,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "ApplicationConfig",
-        "defaultValue": "{\n  providers: [\n    provideZoneChangeDetection({ eventCoalescing: true }), // Agrupar eventos de detección de cambios\n    provideProtractorTestingSupport(),\n    provideRouter(\n      routes,\n      withViewTransitions(),\n      withComponentInputBinding(),\n      withInMemoryScrolling({\n        anchorScrolling: 'enabled',\n        scrollPositionRestoration: 'enabled',\n      }),\n    ),\n    provideClientHydration(),\n    provideHttpClient(withInterceptorsFromDi()),\n\n    // RESOURCES\n\n    {\n      provide: API_BASE_URL,\n      useFactory: () => environment.API_BASE_URL,\n    },\n    {\n      provide: API_KEY_TOKEN,\n      useFactory: () => environment.API_KEY_TOKEN,\n    },\n\n    // SERVICES\n\n    {\n      provide: TheMovieDBPort,\n      useClass: HttpTmdbAdapterService,\n    },\n\n    // INTERCEPTORS\n\n    ...httpInterceptorRefactorUrlProvider,\n    ...httpInterceptorProvidersHeaders,\n  ],\n}"
+        "defaultValue": "{\n  providers: [\n    provideZoneChangeDetection({ eventCoalescing: true }), // Agrupar eventos de detección de cambios\n    provideProtractorTestingSupport(),\n    provideRouter(\n      routes,\n      withViewTransitions(),\n      withComponentInputBinding(),\n      withInMemoryScrolling({\n        anchorScrolling: 'enabled',\n        scrollPositionRestoration: 'enabled',\n      }),\n    ),\n    provideClientHydration(),\n    provideHttpClient(withInterceptorsFromDi()),\n    provideAnimations(),\n\n    // RESOURCES\n\n    {\n      provide: API_BASE_URL,\n      useFactory: () => environment.API_BASE_URL,\n    },\n    {\n      provide: API_KEY_TOKEN,\n      useFactory: () => environment.API_KEY_TOKEN,\n    },\n\n    // SERVICES\n\n    {\n      provide: TheMovieDBPort,\n      useClass: HttpTmdbAdapterService,\n    },\n\n    // INTERCEPTORS\n\n    ...httpInterceptorRefactorUrlProvider,\n    ...httpInterceptorProvidersHeaders,\n  ],\n}"
       },
       {
         "name": "bootstrap",
@@ -5784,7 +5784,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "ApplicationConfig",
-          "defaultValue": "{\n  providers: [\n    provideZoneChangeDetection({ eventCoalescing: true }), // Agrupar eventos de detección de cambios\n    provideProtractorTestingSupport(),\n    provideRouter(\n      routes,\n      withViewTransitions(),\n      withComponentInputBinding(),\n      withInMemoryScrolling({\n        anchorScrolling: 'enabled',\n        scrollPositionRestoration: 'enabled',\n      }),\n    ),\n    provideClientHydration(),\n    provideHttpClient(withInterceptorsFromDi()),\n\n    // RESOURCES\n\n    {\n      provide: API_BASE_URL,\n      useFactory: () => environment.API_BASE_URL,\n    },\n    {\n      provide: API_KEY_TOKEN,\n      useFactory: () => environment.API_KEY_TOKEN,\n    },\n\n    // SERVICES\n\n    {\n      provide: TheMovieDBPort,\n      useClass: HttpTmdbAdapterService,\n    },\n\n    // INTERCEPTORS\n\n    ...httpInterceptorRefactorUrlProvider,\n    ...httpInterceptorProvidersHeaders,\n  ],\n}"
+          "defaultValue": "{\n  providers: [\n    provideZoneChangeDetection({ eventCoalescing: true }), // Agrupar eventos de detección de cambios\n    provideProtractorTestingSupport(),\n    provideRouter(\n      routes,\n      withViewTransitions(),\n      withComponentInputBinding(),\n      withInMemoryScrolling({\n        anchorScrolling: 'enabled',\n        scrollPositionRestoration: 'enabled',\n      }),\n    ),\n    provideClientHydration(),\n    provideHttpClient(withInterceptorsFromDi()),\n    provideAnimations(),\n\n    // RESOURCES\n\n    {\n      provide: API_BASE_URL,\n      useFactory: () => environment.API_BASE_URL,\n    },\n    {\n      provide: API_KEY_TOKEN,\n      useFactory: () => environment.API_KEY_TOKEN,\n    },\n\n    // SERVICES\n\n    {\n      provide: TheMovieDBPort,\n      useClass: HttpTmdbAdapterService,\n    },\n\n    // INTERCEPTORS\n\n    ...httpInterceptorRefactorUrlProvider,\n    ...httpInterceptorProvidersHeaders,\n  ],\n}"
         }
       ],
       "src/main.server.ts": [
