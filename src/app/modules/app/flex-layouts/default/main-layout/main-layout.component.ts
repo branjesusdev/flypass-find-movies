@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 // COMPONENTS
 
 import { MainHeaderComponent } from '@fxLayouts/default/main-header/main-header.component';
+import { MainFooterComponent } from '@fxLayouts/default/main-footer/main-footer.component';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [MainHeaderComponent, RouterModule],
+  imports: [MainHeaderComponent, MainFooterComponent, RouterModule],
   template: `
     <main class="min-h-screen relative h-full w-full bg-black">
       <div
@@ -23,7 +24,7 @@ import { MainHeaderComponent } from '@fxLayouts/default/main-header/main-header.
         <router-outlet></router-outlet>
       </div>
 
-      <footer class="py-20 text-center w-full text-sm">With 💖 for branjesusdev 🚀</footer>
+      <app-main-footer></app-main-footer>
     </main>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

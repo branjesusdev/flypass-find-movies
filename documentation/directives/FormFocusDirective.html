@@ -79,114 +79,77 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content component">
+               <div class="content directive">
                    <div class="content-data">
 
 
 
 
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Components</li>
-  <li class="breadcrumb-item"
-  >
-  OnbordingPremieresComponent</li>
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >FormFocusDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#info" class="nav-link active"
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="#source" class="nav-link"
+            <a href="#source" 
+                class="nav-link"
+                
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
-        </li>
-        <li class="nav-item">
-            <a href="#templateData" class="nav-link"
-                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li class="nav-item">
-            <a href="#tree" class="nav-link"
-                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts</code>
-</p>
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/modules/shared/directives/form-focus.directive.ts</code>
+        </p>
 
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code>OnInit</code>
-    </p>
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>OnInit</code>
+            </p>
 
 
-<section data-compodoc="block-metadata">
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover metadata">
-        <tbody>
+        <section data-compodoc="block-metadata">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
 
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>[appFormFocus]</code></td>
+                    </tr>
 
-
-
-
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-onbording-premieres</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">imports</td>
-                <td class="col-md-9">
-                            <code>CarouselComponent</code>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
+                </tbody>
+            </table>
+        </section>
 
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./onbording-premieres.component.html</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./onbording-premieres.component.scss</code></td>
-            </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section data-compodoc="block-index">
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -199,7 +162,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#posters" >posters</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#originalWidth" >originalWidth</a>
                             </li>
                         </ul>
                     </td>
@@ -214,20 +178,30 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#__getTrending" >__getTrending</a>
-                            </li>
-                            <li>
-                                <a href="#__init__" >__init__</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#onMorePremieres" >onMorePremieres</a>
+                                    <span class="modifier"></span>
+                                <a href="#onFocusIn" >onFocusIn</a>
                             </li>
                             <li>
-                                <a href="#onPoster" >onPoster</a>
+                                    <span class="modifier"></span>
+                                <a href="#onFocusOut" >onFocusOut</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#appFormFocus" >appFormFocus</a>
                             </li>
                         </ul>
                     </td>
@@ -235,24 +209,40 @@
 
 
 
-
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#focusin" >focusin</a>
+                            </li>
+                            <li>
+                                <a href="#focusout" >focusout</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
         </tbody>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(serviceTmdb: <a href="../classes/TheMovieDBPort.html" target="_self">TheMovieDBPort</a>, destroyRef: DestroyRef, router: Router)</code>
+<code>constructor(el: ElementRef, renderer: Renderer2)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/modules/shared/directives/form-focus.directive.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -270,10 +260,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>serviceTmdb</td>
+                                                        <td>el</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/TheMovieDBPort.html" target="_self" >TheMovieDBPort</a></code>
+                                                                    <code>ElementRef</code>
                                                         </td>
                                                   
                                                     <td>
@@ -282,22 +272,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>destroyRef</td>
+                                                        <td>renderer</td>
                                                   
                                                         <td>
-                                                                    <code>DestroyRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                    <code>Router</code>
+                                                                    <code>Renderer2</code>
                                                         </td>
                                                   
                                                     <td>
@@ -314,124 +292,99 @@
         </table>
 </section>
 
+            <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="appFormFocus"></a>
+                        <b>appFormFocus</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>template literal type</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/modules/shared/directives/form-focus.directive.ts:9</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
 
 
+            <section data-compodoc="block-host-listener">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focusin"></a>
+                    <span class="name">
+                        <b>
+                            focusin
+                        </b>
+                        <a href="#focusin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
 
 
-    <section data-compodoc="block-methods">
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/modules/shared/directives/form-focus.directive.ts:28</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focusout"></a>
+                    <span class="name">
+                        <b>
+                            focusout
+                        </b>
+                        <a href="#focusout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/app/modules/shared/directives/form-focus.directive.ts:45</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="__getTrending"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>__getTrending</b></span>
-                        <a href="#__getTrending"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>__getTrending(undefined: literal type)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts:33</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Default value</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                        <code>literal type</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-                                            <td>
-                                                    <code>{ page: 1 }</code>
-                                            </td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="__init__"></a>
-                    <span class="name">
-                        <span ><b>__init__</b></span>
-                        <a href="#__init__"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>__init__()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts:29</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -452,8 +405,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/app/modules/shared/directives/form-focus.directive.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -473,24 +426,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onMorePremieres"></a>
+                    <a name="onFocusIn"></a>
                     <span class="name">
-                        <span ><b>onMorePremieres</b></span>
-                        <a href="#onMorePremieres"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                        <span ><b>onFocusIn</b></span>
+                        <a href="#onFocusIn"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onMorePremieres(morePremieres: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onFocusIn(event: FocusEvent)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;focusin&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/modules/shared/directives/form-focus.directive.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -511,9 +473,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>morePremieres</td>
+                                                <td>event</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                        <code>FocusEvent</code>
                                             </td>
 
                                             <td>
@@ -540,24 +502,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onPoster"></a>
+                    <a name="onFocusOut"></a>
                     <span class="name">
-                        <span ><b>onPoster</b></span>
-                        <a href="#onPoster"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                        <span ><b>onFocusOut</b></span>
+                        <a href="#onFocusOut"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onPoster(poster: ItemsCarousel)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onFocusOut(event: FocusEvent)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;focusout&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/modules/shared/directives/form-focus.directive.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -578,9 +549,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>poster</td>
+                                                <td>event</td>
                                             <td>
-                                                        <code>ItemsCarousel</code>
+                                                        <code>FocusEvent</code>
                                             </td>
 
                                             <td>
@@ -604,7 +575,7 @@
         </tbody>
     </table>
 </section>
-    <section data-compodoc="block-properties">
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -613,21 +584,23 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="posters"></a>
+                    <a name="originalWidth"></a>
                     <span class="name">
-                        <span ><b>posters</b></span>
-                        <a href="#posters"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>originalWidth</b></span>
+                        <a href="#originalWidth"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;Trending[]&gt;([])</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/modules/shared/directives/form-focus.directive.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -636,120 +609,80 @@
     </table>
 </section>
 
-</div>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, DestroyRef, OnInit, signal } from &#x27;@angular/core&#x27;;
-import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from &#x27;@angular/core&#x27;;
 
-import { TheMovieDBPort } from &#x27;@shared/core/domain/ports/themoviedb-port.class&#x27;;
-import { Trending } from &#x27;@shared/core/domain/entity&#x27;;
-import { CarouselComponent, ItemsCarousel } from &#x27;@lib-transversal&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
-
-@Component({
-  selector: &#x27;app-onbording-premieres&#x27;,
+@Directive({
+  selector: &#x27;[appFormFocus]&#x27;,
   standalone: true,
-  imports: [CarouselComponent],
-  templateUrl: &#x27;./onbording-premieres.component.html&#x27;,
-  styleUrl: &#x27;./onbording-premieres.component.scss&#x27;,
 })
-export class OnbordingPremieresComponent implements OnInit {
-  posters &#x3D; signal&lt;Trending[]&gt;([]);
+export class FormFocusDirective implements OnInit {
+  private originalWidth: string;
+  @Input(&#x27;appFormFocus&#x27;) toggleElement!: &#x60;.${string}&#x60;;
 
   constructor(
-    private serviceTmdb: TheMovieDBPort,
-    private destroyRef: DestroyRef,
-    private router: Router,
-  ) {}
-
-  ngOnInit() {
-    this.__init__();
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {
+    this.originalWidth &#x3D; this.el.nativeElement.style.width;
   }
 
-  __init__() {
-    this.__getTrending();
-  }
-
-  private __getTrending({ page }: { page: number } &#x3D; { page: 1 }): void {
-    this.serviceTmdb
-      .getTrending({ page })
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((movies) &#x3D;&gt; {
-        this.posters.set(movies);
+  ngOnInit(): void {
+    const elementToggled &#x3D; this.el.nativeElement.querySelectorAll(this.toggleElement);
+    if (elementToggled) {
+      elementToggled?.forEach((element: HTMLElement) &#x3D;&gt; {
+        element.classList.add(&#x27;hidden&#x27;);
       });
+    }
   }
 
-  onPoster(poster: ItemsCarousel): void {
-    this.router.navigate([&#x27;poster-detail&#x27;, poster.media_type, poster.id]);
+  @HostListener(&#x27;focusin&#x27;, [&#x27;$event&#x27;])
+  onFocusIn(event: FocusEvent): void {
+    // console.log(&#x27;focusin&#x27;);
+
+    const { tagName } &#x3D; event.target as HTMLInputElement;
+
+    if (tagName &#x3D;&#x3D;&#x3D; &#x27;INPUT&#x27;) {
+      this.renderer.setStyle(this.el.nativeElement, &#x27;width&#x27;, &#x27;100%&#x27;);
+      const elementsToggled &#x3D; this.el.nativeElement.querySelectorAll(this.toggleElement);
+      if (elementsToggled) {
+        elementsToggled?.forEach((element: HTMLElement) &#x3D;&gt; {
+          element.classList.remove(&#x27;hidden&#x27;);
+        });
+      }
+    }
   }
 
-  onMorePremieres(morePremieres: boolean): void {
-    console.log(&#x27;onMorePremieres&#x27;, morePremieres);
+  @HostListener(&#x27;focusout&#x27;, [&#x27;$event&#x27;])
+  onFocusOut(event: FocusEvent): void {
+    const { tagName } &#x3D; event.target as HTMLInputElement;
 
-    if (!morePremieres) return;
+    if (tagName &#x3D;&#x3D;&#x3D; &#x27;INPUT&#x27;) {
+      const relatedTarget &#x3D; event.relatedTarget as HTMLElement;
+      if (relatedTarget &amp;&amp; this.el.nativeElement.contains(relatedTarget)) {
+        return;
+      }
 
-    const lastPage &#x3D; this.posters().reduce((max, premier) &#x3D;&gt;
-      max.page &gt; premier.page ? max : premier,
-    );
-    this.__getTrending({ page: lastPage.page + 1 });
+      const elementsToggled &#x3D; this.el.nativeElement.querySelectorAll(this.toggleElement);
+      if (elementsToggled) {
+        setTimeout(() &#x3D;&gt; {
+          this.renderer.setStyle(this.el.nativeElement, &#x27;width&#x27;, this.originalWidth);
+          elementsToggled?.forEach((element: HTMLElement) &#x3D;&gt; {
+            element.classList.add(&#x27;hidden&#x27;);
+          });
+        }, 200);
+      }
+    }
   }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-wrapper&quot;&gt;
-  &lt;h1 class&#x3D;&quot;text-primary-ui font-bold text-4xl mt-12&quot;&gt;Premieres and announcements&lt;/h1&gt;
-
-  &lt;article class&#x3D;&quot;pt-8 pb-20 block animate-fade-left&quot;&gt;
-    &lt;ui-carousel
-      [items]&#x3D;&quot;posters()&quot;
-      key&#x3D;&quot;onbording-premieres&quot;
-      (outPoster)&#x3D;&quot;onPoster($event)&quot;
-      (outReachEnd)&#x3D;&quot;onMorePremieres($event)&quot;
-    &gt;&lt;/ui-carousel&gt;
-  &lt;/article&gt;
-&lt;/div&gt;
-</code></pre>
-    </div>
-
-
-    <div class="tab-pane fade " id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-wrapper">  <h1 class="text-primary-ui font-bold text-4xl mt-12">Premieres and announcements</h1>  <article class="pt-8 pb-20 block animate-fade-left">    <ui-carousel      [items]="posters()"      key="onbording-premieres"      (outPoster)="onPoster($event)"      (outReachEnd)="onMorePremieres($event)"    ></ui-carousel>  </article></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
-    var DIRECTIVES = [{'name': 'FormFocusDirective', 'selector': '[appFormFocus]'}];
-    var ACTUAL_COMPONENT = {'name': 'OnbordingPremieresComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
 
 
 
@@ -789,8 +722,8 @@ export class OnbordingPremieresComponent implements OnInit {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'OnbordingPremieresComponent.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'FormFocusDirective.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -1,11 +1,11 @@
-import { DecimalPipe, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
+import { DecimalPipe, NgOptimizedImage, NgStyle } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, Input, signal } from '@angular/core';
 import { blurFade } from '../../animations/blur-fade.animation';
 
 @Component({
   selector: 'ui-card-poster',
   standalone: true,
-  imports: [DecimalPipe, NgOptimizedImage],
+  imports: [DecimalPipe, NgOptimizedImage, NgStyle],
   templateUrl: './card-poster.component.html',
   styleUrl: './card-poster.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +16,7 @@ export class CardPosterComponent {
   @Input({ required: true }) description!: string;
   @Input({ required: true }) img!: string;
   @Input({ required: true }) vote!: string | number;
+  viewTransitionId = input<string>('');
 
   loadedPoster = signal<boolean>(false);
 }

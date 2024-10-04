@@ -333,7 +333,7 @@ export default class FailedServiceComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;section class&#x3D;&quot;flex flex-col gap-4 items-center justify-center w-full h-[80vh]&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;section class&#x3D;&quot;flex flex-col gap-8 items-center justify-center w-full h-[80vh]&quot;&gt;
   &lt;img
     ngSrc&#x3D;&quot;imgs/union-icon.svg&quot;
     alt&#x3D;&quot;Union Icon&quot;
@@ -376,9 +376,9 @@ export default class FailedServiceComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><section class="flex flex-col gap-4 items-center justify-center w-full h-[80vh]">  <img    ngSrc="imgs/union-icon.svg"    alt="Union Icon"    class="aspect-square mx-auto w-[30rem]"    width="280"    height="120"  />  <h1 class="font-bold text-white text-4xl">Oops....</h1>  <p class="text-white text-xl">Something went wrong.</p>  <ui-button text="Refresh" (handleClick)="refreshPage()" /></section></div>'
+        var COMPONENT_TEMPLATE = '<div><section class="flex flex-col gap-8 items-center justify-center w-full h-[80vh]">  <img    ngSrc="imgs/union-icon.svg"    alt="Union Icon"    class="aspect-square mx-auto w-[30rem]"    width="280"    height="120"  />  <h1 class="font-bold text-white text-4xl">Oops....</h1>  <p class="text-white text-xl">Something went wrong.</p>  <ui-button text="Refresh" (handleClick)="refreshPage()" /></section></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
-    var DIRECTIVES = [];
+    var DIRECTIVES = [{'name': 'FormFocusDirective', 'selector': '[appFormFocus]'}];
     var ACTUAL_COMPONENT = {'name': 'FailedServiceComponent'};
 </script>
 <script src="../js/tree.js"></script>

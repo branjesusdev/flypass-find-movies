@@ -16,20 +16,21 @@ import { FormsModule } from '@angular/forms';
 import { MediaType, SearchMulti } from '@shared/core/domain/entity';
 import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
 import { Router, RouterLink } from '@angular/router';
-import { ButtonComponent, InputComponent } from '@lib-transversal';
+import { ButtonComponent, InputComponent, SnippetComponent } from '@lib-transversal';
 import { FormFocusDirective } from '@shared/directives/form-focus.directive';
 
 @Component({
   selector: 'app-main-header',
   standalone: true,
   imports: [
-    NgOptimizedImage,
     CommonModule,
+    NgOptimizedImage,
     RouterLink,
     FormsModule,
     InputComponent,
     ButtonComponent,
     FormFocusDirective,
+    SnippetComponent,
   ],
   templateUrl: './main-header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

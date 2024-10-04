@@ -162,7 +162,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Abstract</span>
-                                <a href="#searchMovies" >searchMovies</a>
+                                <a href="#searchByFilter" >searchByFilter</a>
                             </li>
                         </ul>
                     </td>
@@ -529,18 +529,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="searchMovies"></a>
+                    <a name="searchByFilter"></a>
                     <span class="name">
                             <span class="modifier">Abstract</span>
-                        <span ><b>searchMovies</b></span>
-                        <a href="#searchMovies"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>searchByFilter</b></span>
+                        <a href="#searchByFilter"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>searchMovies(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>searchByFilter(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -621,7 +621,7 @@ export abstract class TheMovieDBPort {
   abstract getTrending({ page }: { page: number }): Observable&lt;Trending[]&gt;;
   abstract getMovieDetails(movieId: number): Observable&lt;DetailPosterMovie&gt;;
   abstract getSeriesDetails(seriesId: number): Observable&lt;DetailPosterSeries&gt;;
-  abstract searchMovies(query: string): Observable&lt;SearchMulti[]&gt;;
+  abstract searchByFilter(query: string): Observable&lt;SearchMulti[]&gt;;
 }
 </code></pre>
     </div>

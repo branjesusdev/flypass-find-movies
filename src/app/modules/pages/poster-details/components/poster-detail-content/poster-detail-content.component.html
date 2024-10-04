@@ -84,6 +84,7 @@
       height="1170"
       [@blurFade]="loadedPoster() ? 'loaded' : 'loading'"
       (load)="loadedPoster.set(true)"
+      [style.view-transition-name]="'card-poster-' + posterContent.id"
     />
   </div>
 </article>

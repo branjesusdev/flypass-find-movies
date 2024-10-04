@@ -13,6 +13,7 @@
         priority
         [@blurFade]="loadedPoster() ? 'loaded' : 'loading'"
         (load)="loadedPoster.set(true)"
+        [style.view-transition-name]="'card-poster-' + viewTransitionId"
       />
       <div
         class="transition-all flex flex-col w-full gap-3 absolute bottom-0 left-0 px-4 py-2 group-hover:p-4 rounded-t-xl bg-[rgba(0,0,0,0.50)] group-hover:bg-[rgba(0,0,0,0.80)] z-10"

@@ -155,7 +155,7 @@
                                 <a href="#obserberResponse" >obserberResponse</a>
                             </li>
                             <li>
-                                <a href="#searchMovies" >searchMovies</a>
+                                <a href="#searchByFilter" >searchByFilter</a>
                             </li>
                         </ul>
                     </td>
@@ -180,7 +180,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -255,8 +255,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -321,8 +321,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -387,8 +387,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="225"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:225</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:218</a></div>
                         </td>
                     </tr>
 
@@ -454,8 +454,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="195"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:195</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:188</a></div>
                         </td>
                     </tr>
 
@@ -521,8 +521,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:55</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -589,8 +589,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -648,24 +648,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="searchMovies"></a>
+                    <a name="searchByFilter"></a>
                     <span class="name">
-                        <span ><b>searchMovies</b></span>
-                        <a href="#searchMovies"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>searchByFilter</b></span>
+                        <a href="#searchByFilter"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>searchMovies(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>searchByFilter(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="158"
-                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:158</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts:157</a></div>
                         </td>
                     </tr>
 
@@ -723,7 +723,6 @@ import {
   catchError,
   defaultIfEmpty,
   distinctUntilChanged,
-  filter,
   map,
   Observable,
   of,
@@ -874,20 +873,14 @@ export class HttpTmdbAdapterService implements TheMovieDBPort {
     );
   }
 
-  searchMovies(query: string): Observable&lt;SearchMulti[]&gt; {
+  searchByFilter(query: string): Observable&lt;SearchMulti[]&gt; {
     const params &#x3D; new HttpParams().set(&#x27;query&#x27;, query).set(&#x27;include_adult&#x27;, &#x27;false&#x27;);
+
     const url &#x3D; PATHS.search;
 
     return this.http.get&lt;OutSearchMulti&gt;(url, { params }).pipe(
       distinctUntilChanged(),
-      shareReplay(1),
-      filter(
-        (outSearchMulti) &#x3D;&gt;
-          outSearchMulti.results.length &gt; 0 &amp;&amp;
-          outSearchMulti.results.some(
-            (result) &#x3D;&gt; result.media_type &#x3D;&#x3D;&#x3D; MediaType.Movie || result.media_type &#x3D;&#x3D;&#x3D; MediaType.Tv,
-          ),
-      ),
+      shareReplay(1), // shared multiple subscriptions to the same observable in cache
       map((outSearchMulti) &#x3D;&gt;
         outSearchMulti.results.map(
           (outSearchMulti) &#x3D;&gt;

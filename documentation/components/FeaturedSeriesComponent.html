@@ -122,6 +122,12 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -138,6 +144,12 @@
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../miscellaneous/variables.html#SeriesStore" target="_self" >SeriesStore</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -195,6 +207,14 @@
                             <li>
                                 <a href="#posters" >posters</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#seriesStore" >seriesStore</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -208,40 +228,21 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#__getFeaturedSeries" >__getFeaturedSeries</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
                                 <a href="#onPoster" >onPoster</a>
                             </li>
                             <li>
                                 <a href="#onReachEnd" >onReachEnd</a>
                             </li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Inputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
                             <li>
-                                <a href="#featuredSeries" >featuredSeries</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#moreSeries" >moreSeries</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#seriesCarousel" >seriesCarousel</a>
                             </li>
                         </ul>
                     </td>
@@ -249,20 +250,8 @@
 
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#featuredSeries" >featuredSeries</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
+
+
         </tbody>
     </table>
 </section>
@@ -273,102 +262,21 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: Router)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:18</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                    <code>Router</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
 
-    <section data-compodoc="block-inputs">
-    <h3 id="inputs">Inputs</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="featuredSeries"></a>
-                        <b>featuredSeries</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#FeaturedSerie" target="_self" >FeaturedSerie[]</a></code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Required : </i>&nbsp;<b>true</b>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:14</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
-    <section data-compodoc="block-outputs">
-    <h3 id="outputs">Outputs</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="moreSeries"></a>
-                        <b>moreSeries</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter</code>
 
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:32</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
 
 
     <section data-compodoc="block-methods">
@@ -376,6 +284,115 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="__getFeaturedSeries"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>__getFeaturedSeries</b></span>
+                        <a href="#__getFeaturedSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>__getFeaturedSeries(undefined: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>{ page: 1 }</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -396,8 +413,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -463,8 +480,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -510,6 +527,45 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="seriesCarousel"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>seriesCarousel</b></span>
+                        <a href="#seriesCarousel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>seriesCarousel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ItemsCarousel[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
     <section data-compodoc="block-properties">
     
@@ -534,7 +590,59 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="seriesStore"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>seriesStore</b></span>
+                        <a href="#seriesStore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SeriesStore)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -543,108 +651,60 @@
     </table>
 </section>
 
-    <section data-compodoc="block-accessors">
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="featuredSeries"></a>
-                        <span class="name"><b>featuredSeries</b><a href="#featuredSeries"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>featuredSeries(series: <a href="../undefineds/FeaturedSerie.html" target="_self">FeaturedSerie[]</a>)</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts:14</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                        <td>Type</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                            <td>series</td>
-                                                    
-                                                            <td>
-                                                                            <code><a href="../miscellaneous/typealiases.html#FeaturedSerie" target="_self" >FeaturedSerie[]</a></code>
-                                                            </td>
-                                                    
-                                                        <td>
-                                                                No
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-</section>
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect, EventEmitter, Input, Output, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect, inject, OnInit, signal } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { CarouselComponent, ItemsCarousel } from &#x27;@lib-transversal&#x27;;
-import { FeaturedSerie } from &#x27;@shared/core/domain/entity&#x27;;
+import { SeriesStore } from &#x27;@pages/onboarding/store/series.store&#x27;;
 
 @Component({
   selector: &#x27;app-featured-series&#x27;,
   templateUrl: &#x27;./featured-series.component.html&#x27;,
   standalone: true,
   imports: [CarouselComponent],
+  providers: [SeriesStore],
   styleUrl: &#x27;./featured-series.component.scss&#x27;,
 })
-export class FeaturedSeriesComponent {
-  @Input({ required: true }) set featuredSeries(series: FeaturedSerie[]) {
-    const seriesMap &#x3D; series.map(
-      (serie) &#x3D;&gt;
-        ({
-          id: serie.id_serie,
-          title: serie.title,
-          poster_path: serie.poster_path,
-          vote_average: serie.vote_average,
-          overview: serie.overview,
-          media_type: serie.media_type,
-        }) as ItemsCarousel,
-    );
-
-    this.posters.set(seriesMap);
-  }
-
+export class FeaturedSeriesComponent implements OnInit {
   posters &#x3D; signal&lt;ItemsCarousel[]&gt;([]);
 
-  @Output() moreSeries &#x3D; new EventEmitter&lt;boolean&gt;();
+  private router &#x3D; inject(Router);
+  private seriesStore &#x3D; inject(SeriesStore);
 
-  constructor(private router: Router) {}
+  constructor() {
+    effect(
+      () &#x3D;&gt; {
+        this.posters.set(this.seriesCarousel());
+      },
+      { allowSignalWrites: true },
+    );
+  }
+
+  ngOnInit() {
+    this.__getFeaturedSeries();
+  }
+
+  private __getFeaturedSeries({ page &#x3D; 1 }: { page: number } &#x3D; { page: 1 }): void {
+    this.seriesStore.loadPagesSeries(page);
+    this.posters.set(this.seriesCarousel());
+  }
+
+  private seriesCarousel(): ItemsCarousel[] {
+    return this.seriesStore.series().map(
+      ({ id_serie, title, poster_path, vote_average, overview, media_type }) &#x3D;&gt;
+        ({
+          id: id_serie,
+          title,
+          poster_path,
+          vote_average,
+          overview,
+          media_type,
+        }) as ItemsCarousel,
+    );
+  }
 
   onPoster(poster: ItemsCarousel): void {
     this.router.navigate([&#x27;poster-detail&#x27;, poster.media_type, poster.id]);
@@ -653,7 +713,10 @@ export class FeaturedSeriesComponent {
   onReachEnd(reachEnd: boolean): void {
     if (!reachEnd) return;
 
-    this.moreSeries.emit(true);
+    const pageLast &#x3D; this.seriesStore
+      .series()
+      .reduce((max, movie) &#x3D;&gt; (movie.page &gt; max ? movie.page : max), 0);
+    this.__getFeaturedSeries({ page: pageLast + 1 });
   }
 }
 </code></pre>
@@ -699,7 +762,7 @@ export class FeaturedSeriesComponent {
 <script>
         var COMPONENT_TEMPLATE = '<div><div>  <ui-carousel    [items]="posters()"    key="featured-series"    (outPoster)="onPoster($event)"    (outReachEnd)="onReachEnd($event)"  ></ui-carousel></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
-    var DIRECTIVES = [];
+    var DIRECTIVES = [{'name': 'FormFocusDirective', 'selector': '[appFormFocus]'}];
     var ACTUAL_COMPONENT = {'name': 'FeaturedSeriesComponent'};
 </script>
 <script src="../js/tree.js"></script>

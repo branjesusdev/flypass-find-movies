@@ -186,6 +186,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#loadedPoster" >loadedPoster</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
                 <tr>
@@ -234,7 +248,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/modules/pages/poster-details/components/poster-detail-content/poster-detail-content.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/modules/pages/poster-details/components/poster-detail-content/poster-detail-content.component.ts:17</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -244,24 +258,58 @@
 
 
 
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadedPoster"></a>
+                    <span class="name">
+                        <span ><b>loadedPoster</b></span>
+                        <a href="#loadedPoster"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/modules/pages/poster-details/components/poster-detail-content/poster-detail-content.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule, NgOptimizedImage } from &#x27;@angular/common&#x27;;
-import { Component, Input } from &#x27;@angular/core&#x27;;
-import { BadgeComponent } from &#x27;@lib-transversal&#x27;;
+import { Component, Input, signal } from &#x27;@angular/core&#x27;;
+import { BadgeComponent, blurFade } from &#x27;@lib-transversal&#x27;;
 import { DetailPoster } from &#x27;@shared/core/domain/entity&#x27;;
 
 @Component({
   selector: &#x27;app-poster-detail-content&#x27;,
   standalone: true,
   imports: [NgOptimizedImage, CommonModule, BadgeComponent],
+  animations: [blurFade],
   templateUrl: &#x27;./poster-detail-content.component.html&#x27;,
   styleUrl: &#x27;./poster-detail-content.component.scss&#x27;,
 })
 export class PosterDetailContentComponent {
+  loadedPoster &#x3D; signal&lt;boolean&gt;(false);
+
   @Input({ required: true }) posterContent!: DetailPoster;
 }
 </code></pre>
@@ -272,7 +320,7 @@ export class PosterDetailContentComponent {
   class&#x3D;&quot;relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden&quot;
 &gt;
   &lt;div
-    class&#x3D;&quot;wrap-poster-info relative z-20 flex flex-col gap-4 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px]&quot;
+    class&#x3D;&quot;wrap-poster-info relative flex flex-col gap-5 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px] mb-6 z-40&quot;
   &gt;
     &lt;div
       class&#x3D;&quot;relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem&quot;
@@ -286,13 +334,13 @@ export class PosterDetailContentComponent {
       &lt;/p&gt;
     &lt;/div&gt;
 
-    &lt;div class&#x3D;&quot;flex gap-3 mt-5&quot;&gt;
+    &lt;div class&#x3D;&quot;flex gap-4 mt-5&quot;&gt;
       @for (genre of posterContent.genres; track $index) {
         &lt;ui-badge [text]&#x3D;&quot;genre&quot; /&gt;
       }
     &lt;/div&gt;
 
-    &lt;p class&#x3D;&quot;text-balance font-body leading-7&quot;&gt;
+    &lt;p class&#x3D;&quot;text-balance font-body text-xl&quot;&gt;
       {{ posterContent.overview }}
     &lt;/p&gt;
 
@@ -352,6 +400,8 @@ export class PosterDetailContentComponent {
       alt&#x3D;&quot;title&quot;
       width&#x3D;&quot;780&quot;
       height&#x3D;&quot;1170&quot;
+      [@blurFade]&#x3D;&quot;loadedPoster() ? &#x27;loaded&#x27; : &#x27;loading&#x27;&quot;
+      (load)&#x3D;&quot;loadedPoster.set(true)&quot;
     /&gt;
   &lt;/div&gt;
 &lt;/article&gt;
@@ -384,9 +434,9 @@ export class PosterDetailContentComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><article  class="relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden">  <div    class="wrap-poster-info relative z-20 flex flex-col gap-4 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px]"  >    <div      class="relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem"    >      <div class="bg-primary-ui p-3 relative">        <p class="text-black text-base font-semiBold z-10 relative">Awards & nominations</p>        <div class="element"></div>      </div>      <p class="text-white font-semiBold text-base px-4 ml-8">        Won 2 Oscars 130 wins & 136 nominations total      </p>    </div>    <div class="flex gap-3 mt-5">      @for (genre of posterContent.genres; track $index) {        <ui-badge [text]="genre" />      }    </div>    <p class="text-balance font-body leading-7">      {{ posterContent.overview }}    </p>    @if (posterContent.production_countries.length > 0) {      <p>        <span class="subtitle">Production countries:</span>        @for (item of posterContent.production_countries; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.production_companies.length > 0) {      <p>        <span class="subtitle">Production companies:</span>        @for (item of posterContent.production_companies; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.spoken_languages.length > 0) {      <p>        <span class="subtitle">Spoken languages:</span>        @for (item of posterContent.spoken_languages; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.tagline) {      <p><span class="subtitle">Tagline:</span> {{ posterContent.tagline }}</p>    }    @if (posterContent.release_date) {      <p>        <span class="subtitle">Release date:</span>        {{ posterContent.release_date | date: \'mm dd, yyyy\' }}      </p>    }  </div>  <div class="hidden md:flex flex-1 h-0 pb-[40rem] z-10 none">    <div      [style.backgroundImage]="\'url(\' + posterContent.poster_path + \')\'"      class="block bg-no-repeat bg-center lg:bg-left 2xl:bg-[12rem] w-full h-[40rem] absolute inset-0 pointer-events-none drop-mask-image"    ></div>  </div>  <div    class="md:hidden rounded overflow-hidden w-full h-[32rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem] animate-fade-right"  >    <img      class="object-cover object-center aspect-[2/3] w-full h-[32rem]"      ngSrc="{{ posterContent.poster_path }}"      decoding="async"      alt="title"      width="780"      height="1170"    />  </div></article></div>'
+        var COMPONENT_TEMPLATE = '<div><article  class="relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden">  <div    class="wrap-poster-info relative flex flex-col gap-5 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px] mb-6 z-40"  >    <div      class="relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem"    >      <div class="bg-primary-ui p-3 relative">        <p class="text-black text-base font-semiBold z-10 relative">Awards & nominations</p>        <div class="element"></div>      </div>      <p class="text-white font-semiBold text-base px-4 ml-8">        Won 2 Oscars 130 wins & 136 nominations total      </p>    </div>    <div class="flex gap-4 mt-5">      @for (genre of posterContent.genres; track $index) {        <ui-badge [text]="genre" />      }    </div>    <p class="text-balance font-body text-xl">      {{ posterContent.overview }}    </p>    @if (posterContent.production_countries.length > 0) {      <p>        <span class="subtitle">Production countries:</span>        @for (item of posterContent.production_countries; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.production_companies.length > 0) {      <p>        <span class="subtitle">Production companies:</span>        @for (item of posterContent.production_companies; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.spoken_languages.length > 0) {      <p>        <span class="subtitle">Spoken languages:</span>        @for (item of posterContent.spoken_languages; track $index) {          {{ item }},        }      </p>    }    @if (posterContent.tagline) {      <p><span class="subtitle">Tagline:</span> {{ posterContent.tagline }}</p>    }    @if (posterContent.release_date) {      <p>        <span class="subtitle">Release date:</span>        {{ posterContent.release_date | date: \'mm dd, yyyy\' }}      </p>    }  </div>  <div class="hidden md:flex flex-1 h-0 pb-[40rem] z-10 none">    <div      [style.backgroundImage]="\'url(\' + posterContent.poster_path + \')\'"      class="block bg-no-repeat bg-center lg:bg-left 2xl:bg-[12rem] w-full h-[40rem] absolute inset-0 pointer-events-none drop-mask-image"    ></div>  </div>  <div    class="md:hidden rounded overflow-hidden w-full h-[32rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem] animate-fade-right"  >    <img      class="object-cover object-center aspect-[2/3] w-full h-[32rem]"      ngSrc="{{ posterContent.poster_path }}"      decoding="async"      alt="title"      width="780"      height="1170"      [@blurFade]="loadedPoster() ? \'loaded\' : \'loading\'"      (load)="loadedPoster.set(true)"    />  </div></article></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'FailedServiceComponent', 'selector': 'app-failed-service'},{'name': 'FeaturedMoviesComponent', 'selector': 'app-featured-movies'},{'name': 'FeaturedSeriesComponent', 'selector': 'app-featured-series'},{'name': 'MainHeaderComponent', 'selector': 'app-main-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'OnbordingFeaturedComponent', 'selector': 'app-onbording-featured'},{'name': 'OnbordingMasterComponent', 'selector': 'app-onbording-master'},{'name': 'OnbordingPremieresComponent', 'selector': 'app-onbording-premieres'},{'name': 'PosterDetailContentComponent', 'selector': 'app-poster-detail-content'},{'name': 'PosterDetailHeaderComponent', 'selector': 'app-poster-detail-header'},{'name': 'PosterDetailMasterComponent', 'selector': 'app-poster-detail-master'}];
-    var DIRECTIVES = [];
+    var DIRECTIVES = [{'name': 'FormFocusDirective', 'selector': '[appFormFocus]'}];
     var ACTUAL_COMPONENT = {'name': 'PosterDetailContentComponent'};
 </script>
 <script src="../js/tree.js"></script>

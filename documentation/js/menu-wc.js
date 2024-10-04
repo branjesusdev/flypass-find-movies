@@ -91,6 +91,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                         </ul>
                     </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#directives-links"' :
+                                'data-bs-target="#xs-directives-links"' }>
+                                <span class="icon ion-md-code-working"></span>
+                                <span>Directives</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="directives-links"' : 'id="xs-directives-links"' }>
+                                <li class="link">
+                                    <a href="directives/FormFocusDirective.html" data-type="entity-link" >FormFocusDirective</a>
+                                </li>
+                            </ul>
+                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#classes-links"' :
                             'data-bs-target="#xs-classes-links"' }>
@@ -175,6 +188,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/LoggerStrategy.html" data-type="entity-link" >LoggerStrategy</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/MoviesState.html" data-type="entity-link" >MoviesState</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Network.html" data-type="entity-link" >Network</a>
                             </li>
                             <li class="link">
@@ -218,6 +234,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/Season.html" data-type="entity-link" >Season</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SeriesState.html" data-type="entity-link" >SeriesState</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SpokenLanguage.html" data-type="entity-link" >SpokenLanguage</a>
