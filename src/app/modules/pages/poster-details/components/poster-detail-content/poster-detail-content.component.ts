@@ -5,7 +5,6 @@ import { DetailPoster } from '@shared/core/domain/entity';
 
 @Component({
   selector: 'app-poster-detail-content',
-  standalone: true,
   imports: [NgOptimizedImage, CommonModule, BadgeComponent],
   animations: [blurFade],
   templateUrl: './poster-detail-content.component.html',

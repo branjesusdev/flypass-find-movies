@@ -5,7 +5,6 @@ import { ButtonComponent } from '@lib-transversal';
 
 @Component({
   selector: 'app-failed-service',
-  standalone: true,
   imports: [NgOptimizedImage, ButtonComponent],
   templateUrl: './failed-service.component.html',
   styleUrl: './failed-service.component.scss',

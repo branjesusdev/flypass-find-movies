@@ -5,7 +5,6 @@ import { MoviesStore } from '@pages/onboarding/store/movies.store';
 
 @Component({
   selector: 'app-featured-movies',
-  standalone: true,
   imports: [CarouselComponent],
   providers: [MoviesStore],
   templateUrl: './featured-movies.component.html',

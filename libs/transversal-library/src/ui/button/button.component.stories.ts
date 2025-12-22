@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { fn, userEvent, within, expect } from '@storybook/test';
+import { fn, userEvent, within, expect } from 'storybook/test';
 import { ButtonComponent } from './button.component';
 
 const meta: Meta<ButtonComponent> = {

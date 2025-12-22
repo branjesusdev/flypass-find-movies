@@ -13,6 +13,7 @@ import { By } from '@angular/platform-browser';
       </div>
     </form>
   `,
+  standalone: false,
 })
 class TestHostComponent {}
 

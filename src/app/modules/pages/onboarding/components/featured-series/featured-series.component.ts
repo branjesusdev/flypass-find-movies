@@ -6,7 +6,6 @@ import { SeriesStore } from '@pages/onboarding/store/series.store';
 @Component({
   selector: 'app-featured-series',
   templateUrl: './featured-series.component.html',
-  standalone: true,
   imports: [CarouselComponent],
   providers: [SeriesStore],
   styleUrl: './featured-series.component.scss',

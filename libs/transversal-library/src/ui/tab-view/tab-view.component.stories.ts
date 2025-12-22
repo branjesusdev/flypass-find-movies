@@ -2,7 +2,7 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { TabViewComponent } from './tab-view.component';
 import { Component } from '@angular/core';
 import { TabPanelComponent } from './tab-panel/tab-panel.component';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { CommonModule } from '@angular/common';
 

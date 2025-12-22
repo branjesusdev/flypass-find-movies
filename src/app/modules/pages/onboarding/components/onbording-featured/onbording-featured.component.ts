@@ -13,7 +13,6 @@ enum TabKey {
 
 @Component({
   selector: 'app-onbording-featured',
-  standalone: true,
   imports: [
     FeaturedSeriesComponent,
     FeaturedMoviesComponent,

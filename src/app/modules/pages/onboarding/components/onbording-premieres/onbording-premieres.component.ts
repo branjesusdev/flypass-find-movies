@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-onbording-premieres',
-  standalone: true,
   imports: [CarouselComponent],
   templateUrl: './onbording-premieres.component.html',
   styleUrl: './onbording-premieres.component.scss',

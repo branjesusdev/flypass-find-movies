@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { SnippetComponent } from './snippet.component';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 const meta: Meta<SnippetComponent> = {
   title: 'Components/Snippet',

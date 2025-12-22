@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-tab-panel',
-  standalone: true,
   imports: [CommonModule],
   template: `
     @if (active) {

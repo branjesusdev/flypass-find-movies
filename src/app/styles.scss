@@ -1,13 +1,12 @@
+@use './themes/atoms/_base';
+@use './themes/atoms/_colors';
+@use './themes/atoms/_typography';
+@use './themes/atoms/_inputs';
+@use './themes/atoms/_scrollbar';
+@use './themes/atoms/_button';
+
+@use './themes/molecules/_tabs';
+@use './themes/molecules/_utilities';
+@use './themes/molecules/_animations';
+
 @tailwind components;
-
-@import 'atoms/_base';
-@import 'atoms/_colors';
-@import 'atoms/_typography';
-@import 'atoms/_inputs';
-@import 'atoms/_scrollbar';
-@import 'atoms/_badge';
-@import 'atoms/_button';
-
-@import 'molecules/_tabs';
-@import 'molecules/_utilities';
-@import 'molecules/_animations';

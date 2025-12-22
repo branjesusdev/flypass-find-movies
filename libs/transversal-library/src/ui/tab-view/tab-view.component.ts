@@ -9,12 +9,10 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { TabPanelComponent } from './tab-panel/tab-panel.component';
-import { CarouselComponent } from '../carousel/carousel.component';
 
 @Component({
   selector: 'ui-tab-view',
-  standalone: true,
-  imports: [CommonModule, TabPanelComponent, CarouselComponent],
+  imports: [CommonModule],
   templateUrl: './tab-view.component.html',
   styleUrl: './tab-view.component.scss',
 })
