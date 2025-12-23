@@ -461,6 +461,48 @@
       "extends": []
     },
     {
+      "name": "MoviesState",
+      "id": "interface-MoviesState-0d9b179f4bfa78483e9f0390e084561a14b35b0e3be156a09b12042016b9c4187bda4e38b58071aecbb4e0ab6ebbac77baedbffcd7deddde92bbeca989f2ae08",
+      "file": "src/app/modules/pages/onboarding/store/movies.store.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import { computed, inject } from '@angular/core';\nimport { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';\nimport { rxMethod } from '@ngrx/signals/rxjs-interop';\nimport { FeaturedMovie, MediaType } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { catchError, EMPTY, pipe, switchMap, tap } from 'rxjs';\n\ninterface MoviesState {\n  featuredMovies: FeaturedMovie[];\n  state: 'loading' | 'success' | 'error';\n  filter: {\n    page: number;\n    totalPages: number;\n  };\n}\n\nconst initialState: MoviesState = {\n  featuredMovies: [],\n  state: 'loading',\n  filter: {\n    page: 1,\n    totalPages: 20,\n  },\n};\n\nexport const MoviesStore = signalStore(\n  withState(initialState),\n  withComputed(({ featuredMovies }) => ({\n    movies: computed(() => featuredMovies()),\n    spellMovies: computed(() =>\n      featuredMovies().filter((movie) => movie.media_type === MediaType.Movie),\n    ),\n    hasMovies: computed(() => featuredMovies().length > 0),\n    hasMoreMovies: computed(() => featuredMovies().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesMovies: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedMovies({ page })\n            .pipe(tap((movies) => patchState(store, { featuredMovies: movies, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n);\n",
+      "properties": [
+        {
+          "name": "featuredMovies",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "FeaturedMovie[]",
+          "optional": false,
+          "description": "",
+          "line": 9
+        },
+        {
+          "name": "filter",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "literal type",
+          "optional": false,
+          "description": "",
+          "line": 11
+        },
+        {
+          "name": "state",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"loading\" | \"success\" | \"error\"",
+          "optional": false,
+          "description": "",
+          "line": 10
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
+    },
+    {
       "name": "Network",
       "id": "interface-Network-7514b70cd4065a56673e4fe737bad88556dc303995c26ef9980a7d285dc2e975b6e646e8a02d1ceab954ac642b20ef12adafc8a62f278c2109ad2afb8f8c404c",
       "file": "src/app/modules/shared/command/adapters/response/out-serie-detail.ts",
@@ -2129,6 +2171,48 @@
       "extends": []
     },
     {
+      "name": "SeriesState",
+      "id": "interface-SeriesState-0c78610d3a425a95053d1a49af66bef8c5a415ea1476ca143addcc911dd175466c1222038140ebf4d7289ad5ed90af927186ba4342a2459df1cbbb761b60bdd1",
+      "file": "src/app/modules/pages/onboarding/store/series.store.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import { computed, inject } from '@angular/core';\nimport { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';\nimport { rxMethod } from '@ngrx/signals/rxjs-interop';\n\nimport { FeaturedSerie, MediaType } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { catchError, EMPTY, pipe, switchMap, tap } from 'rxjs';\n\ninterface SeriesState {\n  featuredSeries: FeaturedSerie[];\n  state: 'loading' | 'success' | 'error';\n  filter: {\n    page: number;\n    totalPages: number;\n  };\n}\n\nconst initialState: SeriesState = {\n  featuredSeries: [],\n  state: 'loading',\n  filter: {\n    page: 1,\n    totalPages: 20,\n  },\n};\n\nexport const SeriesStore = signalStore(\n  withState(initialState),\n  withComputed(({ featuredSeries }) => ({\n    series: computed(() => featuredSeries()),\n    spellSeries: computed(() =>\n      featuredSeries().filter((serie) => serie.media_type === MediaType.Tv),\n    ),\n    hasSeries: computed(() => featuredSeries().length > 0),\n    hasMoreSeries: computed(() => featuredSeries().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesSeries: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedSeries({ page })\n            .pipe(tap((series) => patchState(store, { featuredSeries: series, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n);\n",
+      "properties": [
+        {
+          "name": "featuredSeries",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "FeaturedSerie[]",
+          "optional": false,
+          "description": "",
+          "line": 10
+        },
+        {
+          "name": "filter",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "literal type",
+          "optional": false,
+          "description": "",
+          "line": 12
+        },
+        {
+          "name": "state",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"loading\" | \"success\" | \"error\"",
+          "optional": false,
+          "description": "",
+          "line": 11
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
+    },
+    {
       "name": "SpokenLanguage",
       "id": "interface-SpokenLanguage-2ae501a6e1d41535bdc24a43da0663d7f2742719d8ddc63f1f9083885bcc6f2be87f3e23ccb41c432cf229910ebe24fbfec79f5a8ef251580b7e7a45e47dde06",
       "file": "src/app/modules/shared/command/adapters/response/out-movie-detail.ts",
@@ -2610,9 +2694,32 @@
     },
     {
       "name": "HttpTmdbAdapterService",
-      "id": "injectable-HttpTmdbAdapterService-a574d62c9407f3cd8dbb9061687ca9652daceedbd8d9049f0a05ca871bb29c2b6de810675760e15ec507b4eb36a56ce2bc82a6a4b6ef8aab42e1bb51896e7677",
+      "id": "injectable-HttpTmdbAdapterService-176754a491e284d4a92229b2ece22c1653c99ab6ed7ed852228313ac0687ab789f2b711b6b6f11be85136f7c11f690622d3ce793f691b90bee8a6748c7d7a256",
       "file": "src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts",
-      "properties": [],
+      "properties": [
+        {
+          "name": "http",
+          "defaultValue": "inject(HttpClient)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 45,
+          "modifierKind": [123]
+        },
+        {
+          "name": "store",
+          "defaultValue": "inject(AplicationStore)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 46,
+          "modifierKind": [123]
+        }
+      ],
       "methods": [
         {
           "name": "getFeaturedMovies",
@@ -2626,7 +2733,7 @@
           "optional": false,
           "returnType": "Observable<FeaturedMovie[]>",
           "typeParameters": [],
-          "line": 88,
+          "line": 86,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2652,7 +2759,7 @@
           "optional": false,
           "returnType": "Observable<FeaturedSerie[]>",
           "typeParameters": [],
-          "line": 123,
+          "line": 121,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2679,7 +2786,7 @@
           "optional": false,
           "returnType": "Observable<DetailPosterMovie>",
           "typeParameters": [],
-          "line": 218,
+          "line": 216,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2707,7 +2814,7 @@
           "optional": false,
           "returnType": "Observable<DetailPosterSeries>",
           "typeParameters": [],
-          "line": 188,
+          "line": 186,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2734,7 +2841,7 @@
           "optional": false,
           "returnType": "Observable<Trending[]>",
           "typeParameters": [],
-          "line": 54,
+          "line": 52,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2761,7 +2868,7 @@
           "optional": false,
           "returnType": "Observable<T[]>",
           "typeParameters": ["T"],
-          "line": 50,
+          "line": 48,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -2790,7 +2897,7 @@
           "optional": false,
           "returnType": "Observable<SearchMulti[]>",
           "typeParameters": [],
-          "line": 157,
+          "line": 155,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2810,48 +2917,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport {\n  catchError,\n  defaultIfEmpty,\n  distinctUntilChanged,\n  map,\n  Observable,\n  of,\n  shareReplay,\n  switchMap,\n  tap,\n  throwError,\n} from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  SearchMulti,\n  Trending,\n  MediaType,\n  DetailPosterMovie,\n  DetailPosterSeries,\n} from '@shared/core/domain/entity';\nimport { AplicationStore } from '@shared/store/aplication.store';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  constructor(\n    private http: HttpClient,\n    private store: AplicationStore<any>,\n  ) {}\n\n  private obserberResponse<T>(object: T[]): Observable<T[]> {\n    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;\n  }\n\n  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {\n    const url = `${PATHS.trending}`;\n    const store = this.store.getStateValue('trending') as Trending[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutTrending>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outTrending) =>\n        outTrending.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n              page: outTrending.page,\n            }) as Trending,\n        ),\n      ),\n      tap((trending) => {\n        this.store.saveState$({ key: 'trending', info: trending as Trending[] });\n      }),\n      switchMap((trending) => {\n        if (store) return of([...store, ...trending]);\n        return of(trending);\n      }),\n    );\n  }\n\n  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n              overview: outMovieDetail.overview,\n              page: outMovieDetails.page,\n            }) as FeaturedMovie,\n        ),\n      ),\n      tap((movies) => {\n        const moviesStore = page == 1 ? movies : [...store, ...movies];\n        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });\n      }),\n      switchMap((movies) => {\n        if (store) return of([...store, ...movies]);\n        return of(movies);\n      }),\n    );\n  }\n\n  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];\n\n    if (store && page == 1) return this.obserberResponse(store);\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n              page: outFeaturedSerie.page,\n            }) as FeaturedSerie,\n        ),\n      ),\n      tap((series) => {\n        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });\n      }),\n      switchMap((series) => {\n        if (store) return of([...store, ...series]);\n        return of(series);\n      }),\n    );\n  }\n\n  searchByFilter(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams().set('query', query).set('include_adult', 'false');\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      distinctUntilChanged(),\n      shareReplay(1), // shared multiple subscriptions to the same observable in cache\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterSeries,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterMovie,\n      ),\n    );\n  }\n}\n",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "http",
-            "type": "HttpClient",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "store",
-            "type": "AplicationStore<any>",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 44,
-        "jsdoctags": [
-          {
-            "name": "http",
-            "type": "HttpClient",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "store",
-            "type": "AplicationStore<any>",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
+      "sourceCode": "import { inject, Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport {\n  catchError,\n  defaultIfEmpty,\n  distinctUntilChanged,\n  map,\n  Observable,\n  of,\n  shareReplay,\n  switchMap,\n  tap,\n  throwError,\n} from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  SearchMulti,\n  Trending,\n  MediaType,\n  DetailPosterMovie,\n  DetailPosterSeries,\n} from '@shared/core/domain/entity';\nimport { AplicationStore } from '@shared/store/aplication.store';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  private http = inject(HttpClient);\n  private store = inject(AplicationStore);\n\n  private obserberResponse<T>(object: T[]): Observable<T[]> {\n    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;\n  }\n\n  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {\n    const url = `${PATHS.trending}`;\n    const store = this.store.getStateValue('trending') as Trending[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutTrending>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outTrending) =>\n        outTrending.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n              page: outTrending.page,\n            }) as Trending,\n        ),\n      ),\n      tap((trending) => {\n        this.store.saveState$({ key: 'trending', info: trending as Trending[] });\n      }),\n      switchMap((trending) => {\n        if (store) return of([...store, ...trending]);\n        return of(trending);\n      }),\n    );\n  }\n\n  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n              overview: outMovieDetail.overview,\n              page: outMovieDetails.page,\n            }) as FeaturedMovie,\n        ),\n      ),\n      tap((movies) => {\n        const moviesStore = page == 1 ? movies : [...store, ...movies];\n        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });\n      }),\n      switchMap((movies) => {\n        if (store) return of([...store, ...movies]);\n        return of(movies);\n      }),\n    );\n  }\n\n  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];\n\n    if (store && page == 1) return this.obserberResponse(store);\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n              page: outFeaturedSerie.page,\n            }) as FeaturedSerie,\n        ),\n      ),\n      tap((series) => {\n        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });\n      }),\n      switchMap((series) => {\n        if (store) return of([...store, ...series]);\n        return of(series);\n      }),\n    );\n  }\n\n  searchByFilter(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams().set('query', query).set('include_adult', 'false');\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      distinctUntilChanged(),\n      shareReplay(1), // shared multiple subscriptions to the same observable in cache\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterSeries,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterMovie,\n      ),\n    );\n  }\n}\n",
       "extends": [],
       "type": "injectable"
     },
@@ -2948,7 +3014,7 @@
   "interceptors": [
     {
       "name": "HttpHeadersInterceptor",
-      "id": "injectable-HttpHeadersInterceptor-9de0f7b7dd3629e19620adb8e1e95d860189961eb014fc0c84d42d46b6c3d2045cf414435a91e79f8ea9c43887a08e8c5f9eb7fed7bc6254daff8cf4447c161b",
+      "id": "injectable-HttpHeadersInterceptor-cc8481cac3097fc1c8fa08fdd8b3451f56457401ee04268edb1f394dffd2bef17bb498bbe309f08f459ef509aa2b478424aad5716ed094ad5f6332a2f24112fb",
       "file": "src/app/modules/shared/interceptors/headers-interceptor.service.ts",
       "properties": [],
       "methods": [
@@ -2971,7 +3037,7 @@
           "optional": false,
           "returnType": "Observable<HttpEvent<any>>",
           "typeParameters": [],
-          "line": 16,
+          "line": 19,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -3000,7 +3066,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from \"@angular/common/http\";\r\nimport { inject, Inject, Injectable } from '@angular/core';\r\nimport { Observable } from \"rxjs\";\r\n\r\n// RESOURCES\r\n\r\nimport { API_KEY_TOKEN } from \"@conf/tokens\";\r\n\r\n@Injectable()\r\nexport class HttpHeadersInterceptor implements HttpInterceptor {\r\n\r\n  constructor(\r\n    @Inject(API_KEY_TOKEN) private apiAccessToken: string\r\n  ) { }\r\n\r\n  intercept(\r\n    req: HttpRequest<any>,\r\n    next: HttpHandler\r\n  ): Observable<HttpEvent<any>> {\r\n\r\n    const headers = req.clone({\r\n      setHeaders: {\r\n        'Content-Type': 'application/json',\r\n        Authorization: `Bearer ${this.apiAccessToken}`\r\n      },\r\n    });\r\n    return next.handle(headers);\r\n\r\n  }\r\n\r\n}\r\n\r\nexport const httpInterceptorProvidersHeaders = [\r\n  {\r\n    provide: HTTP_INTERCEPTORS,\r\n    useClass: HttpHeadersInterceptor,\r\n    multi: true\r\n  }\r\n]\r\n",
+      "sourceCode": "import {\n  HTTP_INTERCEPTORS,\n  HttpEvent,\n  HttpHandler,\n  HttpInterceptor,\n  HttpRequest,\n} from '@angular/common/http';\nimport { Inject, Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\n\n// RESOURCES\n\nimport { API_KEY_TOKEN } from '@conf/tokens';\n\n@Injectable()\nexport class HttpHeadersInterceptor implements HttpInterceptor {\n  constructor(@Inject(API_KEY_TOKEN) private apiAccessToken: string) {}\n\n  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n    const headers = req.clone({\n      setHeaders: {\n        'Content-Type': 'application/json',\n        Authorization: `Bearer ${this.apiAccessToken}`,\n      },\n    });\n    return next.handle(headers);\n  }\n}\n\nexport const httpInterceptorProvidersHeaders = [\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: HttpHeadersInterceptor,\n    multi: true,\n  },\n];\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -3014,7 +3080,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 10,
+        "line": 16,
         "jsdoctags": [
           {
             "name": "apiAccessToken",
@@ -3032,7 +3098,7 @@
     },
     {
       "name": "RefactorUrlInterceptor",
-      "id": "injectable-RefactorUrlInterceptor-1b4ab83d32dfeb947333fc5ee5be23079c3c354fcbbd6e49b7d61868f63ffa99de5f0033074be82eb88ee2f1dc72c99cc743a3e9e2d12d325652e397d2352a6b",
+      "id": "injectable-RefactorUrlInterceptor-7067c018dff7dcec6ed3e0fb88f19a07dd0d565a80290922d14381f14e442ad78636f3ba5b65d0c6579fda528b53d8918f8588242477e38e9984dc6f0d3aedd6",
       "file": "src/app/modules/shared/interceptors/refactor-url-interceptor.service.ts",
       "properties": [],
       "methods": [
@@ -3084,7 +3150,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import {\n  HTTP_INTERCEPTORS,\n  HttpErrorResponse,\n  HttpEvent,\n  HttpHandler,\n  HttpInterceptor,\n  HttpRequest,\n  HttpResponse,\n} from '@angular/common/http';\nimport { Inject, Injectable } from '@angular/core';\nimport { Observable, TimeoutError, catchError, filter, map, throwError, timeout } from 'rxjs';\n\n// RESOURCES\n\nimport { API_BASE_URL } from '@conf/tokens';\nimport { LogStrategyService } from '@shared/command/log';\nimport { Router } from '@angular/router';\n\n@Injectable()\nexport class RefactorUrlInterceptor implements HttpInterceptor {\n  constructor(\n    @Inject(API_BASE_URL) private apiBaseUrl: string,\n    private log: LogStrategyService,\n    private router: Router,\n  ) {}\n\n  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n    const request = req.clone({\n      url: `${this.apiBaseUrl}${req.url}`,\n    });\n\n    this.log.write({ indetity: 'HttpRequest 🥅🥅🥅', message: { request } });\n\n    return next.handle(request).pipe(\n      timeout(15000),\n      filter((event: HttpEvent<any>) => event instanceof HttpResponse),\n      map((event: HttpEvent<any>) => {\n        if (event instanceof HttpResponse)\n          this.log.write({ indetity: 'HttpEvent ✅✅✅', message: { event } });\n\n        return event;\n      }),\n      catchError((error: HttpErrorResponse) => {\n        this.log.write({ indetity: 'HttpEvent ❌❌❌', message: { error } });\n        this.router.navigate(['/failed']);\n        return throwError(() => error);\n      }),\n    );\n  }\n}\nexport const httpInterceptorRefactorUrlProvider = [\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: RefactorUrlInterceptor,\n    multi: true,\n  },\n];\n",
+      "sourceCode": "import {\n  HTTP_INTERCEPTORS,\n  HttpErrorResponse,\n  HttpEvent,\n  HttpHandler,\n  HttpInterceptor,\n  HttpRequest,\n  HttpResponse,\n} from '@angular/common/http';\nimport { Inject, Injectable } from '@angular/core';\nimport { Observable, catchError, filter, map, throwError, timeout } from 'rxjs';\n\n// RESOURCES\n\nimport { API_BASE_URL } from '@conf/tokens';\nimport { LogStrategyService } from '@shared/command/log';\nimport { Router } from '@angular/router';\n\n@Injectable()\nexport class RefactorUrlInterceptor implements HttpInterceptor {\n  constructor(\n    @Inject(API_BASE_URL) private apiBaseUrl: string,\n    private log: LogStrategyService,\n    private router: Router,\n  ) {}\n\n  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n    const request = req.clone({\n      url: `${this.apiBaseUrl}${req.url}`,\n    });\n\n    this.log.write({ indetity: 'HttpRequest 🥅🥅🥅', message: { request } });\n\n    return next.handle(request).pipe(\n      timeout(15000),\n      filter((event: HttpEvent<any>) => event instanceof HttpResponse),\n      map((event: HttpEvent<any>) => {\n        if (event instanceof HttpResponse)\n          this.log.write({ indetity: 'HttpEvent ✅✅✅', message: { event } });\n\n        return event;\n      }),\n      catchError((error: HttpErrorResponse) => {\n        this.log.write({ indetity: 'HttpEvent ❌❌❌', message: { error } });\n        this.router.navigate(['/failed']);\n        return throwError(() => error);\n      }),\n    );\n  }\n}\nexport const httpInterceptorRefactorUrlProvider = [\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: RefactorUrlInterceptor,\n    multi: true,\n  },\n];\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -3559,12 +3625,12 @@
   "directives": [
     {
       "name": "FormFocusDirective",
-      "id": "directive-FormFocusDirective-9de1922fd02a818a27ce53568c6a456129e9e8efe638ba0b5a82e30cdaef866594bddf8d4fdcb1bfa2cce1147a3912f178232ca4f7b0656eb821701b12be3bd8",
+      "id": "directive-FormFocusDirective-7c74231a7eea9a4a4d0ab797650ff5fef4cd56a37af1ce04dbf9e6a5634affb09dc5b0f0ca377969119e93b0c1f07fb61dee20b4b25d4466aeaee83e931768a8",
       "file": "src/app/modules/shared/directives/form-focus.directive.ts",
       "type": "directive",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';\n\n@Directive({\n  selector: '[appFormFocus]',\n  standalone: true,\n})\nexport class FormFocusDirective implements OnInit {\n  private originalWidth: string;\n  @Input('appFormFocus') toggleElement!: `.${string}`;\n\n  constructor(\n    private el: ElementRef,\n    private renderer: Renderer2,\n  ) {\n    this.originalWidth = this.el.nativeElement.style.width;\n  }\n\n  ngOnInit(): void {\n    const elementToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n    if (elementToggled) {\n      elementToggled?.forEach((element: HTMLElement) => {\n        element.classList.add('hidden');\n      });\n    }\n  }\n\n  @HostListener('focusin', ['$event'])\n  onFocusIn(event: FocusEvent): void {\n    // console.log('focusin');\n\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      this.renderer.setStyle(this.el.nativeElement, 'width', '100%');\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        elementsToggled?.forEach((element: HTMLElement) => {\n          element.classList.remove('hidden');\n        });\n      }\n    }\n  }\n\n  @HostListener('focusout', ['$event'])\n  onFocusOut(event: FocusEvent): void {\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      const relatedTarget = event.relatedTarget as HTMLElement;\n      if (relatedTarget && this.el.nativeElement.contains(relatedTarget)) {\n        return;\n      }\n\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        setTimeout(() => {\n          this.renderer.setStyle(this.el.nativeElement, 'width', this.originalWidth);\n          elementsToggled?.forEach((element: HTMLElement) => {\n            element.classList.add('hidden');\n          });\n        }, 200);\n      }\n    }\n  }\n}\n",
+      "sourceCode": "import {\n  Directive,\n  ElementRef,\n  HostListener,\n  Input,\n  OnInit,\n  Renderer2,\n  inject,\n} from '@angular/core';\n\n@Directive({\n  selector: '[appFormFocus]',\n  standalone: true,\n})\nexport class FormFocusDirective implements OnInit {\n  private originalWidth: string;\n  @Input('appFormFocus') toggleElement!: `.${string}`;\n\n  private el = inject(ElementRef);\n  private renderer = inject(Renderer2);\n\n  constructor() {\n    this.originalWidth = this.el.nativeElement.style.width;\n  }\n\n  ngOnInit(): void {\n    const elementToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n    if (elementToggled) {\n      elementToggled?.forEach((element: HTMLElement) => {\n        element.classList.add('hidden');\n      });\n    }\n  }\n\n  @HostListener('focusin', ['$event'])\n  onFocusIn(event: FocusEvent): void {\n    // console.log('focusin');\n\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      this.renderer.setStyle(this.el.nativeElement, 'width', '100%');\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        elementsToggled?.forEach((element: HTMLElement) => {\n          element.classList.remove('hidden');\n        });\n      }\n    }\n  }\n\n  @HostListener('focusout', ['$event'])\n  onFocusOut(event: FocusEvent): void {\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      const relatedTarget = event.relatedTarget as HTMLElement;\n      if (relatedTarget && this.el.nativeElement.contains(relatedTarget)) {\n        return;\n      }\n\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        setTimeout(() => {\n          this.renderer.setStyle(this.el.nativeElement, 'width', this.originalWidth);\n          elementsToggled?.forEach((element: HTMLElement) => {\n            element.classList.add('hidden');\n          });\n        }, 200);\n      }\n    }\n  }\n}\n",
       "selector": "[appFormFocus]",
       "providers": [],
       "hostDirectives": [],
@@ -3574,7 +3640,7 @@
           "name": "appFormFocus",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 9,
+          "line": 17,
           "type": "template literal type",
           "decorators": []
         }
@@ -3597,7 +3663,7 @@
           "argsDecorator": ["$event"],
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 28
+          "line": 36
         },
         {
           "name": "focusout",
@@ -3612,10 +3678,21 @@
           "argsDecorator": ["$event"],
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 45
+          "line": 53
         }
       ],
       "propertiesClass": [
+        {
+          "name": "el",
+          "defaultValue": "inject(ElementRef)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 19,
+          "modifierKind": [123]
+        },
         {
           "name": "originalWidth",
           "deprecated": false,
@@ -3623,7 +3700,18 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 8,
+          "line": 16,
+          "modifierKind": [123]
+        },
+        {
+          "name": "renderer",
+          "defaultValue": "inject(Renderer2)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 20,
           "modifierKind": [123]
         }
       ],
@@ -3634,7 +3722,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 18,
+          "line": 26,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -3651,7 +3739,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 28,
+          "line": 36,
           "deprecated": false,
           "deprecationMessage": "",
           "decorators": [
@@ -3686,7 +3774,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 45,
+          "line": 53,
           "deprecated": false,
           "deprecationMessage": "",
           "decorators": [
@@ -3716,48 +3804,15 @@
         "description": "",
         "deprecated": false,
         "deprecationMessage": "",
-        "args": [
-          {
-            "name": "el",
-            "type": "ElementRef",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "renderer",
-            "type": "Renderer2",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 9,
-        "jsdoctags": [
-          {
-            "name": "el",
-            "type": "ElementRef",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "renderer",
-            "type": "Renderer2",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
+        "args": [],
+        "line": 20
       }
     }
   ],
   "components": [
     {
       "name": "AppComponent",
-      "id": "component-AppComponent-77d2683f680e08f361189e9dbbb8bacbccf2f4d3710c54aa8a58249104f20995ae1d1fa4328c1cbb7b86633c4cb9ebc823cc6c8fc8cce14f73008f5a0553deff",
+      "id": "component-AppComponent-7d510123d9dcd8132b89912e05ac484b1b0a3188b7bab39f4452dfed557f6e9be9e5462932ab2eee40b2ac82e33b1e85e7175d20a17db5a226f95b4268ddd3ab",
       "file": "src/app/modules/app/app.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -3779,7 +3834,7 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "RouterOutlet"
@@ -3788,7 +3843,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [RouterOutlet],\n  template: ` <router-outlet></router-outlet> `,\n})\nexport class AppComponent {}\n",
+      "sourceCode": "import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\n\n@Component({\n  selector: 'app-root',\n  imports: [RouterOutlet],\n  template: ` <router-outlet></router-outlet> `,\n})\nexport class AppComponent {}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -3796,7 +3851,7 @@
     },
     {
       "name": "FailedServiceComponent",
-      "id": "component-FailedServiceComponent-4b21e8d592b24591b09f1c59742f873ba25e0a81ea109e648d039bc383e2d007cc540175b5f6405534dd3dcf1392f43eb327e2a613442a9a2bc22867649c1822",
+      "id": "component-FailedServiceComponent-33d136dbc979e9295257e4791874a243610c0bade16908e7cd488e0f9d6e18649ce70040b9d4270228d20982de34be8ce6714ffde1897269ff08ca7bf3541e7a",
       "file": "src/app/modules/pages/handlers/failed-service/failed-service.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -3811,7 +3866,19 @@
       "hostDirectives": [],
       "inputsClass": [],
       "outputsClass": [],
-      "propertiesClass": [],
+      "propertiesClass": [
+        {
+          "name": "router",
+          "defaultValue": "inject(Router)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 13,
+          "modifierKind": [123]
+        }
+      ],
       "methodsClass": [
         {
           "name": "refreshPage",
@@ -3819,7 +3886,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 16,
+          "line": 15,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -3828,7 +3895,7 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "NgOptimizedImage"
@@ -3841,87 +3908,57 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { NgOptimizedImage } from '@angular/common';\nimport { Component } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { ButtonComponent } from '@lib-transversal';\n\n@Component({\n  selector: 'app-failed-service',\n  standalone: true,\n  imports: [NgOptimizedImage, ButtonComponent],\n  templateUrl: './failed-service.component.html',\n  styleUrl: './failed-service.component.scss',\n})\nexport default class FailedServiceComponent {\n  constructor(private router: Router) {}\n\n  refreshPage() {\n    this.router.navigate(['/']);\n  }\n}\n",
+      "sourceCode": "import { NgOptimizedImage } from '@angular/common';\nimport { Component, inject } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { ButtonComponent } from '@lib-transversal';\n\n@Component({\n  selector: 'app-failed-service',\n  imports: [NgOptimizedImage, ButtonComponent],\n  templateUrl: './failed-service.component.html',\n  styleUrl: './failed-service.component.scss',\n})\nexport default class FailedServiceComponent {\n  private router = inject(Router);\n\n  refreshPage() {\n    this.router.navigate(['/']);\n  }\n}\n",
       "styleUrl": "./failed-service.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 13,
-        "jsdoctags": [
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
       "extends": [],
       "templateData": "<section class=\"flex flex-col gap-8 items-center justify-center w-full h-[80vh]\">\n  <img\n    ngSrc=\"imgs/union-icon.svg\"\n    alt=\"Union Icon\"\n    class=\"aspect-square mx-auto w-[30rem]\"\n    width=\"280\"\n    height=\"120\"\n  />\n\n  <h1 class=\"font-bold text-white text-4xl\">Oops....</h1>\n  <p class=\"text-white text-xl\">Something went wrong.</p>\n\n  <ui-button text=\"Refresh\" (handleClick)=\"refreshPage()\" />\n</section>\n"
     },
     {
       "name": "FeaturedMoviesComponent",
-      "id": "component-FeaturedMoviesComponent-ffdb7673bf28aaa1647171156dc4b6b4516423b9b4672e490362f68f0c7d6f1f29e65afe876637b123aabfe976b25fe729629c6825766e0aee32d72fe4c11534",
+      "id": "component-FeaturedMoviesComponent-88c1d31b88ed25818e063ba622dac9f56bb98c609f399eb4888c1433cd00d182080841b60b998ee13ee82b2f23f93955e31ce44d140d11389289f6240b3711a0",
       "file": "src/app/modules/pages/onboarding/components/featured-movies/featured-movies.component.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
-      "providers": [],
+      "providers": [
+        {
+          "name": "MoviesStore"
+        }
+      ],
       "selector": "app-featured-movies",
       "styleUrls": [],
       "styles": [],
       "templateUrl": ["./featured-movies.component.html"],
       "viewProviders": [],
       "hostDirectives": [],
-      "inputsClass": [
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [
         {
-          "required": true,
-          "name": "featuredMovies",
+          "name": "isSlideToXMovies",
+          "defaultValue": "signal<number>(0)",
           "deprecated": false,
           "deprecationMessage": "",
+          "type": "",
           "optional": false,
-          "line": 14,
-          "type": "FeaturedMovie[]",
-          "decorators": []
+          "description": "",
+          "line": 15
         },
         {
-          "name": "slideToX",
-          "defaultValue": "0",
+          "name": "moviesStore",
+          "defaultValue": "inject(MoviesStore)",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 33,
-          "type": "number",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [
-        {
-          "name": "moreMovies",
-          "defaultValue": "new EventEmitter<boolean>()",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 32,
-          "type": "EventEmitter"
-        }
-      ],
-      "propertiesClass": [
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 18,
+          "modifierKind": [123]
+        },
         {
           "name": "posters",
           "defaultValue": "signal<ItemsCarousel[]>([])",
@@ -3930,10 +3967,71 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 30
+          "line": 14
+        },
+        {
+          "name": "router",
+          "defaultValue": "inject(Router)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 17,
+          "modifierKind": [123]
         }
       ],
       "methodsClass": [
+        {
+          "name": "__getFeaturedMovies",
+          "args": [
+            {
+              "type": "literal type",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "defaultValue": "{ page: 1 }"
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 34,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123],
+          "jsdoctags": [
+            {
+              "type": "literal type",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "defaultValue": "{ page: 1 }",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "moviesCarousel",
+          "args": [],
+          "optional": false,
+          "returnType": "ItemsCarousel[]",
+          "typeParameters": [],
+          "line": 39,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
+        },
+        {
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 30,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
         {
           "name": "onPoster",
           "args": [
@@ -3947,7 +4045,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 37,
+          "line": 53,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -3975,7 +4073,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 41,
+          "line": 57,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -3995,7 +4093,7 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "CarouselComponent",
@@ -4005,7 +4103,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, EventEmitter, Input, OnDestroy, Output, signal } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { CarouselComponent, ItemsCarousel } from '@lib-transversal';\nimport { FeaturedMovie } from '@shared/core/domain/entity';\n\n@Component({\n  selector: 'app-featured-movies',\n  standalone: true,\n  imports: [CarouselComponent],\n  templateUrl: './featured-movies.component.html',\n  styleUrl: './featured-movies.component.scss',\n})\nexport class FeaturedMoviesComponent {\n  @Input({ required: true }) set featuredMovies(series: FeaturedMovie[]) {\n    const seriesMap = series.map(\n      (serie) =>\n        ({\n          id: serie.id_movie,\n          title: serie.title,\n          poster_path: serie.poster_path,\n          vote_average: serie.vote_average,\n          overview: serie.overview,\n          media_type: serie.media_type,\n        }) as ItemsCarousel,\n    );\n\n    this.posters.set(seriesMap);\n  }\n\n  posters = signal<ItemsCarousel[]>([]);\n\n  @Output() moreMovies = new EventEmitter<boolean>();\n  @Input() slideToX = 0;\n\n  constructor(private router: Router) {}\n\n  onPoster(poster: ItemsCarousel): void {\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onReachEnd(reachEnd: boolean): void {\n    if (!reachEnd) return;\n\n    this.moreMovies.emit(true);\n  }\n}\n",
+      "sourceCode": "import { Component, effect, inject, OnInit, signal } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { CarouselComponent, ItemsCarousel } from '@lib-transversal';\nimport { MoviesStore } from '@pages/onboarding/store/movies.store';\n\n@Component({\n  selector: 'app-featured-movies',\n  imports: [CarouselComponent],\n  providers: [MoviesStore],\n  templateUrl: './featured-movies.component.html',\n  styleUrl: './featured-movies.component.scss',\n})\nexport class FeaturedMoviesComponent implements OnInit {\n  posters = signal<ItemsCarousel[]>([]);\n  isSlideToXMovies = signal<number>(0);\n\n  private router = inject(Router);\n  private moviesStore = inject(MoviesStore);\n\n  constructor() {\n    effect(\n      () => {\n        this.posters.set(this.moviesCarousel());\n        this.isSlideToXMovies.set(5);\n      },\n      { allowSignalWrites: true },\n    );\n  }\n\n  ngOnInit() {\n    this.__getFeaturedMovies();\n  }\n\n  private __getFeaturedMovies({ page = 1 }: { page: number } = { page: 1 }): void {\n    this.moviesStore.loadPagesMovies(page);\n    this.posters.set(this.moviesCarousel());\n  }\n\n  private moviesCarousel(): ItemsCarousel[] {\n    return this.moviesStore.movies().map(\n      ({ id_movie, title, poster_path, vote_average, overview, media_type }) =>\n        ({\n          id: id_movie,\n          title,\n          poster_path,\n          vote_average,\n          overview,\n          media_type,\n        }) as ItemsCarousel,\n    );\n  }\n\n  onPoster(poster: ItemsCarousel): void {\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onReachEnd(reachEnd: boolean): void {\n    if (!reachEnd) return;\n\n    const pageLast = this.moviesStore\n      .movies()\n      .reduce((max, movie) => (movie.page > max ? movie.page : max), 0);\n    this.__getFeaturedMovies({ page: pageLast + 1 });\n  }\n}\n",
       "styleUrl": "./featured-movies.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -4015,99 +4113,34 @@
         "description": "",
         "deprecated": false,
         "deprecationMessage": "",
-        "args": [
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 33,
-        "jsdoctags": [
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
+        "args": [],
+        "line": 18
       },
       "extends": [],
-      "accessors": {
-        "featuredMovies": {
-          "name": "featuredMovies",
-          "setSignature": {
-            "name": "featuredMovies",
-            "type": "void",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "args": [
-              {
-                "name": "series",
-                "type": "FeaturedMovie[]",
-                "deprecated": false,
-                "deprecationMessage": ""
-              }
-            ],
-            "returnType": "void",
-            "line": 14,
-            "jsdoctags": [
-              {
-                "name": "series",
-                "type": "FeaturedMovie[]",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "tagName": {
-                  "text": "param"
-                }
-              }
-            ]
-          }
-        }
-      },
+      "implements": ["OnInit"],
       "templateData": "<div>\n  <ui-carousel\n    [items]=\"posters()\"\n    key=\"featured-movies\"\n    (outPoster)=\"onPoster($event)\"\n    (outReachEnd)=\"onReachEnd($event)\"\n  ></ui-carousel>\n</div>\n"
     },
     {
       "name": "FeaturedSeriesComponent",
-      "id": "component-FeaturedSeriesComponent-3e98c2ce829cb4c06c47b10c65af73fecfbc337561a2b9f9ab93e101b32a6b7912d852735cce4942a0e4bebc25eb6ff62ba3167d7398bcbb7f18a09bd812a4e9",
+      "id": "component-FeaturedSeriesComponent-cd9235c0d7ed198cea4b394d888b04e5f258bd97216b59cda145eeea579e861297b9b7e242d0ba4ca27669020904f1c157d7f285e7a0a18ca6e89012e610313f",
       "file": "src/app/modules/pages/onboarding/components/featured-series/featured-series.component.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
-      "providers": [],
+      "providers": [
+        {
+          "name": "SeriesStore"
+        }
+      ],
       "selector": "app-featured-series",
       "styleUrls": [],
       "styles": [],
       "templateUrl": ["./featured-series.component.html"],
       "viewProviders": [],
       "hostDirectives": [],
-      "inputsClass": [
-        {
-          "required": true,
-          "name": "featuredSeries",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "optional": false,
-          "line": 14,
-          "type": "FeaturedSerie[]",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [
-        {
-          "name": "moreSeries",
-          "defaultValue": "new EventEmitter<boolean>()",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 32,
-          "type": "EventEmitter"
-        }
-      ],
+      "inputsClass": [],
+      "outputsClass": [],
       "propertiesClass": [
         {
           "name": "posters",
@@ -4117,10 +4150,71 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 30
+          "line": 14
+        },
+        {
+          "name": "router",
+          "defaultValue": "inject(Router)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 16,
+          "modifierKind": [123]
+        },
+        {
+          "name": "seriesStore",
+          "defaultValue": "inject(SeriesStore)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 17,
+          "modifierKind": [123]
         }
       ],
       "methodsClass": [
+        {
+          "name": "__getFeaturedSeries",
+          "args": [
+            {
+              "type": "literal type",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "defaultValue": "{ page: 1 }"
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 32,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123],
+          "jsdoctags": [
+            {
+              "type": "literal type",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "defaultValue": "{ page: 1 }",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 28,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
         {
           "name": "onPoster",
           "args": [
@@ -4134,7 +4228,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 36,
+          "line": 51,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -4162,7 +4256,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 40,
+          "line": 55,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -4176,13 +4270,24 @@
               }
             }
           ]
+        },
+        {
+          "name": "seriesCarousel",
+          "args": [],
+          "optional": false,
+          "returnType": "ItemsCarousel[]",
+          "typeParameters": [],
+          "line": 37,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
         }
       ],
       "deprecated": false,
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "CarouselComponent",
@@ -4192,7 +4297,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, effect, EventEmitter, Input, Output, signal } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { CarouselComponent, ItemsCarousel } from '@lib-transversal';\nimport { FeaturedSerie } from '@shared/core/domain/entity';\n\n@Component({\n  selector: 'app-featured-series',\n  templateUrl: './featured-series.component.html',\n  standalone: true,\n  imports: [CarouselComponent],\n  styleUrl: './featured-series.component.scss',\n})\nexport class FeaturedSeriesComponent {\n  @Input({ required: true }) set featuredSeries(series: FeaturedSerie[]) {\n    const seriesMap = series.map(\n      (serie) =>\n        ({\n          id: serie.id_serie,\n          title: serie.title,\n          poster_path: serie.poster_path,\n          vote_average: serie.vote_average,\n          overview: serie.overview,\n          media_type: serie.media_type,\n        }) as ItemsCarousel,\n    );\n\n    this.posters.set(seriesMap);\n  }\n\n  posters = signal<ItemsCarousel[]>([]);\n\n  @Output() moreSeries = new EventEmitter<boolean>();\n\n  constructor(private router: Router) {}\n\n  onPoster(poster: ItemsCarousel): void {\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onReachEnd(reachEnd: boolean): void {\n    if (!reachEnd) return;\n\n    this.moreSeries.emit(true);\n  }\n}\n",
+      "sourceCode": "import { Component, effect, inject, OnInit, signal } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { CarouselComponent, ItemsCarousel } from '@lib-transversal';\nimport { SeriesStore } from '@pages/onboarding/store/series.store';\n\n@Component({\n  selector: 'app-featured-series',\n  templateUrl: './featured-series.component.html',\n  imports: [CarouselComponent],\n  providers: [SeriesStore],\n  styleUrl: './featured-series.component.scss',\n})\nexport class FeaturedSeriesComponent implements OnInit {\n  posters = signal<ItemsCarousel[]>([]);\n\n  private router = inject(Router);\n  private seriesStore = inject(SeriesStore);\n\n  constructor() {\n    effect(\n      () => {\n        this.posters.set(this.seriesCarousel());\n      },\n      { allowSignalWrites: true },\n    );\n  }\n\n  ngOnInit() {\n    this.__getFeaturedSeries();\n  }\n\n  private __getFeaturedSeries({ page = 1 }: { page: number } = { page: 1 }): void {\n    this.seriesStore.loadPagesSeries(page);\n    this.posters.set(this.seriesCarousel());\n  }\n\n  private seriesCarousel(): ItemsCarousel[] {\n    return this.seriesStore.series().map(\n      ({ id_serie, title, poster_path, vote_average, overview, media_type }) =>\n        ({\n          id: id_serie,\n          title,\n          poster_path,\n          vote_average,\n          overview,\n          media_type,\n        }) as ItemsCarousel,\n    );\n  }\n\n  onPoster(poster: ItemsCarousel): void {\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onReachEnd(reachEnd: boolean): void {\n    if (!reachEnd) return;\n\n    const pageLast = this.seriesStore\n      .series()\n      .reduce((max, movie) => (movie.page > max ? movie.page : max), 0);\n    this.__getFeaturedSeries({ page: pageLast + 1 });\n  }\n}\n",
       "styleUrl": "./featured-series.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -4202,65 +4307,52 @@
         "description": "",
         "deprecated": false,
         "deprecationMessage": "",
-        "args": [
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 32,
-        "jsdoctags": [
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
+        "args": [],
+        "line": 17
       },
       "extends": [],
-      "accessors": {
-        "featuredSeries": {
-          "name": "featuredSeries",
-          "setSignature": {
-            "name": "featuredSeries",
-            "type": "void",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "args": [
-              {
-                "name": "series",
-                "type": "FeaturedSerie[]",
-                "deprecated": false,
-                "deprecationMessage": ""
-              }
-            ],
-            "returnType": "void",
-            "line": 14,
-            "jsdoctags": [
-              {
-                "name": "series",
-                "type": "FeaturedSerie[]",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "tagName": {
-                  "text": "param"
-                }
-              }
-            ]
-          }
-        }
-      },
+      "implements": ["OnInit"],
       "templateData": "<div>\n  <ui-carousel\n    [items]=\"posters()\"\n    key=\"featured-series\"\n    (outPoster)=\"onPoster($event)\"\n    (outReachEnd)=\"onReachEnd($event)\"\n  ></ui-carousel>\n</div>\n"
     },
     {
+      "name": "MainFooterComponent",
+      "id": "component-MainFooterComponent-37b2cbd59bbec33f5c74b8b6cd09a66ee2be8c85df05626047db892688e3cfd74aa5bda6df9bba1bab83c190ca15eb3ae78e88544c399e829d66bc6767dda430",
+      "file": "src/app/modules/app/flex-layouts/default/main-footer/main-footer.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-main-footer",
+      "styleUrls": [],
+      "styles": [],
+      "template": "<footer class=\"py-20 text-center w-full revelar-scale\">With 💖 for branjesusdev 🚀</footer>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": false,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\n\n@Component({\n  selector: 'app-main-footer',\n  imports: [],\n  template: `\n    <footer class=\"py-20 text-center w-full revelar-scale\">With 💖 for branjesusdev 🚀</footer>\n  `,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MainFooterComponent {}\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": []
+    },
+    {
       "name": "MainHeaderComponent",
-      "id": "component-MainHeaderComponent-fc54492180a94bcf30042de9f117e835667eb66993b4fee741aef2f8e788c88f4c5a89c202bb6d98c45857943374797e5577a3c16fa931939fa4f28892b8a843",
+      "id": "component-MainHeaderComponent-91195c941ac000e275dd8b58b7c51374111d7a7c4dec313164980d8d998bdda9742b5b4b8dd4030b8a3f916ce77974aea163f64ecd1c8846a8cb50ebdb3b2196",
       "file": "src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -4501,14 +4593,14 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
-        {
-          "name": "NgOptimizedImage"
-        },
         {
           "name": "CommonModule",
           "type": "module"
+        },
+        {
+          "name": "NgOptimizedImage"
         },
         {
           "name": "RouterLink"
@@ -4528,22 +4620,26 @@
         {
           "name": "FormFocusDirective",
           "type": "directive"
+        },
+        {
+          "name": "SnippetComponent",
+          "type": "component"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  DestroyRef,\n  inject,\n  OnInit,\n  signal,\n} from '@angular/core';\nimport { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\nimport { FormsModule } from '@angular/forms';\n\n// RESOURCES\n\nimport { MediaType, SearchMulti } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Router, RouterLink } from '@angular/router';\nimport { ButtonComponent, InputComponent } from '@lib-transversal';\nimport { FormFocusDirective } from '@shared/directives/form-focus.directive';\n\n@Component({\n  selector: 'app-main-header',\n  standalone: true,\n  imports: [\n    NgOptimizedImage,\n    CommonModule,\n    RouterLink,\n    FormsModule,\n    InputComponent,\n    ButtonComponent,\n    FormFocusDirective,\n  ],\n  templateUrl: './main-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MainHeaderComponent implements OnInit {\n  inputText = signal('');\n  listResults = signal<SearchMulti[]>([]);\n  listDefaultFilters = signal<string[]>([]);\n  notFound = signal(false);\n  isDefaultFilters = signal(false);\n  isLoading = signal(false);\n\n  private searchSubject = new Subject<string>();\n  private destroyRef = inject(DestroyRef);\n  private serviceTmdb = inject(TheMovieDBPort);\n  private router = inject(Router);\n\n  ngOnInit() {\n    this.defaultFilters();\n    this.searchSubject\n      .pipe(\n        debounceTime(500),\n        distinctUntilChanged(),\n        tap(() => this.listResults.set([])),\n        tap(() => this.notFound.set(false)),\n        tap((value) => this.inputText.set(value)),\n      )\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((searchValue) => this.searchResults({ searchValue }));\n  }\n\n  onSearch(event: string): void {\n    this.searchSubject.next(event);\n  }\n\n  onPoster(poster: SearchMulti): void {\n    this.listResults.set([]);\n    this.inputText.set('');\n    this.isDefaultFilters.set(false);\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onEnter(): void {\n    this.searchResults({ searchValue: this.inputText() });\n  }\n\n  private searchResults({ searchValue }: { searchValue: string }): void {\n    if (!searchValue) {\n      this.listResults.set([]);\n      this.isDefaultFilters.set(true);\n      this.notFound.set(false);\n      return;\n    }\n\n    this.isLoading.set(true);\n\n    this.serviceTmdb\n      .searchByFilter(searchValue)\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        movies = movies.filter(\n          (movie) => movie.media_type == MediaType.Movie || movie.media_type == MediaType.Tv,\n        );\n\n        this.isDefaultFilters.set(false);\n        this.notFound.set(movies.length === 0);\n        this.listResults.set(movies.slice(0, 5));\n        this.isLoading.set(false);\n      });\n  }\n\n  defaultFilters(): void {\n    const filters = [\n      'Cars',\n      'Aventura',\n      'Comedia',\n      'Avengers',\n      'Harry Potter',\n      'House of the Dragon',\n      'The Boys',\n      'The Lord of the Rings',\n      'Jurassic Park',\n    ];\n\n    this.listDefaultFilters.set(filters);\n  }\n}\n",
+      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  DestroyRef,\n  inject,\n  OnInit,\n  signal,\n} from '@angular/core';\nimport { debounceTime, distinctUntilChanged, Subject, tap } from 'rxjs';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\nimport { FormsModule } from '@angular/forms';\n\n// RESOURCES\n\nimport { MediaType, SearchMulti } from '@shared/core/domain/entity';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Router, RouterLink } from '@angular/router';\nimport { ButtonComponent, InputComponent, SnippetComponent } from '@lib-transversal';\nimport { FormFocusDirective } from '@shared/directives/form-focus.directive';\n\n@Component({\n  selector: 'app-main-header',\n  imports: [\n    CommonModule,\n    NgOptimizedImage,\n    RouterLink,\n    FormsModule,\n    InputComponent,\n    ButtonComponent,\n    FormFocusDirective,\n    SnippetComponent,\n  ],\n  templateUrl: './main-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MainHeaderComponent implements OnInit {\n  inputText = signal('');\n  listResults = signal<SearchMulti[]>([]);\n  listDefaultFilters = signal<string[]>([]);\n  notFound = signal(false);\n  isDefaultFilters = signal(false);\n  isLoading = signal(false);\n\n  private searchSubject = new Subject<string>();\n  private destroyRef = inject(DestroyRef);\n  private serviceTmdb = inject(TheMovieDBPort);\n  private router = inject(Router);\n\n  ngOnInit() {\n    this.defaultFilters();\n    this.searchSubject\n      .pipe(\n        debounceTime(500),\n        distinctUntilChanged(),\n        tap(() => this.listResults.set([])),\n        tap(() => this.notFound.set(false)),\n        tap((value) => this.inputText.set(value)),\n      )\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((searchValue) => this.searchResults({ searchValue }));\n  }\n\n  onSearch(event: string): void {\n    this.searchSubject.next(event);\n  }\n\n  onPoster(poster: SearchMulti): void {\n    this.listResults.set([]);\n    this.inputText.set('');\n    this.isDefaultFilters.set(false);\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onEnter(): void {\n    this.searchResults({ searchValue: this.inputText() });\n  }\n\n  private searchResults({ searchValue }: { searchValue: string }): void {\n    if (!searchValue) {\n      this.listResults.set([]);\n      this.isDefaultFilters.set(true);\n      this.notFound.set(false);\n      return;\n    }\n\n    this.isLoading.set(true);\n\n    this.serviceTmdb\n      .searchByFilter(searchValue)\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        movies = movies.filter(\n          (movie) => movie.media_type == MediaType.Movie || movie.media_type == MediaType.Tv,\n        );\n\n        this.isDefaultFilters.set(false);\n        this.notFound.set(movies.length === 0);\n        this.listResults.set(movies.slice(0, 5));\n        this.isLoading.set(false);\n      });\n  }\n\n  defaultFilters(): void {\n    const filters = [\n      'Cars',\n      'Aventura',\n      'Comedia',\n      'Avengers',\n      'Harry Potter',\n      'House of the Dragon',\n      'The Boys',\n      'The Lord of the Rings',\n      'Jurassic Park',\n    ];\n\n    this.listDefaultFilters.set(filters);\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
       "implements": ["OnInit"],
-      "templateData": "<header\n  class=\"relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9\"\n>\n  <a\n    aria-label=\"Go to home\"\n    class=\"bg-transparent outline-none focus:outline-none cursor-pointer\"\n    routerLink=\"/\"\n  >\n    <img\n      ngSrc=\"imgs/logo.svg\"\n      alt=\"Logo Flypass - Find movies\"\n      width=\"180\"\n      height=\"38\"\n      class=\"animate-fade sm:w-40 md:w-36 lg:w-auto\"\n    />\n  </a>\n\n  <!-- SECCIÓN DE BÚSQUEDA -->\n\n  <div class=\"w-full flex justify-center items-center\">\n    <form\n      class=\"w-full sm:w-4/5 lg:w-2/3 xl:w-2/4 2xl:w-1/3 transition-all duration-300 relative max-w-[700px]\"\n      (ngSubmit)=\"onEnter()\"\n      autocomplete=\"off\"\n      appFormFocus=\".toggle-elements\"\n    >\n      <ui-input\n        (click)=\"isDefaultFilters.set(!isDefaultFilters())\"\n        [inputText]=\"inputText()\"\n        placeholder=\"Search FindMovies\"\n        name=\"search\"\n        (searchEvent)=\"onSearch($event)\"\n      ></ui-input>\n\n      <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->\n\n      <div\n        class=\"toggle-elements absolute z-50 w-full bg-gradient-to-br to-neutral-900 from-stone-800 top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all\"\n      >\n        @if (isLoading()) {\n          <ng-container *ngTemplateOutlet=\"loadingResults\"></ng-container>\n        } @else {\n          @defer {\n            <ng-container *ngTemplateOutlet=\"resultSearch\"></ng-container>\n          } @loading {\n            <ng-container *ngTemplateOutlet=\"loadingResults\"></ng-container>\n          }\n        }\n      </div>\n    </form>\n  </div>\n\n  <div></div>\n</header>\n\n<ng-template #resultSearch>\n  <div\n    [ngClass]=\"{ 'hidden': !isDefaultFilters() }\"\n    class=\"toggle-elements p-4 flex flex-wrap gap-2\"\n  >\n    @for (item of listDefaultFilters(); track $index) {\n      <ui-button\n        [text]=\"item\"\n        [isDefaultIcon]=\"true\"\n        type=\"secondary\"\n        [valueEvent]=\"item\"\n        (handleClick)=\"onSearch($event)\"\n      />\n    }\n  </div>\n\n  <ul>\n    @for (list of listResults(); track list.id) {\n      <li\n        class=\"flex flex-row gap-4 items-center p-4 hover:bg-white/15 transition-colors cursor-pointer animate-fade-up\"\n        (click)=\"onPoster(list)\"\n        aria-hidden=\"true\"\n      >\n        <img class=\"rounded\" ngSrc=\"{{ list.poster_path }}\" alt=\"Brazil\" width=\"55\" height=\"83\" />\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"text-white\">{{ list.title }}</h3>\n          <span class=\"text-secondary-ui/60 text-sm\">{{ list.release_date | date: 'yyyy' }}</span>\n          <p\n            class=\"font-body text-white max-w-[28rem] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] overflow-hidden\"\n          >\n            {{ list.overview }}\n          </p>\n        </div>\n      </li>\n    }\n  </ul>\n\n  @if (notFound()) {\n    <p class=\"p-4\">No results found for \"{{ inputText() }}\" phrase.</p>\n  }\n</ng-template>\n\n<ng-template #loadingResults>\n  <div class=\"flex gap-2 p-4\">\n    <div class=\"animate-pulse bg-white/15 h-28 w-16 rounded-lg\"></div>\n    <div class=\"p-4 flex flex-col gap-2 w-full\">\n      <p class=\"animate-pulse bg-white/15 h-6 w-1/2 rounded-lg\"></p>\n      <p class=\"animate-pulse bg-white/15 h-4 w-3/4 rounded-lg\"></p>\n      <p class=\"animate-pulse bg-white/15 h-5 w-1/2 rounded-lg\"></p>\n    </div>\n  </div>\n</ng-template>\n"
+      "templateData": "<header\n  class=\"relative z-10 flex flex-col md:flex-row gap-[2rem] md:gap-[5rem] items-center justify-between px-10 md:px-40 py-9\"\n>\n  <a\n    aria-label=\"Go to home\"\n    class=\"bg-transparent outline-none focus:outline-none cursor-pointer\"\n    routerLink=\"/\"\n  >\n    <img\n      ngSrc=\"imgs/logo.svg\"\n      alt=\"Logo Flypass - Find movies\"\n      width=\"180\"\n      height=\"38\"\n      class=\"animate-fade sm:w-40 md:w-36 lg:w-auto\"\n    />\n  </a>\n\n  <!-- SECCIÓN DE BÚSQUEDA -->\n\n  <div class=\"w-full flex justify-center items-center\">\n    <form\n      class=\"w-full sm:w-4/5 lg:w-2/3 xl:w-2/4 2xl:w-1/3 transition-all duration-300 relative max-w-[700px]\"\n      (ngSubmit)=\"onEnter()\"\n      autocomplete=\"off\"\n      appFormFocus=\".toggle-elements\"\n    >\n      <ui-input\n        (click)=\"isDefaultFilters.set(!isDefaultFilters())\"\n        [inputText]=\"inputText()\"\n        placeholder=\"Search FindMovies\"\n        name=\"search\"\n        (searchEvent)=\"onSearch($event)\"\n      ></ui-input>\n\n      <!-- SECCIÓN DE RESULTADOS DE BÚSQUEDA -->\n\n      <div\n        class=\"toggle-elements absolute z-50 w-full bg-gradient-to-br to-neutral-900 from-stone-800 top-14 left-0 right-0 rounded shadow-md overflow-hidden animate-fade-up transition-all\"\n      >\n        @if (isLoading()) {\n          <ng-container *ngTemplateOutlet=\"loadingResults\"></ng-container>\n        } @else {\n          @defer {\n            <ng-container *ngTemplateOutlet=\"resultSearch\"></ng-container>\n          } @loading {\n            <ng-container *ngTemplateOutlet=\"loadingResults\"></ng-container>\n          }\n        }\n      </div>\n    </form>\n  </div>\n\n  <div></div>\n</header>\n\n<ng-template #resultSearch>\n  <div\n    [ngClass]=\"{ 'hidden': !isDefaultFilters() }\"\n    class=\"toggle-elements p-4 flex flex-wrap gap-2\"\n  >\n    @for (item of listDefaultFilters(); track $index) {\n      <ui-button\n        [text]=\"item\"\n        [isDefaultIcon]=\"true\"\n        type=\"secondary\"\n        [valueEvent]=\"item\"\n        (handleClick)=\"onSearch($event)\"\n      />\n    }\n  </div>\n\n  <div>\n    @for (list of listResults(); track list.id) {\n      <ui-snippet\n        [eventEmmit]=\"list\"\n        [title]=\"list.title\"\n        [releaseDate]=\"list.release_date\"\n        [overview]=\"list.overview\"\n        [image]=\"list.poster_path\"\n        (handleEvent)=\"onPoster($event)\"\n      />\n    }\n  </div>\n\n  @if (notFound()) {\n    <p class=\"p-4\">No results found for \"{{ inputText() }}\" phrase.</p>\n  }\n</ng-template>\n\n<ng-template #loadingResults>\n  <div class=\"flex gap-2 p-4\">\n    <div class=\"animate-pulse bg-white/15 h-28 w-16 rounded-lg\"></div>\n    <div class=\"p-4 flex flex-col gap-2 w-full\">\n      <p class=\"animate-pulse bg-white/15 h-6 w-1/2 rounded-lg\"></p>\n      <p class=\"animate-pulse bg-white/15 h-4 w-3/4 rounded-lg\"></p>\n      <p class=\"animate-pulse bg-white/15 h-5 w-1/2 rounded-lg\"></p>\n    </div>\n  </div>\n</ng-template>\n"
     },
     {
       "name": "MainLayoutComponent",
-      "id": "component-MainLayoutComponent-eae5bd5dc3cbf989e8d8d9ceb890721eec4ef9c6bfb8b88232310a6431d631006b888dfa59eea485d6250f21e480288da68816d9162a6cf17f26a8d48545f9fc",
+      "id": "component-MainLayoutComponent-8d4b21ce47b7ad40b29fa1936cf3be776c009bf0043f6b37fac4c35e4026a114b97860a4d982bb48283aecc3c6181d4dca81f93f0b9d35af5ca2369689295bbf",
       "file": "src/app/modules/app/flex-layouts/default/main-layout/main-layout.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -4554,7 +4650,7 @@
       "selector": "app-main-layout",
       "styleUrls": [],
       "styles": [],
-      "template": "<main class=\"min-h-screen relative h-full w-full bg-black\">\n  <div\n    class=\"absolute z-0 inset-0 pointer-events-none bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]\"\n  ></div>\n  <div\n    class=\"absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block md:w-[700px] md:h-[700px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]\"\n  ></div>\n\n  <app-main-header></app-main-header>\n  <div class=\"relative\">\n    <router-outlet></router-outlet>\n  </div>\n\n  <footer class=\"py-20 text-center w-full text-sm\">With 💖 for branjesusdev 🚀</footer>\n</main>\n",
+      "template": "<main class=\"min-h-screen relative h-full w-full bg-black\">\n  <div\n    class=\"absolute z-0 inset-0 pointer-events-none bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]\"\n  ></div>\n  <div\n    class=\"absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block md:w-[700px] md:h-[700px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]\"\n  ></div>\n\n  <app-main-header></app-main-header>\n  <div class=\"relative\">\n    <router-outlet></router-outlet>\n  </div>\n\n  <app-main-footer></app-main-footer>\n</main>\n",
       "templateUrl": [],
       "viewProviders": [],
       "hostDirectives": [],
@@ -4566,10 +4662,14 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "MainHeaderComponent",
+          "type": "component"
+        },
+        {
+          "name": "MainFooterComponent",
           "type": "component"
         },
         {
@@ -4580,7 +4680,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n// COMPONENTS\n\nimport { MainHeaderComponent } from '@fxLayouts/default/main-header/main-header.component';\n\n@Component({\n  selector: 'app-main-layout',\n  standalone: true,\n  imports: [MainHeaderComponent, RouterModule],\n  template: `\n    <main class=\"min-h-screen relative h-full w-full bg-black\">\n      <div\n        class=\"absolute z-0 inset-0 pointer-events-none bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]\"\n      ></div>\n      <div\n        class=\"absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block md:w-[700px] md:h-[700px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]\"\n      ></div>\n\n      <app-main-header></app-main-header>\n      <div class=\"relative\">\n        <router-outlet></router-outlet>\n      </div>\n\n      <footer class=\"py-20 text-center w-full text-sm\">With 💖 for branjesusdev 🚀</footer>\n    </main>\n  `,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MainLayoutComponent {}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\n\n// COMPONENTS\n\nimport { MainHeaderComponent } from '@fxLayouts/default/main-header/main-header.component';\nimport { MainFooterComponent } from '@fxLayouts/default/main-footer/main-footer.component';\n\n@Component({\n  selector: 'app-main-layout',\n  imports: [MainHeaderComponent, MainFooterComponent, RouterModule],\n  template: `\n    <main class=\"min-h-screen relative h-full w-full bg-black\">\n      <div\n        class=\"absolute z-0 inset-0 pointer-events-none bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]\"\n      ></div>\n      <div\n        class=\"absolute left-0 right-0 top-[-10%] hidden h-[1000px] w-[1000px] md:block md:w-[700px] md:h-[700px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]\"\n      ></div>\n\n      <app-main-header></app-main-header>\n      <div class=\"relative\">\n        <router-outlet></router-outlet>\n      </div>\n\n      <app-main-footer></app-main-footer>\n    </main>\n  `,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class MainLayoutComponent {}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -4588,7 +4688,7 @@
     },
     {
       "name": "OnbordingFeaturedComponent",
-      "id": "component-OnbordingFeaturedComponent-1ba5b41620c8670fb650c6d7f9c275103c85dbc022472110d5a32426111b2000225d6b3f41c558510046378040d06a7ae08810458c39fbe5a80590de98e8bb06",
+      "id": "component-OnbordingFeaturedComponent-502f70b16610f7e7d73830f5ab1f3be5e779f4ac902698850fd5b88556baa38962ff1312eed9628d206b45667f1d7b1b8cb940375ab14a844e8d064946442a86",
       "file": "src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -4612,7 +4712,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 40
+          "line": 25
         },
         {
           "name": "isSeries",
@@ -4622,128 +4722,20 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 41
-        },
-        {
-          "name": "isSlideToXMovies",
-          "defaultValue": "signal<number>(0)",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "optional": false,
-          "description": "",
-          "line": 43
-        },
-        {
-          "name": "isSlideToXSeries",
-          "defaultValue": "signal<number>(0)",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "optional": false,
-          "description": "",
-          "line": 44
-        },
-        {
-          "name": "stateMovies",
-          "defaultValue": "signal<FeaturedMovie[]>([])",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "optional": false,
-          "description": "",
-          "line": 37
-        },
-        {
-          "name": "stateSeries",
-          "defaultValue": "signal<FeaturedSerie[]>([])",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "optional": false,
-          "description": "",
-          "line": 38
+          "line": 26
         },
         {
           "name": "tabs",
-          "defaultValue": "[\n    { title: 'Movies', content: 'movies' },\n    { title: 'Series', content: 'series' },\n  ]",
+          "defaultValue": "[\n    { title: 'Movies', content: TabKey.MOVIES },\n    { title: 'Series', content: TabKey.SERIES },\n  ]",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "MenuItemTab[]",
           "optional": false,
           "description": "",
-          "line": 32
+          "line": 20
         }
       ],
       "methodsClass": [
-        {
-          "name": "__getFeaturedMovies",
-          "args": [
-            {
-              "type": "literal type",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "{ page: 1 }"
-            }
-          ],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 60,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "modifierKind": [123],
-          "jsdoctags": [
-            {
-              "type": "literal type",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "{ page: 1 }",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "__getFeaturedSeries",
-          "args": [
-            {
-              "type": "literal type",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "{ page: 1 }"
-            }
-          ],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 72,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "modifierKind": [123],
-          "jsdoctags": [
-            {
-              "type": "literal type",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "{ page: 1 }",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "__init",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 55,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
         {
           "name": "handleTabSelected",
           "args": [
@@ -4757,7 +4749,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 83,
+          "line": 28,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -4771,79 +4763,13 @@
               }
             }
           ]
-        },
-        {
-          "name": "ngOnInit",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 51,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "onMoreMovies",
-          "args": [
-            {
-              "name": "moreMovies",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 88,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "moreMovies",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "onMoreSeries",
-          "args": [
-            {
-              "name": "moreSeries",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 98,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "moreSeries",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
         }
       ],
       "deprecated": false,
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "FeaturedSeriesComponent",
@@ -4858,74 +4784,24 @@
           "type": "component"
         },
         {
-          "name": "CommonModule",
-          "type": "module"
-        },
-        {
           "name": "TabPanelComponent",
-          "type": "component"
-        },
-        {
-          "name": "CarouselComponent",
           "type": "component"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, DestroyRef, OnInit, signal } from '@angular/core';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\n\nimport {\n  CarouselComponent,\n  MenuItemTab,\n  TabPanelComponent,\n  TabViewComponent,\n} from '@lib-transversal';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { FeaturedMovie, FeaturedSerie } from '@shared/core/domain/entity';\n\nimport { FeaturedSeriesComponent } from '@pages/onboarding/components/featured-series/featured-series.component';\nimport { FeaturedMoviesComponent } from '@pages/onboarding/components/featured-movies/featured-movies.component';\nimport { CommonModule } from '@angular/common';\nimport { distinctUntilChanged } from 'rxjs';\n@Component({\n  selector: 'app-onbording-featured',\n  standalone: true,\n  imports: [\n    FeaturedSeriesComponent,\n    FeaturedMoviesComponent,\n    TabViewComponent,\n    CommonModule,\n    TabPanelComponent,\n    CarouselComponent,\n  ],\n  templateUrl: './onbording-featured.component.html',\n  styleUrl: './onbording-featured.component.scss',\n})\nexport class OnbordingFeaturedComponent implements OnInit {\n  tabs: MenuItemTab[] = [\n    { title: 'Movies', content: 'movies' },\n    { title: 'Series', content: 'series' },\n  ];\n\n  stateMovies = signal<FeaturedMovie[]>([]);\n  stateSeries = signal<FeaturedSerie[]>([]);\n\n  isMovies = signal<boolean>(true);\n  isSeries = signal<boolean>(false);\n\n  isSlideToXMovies = signal<number>(0);\n  isSlideToXSeries = signal<number>(0);\n\n  constructor(\n    private serviceTmdb: TheMovieDBPort,\n    private destroyRef: DestroyRef,\n  ) {}\n\n  ngOnInit() {\n    this.__init();\n  }\n\n  __init(): void {\n    this.__getFeaturedMovies();\n    this.__getFeaturedSeries();\n  }\n\n  private __getFeaturedMovies({ page = 1 }: { page: number } = { page: 1 }): void {\n    this.isSlideToXMovies.set(0);\n\n    this.serviceTmdb\n      .getFeaturedMovies({ page })\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        this.stateMovies.set(movies);\n        this.isSlideToXMovies.set(5);\n      });\n  }\n\n  private __getFeaturedSeries({ page = 1 }: { page: number } = { page: 1 }): void {\n    this.isSlideToXSeries.set(0);\n    this.serviceTmdb\n      .getFeaturedSeries({ page })\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((series) => {\n        this.stateSeries.set(series);\n        this.isSlideToXSeries.set(5);\n      });\n  }\n\n  handleTabSelected(tab: string) {\n    this.isMovies.set(tab === 'movies');\n    this.isSeries.set(tab === 'series');\n  }\n\n  onMoreMovies(moreMovies: boolean): void {\n    if (!moreMovies) return;\n\n    const pageLast = this.stateMovies().reduce(\n      (max, movie) => (movie.page > max ? movie.page : max),\n      0,\n    );\n    this.__getFeaturedMovies({ page: pageLast + 1 });\n  }\n\n  onMoreSeries(moreSeries: boolean): void {\n    if (!moreSeries) return;\n\n    const pageLast = this.stateSeries().reduce(\n      (max, serie) => (serie.page > max ? serie.page : max),\n      0,\n    );\n    this.__getFeaturedSeries({ page: pageLast + 1 });\n  }\n}\n",
+      "sourceCode": "import { Component, signal } from '@angular/core';\n\nimport { MenuItemTab, TabPanelComponent, TabViewComponent } from '@lib-transversal';\n\nimport { FeaturedSeriesComponent } from '@pages/onboarding/components/featured-series/featured-series.component';\nimport { FeaturedMoviesComponent } from '@pages/onboarding/components/featured-movies/featured-movies.component';\n\nenum TabKey {\n  MOVIES = 'movies',\n  SERIES = 'series',\n}\n\n@Component({\n  selector: 'app-onbording-featured',\n  imports: [FeaturedSeriesComponent, FeaturedMoviesComponent, TabViewComponent, TabPanelComponent],\n  templateUrl: './onbording-featured.component.html',\n  styleUrl: './onbording-featured.component.scss',\n})\nexport class OnbordingFeaturedComponent {\n  tabs: MenuItemTab[] = [\n    { title: 'Movies', content: TabKey.MOVIES },\n    { title: 'Series', content: TabKey.SERIES },\n  ];\n\n  isMovies = signal<boolean>(true);\n  isSeries = signal<boolean>(false);\n\n  handleTabSelected(tab: string) {\n    this.isMovies.set(tab === TabKey.MOVIES);\n    this.isSeries.set(tab === TabKey.SERIES);\n  }\n}\n",
       "styleUrl": "./onbording-featured.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "serviceTmdb",
-            "type": "TheMovieDBPort",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "destroyRef",
-            "type": "DestroyRef",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 44,
-        "jsdoctags": [
-          {
-            "name": "serviceTmdb",
-            "type": "TheMovieDBPort",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "destroyRef",
-            "type": "DestroyRef",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
       "extends": [],
-      "implements": ["OnInit"],
-      "templateData": "<div class=\"container-wrapper\">\n  <h1 class=\"text-primary-ui font-bold text-4xl mt-12\">Featured Today</h1>\n\n  <article class=\"my-4\">\n    <ui-tab-view (tabSelected)=\"handleTabSelected($event)\">\n      <ui-tab-panel tabTitle=\"Movies\" keyTab=\"movies\">\n        <app-featured-movies\n          [featuredMovies]=\"stateMovies()\"\n          [slideToX]=\"isSlideToXMovies()\"\n          *ngIf=\"isMovies()\"\n          (moreMovies)=\"onMoreMovies($event)\"\n        ></app-featured-movies>\n      </ui-tab-panel>\n\n      <ui-tab-panel tabTitle=\"Series\" keyTab=\"series\">\n        <app-featured-series\n          [featuredSeries]=\"stateSeries()\"\n          *ngIf=\"isSeries()\"\n          (moreSeries)=\"onMoreSeries($event)\"\n        ></app-featured-series>\n      </ui-tab-panel>\n    </ui-tab-view>\n  </article>\n</div>\n"
+      "templateData": "<div class=\"container-wrapper\">\n  <h1 class=\"text-primary-ui font-bold text-4xl md:mt-12\">Featured Today</h1>\n\n  <article class=\"my-4\">\n    <ui-tab-view (tabSelected)=\"handleTabSelected($event)\">\n      <ui-tab-panel tabTitle=\"Movies\" keyTab=\"movies\">\n        @if (isMovies()) {\n          <app-featured-movies></app-featured-movies>\n        }\n      </ui-tab-panel>\n\n      <ui-tab-panel tabTitle=\"Series\" keyTab=\"series\">\n        @if (isSeries()) {\n          <app-featured-series></app-featured-series>\n        }\n      </ui-tab-panel>\n    </ui-tab-view>\n  </article>\n</div>\n"
     },
     {
       "name": "OnbordingMasterComponent",
-      "id": "component-OnbordingMasterComponent-0c48257e7e37cb34131950cc3438112618e08fa5f07fd0c4a69a792f2346e35501f24b216a45ca7992842f8a426e82e9a8b24fe7431a3772d81d1c18bf22fcda",
+      "id": "component-OnbordingMasterComponent-507ad8ccb725a6dd60c9aaab1af7ba64c03e355dd0e9ef9eb239cd0d5532eb9662eda7a54c2a95623a03e467a5e4556099cf45fd2a30b1764ee3d94a950c4fef",
       "file": "src/app/modules/pages/onboarding/components/onbording-master/onbording-master.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -4946,7 +4822,7 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "OnbordingFeaturedComponent",
@@ -4960,7 +4836,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from '@angular/core';\nimport { OnbordingFeaturedComponent } from '@pages/onboarding/components/onbording-featured/onbording-featured.component';\nimport { OnbordingPremieresComponent } from '@pages/onboarding/components/onbording-premieres/onbording-premieres.component';\n\n@Component({\n  selector: 'app-onbording-master',\n  standalone: true,\n  imports: [OnbordingFeaturedComponent, OnbordingPremieresComponent],\n  templateUrl: './onbording-master.component.html',\n  styleUrl: './onbording-master.component.scss',\n})\nexport default class OnbordingMasterComponent {}\n",
+      "sourceCode": "import { Component } from '@angular/core';\nimport { OnbordingFeaturedComponent } from '@pages/onboarding/components/onbording-featured/onbording-featured.component';\nimport { OnbordingPremieresComponent } from '@pages/onboarding/components/onbording-premieres/onbording-premieres.component';\n\n@Component({\n  selector: 'app-onbording-master',\n  imports: [OnbordingFeaturedComponent, OnbordingPremieresComponent],\n  templateUrl: './onbording-master.component.html',\n  styleUrl: './onbording-master.component.scss',\n})\nexport default class OnbordingMasterComponent {}\n",
       "styleUrl": "./onbording-master.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -4970,7 +4846,7 @@
     },
     {
       "name": "OnbordingPremieresComponent",
-      "id": "component-OnbordingPremieresComponent-fc2d4b9ac03ba483ec563afbab6d883bef5ccbd3122f976200f3880064a3a5ce9a400d60b221f1ab7cdd2a5890837e21ec6cf8593206edb0c6e8f41d3665465e",
+      "id": "component-OnbordingPremieresComponent-978090f4a7ed795f38e616f970e0b058be68571e25134fd045fa9c74dffe980303491c5f2b8f5c5b11a9b2f9d3e0ec7b94433b1084cd6980c3c52e3591611ea8",
       "file": "src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -4987,6 +4863,17 @@
       "outputsClass": [],
       "propertiesClass": [
         {
+          "name": "destroyRef",
+          "defaultValue": "inject(DestroyRef)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 18,
+          "modifierKind": [123]
+        },
+        {
           "name": "posters",
           "defaultValue": "signal<Trending[]>([])",
           "deprecated": false,
@@ -4994,7 +4881,29 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 17
+          "line": 16
+        },
+        {
+          "name": "router",
+          "defaultValue": "inject(Router)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 19,
+          "modifierKind": [123]
+        },
+        {
+          "name": "serviceTmdb",
+          "defaultValue": "inject(TheMovieDBPort)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 20,
+          "modifierKind": [123]
         }
       ],
       "methodsClass": [
@@ -5011,7 +4920,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 33,
+          "line": 30,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -5033,7 +4942,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 29,
+          "line": 26,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -5043,7 +4952,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 25,
+          "line": 22,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -5060,7 +4969,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 46,
+          "line": 43,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5088,7 +4997,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 42,
+          "line": 39,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5108,7 +5017,7 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "CarouselComponent",
@@ -5118,74 +5027,18 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, DestroyRef, OnInit, signal } from '@angular/core';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\n\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Trending } from '@shared/core/domain/entity';\nimport { CarouselComponent, ItemsCarousel } from '@lib-transversal';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'app-onbording-premieres',\n  standalone: true,\n  imports: [CarouselComponent],\n  templateUrl: './onbording-premieres.component.html',\n  styleUrl: './onbording-premieres.component.scss',\n})\nexport class OnbordingPremieresComponent implements OnInit {\n  posters = signal<Trending[]>([]);\n\n  constructor(\n    private serviceTmdb: TheMovieDBPort,\n    private destroyRef: DestroyRef,\n    private router: Router,\n  ) {}\n\n  ngOnInit() {\n    this.__init__();\n  }\n\n  __init__() {\n    this.__getTrending();\n  }\n\n  private __getTrending({ page }: { page: number } = { page: 1 }): void {\n    this.serviceTmdb\n      .getTrending({ page })\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        this.posters.set(movies);\n      });\n  }\n\n  onPoster(poster: ItemsCarousel): void {\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onMorePremieres(morePremieres: boolean): void {\n    console.log('onMorePremieres', morePremieres);\n\n    if (!morePremieres) return;\n\n    const lastPage = this.posters().reduce((max, premier) =>\n      max.page > premier.page ? max : premier,\n    );\n    this.__getTrending({ page: lastPage.page + 1 });\n  }\n}\n",
+      "sourceCode": "import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\n\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Trending } from '@shared/core/domain/entity';\nimport { CarouselComponent, ItemsCarousel } from '@lib-transversal';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'app-onbording-premieres',\n  imports: [CarouselComponent],\n  templateUrl: './onbording-premieres.component.html',\n  styleUrl: './onbording-premieres.component.scss',\n})\nexport class OnbordingPremieresComponent implements OnInit {\n  posters = signal<Trending[]>([]);\n\n  private destroyRef = inject(DestroyRef);\n  private router = inject(Router);\n  private serviceTmdb = inject(TheMovieDBPort);\n\n  ngOnInit() {\n    this.__init__();\n  }\n\n  __init__() {\n    this.__getTrending();\n  }\n\n  private __getTrending({ page }: { page: number } = { page: 1 }): void {\n    this.serviceTmdb\n      .getTrending({ page })\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        this.posters.set(movies);\n      });\n  }\n\n  onPoster(poster: ItemsCarousel): void {\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onMorePremieres(morePremieres: boolean): void {\n    console.log('onMorePremieres', morePremieres);\n\n    if (!morePremieres) return;\n\n    const lastPage = this.posters().reduce((max, premier) =>\n      max.page > premier.page ? max : premier,\n    );\n    this.__getTrending({ page: lastPage.page + 1 });\n  }\n}\n",
       "styleUrl": "./onbording-premieres.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "serviceTmdb",
-            "type": "TheMovieDBPort",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "destroyRef",
-            "type": "DestroyRef",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 17,
-        "jsdoctags": [
-          {
-            "name": "serviceTmdb",
-            "type": "TheMovieDBPort",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "destroyRef",
-            "type": "DestroyRef",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
       "extends": [],
       "implements": ["OnInit"],
-      "templateData": "<div class=\"container-wrapper\">\n  <h1 class=\"text-primary-ui font-bold text-4xl mt-12\">Premieres and announcements</h1>\n\n  <article class=\"pt-3 pb-20 block animate-fade-left\">\n    <ui-carousel\n      [items]=\"posters()\"\n      key=\"onbording-premieres\"\n      (outPoster)=\"onPoster($event)\"\n      (outReachEnd)=\"onMorePremieres($event)\"\n    ></ui-carousel>\n  </article>\n</div>\n"
+      "templateData": "<div class=\"container-wrapper reveal-blur\">\n  <h1 class=\"text-primary-ui font-bold text-4xl mt-12\">Premieres and announcements</h1>\n\n  <article class=\"pt-8 pb-20 block animate-fade-left\">\n    <ui-carousel\n      [items]=\"posters()\"\n      key=\"onbording-premieres\"\n      (outPoster)=\"onPoster($event)\"\n      (outReachEnd)=\"onMorePremieres($event)\"\n    ></ui-carousel>\n  </article>\n</div>\n"
     },
     {
       "name": "PosterDetailContentComponent",
-      "id": "component-PosterDetailContentComponent-706126f38ad01ae9856151d80d69df96e668960ca6a423c13818482fe3e6fbc733b62a926b4ca0e4621e689e450454e06c588397f76a926a959443baca55cce5",
+      "id": "component-PosterDetailContentComponent-193b8bbaa3d14896c4932c4a362305a01f40503ba022fa197231d9a9a72b255a990f39fd4e04b61e69180983ffd80a1ab6041e155eb02fb4d9679dd89171fb0f",
       "file": "src/app/modules/pages/poster-details/components/poster-detail-content/poster-detail-content.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -5205,19 +5058,30 @@
           "deprecated": false,
           "deprecationMessage": "",
           "optional": false,
-          "line": 14,
+          "line": 16,
           "type": "DetailPoster",
           "decorators": []
         }
       ],
       "outputsClass": [],
-      "propertiesClass": [],
+      "propertiesClass": [
+        {
+          "name": "loadedPoster",
+          "defaultValue": "signal<boolean>(false)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 14
+        }
+      ],
       "methodsClass": [],
       "deprecated": false,
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "NgOptimizedImage"
@@ -5234,17 +5098,17 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { Component, Input } from '@angular/core';\nimport { BadgeComponent } from '@lib-transversal';\nimport { DetailPoster } from '@shared/core/domain/entity';\n\n@Component({\n  selector: 'app-poster-detail-content',\n  standalone: true,\n  imports: [NgOptimizedImage, CommonModule, BadgeComponent],\n  templateUrl: './poster-detail-content.component.html',\n  styleUrl: './poster-detail-content.component.scss',\n})\nexport class PosterDetailContentComponent {\n  @Input({ required: true }) posterContent!: DetailPoster;\n}\n",
+      "sourceCode": "import { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { Component, Input, signal } from '@angular/core';\nimport { BadgeComponent, blurFade } from '@lib-transversal';\nimport { DetailPoster } from '@shared/core/domain/entity';\n\n@Component({\n  selector: 'app-poster-detail-content',\n  imports: [NgOptimizedImage, CommonModule, BadgeComponent],\n  animations: [blurFade],\n  templateUrl: './poster-detail-content.component.html',\n  styleUrl: './poster-detail-content.component.scss',\n})\nexport class PosterDetailContentComponent {\n  loadedPoster = signal<boolean>(false);\n\n  @Input({ required: true }) posterContent!: DetailPoster;\n}\n",
       "styleUrl": "./poster-detail-content.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<article\n  class=\"relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden\"\n>\n  <div\n    class=\"wrap-poster-info relative flex flex-col gap-5 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px] mb-6 z-40\"\n  >\n    <div\n      class=\"relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem\"\n    >\n      <div class=\"bg-primary-ui p-3 relative\">\n        <p class=\"text-black text-base font-semiBold z-10 relative\">Awards & nominations</p>\n        <div class=\"element\"></div>\n      </div>\n      <p class=\"text-white font-semiBold text-base px-4 ml-8\">\n        Won 2 Oscars 130 wins & 136 nominations total\n      </p>\n    </div>\n\n    <div class=\"flex gap-4 mt-5\">\n      @for (genre of posterContent.genres; track $index) {\n        <ui-badge [text]=\"genre\" />\n      }\n    </div>\n\n    <p class=\"text-balance font-body text-xl\">\n      {{ posterContent.overview }}\n    </p>\n\n    @if (posterContent.production_countries.length > 0) {\n      <p>\n        <span class=\"subtitle\">Production countries:</span>\n        @for (item of posterContent.production_countries; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.production_companies.length > 0) {\n      <p>\n        <span class=\"subtitle\">Production companies:</span>\n        @for (item of posterContent.production_companies; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.spoken_languages.length > 0) {\n      <p>\n        <span class=\"subtitle\">Spoken languages:</span>\n        @for (item of posterContent.spoken_languages; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.tagline) {\n      <p><span class=\"subtitle\">Tagline:</span> {{ posterContent.tagline }}</p>\n    }\n\n    @if (posterContent.release_date) {\n      <p>\n        <span class=\"subtitle\">Release date:</span>\n        {{ posterContent.release_date | date: 'mm dd, yyyy' }}\n      </p>\n    }\n  </div>\n\n  <div class=\"hidden md:flex flex-1 h-0 pb-[40rem] z-10 none\">\n    <div\n      [style.backgroundImage]=\"'url(' + posterContent.poster_path + ')'\"\n      class=\"block bg-no-repeat bg-center lg:bg-left 2xl:bg-[12rem] w-full h-[40rem] absolute inset-0 pointer-events-none drop-mask-image\"\n    ></div>\n  </div>\n\n  <div\n    class=\"md:hidden rounded overflow-hidden w-full h-[32rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem] animate-fade-right\"\n  >\n    <img\n      class=\"object-cover object-center aspect-[2/3] w-full h-[32rem]\"\n      ngSrc=\"{{ posterContent.poster_path }}\"\n      decoding=\"async\"\n      alt=\"title\"\n      width=\"780\"\n      height=\"1170\"\n    />\n  </div>\n</article>\n"
+      "templateData": "<article\n  class=\"relative px-10 md:px-40 py-9 flex flex-col md:flex-row lg:gap-8 wrap-poster-detail overflow-hidden\"\n>\n  <div\n    class=\"wrap-poster-info relative flex flex-col gap-5 text-white text-base animate-fade-left w-full md:w-full lg:w-[50%] max-w-[800px] mb-6 z-40\"\n  >\n    <div\n      class=\"relative w-full rounded-lg outline outline-2 -outline-offset-1 outline-primary-ui flex items-center overflow-hidden h-5rem\"\n    >\n      <div class=\"bg-primary-ui p-3 relative\">\n        <p class=\"text-black text-base font-semiBold z-10 relative\">Awards & nominations</p>\n        <div class=\"element\"></div>\n      </div>\n      <p class=\"text-white font-semiBold text-base px-4 ml-8\">\n        Won 2 Oscars 130 wins & 136 nominations total\n      </p>\n    </div>\n\n    <div class=\"flex gap-4 mt-5\">\n      @for (genre of posterContent.genres; track $index) {\n        <ui-badge [text]=\"genre\" />\n      }\n    </div>\n\n    <p class=\"text-balance font-body text-xl\">\n      {{ posterContent.overview }}\n    </p>\n\n    @if (posterContent.production_countries.length > 0) {\n      <p>\n        <span class=\"subtitle\">Production countries:</span>\n        @for (item of posterContent.production_countries; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.production_companies.length > 0) {\n      <p>\n        <span class=\"subtitle\">Production companies:</span>\n        @for (item of posterContent.production_companies; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.spoken_languages.length > 0) {\n      <p>\n        <span class=\"subtitle\">Spoken languages:</span>\n        @for (item of posterContent.spoken_languages; track $index) {\n          {{ item }},\n        }\n      </p>\n    }\n\n    @if (posterContent.tagline) {\n      <p><span class=\"subtitle\">Tagline:</span> {{ posterContent.tagline }}</p>\n    }\n\n    @if (posterContent.release_date) {\n      <p>\n        <span class=\"subtitle\">Release date:</span>\n        {{ posterContent.release_date | date: 'mm dd, yyyy' }}\n      </p>\n    }\n  </div>\n\n  <div class=\"hidden md:flex flex-1 h-0 pb-[40rem] z-10 none\">\n    <div\n      [style.backgroundImage]=\"'url(' + posterContent.poster_path + ')'\"\n      class=\"block bg-no-repeat bg-center lg:bg-left 2xl:bg-[12rem] w-full h-[40rem] absolute inset-0 pointer-events-none drop-mask-image\"\n    ></div>\n  </div>\n\n  <div\n    class=\"md:hidden rounded overflow-hidden w-full h-[32rem] min-w-[15rem] m-auto md:m-0 md:w-[22rem] md:min-w-[20rem] animate-fade-right\"\n  >\n    <img\n      class=\"object-cover object-center aspect-[2/3] w-full h-[32rem]\"\n      ngSrc=\"{{ posterContent.poster_path }}\"\n      decoding=\"async\"\n      alt=\"title\"\n      width=\"780\"\n      height=\"1170\"\n      [@blurFade]=\"loadedPoster() ? 'loaded' : 'loading'\"\n      (load)=\"loadedPoster.set(true)\"\n      [style.view-transition-name]=\"'card-poster-' + posterContent.id\"\n    />\n  </div>\n</article>\n"
     },
     {
       "name": "PosterDetailHeaderComponent",
-      "id": "component-PosterDetailHeaderComponent-cb4ee6429d70822848c182e78fabc96668e1ef07a75f181ce2205cf06dd7aef78a3ea64e9513675f9b99825aca5739006d8a8d416aff87631a14f8d1d2ca7b0d",
+      "id": "component-PosterDetailHeaderComponent-148ae3ac6e6809675d1679d3b7c0ca8c1b4c8a623ccd10ad9493c56aa6733e4f368d39925a6cf4465154d18528600908964e1912bf4dc8bfa9035e2e8e356034",
       "file": "src/app/modules/pages/poster-details/components/poster-detail-header/poster-detail-header.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -5264,7 +5128,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "optional": false,
-          "line": 15,
+          "line": 14,
           "type": "DetailPoster",
           "decorators": []
         }
@@ -5276,7 +5140,7 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "CommonModule",
@@ -5290,17 +5154,17 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input } from '@angular/core';\n\nimport { DetailPoster } from '@shared/core/domain/entity';\nimport { RuntimeFormatPipe } from '@shared/pipes/runtime-format.pipe';\n\n@Component({\n  selector: 'app-poster-detail-header',\n  standalone: true,\n  imports: [CommonModule, RuntimeFormatPipe],\n  templateUrl: './poster-detail-header.component.html',\n  styleUrl: './poster-detail-header.component.scss',\n})\nexport class PosterDetailHeaderComponent {\n  @Input({ required: true }) posterHeader!: DetailPoster;\n}\n",
+      "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input } from '@angular/core';\n\nimport { DetailPoster } from '@shared/core/domain/entity';\nimport { RuntimeFormatPipe } from '@shared/pipes/runtime-format.pipe';\n\n@Component({\n  selector: 'app-poster-detail-header',\n  imports: [CommonModule, RuntimeFormatPipe],\n  templateUrl: './poster-detail-header.component.html',\n  styleUrl: './poster-detail-header.component.scss',\n})\nexport class PosterDetailHeaderComponent {\n  @Input({ required: true }) posterHeader!: DetailPoster;\n}\n",
       "styleUrl": "./poster-detail-header.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<header\n  class=\"w-full transform bg-[rgba(110,110,110,0.5)] bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,10.85%,3.68%,95%)_0,rgba(12,12,12,.6)_100%)] relative animate-fade-down\"\n>\n  <div class=\"flex items-center justify-between px-10 md:px-40 py-7\">\n    <div class=\"flex flex-col gap-3\">\n      <h3 class=\"text-primary-ui font-bodyTwo\">{{ posterHeader.media_type | uppercase }}</h3>\n      <h1\n        class=\"font-bold text-4xl inline-flex animate-background-shine bg-[linear-gradient(110deg,white,45%,var(--black-light),55%,white)] bg-[length:250%_100%] bg-clip-text text-transparent\"\n      >\n        {{ posterHeader.name | uppercase }}\n      </h1>\n      <div class=\"flex flex-row gap-3\">\n        <span class=\"text-white text-sm\">{{ posterHeader.release_date | date: 'yyyy' }}</span>\n\n        @if (posterHeader.runtime) {\n          <span class=\"text-white text-sm\">{{ posterHeader.runtime | runtimeFormat }}</span>\n        }\n\n        @if (posterHeader.number_of_seasons) {\n          <span class=\"text-white text-sm\">{{ posterHeader.number_of_seasons }} Seasons</span>\n        }\n      </div>\n    </div>\n\n    <div class=\"flex gap-3 items-center\">\n      <h2 class=\"text-3xl\">⭐ {{ posterHeader.vote_average | number: '1.0-1' }}</h2>\n      <div class=\"flex flex-col items-center gap-1\">\n        <span class=\"text-[0.7rem] text-white/60\"> {{ posterHeader.popularity }} </span>\n        <span class=\"text-[0.7rem] text-white/60\">ratings</span>\n      </div>\n    </div>\n  </div>\n</header>\n"
+      "templateData": "<header\n  class=\"w-full transform bg-[rgba(110,110,110,0.5)] bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,10.85%,3.68%,95%)_0,rgba(12,12,12,.6)_100%)] relative animate-fade-down\"\n>\n  <div class=\"flex items-center justify-between px-10 md:px-40 py-7\">\n    <div class=\"flex flex-col gap-3\">\n      <h3 class=\"text-primary-ui font-bodyTwo text-sm md:text-lg\">\n        {{ posterHeader.media_type | uppercase }}\n      </h3>\n      <h1\n        class=\"font-bold text-xl md:text-4xl inline-flex animate-background-shine bg-[linear-gradient(110deg,white,45%,var(--black-light),55%,white)] bg-[length:250%_100%] bg-clip-text text-transparent\"\n      >\n        {{ posterHeader.name | uppercase }}\n      </h1>\n      <div class=\"flex flex-row gap-3\">\n        <span class=\"text-white text-sm\">{{ posterHeader.release_date | date: 'yyyy' }}</span>\n\n        @if (posterHeader.runtime) {\n          <span class=\"text-white text-sm\">{{ posterHeader.runtime | runtimeFormat }}</span>\n        }\n\n        @if (posterHeader.number_of_seasons) {\n          <span class=\"text-white text-sm\">{{ posterHeader.number_of_seasons }} Seasons</span>\n        }\n      </div>\n    </div>\n\n    <div class=\"flex gap-3 items-center\">\n      <h2 class=\"text-xl md:text-3xl\">⭐ {{ posterHeader.vote_average | number: '1.0-1' }}</h2>\n      <div class=\"flex flex-col items-center gap-1\">\n        <span class=\"text-[0.7rem] text-white/60\"> {{ posterHeader.popularity }} </span>\n        <span class=\"text-[0.7rem] text-white/60\">ratings</span>\n      </div>\n    </div>\n  </div>\n</header>\n"
     },
     {
       "name": "PosterDetailMasterComponent",
-      "id": "component-PosterDetailMasterComponent-ae5aa47189cc3d08043e9a9f4011603ee818c9a9b4794e7f42dd63c4bf1ccc0ff06f96af4f351f86bf87a6a684bbbe391cdd1931c75c4003ff94ffbebaa4a323",
+      "id": "component-PosterDetailMasterComponent-cf1f35d78b7a0d700896fe62ce7e6718d7547b595e4b61e427b4f24ddecaedaa33dd7600e797468a13c29279e76a05f33fff6d4b2987597a70043fcc0d4cc07a",
       "file": "src/app/modules/pages/poster-details/components/poster-detail-master/poster-detail-master.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -5323,7 +5187,7 @@
           "type": "DetailPoster | null",
           "optional": false,
           "description": "",
-          "line": 14,
+          "line": 13,
           "decorators": [
             {
               "name": "ResolvedData",
@@ -5338,7 +5202,7 @@
       "deprecationMessage": "",
       "hostBindings": [],
       "hostListeners": [],
-      "standalone": true,
+      "standalone": false,
       "imports": [
         {
           "name": "PosterDetailHeaderComponent",
@@ -5352,7 +5216,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input as ResolvedData } from '@angular/core';\nimport { PosterDetailHeaderComponent } from '../poster-detail-header/poster-detail-header.component';\nimport { PosterDetailContentComponent } from '../poster-detail-content/poster-detail-content.component';\nimport { DetailPoster } from '@shared/core/domain/entity';\n\n@Component({\n  selector: 'app-poster-detail-master',\n  standalone: true,\n  imports: [PosterDetailHeaderComponent, PosterDetailContentComponent],\n  templateUrl: './poster-detail-master.component.html',\n  styleUrl: './poster-detail-master.component.scss',\n})\nexport default class PosterDetailMasterComponent {\n  @ResolvedData() posterDetail!: DetailPoster | null;\n\n  constructor() {}\n}\n",
+      "sourceCode": "import { Component, Input as ResolvedData } from '@angular/core';\nimport { PosterDetailHeaderComponent } from '../poster-detail-header/poster-detail-header.component';\nimport { PosterDetailContentComponent } from '../poster-detail-content/poster-detail-content.component';\nimport { DetailPoster } from '@shared/core/domain/entity';\n\n@Component({\n  selector: 'app-poster-detail-master',\n  imports: [PosterDetailHeaderComponent, PosterDetailContentComponent],\n  templateUrl: './poster-detail-master.component.html',\n  styleUrl: './poster-detail-master.component.scss',\n})\nexport default class PosterDetailMasterComponent {\n  @ResolvedData() posterDetail!: DetailPoster | null;\n\n  constructor() {}\n}\n",
       "styleUrl": "./poster-detail-master.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -5363,7 +5227,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "args": [],
-        "line": 14
+        "line": 13
       },
       "extends": [],
       "templateData": "<section class=\"z-0 relative\">\n  @if (posterDetail) {\n    <app-poster-detail-header [posterHeader]=\"posterDetail\" />\n    <app-poster-detail-content [posterContent]=\"posterDetail\" />\n  }\n</section>\n"
@@ -5410,7 +5274,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "() => bootstrapApplication(AppComponent, config)"
+        "defaultValue": "(context: BootstrapContext) =>\n  bootstrapApplication(\n    AppComponent,\n    { ...config, providers: [provideZoneChangeDetection(), ...config.providers] },\n    context,\n  )"
       },
       {
         "name": "config",
@@ -5450,7 +5314,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "[]",
-        "defaultValue": "[\r\n  {\r\n    provide: HTTP_INTERCEPTORS,\r\n    useClass: HttpHeadersInterceptor,\r\n    multi: true\r\n  }\r\n]"
+        "defaultValue": "[\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: HttpHeadersInterceptor,\n    multi: true,\n  },\n]"
       },
       {
         "name": "httpInterceptorRefactorUrlProvider",
@@ -5463,6 +5327,26 @@
         "defaultValue": "[\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: RefactorUrlInterceptor,\n    multi: true,\n  },\n]"
       },
       {
+        "name": "initialState",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/modules/pages/onboarding/store/movies.store.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "MoviesState",
+        "defaultValue": "{\n  featuredMovies: [],\n  state: 'loading',\n  filter: {\n    page: 1,\n    totalPages: 20,\n  },\n}"
+      },
+      {
+        "name": "initialState",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/modules/pages/onboarding/store/series.store.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "SeriesState",
+        "defaultValue": "{\n  featuredSeries: [],\n  state: 'loading',\n  filter: {\n    page: 1,\n    totalPages: 20,\n  },\n}"
+      },
+      {
         "name": "MESSAGES",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -5471,6 +5355,16 @@
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\r\n  UNEXPECTED_FAILD: 'Lo sentimos, ha ocurrido un error',\r\n  HAS_NOT_RECORDS: 'No se encontraron registros',\r\n  HANDLE_ERROR_GENERIC : 'Lo sentimos, ha ocurrido un error al procesar la transacción'\r\n}"
+      },
+      {
+        "name": "MoviesStore",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/modules/pages/onboarding/store/movies.store.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "signalStore(\n  withState(initialState),\n  withComputed(({ featuredMovies }) => ({\n    movies: computed(() => featuredMovies()),\n    spellMovies: computed(() =>\n      featuredMovies().filter((movie) => movie.media_type === MediaType.Movie),\n    ),\n    hasMovies: computed(() => featuredMovies().length > 0),\n    hasMoreMovies: computed(() => featuredMovies().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesMovies: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedMovies({ page })\n            .pipe(tap((movies) => patchState(store, { featuredMovies: movies, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n)"
       },
       {
         "name": "PATHS",
@@ -5491,6 +5385,16 @@
         "deprecationMessage": "",
         "type": "ResolveFn<DetailPoster | null>",
         "defaultValue": "(route) => {\n  const { mediaType, id } = route.params;\n  const theMovieDBPort = inject(TheMovieDBPort);\n\n  switch (mediaType) {\n    case 'movie':\n      return theMovieDBPort.getMovieDetails(id).pipe(map((movie) => movie as DetailPoster));\n    case 'tv':\n      return theMovieDBPort.getSeriesDetails(id).pipe(map((series) => series as DetailPoster));\n    default:\n      return null;\n  }\n}"
+      },
+      {
+        "name": "SeriesStore",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/modules/pages/onboarding/store/series.store.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "signalStore(\n  withState(initialState),\n  withComputed(({ featuredSeries }) => ({\n    series: computed(() => featuredSeries()),\n    spellSeries: computed(() =>\n      featuredSeries().filter((serie) => serie.media_type === MediaType.Tv),\n    ),\n    hasSeries: computed(() => featuredSeries().length > 0),\n    hasMoreSeries: computed(() => featuredSeries().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesSeries: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedSeries({ page })\n            .pipe(tap((series) => patchState(store, { featuredSeries: series, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n)"
       },
       {
         "name": "serverConfig",
@@ -5750,6 +5654,29 @@
         "deprecationMessage": "",
         "description": "",
         "file": "src/app/modules/shared/command/adapters/response/out-trending.ts"
+      },
+      {
+        "name": "TabKey",
+        "childs": [
+          {
+            "name": "MOVIES",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "value": "movies"
+          },
+          {
+            "name": "SERIES",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "value": "series"
+          }
+        ],
+        "ctype": "miscellaneous",
+        "subtype": "enum",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "file": "src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts"
       }
     ],
     "groupedVariables": {
@@ -5796,7 +5723,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
-          "defaultValue": "() => bootstrapApplication(AppComponent, config)"
+          "defaultValue": "(context: BootstrapContext) =>\n  bootstrapApplication(\n    AppComponent,\n    { ...config, providers: [provideZoneChangeDetection(), ...config.providers] },\n    context,\n  )"
         }
       ],
       "src/app/modules/app/app.config.server.ts": [
@@ -5854,7 +5781,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "[]",
-          "defaultValue": "[\r\n  {\r\n    provide: HTTP_INTERCEPTORS,\r\n    useClass: HttpHeadersInterceptor,\r\n    multi: true\r\n  }\r\n]"
+          "defaultValue": "[\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: HttpHeadersInterceptor,\n    multi: true,\n  },\n]"
         }
       ],
       "src/app/modules/shared/interceptors/refactor-url-interceptor.service.ts": [
@@ -5867,6 +5794,50 @@
           "deprecationMessage": "",
           "type": "[]",
           "defaultValue": "[\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: RefactorUrlInterceptor,\n    multi: true,\n  },\n]"
+        }
+      ],
+      "src/app/modules/pages/onboarding/store/movies.store.ts": [
+        {
+          "name": "initialState",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/modules/pages/onboarding/store/movies.store.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "MoviesState",
+          "defaultValue": "{\n  featuredMovies: [],\n  state: 'loading',\n  filter: {\n    page: 1,\n    totalPages: 20,\n  },\n}"
+        },
+        {
+          "name": "MoviesStore",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/modules/pages/onboarding/store/movies.store.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "signalStore(\n  withState(initialState),\n  withComputed(({ featuredMovies }) => ({\n    movies: computed(() => featuredMovies()),\n    spellMovies: computed(() =>\n      featuredMovies().filter((movie) => movie.media_type === MediaType.Movie),\n    ),\n    hasMovies: computed(() => featuredMovies().length > 0),\n    hasMoreMovies: computed(() => featuredMovies().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesMovies: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedMovies({ page })\n            .pipe(tap((movies) => patchState(store, { featuredMovies: movies, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n)"
+        }
+      ],
+      "src/app/modules/pages/onboarding/store/series.store.ts": [
+        {
+          "name": "initialState",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/modules/pages/onboarding/store/series.store.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "SeriesState",
+          "defaultValue": "{\n  featuredSeries: [],\n  state: 'loading',\n  filter: {\n    page: 1,\n    totalPages: 20,\n  },\n}"
+        },
+        {
+          "name": "SeriesStore",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/modules/pages/onboarding/store/series.store.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "signalStore(\n  withState(initialState),\n  withComputed(({ featuredSeries }) => ({\n    series: computed(() => featuredSeries()),\n    spellSeries: computed(() =>\n      featuredSeries().filter((serie) => serie.media_type === MediaType.Tv),\n    ),\n    hasSeries: computed(() => featuredSeries().length > 0),\n    hasMoreSeries: computed(() => featuredSeries().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesSeries: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedSeries({ page })\n            .pipe(tap((series) => patchState(store, { featuredSeries: series, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n)"
         }
       ],
       "src/app/modules/shared/config/messages.ts": [
@@ -6071,6 +6042,31 @@
           "description": "",
           "file": "src/app/modules/shared/command/adapters/response/out-featured-movie.ts"
         }
+      ],
+      "src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts": [
+        {
+          "name": "TabKey",
+          "childs": [
+            {
+              "name": "MOVIES",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "value": "movies"
+            },
+            {
+              "name": "SERIES",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "value": "series"
+            }
+          ],
+          "ctype": "miscellaneous",
+          "subtype": "enum",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "file": "src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts"
+        }
       ]
     },
     "groupedTypeAliases": {
@@ -6221,6 +6217,15 @@
         "status": "low"
       },
       {
+        "filePath": "src/app/modules/app/flex-layouts/default/main-footer/main-footer.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "MainFooterComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
         "filePath": "src/app/modules/app/flex-layouts/default/main-header/main-header.component.ts",
         "type": "component",
         "linktype": "component",
@@ -6253,7 +6258,7 @@
         "linktype": "component",
         "name": "FeaturedMoviesComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/8",
+        "coverageCount": "0/11",
         "status": "low"
       },
       {
@@ -6262,7 +6267,7 @@
         "linktype": "component",
         "name": "FeaturedSeriesComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/7",
+        "coverageCount": "0/10",
         "status": "low"
       },
       {
@@ -6271,7 +6276,7 @@
         "linktype": "component",
         "name": "OnbordingFeaturedComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/16",
+        "coverageCount": "0/5",
         "status": "low"
       },
       {
@@ -6289,7 +6294,65 @@
         "linktype": "component",
         "name": "OnbordingPremieresComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/8",
+        "coverageCount": "0/10",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/modules/pages/onboarding/store/movies.store.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "MoviesState",
+        "coveragePercent": 0,
+        "coverageCount": "0/4",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/modules/pages/onboarding/store/movies.store.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "initialState",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/modules/pages/onboarding/store/movies.store.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "MoviesStore",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/modules/pages/onboarding/store/series.store.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "SeriesState",
+        "coveragePercent": 0,
+        "coverageCount": "0/4",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/modules/pages/onboarding/store/series.store.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "initialState",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/modules/pages/onboarding/store/series.store.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "SeriesStore",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
         "status": "low"
       },
       {
@@ -6298,7 +6361,7 @@
         "linktype": "component",
         "name": "PosterDetailContentComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/2",
+        "coverageCount": "0/3",
         "status": "low"
       },
       {
@@ -6335,7 +6398,7 @@
         "linktype": "injectable",
         "name": "HttpTmdbAdapterService",
         "coveragePercent": 0,
-        "coverageCount": "0/9",
+        "coverageCount": "0/10",
         "status": "low"
       },
       {
@@ -6654,7 +6717,7 @@
         "linktype": "directive",
         "name": "FormFocusDirective",
         "coveragePercent": 0,
-        "coverageCount": "0/9",
+        "coverageCount": "0/11",
         "status": "low"
       },
       {

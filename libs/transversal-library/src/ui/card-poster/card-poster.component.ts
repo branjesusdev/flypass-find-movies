@@ -16,6 +16,7 @@ export class CardPosterComponent {
   @Input({ required: true }) description!: string;
   @Input({ required: true }) img!: string;
   @Input({ required: true }) vote!: string | number;
+  @Input({ required: false }) isPriority: boolean = false;
   viewTransitionId = input<string>('');
 
   loadedPoster = signal<boolean>(false);

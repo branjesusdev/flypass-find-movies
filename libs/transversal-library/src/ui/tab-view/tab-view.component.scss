@@ -28,6 +28,7 @@
 
   &.tab-line--active {
     color: white;
+    will-change: transform, opacity;
 
     &:after {
       content: '';
@@ -42,6 +43,10 @@
       transition: background-color 0.3s;
       border-radius: 10rem;
       animation: widthGrow 0.3s;
+    }
+
+    &:not(:hover) {
+      will-change: auto;
     }
   }
 

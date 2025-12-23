@@ -1,7 +1,7 @@
-<div class="relative min-w-44 min-h-80 carousel-container--ui">
+<div class="relative min-w-44 min-h-80 carousel-container--ui" style="min-height: 350px">
   @defer {
     <swiper-container #swiperContainer init="false" [id]="key">
-      @for (item of items; track item.id) {
+      @for (item of items; track item.id; let i = $index) {
         <swiper-slide>
           <div class="slide-custom" (click)="selectPoster(item)" aria-hidden="true">
             <ui-card-poster
@@ -9,6 +9,7 @@
               [title]="item.title"
               [description]="item.overview"
               [vote]="item.vote_average"
+              [isPriority]="i < 6"
             ></ui-card-poster>
           </div>
         </swiper-slide>
@@ -50,7 +51,7 @@
         ' absolute top-1/2 translate-y-[-50%] right-4 z-10 bg-transparent border-none outline-none group cursor-pointer opacity-60'
       "
       aria-label="Next slide"
-      aria-controls="swiper-key"
+      [attr.aria-controls]="'swiper-' + key"
     >
       <svg
         width="40"
@@ -82,7 +83,7 @@
         ' absolute top-1/2 translate-y-[-50%] left-0 z-10 bg-transparent border-none outline-none group cursor-pointer opacity-60'
       "
       aria-label="Previous slide"
-      aria-controls="swiper-button-prev-swiper-key"
+      [attr.aria-controls]="'swiper-prev-' + key"
     >
       <svg
         width="40"

@@ -3,6 +3,7 @@
   animation-timeline: view();
   animation-range: entry;
   animation-name: blurFadeIn;
+  will-change: transform, opacity;
 }
 
 @keyframes blurFadeIn {

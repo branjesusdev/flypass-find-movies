@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   afterNextRender,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   effect,
@@ -69,15 +68,15 @@ export class CarouselComponent implements OnChanges {
                 prevEl: `.swiper-button-prev-${this.key}`,
                 enabled: true,
               },
-              breakpoints: {
-                0: { slidesPerView: 2, spaceBetween: 10 },
-                640: { slidesPerView: 2, spaceBetween: 20 },
-                700: { slidesPerView: 3, spaceBetween: 30 },
-                800: { slidesPerView: 3, spaceBetween: 40 },
-                1170: { slidesPerView: 5, spaceBetween: 50 },
-                1440: { slidesPerView: 6, spaceBetween: 60 },
-                1600: { slidesPerView: 7, spaceBetween: 70 },
-              },
+              // breakpoints: {
+              //   0: { slidesPerView: 2, spaceBetween: 10 },
+              //   640: { slidesPerView: 2, spaceBetween: 20 },
+              //   700: { slidesPerView: 3, spaceBetween: 30 },
+              //   800: { slidesPerView: 3, spaceBetween: 40 },
+              //   1170: { slidesPerView: 5, spaceBetween: 50 },
+              //   1440: { slidesPerView: 6, spaceBetween: 60 },
+              //   1600: { slidesPerView: 7, spaceBetween: 70 },
+              // },
               eventsPrefix: 'swiper-',
               on: {
                 slideChangeTransitionEnd: () => {

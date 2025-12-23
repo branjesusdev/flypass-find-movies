@@ -1,5 +1,8 @@
 .slide-custom {
-  @apply h-[22rem] flex items-end justify-items-start;
+  height: 22rem;
+  display: flex;
+  align-items: flex-end;
+  justify-items: start;
 }
 
 .swiper-container {
@@ -12,6 +15,13 @@
 
     &:hover .card-poster--ui:not(:hover) {
       opacity: var(--opacity-card);
+    }
+
+    display: block !important;
+
+    swiper-slide {
+      width: 240px !important;
+      flex-shrink: 0;
     }
   }
 

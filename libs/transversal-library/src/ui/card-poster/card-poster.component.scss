@@ -2,6 +2,9 @@
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
+  will-change: transform, opacity;
+  contain: layout style paint;
+
   &:hover {
     .card-poster__image--ui {
       transform: scale(1.05);
@@ -10,5 +13,9 @@
 
   &:hover ~ .card-poster--ui {
     opacity: var(--opacity-card, 0.4);
+  }
+
+  &:not(:hover) {
+    will-change: auto;
   }
 }
