@@ -1,10 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-tab-panel',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     @if (active) {
       <div class="animate-fade-left">

@@ -21,7 +21,6 @@ import { FormFocusDirective } from '@shared/directives/form-focus.directive';
 
 @Component({
   selector: 'app-main-header',
-  standalone: true,
   imports: [
     CommonModule,
     NgOptimizedImage,

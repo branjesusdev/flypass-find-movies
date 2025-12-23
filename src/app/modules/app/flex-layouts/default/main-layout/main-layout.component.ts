@@ -8,7 +8,6 @@ import { MainFooterComponent } from '@fxLayouts/default/main-footer/main-footer.
 
 @Component({
   selector: 'app-main-layout',
-  standalone: true,
   imports: [MainHeaderComponent, MainFooterComponent, RouterModule],
   template: `
     <main class="min-h-screen relative h-full w-full bg-black">

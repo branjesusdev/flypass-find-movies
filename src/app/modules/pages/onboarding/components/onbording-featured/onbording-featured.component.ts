@@ -4,7 +4,6 @@ import { MenuItemTab, TabPanelComponent, TabViewComponent } from '@lib-transvers
 
 import { FeaturedSeriesComponent } from '@pages/onboarding/components/featured-series/featured-series.component';
 import { FeaturedMoviesComponent } from '@pages/onboarding/components/featured-movies/featured-movies.component';
-import { CommonModule } from '@angular/common';
 
 enum TabKey {
   MOVIES = 'movies',
@@ -13,14 +12,7 @@ enum TabKey {
 
 @Component({
   selector: 'app-onbording-featured',
-  standalone: true,
-  imports: [
-    FeaturedSeriesComponent,
-    FeaturedMoviesComponent,
-    TabViewComponent,
-    CommonModule,
-    TabPanelComponent,
-  ],
+  imports: [FeaturedSeriesComponent, FeaturedMoviesComponent, TabViewComponent, TabPanelComponent],
   templateUrl: './onbording-featured.component.html',
   styleUrl: './onbording-featured.component.scss',
 })

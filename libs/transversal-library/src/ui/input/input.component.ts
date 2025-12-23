@@ -3,7 +3,6 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
 
 @Component({
   selector: 'ui-input',
-  standalone: true,
   imports: [FormsModule],
   providers: [
     {

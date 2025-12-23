@@ -13,6 +13,8 @@ import { By } from '@angular/platform-browser';
       </div>
     </form>
   `,
+  standalone: true,
+  imports: [FormFocusDirective],
 })
 class TestHostComponent {}
 
@@ -23,8 +25,8 @@ describe('FormFocusDirective', () => {
   let elementClicked: HTMLElement;
 
   beforeEach(() => {
+    inputEl = document.createElement('input');
     TestBed.configureTestingModule({
-      declarations: [TestHostComponent],
       imports: [FormFocusDirective],
       providers: [Renderer2],
     }).compileComponents();
@@ -38,7 +40,10 @@ describe('FormFocusDirective', () => {
   });
 
   it('should create an instance', () => {
-    const directive = new FormFocusDirective(new ElementRef(inputEl), TestBed.inject(Renderer2));
+    const directive = fixture.debugElement
+      .query(By.directive(FormFocusDirective))
+      .injector.get(FormFocusDirective);
+
     expect(directive).toBeTruthy();
   });
 

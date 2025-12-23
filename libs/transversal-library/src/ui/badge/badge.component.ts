@@ -3,8 +3,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-badge',
-  standalone: true,
-  imports: [NgClass],
   templateUrl: './badge.component.html',
   styleUrl: './badge.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
