@@ -8,7 +8,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable, TimeoutError, catchError, filter, map, throwError, timeout } from 'rxjs';
+import { Observable, catchError, filter, map, throwError, timeout } from 'rxjs';
 
 // RESOURCES
 

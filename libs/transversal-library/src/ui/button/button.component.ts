@@ -3,10 +3,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 @Component({
   selector: 'ui-button',
-  standalone: true,
   imports: [NgClass],
   templateUrl: './button.component.html',
-  styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {

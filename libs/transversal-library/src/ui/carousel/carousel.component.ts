@@ -29,7 +29,6 @@ interface SwiperNativeEl {
 
 @Component({
   selector: 'ui-carousel',
-  standalone: true,
   imports: [CommonModule, CardPosterComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './carousel.component.html',

@@ -4,7 +4,6 @@ import { OnbordingPremieresComponent } from '@pages/onboarding/components/onbord
 
 @Component({
   selector: 'app-onbording-master',
-  standalone: true,
   imports: [OnbordingFeaturedComponent, OnbordingPremieresComponent],
   templateUrl: './onbording-master.component.html',
   styleUrl: './onbording-master.component.scss',

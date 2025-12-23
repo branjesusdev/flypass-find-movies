@@ -5,7 +5,6 @@ import { DetailPoster } from '@shared/core/domain/entity';
 
 @Component({
   selector: 'app-poster-detail-master',
-  standalone: true,
   imports: [PosterDetailHeaderComponent, PosterDetailContentComponent],
   templateUrl: './poster-detail-master.component.html',
   styleUrl: './poster-detail-master.component.scss',

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import {
   catchError,
@@ -42,10 +42,8 @@ import { AplicationStore } from '@shared/store/aplication.store';
 
 @Injectable()
 export class HttpTmdbAdapterService implements TheMovieDBPort {
-  constructor(
-    private http: HttpClient,
-    private store: AplicationStore<any>,
-  ) {}
+  private http = inject(HttpClient);
+  private store = inject(AplicationStore);
 
   private obserberResponse<T>(object: T[]): Observable<T[]> {
     return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;

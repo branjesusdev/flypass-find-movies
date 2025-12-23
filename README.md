@@ -2,7 +2,7 @@
 
 ![809_1x_shots_so](https://github.com/user-attachments/assets/da0d9333-9364-4a27-981c-68825ec696cb)
 
-## Angular 18
+## Angular 21
 
 ## ⚙️ Stack
 
