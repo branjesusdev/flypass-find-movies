@@ -1,4 +1,12 @@
-import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  Renderer2,
+  inject,
+} from '@angular/core';
 
 @Directive({
   selector: '[appFormFocus]',
@@ -8,10 +16,10 @@ export class FormFocusDirective implements OnInit {
   private originalWidth: string;
   @Input('appFormFocus') toggleElement!: `.${string}`;
 
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-  ) {
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
+
+  constructor() {
     this.originalWidth = this.el.nativeElement.style.width;
   }
 

@@ -60,7 +60,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 38
@@ -70,7 +69,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 40
@@ -80,7 +78,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 37
@@ -90,7 +87,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 39
@@ -100,14 +96,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 41
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -125,7 +120,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 10
@@ -135,14 +129,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 11
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -156,7 +149,7 @@
       "sourceCode": "export interface EncryptionStrategy {\r\n  encrypt(data: any): Promise<string>\r\n  decrypt<T>(dataEncrypt: string): Promise<T>\r\n}\r\n",
       "properties": [],
       "indexSignatures": [],
-      "kind": 174,
+      "kind": 173,
       "methods": [
         {
           "name": "decrypt",
@@ -231,7 +224,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 30
@@ -241,14 +233,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 31
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -266,7 +257,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 45
@@ -276,14 +266,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 46
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": [],
       "isDuplicate": true,
@@ -304,7 +293,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 55
@@ -314,7 +302,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 56
@@ -324,7 +311,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 50
@@ -334,7 +320,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 51
@@ -344,7 +329,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 52
@@ -354,7 +338,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 57
@@ -364,7 +347,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 58
@@ -374,7 +356,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 59
@@ -384,7 +365,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 60
@@ -394,7 +374,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 61
@@ -404,7 +383,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 53
@@ -414,14 +392,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 54
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -435,7 +412,7 @@
       "sourceCode": "export interface LoggerStrategy {\r\n  write(indetity: string, message: string | object): void\r\n}\r\n",
       "properties": [],
       "indexSignatures": [],
-      "kind": 174,
+      "kind": 173,
       "methods": [
         {
           "name": "write",
@@ -497,7 +474,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "FeaturedMovie[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 9
@@ -507,7 +483,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "literal type",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 11
@@ -517,14 +492,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "\"loading\" | \"success\" | \"error\"",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 10
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -542,7 +516,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 65
@@ -552,7 +525,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "null | string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 66
@@ -562,7 +534,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 67
@@ -572,14 +543,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 68
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -597,7 +567,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Dates",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 2
@@ -607,7 +576,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 3
@@ -617,7 +585,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Result[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 4
@@ -627,7 +594,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 5
@@ -637,14 +603,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 6
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -662,7 +627,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 2
@@ -672,7 +636,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Result[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 3
@@ -682,7 +645,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 4
@@ -692,14 +654,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 5
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -717,7 +678,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 2
@@ -727,7 +687,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 3
@@ -736,8 +695,7 @@
           "name": "belongs_to_collection",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 4
@@ -747,7 +705,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 5
@@ -757,7 +714,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Genre[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 6
@@ -767,7 +723,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 7
@@ -777,7 +732,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 8
@@ -787,7 +741,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 9
@@ -797,7 +750,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 10
@@ -807,7 +759,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 11
@@ -817,7 +768,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 12
@@ -827,7 +777,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 13
@@ -837,7 +786,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 14
@@ -847,7 +795,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "ProductionCompany[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 15
@@ -857,7 +804,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "ProductionCountry[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 16
@@ -867,7 +813,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 17
@@ -877,7 +822,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 18
@@ -887,7 +831,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 19
@@ -897,7 +840,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "SpokenLanguage[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 20
@@ -907,7 +849,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 21
@@ -917,7 +858,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 22
@@ -927,7 +867,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 23
@@ -937,7 +876,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 24
@@ -947,7 +885,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 25
@@ -957,14 +894,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 26
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -982,7 +918,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 2
@@ -992,7 +927,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Result[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 3
@@ -1002,7 +936,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 4
@@ -1012,14 +945,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 5
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -1037,7 +969,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 2
@@ -1047,7 +978,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 3
@@ -1057,7 +987,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "CreatedBy[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 4
@@ -1067,7 +996,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 5
@@ -1077,7 +1005,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 6
@@ -1087,7 +1014,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Genre[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 7
@@ -1097,7 +1023,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 8
@@ -1107,7 +1032,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 9
@@ -1117,7 +1041,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 10
@@ -1127,7 +1050,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 11
@@ -1137,7 +1059,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 12
@@ -1147,7 +1068,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "LastEpisodeToAir",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 13
@@ -1157,7 +1077,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 14
@@ -1167,7 +1086,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Network[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 16
@@ -1176,8 +1094,7 @@
           "name": "next_episode_to_air",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 15
@@ -1187,7 +1104,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 17
@@ -1197,7 +1113,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 18
@@ -1207,7 +1122,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 19
@@ -1217,7 +1131,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 20
@@ -1227,7 +1140,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 21
@@ -1237,7 +1149,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 22
@@ -1247,7 +1158,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 23
@@ -1257,7 +1167,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 24
@@ -1267,7 +1176,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Network[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 25
@@ -1277,7 +1185,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "ProductionCountry[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 26
@@ -1287,7 +1194,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Season[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 27
@@ -1297,7 +1203,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "SpokenLanguage[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 28
@@ -1307,7 +1212,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 29
@@ -1317,7 +1221,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 30
@@ -1327,7 +1230,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 31
@@ -1337,7 +1239,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 32
@@ -1347,14 +1248,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 33
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -1372,7 +1272,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 2
@@ -1382,7 +1281,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Result[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 3
@@ -1392,7 +1290,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 4
@@ -1402,14 +1299,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 5
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -1427,7 +1323,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 35
@@ -1437,7 +1332,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "null | string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 36
@@ -1447,7 +1341,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 37
@@ -1457,14 +1350,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 38
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -1482,7 +1374,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 42
@@ -1492,14 +1383,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 43
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -1517,7 +1407,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 72
@@ -1527,14 +1416,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 73
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": [],
       "isDuplicate": true,
@@ -1555,7 +1443,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 15
@@ -1565,7 +1452,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 16
@@ -1575,7 +1461,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 17
@@ -1585,7 +1470,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 18
@@ -1595,7 +1479,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "OriginalLanguage",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 19
@@ -1605,7 +1488,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 20
@@ -1615,7 +1497,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 21
@@ -1625,7 +1506,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 22
@@ -1635,7 +1515,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 23
@@ -1645,7 +1524,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 24
@@ -1655,7 +1533,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 25
@@ -1665,7 +1542,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 26
@@ -1675,7 +1551,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 27
@@ -1685,14 +1560,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 28
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -1710,7 +1584,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "null | string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 9
@@ -1720,7 +1593,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 10
@@ -1730,7 +1602,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 11
@@ -1740,7 +1611,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 12
@@ -1750,7 +1620,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 13
@@ -1760,7 +1629,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 14
@@ -1770,7 +1638,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 15
@@ -1780,7 +1647,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 16
@@ -1790,7 +1656,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 17
@@ -1800,7 +1665,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 18
@@ -1810,7 +1674,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 19
@@ -1820,7 +1683,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 20
@@ -1830,14 +1692,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 21
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": [],
       "isDuplicate": true,
@@ -1858,7 +1719,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 9
@@ -1868,7 +1728,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "null | string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 10
@@ -1878,7 +1737,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 26
@@ -1888,7 +1746,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 18
@@ -1898,7 +1755,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 11
@@ -1908,7 +1764,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "MediaType",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 17
@@ -1918,7 +1773,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 24
@@ -1928,7 +1782,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string[]",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 27
@@ -1938,7 +1791,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "OriginalLanguage",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 13
@@ -1948,7 +1800,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 25
@@ -1958,7 +1809,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 14
@@ -1968,7 +1818,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 15
@@ -1978,7 +1827,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 19
@@ -1988,7 +1836,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 16
@@ -1998,7 +1845,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 20
@@ -2008,7 +1854,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 12
@@ -2018,7 +1863,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 21
@@ -2028,7 +1872,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 22
@@ -2038,14 +1881,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 23
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": [],
       "isDuplicate": true,
@@ -2066,7 +1908,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 9
@@ -2076,7 +1917,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 10
@@ -2086,7 +1926,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 26
@@ -2096,7 +1935,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 18
@@ -2106,7 +1944,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 11
@@ -2116,7 +1953,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "MediaType",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 17
@@ -2126,7 +1962,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 24
@@ -2136,7 +1971,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string[]",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 27
@@ -2146,7 +1980,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "OriginalLanguage",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 13
@@ -2156,7 +1989,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 25
@@ -2166,7 +1998,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 14
@@ -2176,7 +2007,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 15
@@ -2186,7 +2016,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 19
@@ -2196,7 +2025,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 16
@@ -2206,7 +2034,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 20
@@ -2216,7 +2043,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 12
@@ -2226,7 +2052,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
-          "indexKey": "",
           "optional": true,
           "description": "",
           "line": 21
@@ -2236,7 +2061,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 22
@@ -2246,14 +2070,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 23
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": [],
       "isDuplicate": true,
@@ -2274,7 +2097,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Date",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 77
@@ -2284,7 +2106,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 78
@@ -2294,7 +2115,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 79
@@ -2304,7 +2124,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 80
@@ -2314,7 +2133,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 81
@@ -2324,7 +2142,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 82
@@ -2334,7 +2151,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 83
@@ -2344,14 +2160,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 84
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -2369,7 +2184,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "FeaturedSerie[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 10
@@ -2379,7 +2193,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "literal type",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 12
@@ -2389,14 +2202,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "\"loading\" | \"success\" | \"error\"",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 11
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -2414,7 +2226,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 47
@@ -2424,7 +2235,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 48
@@ -2434,14 +2244,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 49
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": []
     },
@@ -2459,7 +2268,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 88
@@ -2469,7 +2277,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 89
@@ -2479,14 +2286,13 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 90
         }
       ],
       "indexSignatures": [],
-      "kind": 172,
+      "kind": 171,
       "methods": [],
       "extends": [],
       "isDuplicate": true,
@@ -2503,7 +2309,7 @@
       "sourceCode": "export interface StorageDataRepository {\r\n  get<T>(key: string): T\r\n  set(key: string, value: any): boolean\r\n  update(key: string, value: any): boolean\r\n  remove(key: string): void\r\n}\r\n",
       "properties": [],
       "indexSignatures": [],
-      "kind": 174,
+      "kind": 173,
       "methods": [
         {
           "name": "get",
@@ -2660,7 +2466,7 @@
       "sourceCode": "export interface StorageStrategy {\r\n  get<T>(key: string): T\r\n  set(key: string, value: any): boolean\r\n  delete(key: string): boolean\r\n}\r\n",
       "properties": [],
       "indexSignatures": [],
-      "kind": 174,
+      "kind": 173,
       "methods": [
         {
           "name": "delete",
@@ -2776,8 +2582,7 @@
           "defaultValue": "new BehaviorSubject<{ [key: string]: T }>({})",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 8,
@@ -2788,8 +2593,7 @@
           "defaultValue": "this.state.asObservable()",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 9,
@@ -2890,9 +2694,32 @@
     },
     {
       "name": "HttpTmdbAdapterService",
-      "id": "injectable-HttpTmdbAdapterService-a574d62c9407f3cd8dbb9061687ca9652daceedbd8d9049f0a05ca871bb29c2b6de810675760e15ec507b4eb36a56ce2bc82a6a4b6ef8aab42e1bb51896e7677",
+      "id": "injectable-HttpTmdbAdapterService-176754a491e284d4a92229b2ece22c1653c99ab6ed7ed852228313ac0687ab789f2b711b6b6f11be85136f7c11f690622d3ce793f691b90bee8a6748c7d7a256",
       "file": "src/app/modules/shared/command/adapters/http-tmdb-adapter.service.ts",
-      "properties": [],
+      "properties": [
+        {
+          "name": "http",
+          "defaultValue": "inject(HttpClient)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 45,
+          "modifierKind": [123]
+        },
+        {
+          "name": "store",
+          "defaultValue": "inject(AplicationStore)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 46,
+          "modifierKind": [123]
+        }
+      ],
       "methods": [
         {
           "name": "getFeaturedMovies",
@@ -2906,7 +2733,7 @@
           "optional": false,
           "returnType": "Observable<FeaturedMovie[]>",
           "typeParameters": [],
-          "line": 88,
+          "line": 86,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2932,7 +2759,7 @@
           "optional": false,
           "returnType": "Observable<FeaturedSerie[]>",
           "typeParameters": [],
-          "line": 123,
+          "line": 121,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2959,7 +2786,7 @@
           "optional": false,
           "returnType": "Observable<DetailPosterMovie>",
           "typeParameters": [],
-          "line": 218,
+          "line": 216,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2987,7 +2814,7 @@
           "optional": false,
           "returnType": "Observable<DetailPosterSeries>",
           "typeParameters": [],
-          "line": 188,
+          "line": 186,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -3014,7 +2841,7 @@
           "optional": false,
           "returnType": "Observable<Trending[]>",
           "typeParameters": [],
-          "line": 54,
+          "line": 52,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -3041,7 +2868,7 @@
           "optional": false,
           "returnType": "Observable<T[]>",
           "typeParameters": ["T"],
-          "line": 50,
+          "line": 48,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -3070,7 +2897,7 @@
           "optional": false,
           "returnType": "Observable<SearchMulti[]>",
           "typeParameters": [],
-          "line": 157,
+          "line": 155,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -3090,48 +2917,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport {\n  catchError,\n  defaultIfEmpty,\n  distinctUntilChanged,\n  map,\n  Observable,\n  of,\n  shareReplay,\n  switchMap,\n  tap,\n  throwError,\n} from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  SearchMulti,\n  Trending,\n  MediaType,\n  DetailPosterMovie,\n  DetailPosterSeries,\n} from '@shared/core/domain/entity';\nimport { AplicationStore } from '@shared/store/aplication.store';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  constructor(\n    private http: HttpClient,\n    private store: AplicationStore<any>,\n  ) {}\n\n  private obserberResponse<T>(object: T[]): Observable<T[]> {\n    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;\n  }\n\n  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {\n    const url = `${PATHS.trending}`;\n    const store = this.store.getStateValue('trending') as Trending[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutTrending>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outTrending) =>\n        outTrending.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n              page: outTrending.page,\n            }) as Trending,\n        ),\n      ),\n      tap((trending) => {\n        this.store.saveState$({ key: 'trending', info: trending as Trending[] });\n      }),\n      switchMap((trending) => {\n        if (store) return of([...store, ...trending]);\n        return of(trending);\n      }),\n    );\n  }\n\n  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n              overview: outMovieDetail.overview,\n              page: outMovieDetails.page,\n            }) as FeaturedMovie,\n        ),\n      ),\n      tap((movies) => {\n        const moviesStore = page == 1 ? movies : [...store, ...movies];\n        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });\n      }),\n      switchMap((movies) => {\n        if (store) return of([...store, ...movies]);\n        return of(movies);\n      }),\n    );\n  }\n\n  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];\n\n    if (store && page == 1) return this.obserberResponse(store);\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n              page: outFeaturedSerie.page,\n            }) as FeaturedSerie,\n        ),\n      ),\n      tap((series) => {\n        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });\n      }),\n      switchMap((series) => {\n        if (store) return of([...store, ...series]);\n        return of(series);\n      }),\n    );\n  }\n\n  searchByFilter(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams().set('query', query).set('include_adult', 'false');\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      distinctUntilChanged(),\n      shareReplay(1), // shared multiple subscriptions to the same observable in cache\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterSeries,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterMovie,\n      ),\n    );\n  }\n}\n",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "http",
-            "type": "HttpClient",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "store",
-            "type": "AplicationStore<any>",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 44,
-        "jsdoctags": [
-          {
-            "name": "http",
-            "type": "HttpClient",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "store",
-            "type": "AplicationStore<any>",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
+      "sourceCode": "import { inject, Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http';\nimport {\n  catchError,\n  defaultIfEmpty,\n  distinctUntilChanged,\n  map,\n  Observable,\n  of,\n  shareReplay,\n  switchMap,\n  tap,\n  throwError,\n} from 'rxjs';\n\n// RERSOURCES\n\nimport { PATHS } from '@conf/paths';\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { environment } from '@environment';\n\n// ENTITIES\n\nimport {\n  OutFeaturedMovie,\n  OutFeaturedSerie,\n  OutMovieDetail,\n  OutSearchMulti,\n  OutSerieDetail,\n  OutTrending,\n} from '@shared/command/adapters/response';\nimport {\n  FeaturedMovie,\n  FeaturedSerie,\n  SearchMulti,\n  Trending,\n  MediaType,\n  DetailPosterMovie,\n  DetailPosterSeries,\n} from '@shared/core/domain/entity';\nimport { AplicationStore } from '@shared/store/aplication.store';\n\n@Injectable()\nexport class HttpTmdbAdapterService implements TheMovieDBPort {\n  private http = inject(HttpClient);\n  private store = inject(AplicationStore);\n\n  private obserberResponse<T>(object: T[]): Observable<T[]> {\n    return of(Object.keys(object).map((key) => object[key as any])) as Observable<T[]>;\n  }\n\n  getTrending({ page = 1 }: { page: number }): Observable<Trending[]> {\n    const url = `${PATHS.trending}`;\n    const store = this.store.getStateValue('trending') as Trending[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<Trending[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutTrending>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outTrending) =>\n        outTrending.results.map(\n          (outMovieDetail) =>\n            ({\n              id: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              overview: outMovieDetail.overview,\n              media_type: outMovieDetail.media_type,\n              page: outTrending.page,\n            }) as Trending,\n        ),\n      ),\n      tap((trending) => {\n        this.store.saveState$({ key: 'trending', info: trending as Trending[] });\n      }),\n      switchMap((trending) => {\n        if (store) return of([...store, ...trending]);\n        return of(trending);\n      }),\n    );\n  }\n\n  getFeaturedMovies({ page = 1 }: { page?: number }): Observable<FeaturedMovie[]> {\n    const url = PATHS.movies.featured;\n    const store = this.store.getStateValue('featuredMovies') as FeaturedMovie[];\n\n    if (store && page == 1) return this.obserberResponse(store) as Observable<FeaturedMovie[]>;\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedMovie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outMovieDetails) =>\n        outMovieDetails.results.map(\n          (outMovieDetail) =>\n            ({\n              id_movie: outMovieDetail.id,\n              title: outMovieDetail.title,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outMovieDetail.poster_path}`,\n              vote_average: outMovieDetail.vote_average,\n              media_type: MediaType.Movie,\n              overview: outMovieDetail.overview,\n              page: outMovieDetails.page,\n            }) as FeaturedMovie,\n        ),\n      ),\n      tap((movies) => {\n        const moviesStore = page == 1 ? movies : [...store, ...movies];\n        this.store.saveState$({ key: 'featuredMovies', info: moviesStore });\n      }),\n      switchMap((movies) => {\n        if (store) return of([...store, ...movies]);\n        return of(movies);\n      }),\n    );\n  }\n\n  getFeaturedSeries({ page = 1 }: { page?: number }): Observable<FeaturedSerie[]> {\n    const url = PATHS.series.featured;\n    const store = this.store.getStateValue('featuredSeries') as FeaturedSerie[];\n\n    if (store && page == 1) return this.obserberResponse(store);\n\n    const params = new HttpParams().set('page', page.toString());\n\n    return this.http.get<OutFeaturedSerie>(url, { params }).pipe(\n      distinctUntilChanged(),\n      map((outFeaturedSerie) =>\n        outFeaturedSerie.results.map(\n          (outSerieDetail) =>\n            ({\n              id_serie: outSerieDetail.id,\n              title: outSerieDetail.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSerieDetail.poster_path}`,\n              vote_average: outSerieDetail.vote_average,\n              overview: outSerieDetail.overview,\n              media_type: MediaType.Tv,\n              page: outFeaturedSerie.page,\n            }) as FeaturedSerie,\n        ),\n      ),\n      tap((series) => {\n        this.store.saveState$({ key: 'featuredSeries', info: series as FeaturedSerie[] });\n      }),\n      switchMap((series) => {\n        if (store) return of([...store, ...series]);\n        return of(series);\n      }),\n    );\n  }\n\n  searchByFilter(query: string): Observable<SearchMulti[]> {\n    const params = new HttpParams().set('query', query).set('include_adult', 'false');\n\n    const url = PATHS.search;\n\n    return this.http.get<OutSearchMulti>(url, { params }).pipe(\n      distinctUntilChanged(),\n      shareReplay(1), // shared multiple subscriptions to the same observable in cache\n      map((outSearchMulti) =>\n        outSearchMulti.results.map(\n          (outSearchMulti) =>\n            ({\n              id: outSearchMulti.id,\n              title:\n                MediaType.Movie === outSearchMulti.media_type\n                  ? outSearchMulti.title\n                  : outSearchMulti.name,\n              poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_SMALL}${outSearchMulti.poster_path}`,\n              release_date: outSearchMulti?.first_air_date || '',\n              media_type: outSearchMulti.media_type,\n              overview: outSearchMulti?.overview,\n            }) as SearchMulti,\n        ),\n      ),\n      defaultIfEmpty([]),\n      catchError((error) => {\n        return throwError(() => []);\n      }),\n    );\n  }\n\n  getSeriesDetails(seriesId: number): Observable<DetailPosterSeries> {\n    const url = PATHS.series.details(seriesId);\n\n    return this.http.get<OutSerieDetail>(url).pipe(\n      map(\n        (outSerieDetail) =>\n          ({\n            id: outSerieDetail.id,\n            name: outSerieDetail.name,\n            overview: outSerieDetail.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outSerieDetail.poster_path}`,\n            vote_average: outSerieDetail.vote_average,\n            first_air_date: outSerieDetail.first_air_date,\n            genres: outSerieDetail.genres?.map((genre) => genre.name),\n            number_of_episodes: outSerieDetail.number_of_episodes,\n            number_of_seasons: outSerieDetail.number_of_seasons,\n            tagline: outSerieDetail.tagline,\n            media_type: MediaType.Tv,\n            popularity: outSerieDetail.popularity,\n            production_companies:\n              outSerieDetail?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outSerieDetail?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outSerieDetail?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterSeries,\n      ),\n    );\n  }\n\n  getMovieDetails(movieId: number): Observable<DetailPosterMovie> {\n    const url = PATHS.movies.details(movieId);\n\n    return this.http.get<OutMovieDetail>(url).pipe(\n      map(\n        (outMovieDetails) =>\n          ({\n            id: outMovieDetails.id,\n            name: outMovieDetails.title,\n            overview: outMovieDetails.overview,\n            poster_path: `${environment.PREFIX_URL_PREVIEW_IMG_LARGE}${outMovieDetails.backdrop_path}`,\n            vote_average: outMovieDetails.vote_average,\n            release_date: outMovieDetails.release_date,\n            genres: outMovieDetails.genres?.map((genre) => genre.name),\n            runtime: outMovieDetails.runtime,\n            tagline: outMovieDetails.tagline,\n            media_type: MediaType.Movie,\n            popularity: outMovieDetails.popularity,\n            production_companies:\n              outMovieDetails?.production_companies?.map((company) => company.name) ?? [],\n            production_countries:\n              outMovieDetails?.production_countries?.map((country) => country.name) ?? [],\n            spoken_languages:\n              outMovieDetails?.spoken_languages?.map((language) => language.name) ?? [],\n          }) as DetailPosterMovie,\n      ),\n    );\n  }\n}\n",
       "extends": [],
       "type": "injectable"
     },
@@ -3145,7 +2931,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "LoggerStrategy",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 9,
@@ -3229,7 +3014,7 @@
   "interceptors": [
     {
       "name": "HttpHeadersInterceptor",
-      "id": "injectable-HttpHeadersInterceptor-9de0f7b7dd3629e19620adb8e1e95d860189961eb014fc0c84d42d46b6c3d2045cf414435a91e79f8ea9c43887a08e8c5f9eb7fed7bc6254daff8cf4447c161b",
+      "id": "injectable-HttpHeadersInterceptor-cc8481cac3097fc1c8fa08fdd8b3451f56457401ee04268edb1f394dffd2bef17bb498bbe309f08f459ef509aa2b478424aad5716ed094ad5f6332a2f24112fb",
       "file": "src/app/modules/shared/interceptors/headers-interceptor.service.ts",
       "properties": [],
       "methods": [
@@ -3252,7 +3037,7 @@
           "optional": false,
           "returnType": "Observable<HttpEvent<any>>",
           "typeParameters": [],
-          "line": 16,
+          "line": 19,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -3281,7 +3066,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from \"@angular/common/http\";\r\nimport { inject, Inject, Injectable } from '@angular/core';\r\nimport { Observable } from \"rxjs\";\r\n\r\n// RESOURCES\r\n\r\nimport { API_KEY_TOKEN } from \"@conf/tokens\";\r\n\r\n@Injectable()\r\nexport class HttpHeadersInterceptor implements HttpInterceptor {\r\n\r\n  constructor(\r\n    @Inject(API_KEY_TOKEN) private apiAccessToken: string\r\n  ) { }\r\n\r\n  intercept(\r\n    req: HttpRequest<any>,\r\n    next: HttpHandler\r\n  ): Observable<HttpEvent<any>> {\r\n\r\n    const headers = req.clone({\r\n      setHeaders: {\r\n        'Content-Type': 'application/json',\r\n        Authorization: `Bearer ${this.apiAccessToken}`\r\n      },\r\n    });\r\n    return next.handle(headers);\r\n\r\n  }\r\n\r\n}\r\n\r\nexport const httpInterceptorProvidersHeaders = [\r\n  {\r\n    provide: HTTP_INTERCEPTORS,\r\n    useClass: HttpHeadersInterceptor,\r\n    multi: true\r\n  }\r\n]\r\n",
+      "sourceCode": "import {\n  HTTP_INTERCEPTORS,\n  HttpEvent,\n  HttpHandler,\n  HttpInterceptor,\n  HttpRequest,\n} from '@angular/common/http';\nimport { Inject, Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\n\n// RESOURCES\n\nimport { API_KEY_TOKEN } from '@conf/tokens';\n\n@Injectable()\nexport class HttpHeadersInterceptor implements HttpInterceptor {\n  constructor(@Inject(API_KEY_TOKEN) private apiAccessToken: string) {}\n\n  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n    const headers = req.clone({\n      setHeaders: {\n        'Content-Type': 'application/json',\n        Authorization: `Bearer ${this.apiAccessToken}`,\n      },\n    });\n    return next.handle(headers);\n  }\n}\n\nexport const httpInterceptorProvidersHeaders = [\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: HttpHeadersInterceptor,\n    multi: true,\n  },\n];\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -3295,7 +3080,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 10,
+        "line": 16,
         "jsdoctags": [
           {
             "name": "apiAccessToken",
@@ -3313,7 +3098,7 @@
     },
     {
       "name": "RefactorUrlInterceptor",
-      "id": "injectable-RefactorUrlInterceptor-1b4ab83d32dfeb947333fc5ee5be23079c3c354fcbbd6e49b7d61868f63ffa99de5f0033074be82eb88ee2f1dc72c99cc743a3e9e2d12d325652e397d2352a6b",
+      "id": "injectable-RefactorUrlInterceptor-7067c018dff7dcec6ed3e0fb88f19a07dd0d565a80290922d14381f14e442ad78636f3ba5b65d0c6579fda528b53d8918f8588242477e38e9984dc6f0d3aedd6",
       "file": "src/app/modules/shared/interceptors/refactor-url-interceptor.service.ts",
       "properties": [],
       "methods": [
@@ -3365,7 +3150,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import {\n  HTTP_INTERCEPTORS,\n  HttpErrorResponse,\n  HttpEvent,\n  HttpHandler,\n  HttpInterceptor,\n  HttpRequest,\n  HttpResponse,\n} from '@angular/common/http';\nimport { Inject, Injectable } from '@angular/core';\nimport { Observable, TimeoutError, catchError, filter, map, throwError, timeout } from 'rxjs';\n\n// RESOURCES\n\nimport { API_BASE_URL } from '@conf/tokens';\nimport { LogStrategyService } from '@shared/command/log';\nimport { Router } from '@angular/router';\n\n@Injectable()\nexport class RefactorUrlInterceptor implements HttpInterceptor {\n  constructor(\n    @Inject(API_BASE_URL) private apiBaseUrl: string,\n    private log: LogStrategyService,\n    private router: Router,\n  ) {}\n\n  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n    const request = req.clone({\n      url: `${this.apiBaseUrl}${req.url}`,\n    });\n\n    this.log.write({ indetity: 'HttpRequest 🥅🥅🥅', message: { request } });\n\n    return next.handle(request).pipe(\n      timeout(15000),\n      filter((event: HttpEvent<any>) => event instanceof HttpResponse),\n      map((event: HttpEvent<any>) => {\n        if (event instanceof HttpResponse)\n          this.log.write({ indetity: 'HttpEvent ✅✅✅', message: { event } });\n\n        return event;\n      }),\n      catchError((error: HttpErrorResponse) => {\n        this.log.write({ indetity: 'HttpEvent ❌❌❌', message: { error } });\n        this.router.navigate(['/failed']);\n        return throwError(() => error);\n      }),\n    );\n  }\n}\nexport const httpInterceptorRefactorUrlProvider = [\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: RefactorUrlInterceptor,\n    multi: true,\n  },\n];\n",
+      "sourceCode": "import {\n  HTTP_INTERCEPTORS,\n  HttpErrorResponse,\n  HttpEvent,\n  HttpHandler,\n  HttpInterceptor,\n  HttpRequest,\n  HttpResponse,\n} from '@angular/common/http';\nimport { Inject, Injectable } from '@angular/core';\nimport { Observable, catchError, filter, map, throwError, timeout } from 'rxjs';\n\n// RESOURCES\n\nimport { API_BASE_URL } from '@conf/tokens';\nimport { LogStrategyService } from '@shared/command/log';\nimport { Router } from '@angular/router';\n\n@Injectable()\nexport class RefactorUrlInterceptor implements HttpInterceptor {\n  constructor(\n    @Inject(API_BASE_URL) private apiBaseUrl: string,\n    private log: LogStrategyService,\n    private router: Router,\n  ) {}\n\n  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n    const request = req.clone({\n      url: `${this.apiBaseUrl}${req.url}`,\n    });\n\n    this.log.write({ indetity: 'HttpRequest 🥅🥅🥅', message: { request } });\n\n    return next.handle(request).pipe(\n      timeout(15000),\n      filter((event: HttpEvent<any>) => event instanceof HttpResponse),\n      map((event: HttpEvent<any>) => {\n        if (event instanceof HttpResponse)\n          this.log.write({ indetity: 'HttpEvent ✅✅✅', message: { event } });\n\n        return event;\n      }),\n      catchError((error: HttpErrorResponse) => {\n        this.log.write({ indetity: 'HttpEvent ❌❌❌', message: { error } });\n        this.router.navigate(['/failed']);\n        return throwError(() => error);\n      }),\n    );\n  }\n}\nexport const httpInterceptorRefactorUrlProvider = [\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: RefactorUrlInterceptor,\n    multi: true,\n  },\n];\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -3840,12 +3625,12 @@
   "directives": [
     {
       "name": "FormFocusDirective",
-      "id": "directive-FormFocusDirective-9de1922fd02a818a27ce53568c6a456129e9e8efe638ba0b5a82e30cdaef866594bddf8d4fdcb1bfa2cce1147a3912f178232ca4f7b0656eb821701b12be3bd8",
+      "id": "directive-FormFocusDirective-7c74231a7eea9a4a4d0ab797650ff5fef4cd56a37af1ce04dbf9e6a5634affb09dc5b0f0ca377969119e93b0c1f07fb61dee20b4b25d4466aeaee83e931768a8",
       "file": "src/app/modules/shared/directives/form-focus.directive.ts",
       "type": "directive",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';\n\n@Directive({\n  selector: '[appFormFocus]',\n  standalone: true,\n})\nexport class FormFocusDirective implements OnInit {\n  private originalWidth: string;\n  @Input('appFormFocus') toggleElement!: `.${string}`;\n\n  constructor(\n    private el: ElementRef,\n    private renderer: Renderer2,\n  ) {\n    this.originalWidth = this.el.nativeElement.style.width;\n  }\n\n  ngOnInit(): void {\n    const elementToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n    if (elementToggled) {\n      elementToggled?.forEach((element: HTMLElement) => {\n        element.classList.add('hidden');\n      });\n    }\n  }\n\n  @HostListener('focusin', ['$event'])\n  onFocusIn(event: FocusEvent): void {\n    // console.log('focusin');\n\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      this.renderer.setStyle(this.el.nativeElement, 'width', '100%');\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        elementsToggled?.forEach((element: HTMLElement) => {\n          element.classList.remove('hidden');\n        });\n      }\n    }\n  }\n\n  @HostListener('focusout', ['$event'])\n  onFocusOut(event: FocusEvent): void {\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      const relatedTarget = event.relatedTarget as HTMLElement;\n      if (relatedTarget && this.el.nativeElement.contains(relatedTarget)) {\n        return;\n      }\n\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        setTimeout(() => {\n          this.renderer.setStyle(this.el.nativeElement, 'width', this.originalWidth);\n          elementsToggled?.forEach((element: HTMLElement) => {\n            element.classList.add('hidden');\n          });\n        }, 200);\n      }\n    }\n  }\n}\n",
+      "sourceCode": "import {\n  Directive,\n  ElementRef,\n  HostListener,\n  Input,\n  OnInit,\n  Renderer2,\n  inject,\n} from '@angular/core';\n\n@Directive({\n  selector: '[appFormFocus]',\n  standalone: true,\n})\nexport class FormFocusDirective implements OnInit {\n  private originalWidth: string;\n  @Input('appFormFocus') toggleElement!: `.${string}`;\n\n  private el = inject(ElementRef);\n  private renderer = inject(Renderer2);\n\n  constructor() {\n    this.originalWidth = this.el.nativeElement.style.width;\n  }\n\n  ngOnInit(): void {\n    const elementToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n    if (elementToggled) {\n      elementToggled?.forEach((element: HTMLElement) => {\n        element.classList.add('hidden');\n      });\n    }\n  }\n\n  @HostListener('focusin', ['$event'])\n  onFocusIn(event: FocusEvent): void {\n    // console.log('focusin');\n\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      this.renderer.setStyle(this.el.nativeElement, 'width', '100%');\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        elementsToggled?.forEach((element: HTMLElement) => {\n          element.classList.remove('hidden');\n        });\n      }\n    }\n  }\n\n  @HostListener('focusout', ['$event'])\n  onFocusOut(event: FocusEvent): void {\n    const { tagName } = event.target as HTMLInputElement;\n\n    if (tagName === 'INPUT') {\n      const relatedTarget = event.relatedTarget as HTMLElement;\n      if (relatedTarget && this.el.nativeElement.contains(relatedTarget)) {\n        return;\n      }\n\n      const elementsToggled = this.el.nativeElement.querySelectorAll(this.toggleElement);\n      if (elementsToggled) {\n        setTimeout(() => {\n          this.renderer.setStyle(this.el.nativeElement, 'width', this.originalWidth);\n          elementsToggled?.forEach((element: HTMLElement) => {\n            element.classList.add('hidden');\n          });\n        }, 200);\n      }\n    }\n  }\n}\n",
       "selector": "[appFormFocus]",
       "providers": [],
       "hostDirectives": [],
@@ -3855,7 +3640,7 @@
           "name": "appFormFocus",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 9,
+          "line": 17,
           "type": "template literal type",
           "decorators": []
         }
@@ -3878,7 +3663,7 @@
           "argsDecorator": ["$event"],
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 28
+          "line": 36
         },
         {
           "name": "focusout",
@@ -3893,19 +3678,40 @@
           "argsDecorator": ["$event"],
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 45
+          "line": 53
         }
       ],
       "propertiesClass": [
+        {
+          "name": "el",
+          "defaultValue": "inject(ElementRef)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 19,
+          "modifierKind": [123]
+        },
         {
           "name": "originalWidth",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
-          "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 8,
+          "line": 16,
+          "modifierKind": [123]
+        },
+        {
+          "name": "renderer",
+          "defaultValue": "inject(Renderer2)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 20,
           "modifierKind": [123]
         }
       ],
@@ -3916,7 +3722,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 18,
+          "line": 26,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -3933,7 +3739,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 28,
+          "line": 36,
           "deprecated": false,
           "deprecationMessage": "",
           "decorators": [
@@ -3942,7 +3748,7 @@
               "stringifiedArguments": "'focusin', ['$event']"
             }
           ],
-          "modifierKind": [171],
+          "modifierKind": [170],
           "jsdoctags": [
             {
               "name": "event",
@@ -3968,7 +3774,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 45,
+          "line": 53,
           "deprecated": false,
           "deprecationMessage": "",
           "decorators": [
@@ -3977,7 +3783,7 @@
               "stringifiedArguments": "'focusout', ['$event']"
             }
           ],
-          "modifierKind": [171],
+          "modifierKind": [170],
           "jsdoctags": [
             {
               "name": "event",
@@ -3998,41 +3804,8 @@
         "description": "",
         "deprecated": false,
         "deprecationMessage": "",
-        "args": [
-          {
-            "name": "el",
-            "type": "ElementRef",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "renderer",
-            "type": "Renderer2",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 9,
-        "jsdoctags": [
-          {
-            "name": "el",
-            "type": "ElementRef",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "renderer",
-            "type": "Renderer2",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
+        "args": [],
+        "line": 20
       }
     }
   ],
@@ -4078,7 +3851,7 @@
     },
     {
       "name": "FailedServiceComponent",
-      "id": "component-FailedServiceComponent-241b63f1999f58825fefe851f22f3a3fdac42fd5e8a5497fa52dadc203555f7797a35b8ed8d5a05abc0467c244640563b5e770d1c2a7cf460801dcfdeb3e9572",
+      "id": "component-FailedServiceComponent-33d136dbc979e9295257e4791874a243610c0bade16908e7cd488e0f9d6e18649ce70040b9d4270228d20982de34be8ce6714ffde1897269ff08ca7bf3541e7a",
       "file": "src/app/modules/pages/handlers/failed-service/failed-service.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -4093,7 +3866,19 @@
       "hostDirectives": [],
       "inputsClass": [],
       "outputsClass": [],
-      "propertiesClass": [],
+      "propertiesClass": [
+        {
+          "name": "router",
+          "defaultValue": "inject(Router)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 13,
+          "modifierKind": [123]
+        }
+      ],
       "methodsClass": [
         {
           "name": "refreshPage",
@@ -4123,37 +3908,11 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { NgOptimizedImage } from '@angular/common';\nimport { Component } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { ButtonComponent } from '@lib-transversal';\n\n@Component({\n  selector: 'app-failed-service',\n  imports: [NgOptimizedImage, ButtonComponent],\n  templateUrl: './failed-service.component.html',\n  styleUrl: './failed-service.component.scss',\n})\nexport default class FailedServiceComponent {\n  constructor(private router: Router) {}\n\n  refreshPage() {\n    this.router.navigate(['/']);\n  }\n}\n",
+      "sourceCode": "import { NgOptimizedImage } from '@angular/common';\nimport { Component, inject } from '@angular/core';\nimport { Router } from '@angular/router';\nimport { ButtonComponent } from '@lib-transversal';\n\n@Component({\n  selector: 'app-failed-service',\n  imports: [NgOptimizedImage, ButtonComponent],\n  templateUrl: './failed-service.component.html',\n  styleUrl: './failed-service.component.scss',\n})\nexport default class FailedServiceComponent {\n  private router = inject(Router);\n\n  refreshPage() {\n    this.router.navigate(['/']);\n  }\n}\n",
       "styleUrl": "./failed-service.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 12,
-        "jsdoctags": [
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
       "extends": [],
       "templateData": "<section class=\"flex flex-col gap-8 items-center justify-center w-full h-[80vh]\">\n  <img\n    ngSrc=\"imgs/union-icon.svg\"\n    alt=\"Union Icon\"\n    class=\"aspect-square mx-auto w-[30rem]\"\n    width=\"280\"\n    height=\"120\"\n  />\n\n  <h1 class=\"font-bold text-white text-4xl\">Oops....</h1>\n  <p class=\"text-white text-xl\">Something went wrong.</p>\n\n  <ui-button text=\"Refresh\" (handleClick)=\"refreshPage()\" />\n</section>\n"
     },
@@ -4184,8 +3943,7 @@
           "defaultValue": "signal<number>(0)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 15
@@ -4195,8 +3953,7 @@
           "defaultValue": "inject(MoviesStore)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 18,
@@ -4207,8 +3964,7 @@
           "defaultValue": "signal<ItemsCarousel[]>([])",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 14
@@ -4218,8 +3974,7 @@
           "defaultValue": "inject(Router)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 17,
@@ -4392,8 +4147,7 @@
           "defaultValue": "signal<ItemsCarousel[]>([])",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 14
@@ -4403,8 +4157,7 @@
           "defaultValue": "inject(Router)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 16,
@@ -4415,8 +4168,7 @@
           "defaultValue": "inject(SeriesStore)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 17,
@@ -4622,8 +4374,7 @@
           "defaultValue": "inject(DestroyRef)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 46,
@@ -4634,8 +4385,7 @@
           "defaultValue": "signal('')",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 38
@@ -4645,8 +4395,7 @@
           "defaultValue": "signal(false)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 42
@@ -4656,8 +4405,7 @@
           "defaultValue": "signal(false)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 43
@@ -4667,8 +4415,7 @@
           "defaultValue": "signal<string[]>([])",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 40
@@ -4678,8 +4425,7 @@
           "defaultValue": "signal<SearchMulti[]>([])",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 39
@@ -4689,8 +4435,7 @@
           "defaultValue": "signal(false)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 41
@@ -4700,8 +4445,7 @@
           "defaultValue": "inject(Router)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 48,
@@ -4712,8 +4456,7 @@
           "defaultValue": "new Subject<string>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 45,
@@ -4724,8 +4467,7 @@
           "defaultValue": "inject(TheMovieDBPort)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 47,
@@ -4946,7 +4688,7 @@
     },
     {
       "name": "OnbordingFeaturedComponent",
-      "id": "component-OnbordingFeaturedComponent-5b22b23ba2ce642b2d0a07789379688a36238fa380d5fe7778ff58fe31c58e5604ac3b8953639f16466f808962d7be310f91dbd87ab5644423700ecbc65d65d9",
+      "id": "component-OnbordingFeaturedComponent-502f70b16610f7e7d73830f5ab1f3be5e779f4ac902698850fd5b88556baa38962ff1312eed9628d206b45667f1d7b1b8cb940375ab14a844e8d064946442a86",
       "file": "src/app/modules/pages/onboarding/components/onbording-featured/onbording-featured.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -4967,22 +4709,20 @@
           "defaultValue": "signal<boolean>(true)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
-          "line": 31
+          "line": 25
         },
         {
           "name": "isSeries",
           "defaultValue": "signal<boolean>(false)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
-          "line": 32
+          "line": 26
         },
         {
           "name": "tabs",
@@ -4990,10 +4730,9 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "MenuItemTab[]",
-          "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 26
+          "line": 20
         }
       ],
       "methodsClass": [
@@ -5010,7 +4749,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 34,
+          "line": 28,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5052,7 +4791,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, signal } from '@angular/core';\n\nimport { MenuItemTab, TabPanelComponent, TabViewComponent } from '@lib-transversal';\n\nimport { FeaturedSeriesComponent } from '@pages/onboarding/components/featured-series/featured-series.component';\nimport { FeaturedMoviesComponent } from '@pages/onboarding/components/featured-movies/featured-movies.component';\n\n\nenum TabKey {\n  MOVIES = 'movies',\n  SERIES = 'series',\n}\n\n@Component({\n  selector: 'app-onbording-featured',\n  imports: [\n    FeaturedSeriesComponent,\n    FeaturedMoviesComponent,\n    TabViewComponent,\n    TabPanelComponent\n],\n  templateUrl: './onbording-featured.component.html',\n  styleUrl: './onbording-featured.component.scss',\n})\nexport class OnbordingFeaturedComponent {\n  tabs: MenuItemTab[] = [\n    { title: 'Movies', content: TabKey.MOVIES },\n    { title: 'Series', content: TabKey.SERIES },\n  ];\n\n  isMovies = signal<boolean>(true);\n  isSeries = signal<boolean>(false);\n\n  handleTabSelected(tab: string) {\n    this.isMovies.set(tab === TabKey.MOVIES);\n    this.isSeries.set(tab === TabKey.SERIES);\n  }\n}\n",
+      "sourceCode": "import { Component, signal } from '@angular/core';\n\nimport { MenuItemTab, TabPanelComponent, TabViewComponent } from '@lib-transversal';\n\nimport { FeaturedSeriesComponent } from '@pages/onboarding/components/featured-series/featured-series.component';\nimport { FeaturedMoviesComponent } from '@pages/onboarding/components/featured-movies/featured-movies.component';\n\nenum TabKey {\n  MOVIES = 'movies',\n  SERIES = 'series',\n}\n\n@Component({\n  selector: 'app-onbording-featured',\n  imports: [FeaturedSeriesComponent, FeaturedMoviesComponent, TabViewComponent, TabPanelComponent],\n  templateUrl: './onbording-featured.component.html',\n  styleUrl: './onbording-featured.component.scss',\n})\nexport class OnbordingFeaturedComponent {\n  tabs: MenuItemTab[] = [\n    { title: 'Movies', content: TabKey.MOVIES },\n    { title: 'Series', content: TabKey.SERIES },\n  ];\n\n  isMovies = signal<boolean>(true);\n  isSeries = signal<boolean>(false);\n\n  handleTabSelected(tab: string) {\n    this.isMovies.set(tab === TabKey.MOVIES);\n    this.isSeries.set(tab === TabKey.SERIES);\n  }\n}\n",
       "styleUrl": "./onbording-featured.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -5107,7 +4846,7 @@
     },
     {
       "name": "OnbordingPremieresComponent",
-      "id": "component-OnbordingPremieresComponent-2fa798e46f7903ea1c0bc8634c19f03291aed5b6f648ec9847b57affaa6d892dd3456eba5fe5a5a24248f846fd06298175b1c957c3705a6b0688413d5d199971",
+      "id": "component-OnbordingPremieresComponent-978090f4a7ed795f38e616f970e0b058be68571e25134fd045fa9c74dffe980303491c5f2b8f5c5b11a9b2f9d3e0ec7b94433b1084cd6980c3c52e3591611ea8",
       "file": "src/app/modules/pages/onboarding/components/onbording-premieres/onbording-premieres.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -5124,15 +4863,47 @@
       "outputsClass": [],
       "propertiesClass": [
         {
+          "name": "destroyRef",
+          "defaultValue": "inject(DestroyRef)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 18,
+          "modifierKind": [123]
+        },
+        {
           "name": "posters",
           "defaultValue": "signal<Trending[]>([])",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 16
+        },
+        {
+          "name": "router",
+          "defaultValue": "inject(Router)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 19,
+          "modifierKind": [123]
+        },
+        {
+          "name": "serviceTmdb",
+          "defaultValue": "inject(TheMovieDBPort)",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 20,
+          "modifierKind": [123]
         }
       ],
       "methodsClass": [
@@ -5149,7 +4920,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 32,
+          "line": 30,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -5171,7 +4942,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 28,
+          "line": 26,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -5181,7 +4952,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 24,
+          "line": 22,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -5198,7 +4969,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 45,
+          "line": 43,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5226,7 +4997,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 41,
+          "line": 39,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5256,67 +5027,11 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, DestroyRef, OnInit, signal } from '@angular/core';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\n\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Trending } from '@shared/core/domain/entity';\nimport { CarouselComponent, ItemsCarousel } from '@lib-transversal';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'app-onbording-premieres',\n  imports: [CarouselComponent],\n  templateUrl: './onbording-premieres.component.html',\n  styleUrl: './onbording-premieres.component.scss',\n})\nexport class OnbordingPremieresComponent implements OnInit {\n  posters = signal<Trending[]>([]);\n\n  constructor(\n    private serviceTmdb: TheMovieDBPort,\n    private destroyRef: DestroyRef,\n    private router: Router,\n  ) {}\n\n  ngOnInit() {\n    this.__init__();\n  }\n\n  __init__() {\n    this.__getTrending();\n  }\n\n  private __getTrending({ page }: { page: number } = { page: 1 }): void {\n    this.serviceTmdb\n      .getTrending({ page })\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        this.posters.set(movies);\n      });\n  }\n\n  onPoster(poster: ItemsCarousel): void {\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onMorePremieres(morePremieres: boolean): void {\n    console.log('onMorePremieres', morePremieres);\n\n    if (!morePremieres) return;\n\n    const lastPage = this.posters().reduce((max, premier) =>\n      max.page > premier.page ? max : premier,\n    );\n    this.__getTrending({ page: lastPage.page + 1 });\n  }\n}\n",
+      "sourceCode": "import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';\nimport { takeUntilDestroyed } from '@angular/core/rxjs-interop';\n\nimport { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';\nimport { Trending } from '@shared/core/domain/entity';\nimport { CarouselComponent, ItemsCarousel } from '@lib-transversal';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'app-onbording-premieres',\n  imports: [CarouselComponent],\n  templateUrl: './onbording-premieres.component.html',\n  styleUrl: './onbording-premieres.component.scss',\n})\nexport class OnbordingPremieresComponent implements OnInit {\n  posters = signal<Trending[]>([]);\n\n  private destroyRef = inject(DestroyRef);\n  private router = inject(Router);\n  private serviceTmdb = inject(TheMovieDBPort);\n\n  ngOnInit() {\n    this.__init__();\n  }\n\n  __init__() {\n    this.__getTrending();\n  }\n\n  private __getTrending({ page }: { page: number } = { page: 1 }): void {\n    this.serviceTmdb\n      .getTrending({ page })\n      .pipe(takeUntilDestroyed(this.destroyRef))\n      .subscribe((movies) => {\n        this.posters.set(movies);\n      });\n  }\n\n  onPoster(poster: ItemsCarousel): void {\n    this.router.navigate(['poster-detail', poster.media_type, poster.id]);\n  }\n\n  onMorePremieres(morePremieres: boolean): void {\n    console.log('onMorePremieres', morePremieres);\n\n    if (!morePremieres) return;\n\n    const lastPage = this.posters().reduce((max, premier) =>\n      max.page > premier.page ? max : premier,\n    );\n    this.__getTrending({ page: lastPage.page + 1 });\n  }\n}\n",
       "styleUrl": "./onbording-premieres.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "serviceTmdb",
-            "type": "TheMovieDBPort",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "destroyRef",
-            "type": "DestroyRef",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 16,
-        "jsdoctags": [
-          {
-            "name": "serviceTmdb",
-            "type": "TheMovieDBPort",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "destroyRef",
-            "type": "DestroyRef",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "router",
-            "type": "Router",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
       "extends": [],
       "implements": ["OnInit"],
       "templateData": "<div class=\"container-wrapper reveal-blur\">\n  <h1 class=\"text-primary-ui font-bold text-4xl mt-12\">Premieres and announcements</h1>\n\n  <article class=\"pt-8 pb-20 block animate-fade-left\">\n    <ui-carousel\n      [items]=\"posters()\"\n      key=\"onbording-premieres\"\n      (outPoster)=\"onPoster($event)\"\n      (outReachEnd)=\"onMorePremieres($event)\"\n    ></ui-carousel>\n  </article>\n</div>\n"
@@ -5355,8 +5070,7 @@
           "defaultValue": "signal<boolean>(false)",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "indexKey": "",
+          "type": "",
           "optional": false,
           "description": "",
           "line": 14
@@ -5471,7 +5185,6 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "DetailPoster | null",
-          "indexKey": "",
           "optional": false,
           "description": "",
           "line": 13,
@@ -5481,7 +5194,7 @@
               "stringifiedArguments": ""
             }
           ],
-          "modifierKind": [171]
+          "modifierKind": [170]
         }
       ],
       "methodsClass": [],
@@ -5530,7 +5243,7 @@
         "file": "src/app/modules/shared/config/tokens.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "unknown",
+        "type": "",
         "defaultValue": "new InjectionToken<string>('API_BASE_URL')"
       },
       {
@@ -5540,7 +5253,7 @@
         "file": "src/app/modules/shared/config/tokens.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "unknown",
+        "type": "",
         "defaultValue": "new InjectionToken<string>('API_KEY_TOKEN')"
       },
       {
@@ -5560,8 +5273,8 @@
         "file": "src/main.server.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "unknown",
-        "defaultValue": "(context: BootstrapContext) =>\n  bootstrapApplication(AppComponent, config, context)"
+        "type": "",
+        "defaultValue": "(context: BootstrapContext) =>\n  bootstrapApplication(\n    AppComponent,\n    { ...config, providers: [provideZoneChangeDetection(), ...config.providers] },\n    context,\n  )"
       },
       {
         "name": "config",
@@ -5570,7 +5283,7 @@
         "file": "src/app/modules/app/app.config.server.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "unknown",
+        "type": "",
         "defaultValue": "mergeApplicationConfig(appConfig, serverConfig)"
       },
       {
@@ -5601,7 +5314,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "[]",
-        "defaultValue": "[\r\n  {\r\n    provide: HTTP_INTERCEPTORS,\r\n    useClass: HttpHeadersInterceptor,\r\n    multi: true\r\n  }\r\n]"
+        "defaultValue": "[\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: HttpHeadersInterceptor,\n    multi: true,\n  },\n]"
       },
       {
         "name": "httpInterceptorRefactorUrlProvider",
@@ -5650,7 +5363,7 @@
         "file": "src/app/modules/pages/onboarding/store/movies.store.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "unknown",
+        "type": "",
         "defaultValue": "signalStore(\n  withState(initialState),\n  withComputed(({ featuredMovies }) => ({\n    movies: computed(() => featuredMovies()),\n    spellMovies: computed(() =>\n      featuredMovies().filter((movie) => movie.media_type === MediaType.Movie),\n    ),\n    hasMovies: computed(() => featuredMovies().length > 0),\n    hasMoreMovies: computed(() => featuredMovies().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesMovies: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedMovies({ page })\n            .pipe(tap((movies) => patchState(store, { featuredMovies: movies, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n)"
       },
       {
@@ -5680,7 +5393,7 @@
         "file": "src/app/modules/pages/onboarding/store/series.store.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "unknown",
+        "type": "",
         "defaultValue": "signalStore(\n  withState(initialState),\n  withComputed(({ featuredSeries }) => ({\n    series: computed(() => featuredSeries()),\n    spellSeries: computed(() =>\n      featuredSeries().filter((serie) => serie.media_type === MediaType.Tv),\n    ),\n    hasSeries: computed(() => featuredSeries().length > 0),\n    hasMoreSeries: computed(() => featuredSeries().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesSeries: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedSeries({ page })\n            .pipe(tap((series) => patchState(store, { featuredSeries: series, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n)"
       },
       {
@@ -5705,7 +5418,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 188
+        "kind": 187
       },
       {
         "name": "DetailPosterMovie",
@@ -5716,7 +5429,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 184
+        "kind": 183
       },
       {
         "name": "DetailPosterSeries",
@@ -5727,29 +5440,29 @@
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 184
+        "kind": 183
       },
       {
         "name": "FeaturedMovie",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "unknown",
+        "rawtype": "",
         "file": "src/app/modules/shared/core/domain/entity/featured-movie.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 194
+        "kind": 193
       },
       {
         "name": "FeaturedSerie",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "unknown",
+        "rawtype": "",
         "file": "src/app/modules/shared/core/domain/entity/featured-serie.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 194
+        "kind": 193
       },
       {
         "name": "RecordType",
@@ -5760,7 +5473,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 188
+        "kind": 187
       },
       {
         "name": "SearchMulti",
@@ -5771,18 +5484,18 @@
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 188
+        "kind": 187
       },
       {
         "name": "Trending",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "unknown",
+        "rawtype": "",
         "file": "src/app/modules/shared/core/domain/entity/trending.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 194
+        "kind": 193
       }
     ],
     "enumerations": [
@@ -5975,7 +5688,7 @@
           "file": "src/app/modules/shared/config/tokens.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
+          "type": "",
           "defaultValue": "new InjectionToken<string>('API_BASE_URL')"
         },
         {
@@ -5985,7 +5698,7 @@
           "file": "src/app/modules/shared/config/tokens.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
+          "type": "",
           "defaultValue": "new InjectionToken<string>('API_KEY_TOKEN')"
         }
       ],
@@ -6009,8 +5722,8 @@
           "file": "src/main.server.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
-          "defaultValue": "(context: BootstrapContext) =>\n  bootstrapApplication(AppComponent, config, context)"
+          "type": "",
+          "defaultValue": "(context: BootstrapContext) =>\n  bootstrapApplication(\n    AppComponent,\n    { ...config, providers: [provideZoneChangeDetection(), ...config.providers] },\n    context,\n  )"
         }
       ],
       "src/app/modules/app/app.config.server.ts": [
@@ -6021,7 +5734,7 @@
           "file": "src/app/modules/app/app.config.server.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
+          "type": "",
           "defaultValue": "mergeApplicationConfig(appConfig, serverConfig)"
         },
         {
@@ -6068,7 +5781,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "[]",
-          "defaultValue": "[\r\n  {\r\n    provide: HTTP_INTERCEPTORS,\r\n    useClass: HttpHeadersInterceptor,\r\n    multi: true\r\n  }\r\n]"
+          "defaultValue": "[\n  {\n    provide: HTTP_INTERCEPTORS,\n    useClass: HttpHeadersInterceptor,\n    multi: true,\n  },\n]"
         }
       ],
       "src/app/modules/shared/interceptors/refactor-url-interceptor.service.ts": [
@@ -6101,7 +5814,7 @@
           "file": "src/app/modules/pages/onboarding/store/movies.store.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
+          "type": "",
           "defaultValue": "signalStore(\n  withState(initialState),\n  withComputed(({ featuredMovies }) => ({\n    movies: computed(() => featuredMovies()),\n    spellMovies: computed(() =>\n      featuredMovies().filter((movie) => movie.media_type === MediaType.Movie),\n    ),\n    hasMovies: computed(() => featuredMovies().length > 0),\n    hasMoreMovies: computed(() => featuredMovies().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesMovies: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedMovies({ page })\n            .pipe(tap((movies) => patchState(store, { featuredMovies: movies, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n)"
         }
       ],
@@ -6123,7 +5836,7 @@
           "file": "src/app/modules/pages/onboarding/store/series.store.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "unknown",
+          "type": "",
           "defaultValue": "signalStore(\n  withState(initialState),\n  withComputed(({ featuredSeries }) => ({\n    series: computed(() => featuredSeries()),\n    spellSeries: computed(() =>\n      featuredSeries().filter((serie) => serie.media_type === MediaType.Tv),\n    ),\n    hasSeries: computed(() => featuredSeries().length > 0),\n    hasMoreSeries: computed(() => featuredSeries().length < 20),\n  })),\n  withMethods((store, service = inject(TheMovieDBPort)) => ({\n    loadPagesSeries: rxMethod<number>(\n      pipe(\n        tap(() => patchState(store, { state: 'loading' })),\n        switchMap((page) =>\n          service\n            .getFeaturedSeries({ page })\n            .pipe(tap((series) => patchState(store, { featuredSeries: series, state: 'success' }))),\n        ),\n        catchError(() => {\n          patchState(store, { state: 'error' });\n          return EMPTY;\n        }),\n      ),\n    ),\n  })),\n)"
         }
       ],
@@ -6367,7 +6080,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
-          "kind": 188
+          "kind": 187
         },
         {
           "name": "DetailPosterMovie",
@@ -6378,7 +6091,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
-          "kind": 184
+          "kind": 183
         },
         {
           "name": "DetailPosterSeries",
@@ -6389,7 +6102,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
-          "kind": 184
+          "kind": 183
         }
       ],
       "src/app/modules/shared/core/domain/entity/featured-movie.ts": [
@@ -6397,12 +6110,12 @@
           "name": "FeaturedMovie",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "unknown",
+          "rawtype": "",
           "file": "src/app/modules/shared/core/domain/entity/featured-movie.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
-          "kind": 194
+          "kind": 193
         }
       ],
       "src/app/modules/shared/core/domain/entity/featured-serie.ts": [
@@ -6410,12 +6123,12 @@
           "name": "FeaturedSerie",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "unknown",
+          "rawtype": "",
           "file": "src/app/modules/shared/core/domain/entity/featured-serie.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
-          "kind": 194
+          "kind": 193
         }
       ],
       "src/app/modules/shared/core/domain/entity/record.type.ts": [
@@ -6428,7 +6141,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
-          "kind": 188
+          "kind": 187
         }
       ],
       "src/app/modules/shared/core/domain/entity/search-multi.ts": [
@@ -6441,7 +6154,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
-          "kind": 188
+          "kind": 187
         }
       ],
       "src/app/modules/shared/core/domain/entity/trending.ts": [
@@ -6449,42 +6162,17 @@
           "name": "Trending",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "unknown",
+          "rawtype": "",
           "file": "src/app/modules/shared/core/domain/entity/trending.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
-          "kind": 194
+          "kind": 193
         }
       ]
     }
   },
-  "routes": {
-    "name": "<root>",
-    "kind": "module",
-    "children": [
-      {
-        "name": "MainLayoutComponent",
-        "kind": "component",
-        "filename": "src/app/modules/app/app.routes.ts"
-      },
-      {
-        "name": "**",
-        "kind": "route-path",
-        "filename": "src/app/modules/app/app.routes.ts"
-      },
-      {
-        "name": "poster-detail/:mediaType/:id",
-        "kind": "route-path",
-        "filename": "src/app/modules/pages/pages.routes.ts"
-      },
-      {
-        "name": "failed",
-        "kind": "route-path",
-        "filename": "src/app/modules/pages/pages.routes.ts"
-      }
-    ]
-  },
+  "routes": [],
   "coverage": {
     "count": 0,
     "status": "low",
@@ -6606,7 +6294,7 @@
         "linktype": "component",
         "name": "OnbordingPremieresComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/8",
+        "coverageCount": "0/10",
         "status": "low"
       },
       {
@@ -6710,7 +6398,7 @@
         "linktype": "injectable",
         "name": "HttpTmdbAdapterService",
         "coveragePercent": 0,
-        "coverageCount": "0/9",
+        "coverageCount": "0/10",
         "status": "low"
       },
       {
@@ -6961,86 +6649,6 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/modules/shared/core/domain/entity/detail-poster.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "DetailPoster",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/modules/shared/core/domain/entity/detail-poster.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "DetailPosterMovie",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/modules/shared/core/domain/entity/detail-poster.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "DetailPosterSeries",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/modules/shared/core/domain/entity/featured-movie.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "FeaturedMovie",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/modules/shared/core/domain/entity/featured-serie.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "FeaturedSerie",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/modules/shared/core/domain/entity/record.type.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "RecordType",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/modules/shared/core/domain/entity/search-multi.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "SearchMulti",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/modules/shared/core/domain/entity/trending.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "Trending",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
         "filePath": "src/app/modules/shared/core/domain/ports/themoviedb-port.class.ts",
         "type": "class",
         "linktype": "classe",
@@ -7109,7 +6717,7 @@
         "linktype": "directive",
         "name": "FormFocusDirective",
         "coveragePercent": 0,
-        "coverageCount": "0/9",
+        "coverageCount": "0/11",
         "status": "low"
       },
       {

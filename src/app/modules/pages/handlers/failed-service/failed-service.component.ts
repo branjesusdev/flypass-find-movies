@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '@lib-transversal';
 
@@ -10,7 +10,7 @@ import { ButtonComponent } from '@lib-transversal';
   styleUrl: './failed-service.component.scss',
 })
 export default class FailedServiceComponent {
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   refreshPage() {
     this.router.navigate(['/']);

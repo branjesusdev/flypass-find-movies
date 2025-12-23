@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { TheMovieDBPort } from '@shared/core/domain/ports/themoviedb-port.class';
@@ -15,11 +15,9 @@ import { Router } from '@angular/router';
 export class OnbordingPremieresComponent implements OnInit {
   posters = signal<Trending[]>([]);
 
-  constructor(
-    private serviceTmdb: TheMovieDBPort,
-    private destroyRef: DestroyRef,
-    private router: Router,
-  ) {}
+  private destroyRef = inject(DestroyRef);
+  private router = inject(Router);
+  private serviceTmdb = inject(TheMovieDBPort);
 
   ngOnInit() {
     this.__init__();
